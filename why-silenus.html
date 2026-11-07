@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>(function(r){r.classList.add('js');if(matchMedia('(prefers-reduced-motion: reduce)').matches){r.classList.add('reduced-motion');return}r.classList.add('is-loading')})(document.documentElement)</script>
+
+<title>Why Silenus — answers you can check, not files to read</title>
+<meta name="description" content="How Silenus differs from apps kept in sync and AI layered on top: one knowledge layer, cited and complete answers, and pricing by information, not by seat.">
+<link rel="canonical" href="https://silenus.app/why-silenus">
+<meta name="theme-color" content="#09111A">
+<meta name="color-scheme" content="dark">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Silenus by Phannes Inc.">
+<meta property="og:title" content="Why Silenus — answers you can check, not files to read">
+<meta property="og:description" content="The AI-native business operating system. One knowledge layer, cited answers, self-hostable.">
+<meta property="og:image" content="assets/img/dashboard-placeholder.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="assets/img/logo-mark.svg" type="image/svg+xml">
+
+<!-- Fonts and libraries are self-hosted: no third-party request blocks the first paint -->
+<link rel="preload" href="assets/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/vEFI2_tTDB4M7-auWDN0ahZJW1gb8tc.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/css/site.min.css?v=20261107183713" as="style">
+<link rel="preload" href="assets/js/site.min.js?v=20261107183713" as="script">
+<style>
+/* Critical: the preloader paints on the first frame, before the stylesheet arrives (the stylesheet link sits after it in <body>) */
+html{background:#09111A}body{margin:0;background:#09111A}
+.preloader{display:none}
+.is-loading{overflow:hidden}
+.is-loading .preloader{position:fixed;inset:0;z-index:510;display:grid;place-content:center;justify-items:center;gap:40px;background:radial-gradient(45% 40% at 50% 46%,rgba(79,176,180,.10),transparent 70%),#09111A;color:#E4E7EB;font-family:"IBM Plex Mono",ui-monospace,monospace}
+.preloader__core{position:relative;width:164px;aspect-ratio:1;display:grid;place-items:center}
+.preloader__core>*{grid-area:1/1}
+.preloader__ring{border-radius:50%;aspect-ratio:1}
+.preloader__ring--a{width:128%;border:1px dashed rgba(143,211,213,.18);animation:pre-turn 22s linear infinite}
+.preloader__ring--b{width:230%;background:radial-gradient(closest-side,rgba(79,176,180,calc(.08 + var(--p,0)*.14)),transparent 72%);animation:pre-breathe 2.8s cubic-bezier(.45,0,.55,1) infinite alternate}
+.preloader__arc{width:100%;height:100%;transform:rotate(-90deg);overflow:visible}
+.preloader__arc circle{fill:none;stroke:#8FD3D5;stroke-width:1.2;stroke-linecap:round;stroke-dasharray:100;stroke-dashoffset:calc(100 - var(--p,0)*100);filter:drop-shadow(0 0 5px rgba(143,211,213,.85))}
+.preloader__arc .preloader__track{stroke:rgba(205,214,225,.08);stroke-dasharray:none;filter:none}
+.preloader__logo{width:54px;height:auto;overflow:visible;filter:drop-shadow(0 0 calc(10px + var(--p,0)*22px) rgba(79,176,180,calc(.25 + var(--p,0)*.35)));animation:pre-float 3.2s cubic-bezier(.45,0,.55,1) infinite alternate}
+.preloader__logo path{stroke-dasharray:1;stroke-dashoffset:calc(1 - min(1,var(--p,0)*1.25))}
+@keyframes pre-turn{to{transform:rotate(360deg)}}
+@keyframes pre-breathe{from{transform:scale(.92);opacity:.7}to{transform:scale(1.05);opacity:1}}
+@keyframes pre-float{to{transform:translateY(-3px)}}
+.preloader__log{list-style:none;margin:0;padding:0;display:grid;gap:8px;min-width:min(360px,80vw);font:500 12px/1.4 "IBM Plex Mono",ui-monospace,monospace;letter-spacing:.02em;color:#7A838F}
+.preloader__log li{display:flex;gap:10px;opacity:0;transform:translate3d(0,6px,0);transition:opacity .3s cubic-bezier(.16,1,.3,1),transform .4s cubic-bezier(.16,1,.3,1),color .4s ease}
+.preloader__log li span::after{content:"";display:inline-block;width:6px;height:1em;margin-left:2px;vertical-align:-2px;background:#8FD3D5;opacity:0}
+.preloader__log li.is-typing span::after{opacity:1}
+.preloader__log li:first-child,.preloader__log li.is-on{opacity:1;transform:none}
+.preloader__log li.is-done{color:#4B535E}
+.preloader__log li.is-done::after{content:"ok";margin-left:auto;color:#5FA873}
+.preloader__log b{font-weight:500;color:#4FB0B4;min-width:9ch}
+.preloader__foot{position:absolute;left:clamp(20px,4.4vw,72px);right:clamp(20px,4.4vw,72px);bottom:32px;display:flex;justify-content:space-between;align-items:baseline;font:500 .75rem/1 "IBM Plex Mono",ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase;color:#4B535E}
+.preloader__count b{display:inline-block;min-width:3ch;text-align:right;font-weight:500;color:#F3F4F6;font-variant-numeric:tabular-nums}
+.preloader.is-leaving .preloader__core{opacity:0;transform:translate3d(0,-24px,0) scale(1.35);filter:blur(4px);transition:opacity .55s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1),filter .55s cubic-bezier(.16,1,.3,1)}
+.preloader.is-leaving .preloader__log,.preloader.is-leaving .preloader__foot{opacity:0;transform:translate3d(0,-12px,0);transition:opacity .35s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1)}
+.preloader.is-leaving{opacity:0;transition:opacity .7s cubic-bezier(.16,1,.3,1) .22s;pointer-events:none}
+@media (prefers-reduced-motion:reduce){.preloader__ring--a,.preloader__ring--b,.preloader__logo{animation:none}}
+</style>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "#org",
+      "name": "Phannes Inc.",
+      "brand": { "@type": "Brand", "name": "Silenus" },
+      "logo": "assets/img/logo-mark.svg"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "Silenus",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web, self-hosted",
+      "description": "AI-native business operating system that unifies a company's knowledge, data and operations into one intelligent layer, with cited answers.",
+      "publisher": { "@id": "#org" }
+    }
+  ]
+}
+</script>
+
+<!-- GSAP 3.12.5 + ScrollTrigger + Lenis 1.1.13 and the page scripts, bundled by build.py -->
+<script src="assets/js/site.min.js?v=20261107183713" defer></script>
+</head>
+<body>
+<!-- Entry preloader: every load. Painted from the inline styles before the stylesheet arrives; tied to real
+     readiness (DOM, fonts, load), lifts like a curtain. Never shown without JS or with reduced motion. -->
+<div class="preloader" aria-hidden="true" data-preloader>
+  <div class="preloader__core">
+    <span class="preloader__ring preloader__ring--b"></span>
+    <span class="preloader__ring preloader__ring--a"></span>
+    <svg class="preloader__arc" viewBox="0 0 100 100"><circle class="preloader__track" cx="50" cy="50" r="46"/><circle cx="50" cy="50" r="46" pathLength="100" data-preloader-arc/></svg>
+    <svg class="preloader__logo" viewBox="0 0 100 116" fill="none"><defs><linearGradient id="plg" x1="20" y1="10" x2="80" y2="106" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#4FA3E0"/><stop offset="1" stop-color="#6FCF9A"/></linearGradient></defs><path d="M80 18H40a20 20 0 0 0 0 40h20a20 20 0 0 1 0 40H20" stroke="url(#plg)" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/></svg>
+  </div>
+  <ol class="preloader__log" data-preloader-log>
+    <li data-at="0"><b>[INIT]</b><span>Establishing secure connection</span></li>
+    <li data-at=".35"><b>[VAULT]</b><span>Opening the knowledge base</span></li>
+    <li data-at=".62"><b>[INDEX]</b><span>Linking clients, contracts and projects</span></li>
+    <li data-at=".9"><b>[READY]</b><span>Workspace online</span></li>
+  </ol>
+  <div class="preloader__foot">
+    <span class="preloader__by">SILENUS · by Phannes Inc.</span>
+    <span class="preloader__count"><b data-preloader-count>0</b>%</span>
+  </div>
+</div>
+<link rel="stylesheet" href="assets/css/site.min.css?v=20261107183713">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ================= 00 · NAVIGATION ================= -->
+<header class="nav" data-nav>
+  <div class="nav__dock">
+    <a class="nav__brand" href="/" aria-label="Silenus home">
+      <img src="assets/img/logo-mark.svg" width="16" height="19" alt="">
+      <span class="nav__word">SILENUS</span>
+    </a>
+
+    <!-- Live context: page progress + the section you are in (updates on scroll) -->
+    <p class="nav__ctx" aria-hidden="true">
+      <svg class="nav__ring" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8"/><circle class="nav__ring-fill" cx="10" cy="10" r="8" pathLength="100" data-nav-ring/></svg>
+      <span class="nav__ctx-text" data-nav-ctx>Overview</span>
+    </p>
+
+    <div class="nav__actions">
+      <button class="nav__menu" type="button" aria-expanded="false" aria-controls="site-menu" data-nav-toggle>
+        <span class="nav__menu-label" data-nav-label>Menu</span>
+        <span class="nav__menu-icon" aria-hidden="true"><i></i><i></i></span>
+      </button>
+      <a class="nav__login" href="https://silenus.app">Log in</a>
+      <a class="nav__cta" href="#demo"><i class="nav__sweep" aria-hidden="true"></i>Book a demo <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</header>
+
+<!-- Sidebar drawer: every chapter of the page, numbered like the page itself -->
+<div class="drawer" id="site-menu" data-nav-panel inert>
+  <div class="drawer__scrim" data-nav-close></div>
+  <aside class="drawer__panel" role="dialog" aria-modal="true" aria-label="Site menu">
+    <div class="drawer__head">
+      <p class="drawer__k">Contents</p>
+      <button class="drawer__close" type="button" data-nav-close aria-label="Close menu"><span aria-hidden="true"></span></button>
+    </div>
+    <nav aria-label="Sections">
+      <ol class="drawer__list" data-nav-links>
+          <li class="drawer__page" style="--i:0"><span class="drawer__pages"><a class="drawer__pg" href="index.html">Home</a><a class="drawer__pg" href="platform.html">Platform</a><a class="drawer__pg is-here" href="why-silenus.html" aria-current="page">Why Silenus</a><a class="drawer__pg" href="security.html">Security &amp; Trust</a><a class="drawer__pg" href="company.html">Company &amp; Vision</a></span></li>
+          <li style="--i:1"><a href="#why"><b>01</b><span>The difference</span><i aria-hidden="true">→</i></a></li>
+          <li style="--i:2"><a href="#why-silenus"><b>02</b><span>Why Silenus</span><i aria-hidden="true">→</i></a></li>
+          <li style="--i:3"><a href="#pricing"><b>03</b><span>Pricing</span><i aria-hidden="true">→</i></a></li>
+          <li style="--i:4"><a href="#demo"><b>04</b><span>Live test</span><i aria-hidden="true">→</i></a></li>
+      </ol>
+    </nav>
+    <div class="drawer__foot" style="--i:14">
+      <a class="btn btn--primary" href="#demo">Book a demo <span class="btn__arrow" aria-hidden="true">→</span></a>
+      <a class="btn btn--secondary" href="https://silenus.app">Log in</a>
+      <p>SILENUS by Phannes Inc.</p>
+    </div>
+  </aside>
+</div>
+
+<main id="main">
+<!-- ================= PAGE HERO: label pill · headline · one line · actions | a live preview of the page ================= -->
+<section class="page-hero" id="top" aria-labelledby="page-title">
+  <div class="bits" aria-hidden="true"></div>
+  <div class="wrap page-hero__grid">
+    <div class="page-hero__text">
+      <header class="sec-head" data-split-head>
+        <p class="sec-head__idx">Why Silenus</p>
+        <div class="sec-head__body">
+          <h1 class="sec-head__title" id="page-title">Built the other way round. <span class="sec-head__muted">The knowledge base comes first.</span></h1>
+          <p class="sec-head__lead">Others wire modules together. Silenus starts from one knowledge base, and every module is a view of it.</p>
+        </div>
+      </header>
+      <p class="page-hero__actions"><a class="btn btn--primary" href="#demo">Book a live test <span class="btn__arrow" aria-hidden="true">→</span></a><a class="btn btn--secondary" href="#pricing">See pricing</a></p>
+    </div>
+    <div class="page-hero__stage" aria-hidden="true"><p class="ps__bar"><span class="ps__dots"><i></i><i></i><i></i></span>the same question, four tools</p><p class="ps__q">"List every contract that auto-renews."</p><ul class="ps__rows"><li class="" style="--d:0"><span>Traditional knowledge base</span><em class="vsw__v--no">✕ Misses items</em></li><li class="" style="--d:1"><span>Generic AI chat</span><em class="vsw__v--no">✕ Incomplete</em></li><li class="" style="--d:2"><span>AI knowledge-base tool</span><em class="vsw__v--part">~ Top matches only</em></li><li class="is-us" style="--d:3"><span>Silenus</span><em class="vsw__v--yes">✓ Complete set</em></li></ul><p class="ps__foot">At 100 people, <b>€872</b> a month · under a third of Odoo Standard</p></div>
+  </div>
+</section>
+
+<!-- ================= 03 · THE DIFFERENCE ================= -->
+<section class="diff" id="why" aria-labelledby="diff-title" data-diff>
+  <div class="wrap">
+    <header class="sec-head" data-split-head>
+      <p class="sec-head__idx"><b>01</b> The difference</p>
+      <div class="sec-head__body">
+        <h2 class="sec-head__title" id="diff-title">
+          Apps organise your business.
+          <span class="sec-head__muted">Silenus understands it.</span>
+        </h2>
+        <p class="sec-head__lead">Others sync separate apps or bolt AI on top. Silenus builds one knowledge layer first, and every module is a view of it.</p>
+      </div>
+    </header>
+
+    <div class="diff__compare" data-reveal>
+      <div class="diff__tabs" role="tablist" aria-label="Compare how platforms are built">
+        <button class="diff__tab" role="tab" id="diff-tab-sync" aria-controls="diff-panel-sync" aria-selected="true" tabindex="0" data-diff-tab="sync"><span class="diff__tab-long">Apps kept in sync</span><span class="diff__tab-short" aria-hidden="true">Synced apps</span></button>
+        <button class="diff__tab" role="tab" id="diff-tab-ai" aria-controls="diff-panel-ai" aria-selected="false" tabindex="-1" data-diff-tab="ai">AI on top</button>
+        <button class="diff__tab" role="tab" id="diff-tab-silenus" aria-controls="diff-panel-silenus" aria-selected="false" tabindex="-1" data-diff-tab="silenus">Silenus</button>
+      </div>
+
+      <div class="diff__body">
+        <div class="diff__panels">
+          <div class="diff__panel" role="tabpanel" id="diff-panel-sync" aria-labelledby="diff-tab-sync" tabindex="0">
+            <p class="diff__kicker">01 · Bundled apps</p>
+            <h3 class="diff__title">Separate apps, kept in sync</h3>
+            <p class="diff__text">Each app keeps its own copy of a customer. Data travels between pairs of apps, and things fall through the gaps.</p>
+            <ul class="diff__points">
+              <li class="is-con">One customer, four copies</li>
+              <li class="is-con">Every new module is a new integration</li>
+              <li class="is-con">AI added later, paid in credits</li>
+            </ul>
+          </div>
+          <div class="diff__panel" role="tabpanel" id="diff-panel-ai" aria-labelledby="diff-tab-ai" tabindex="0" hidden>
+            <p class="diff__kicker">02 · AI on top</p>
+            <h3 class="diff__title">An AI layer over existing tools</h3>
+            <p class="diff__text">The AI can find information, but the business stays fragmented, and you keep paying for every tool underneath.</p>
+            <ul class="diff__points">
+              <li class="is-con">Search, but no shared operations</li>
+              <li class="is-con">Sees only what each tool hands it</li>
+              <li class="is-con">Every tool still billed underneath</li>
+            </ul>
+          </div>
+          <div class="diff__panel" role="tabpanel" id="diff-panel-silenus" aria-labelledby="diff-tab-silenus" tabindex="0" hidden>
+            <p class="diff__kicker diff__kicker--accent">03 · Silenus</p>
+            <h3 class="diff__title">One knowledge layer, modules on top</h3>
+            <p class="diff__text">Everything goes into one knowledge base first. Every module reads the same facts, so nothing is copied and nothing gets out of step.</p>
+            <ul class="diff__points">
+              <li class="is-pro">One customer, one record</li>
+              <li class="is-pro">A new module is a new view</li>
+              <li class="is-pro">AI built in, included</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- One diagram, three states. Nodes move between states; connections cross-fade. Decorative: the panels carry the meaning. -->
+        <figure class="diff__figure" aria-hidden="true">
+          <svg class="diff__svg" viewBox="24 56 592 324" data-state="sync" data-diff-svg>
+            <!-- state: apps kept in sync -->
+            <g class="diff__layer diff__layer--sync">
+              <g class="diff__sync-lines">
+                <path d="M222 96H418"/><path d="M222 296H418"/><path d="M156 122V270"/><path d="M484 122V270"/>
+                <path d="M222 122L418 270"/><path d="M418 122L222 270"/>
+              </g>
+              <text class="diff__mono" x="320" y="86" text-anchor="middle">sync</text>
+              <text class="diff__mono" x="320" y="318" text-anchor="middle">sync</text>
+              <circle class="diff__gap" cx="320" cy="196" r="5"/>
+              <text class="diff__mono diff__mono--warn" x="332" y="200">out of step</text>
+            </g>
+
+            <!-- state: AI on top -->
+            <g class="diff__layer diff__layer--ai">
+              <rect class="diff__bar" x="40" y="80" width="564" height="56" rx="14"/>
+              <text class="diff__bar-label" x="322" y="113" text-anchor="middle">AI search &amp; connectors</text>
+              <g class="diff__drop-lines"><path d="M106 136V290"/><path d="M250 136V290"/><path d="M394 136V290"/><path d="M538 136V290"/></g>
+            </g>
+
+            <!-- state: Silenus -->
+            <g class="diff__layer diff__layer--silenus">
+              <g class="diff__view-lines"><path d="M106 122V250"/><path d="M250 122V250"/><path d="M394 122V250"/><path d="M538 122V250"/></g>
+              <rect class="diff__core" x="40" y="250" width="564" height="72" rx="18"/>
+              <text class="diff__core-label" x="322" y="282" text-anchor="middle">ONE KNOWLEDGE LAYER</text>
+              <text class="diff__mono" x="322" y="304" text-anchor="middle">the AI understands it</text>
+              <text class="diff__mono" x="322" y="362" text-anchor="middle">email · documents · invoices · bank · chat</text>
+              <path class="diff__feed" d="M322 344V328"/>
+            </g>
+
+            <!-- persistent nodes -->
+            <g class="diff__node diff__node--1"><rect width="132" height="52" rx="12"/><text x="66" y="31" text-anchor="middle">CRM</text><text class="diff__db" x="66" y="70" text-anchor="middle">own database</text></g>
+            <g class="diff__node diff__node--2"><rect width="132" height="52" rx="12"/><text x="66" y="31" text-anchor="middle">Finance</text><text class="diff__db" x="66" y="70" text-anchor="middle">own database</text></g>
+            <g class="diff__node diff__node--3"><rect width="132" height="52" rx="12"/><text x="66" y="31" text-anchor="middle">HR</text><text class="diff__db" x="66" y="70" text-anchor="middle">own database</text></g>
+            <g class="diff__node diff__node--4"><rect width="132" height="52" rx="12"/><text x="66" y="31" text-anchor="middle">Projects</text><text class="diff__db" x="66" y="70" text-anchor="middle">own database</text></g>
+          </svg>
+        </figure>
+      </div>
+    </div>
+
+    <ul class="diff__notes" data-reveal-group aria-label="What sets Silenus apart">
+      <li><p class="diff__note-k">Facts, not just text</p><p class="diff__note-p">Silenus reads 100k+ pages and extracts parties, dates, amounts and clauses, then links them to clients and projects.</p></li>
+      <li><p class="diff__note-k">Understands by meaning</p><p class="diff__note-p">It finds “unpaid bill” when the document says “overdue invoice”. Similar meanings sit close together.</p></li>
+      <li><p class="diff__note-k">No folders to maintain</p><p class="diff__note-p">Every file carries its own metadata and lands in the right place automatically.</p></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= 04 · WHY SILENUS (client site: the same question, four kinds of tool) ================= -->
+<section class="vs" id="why-silenus" aria-labelledby="vs-title" data-vs>
+  <div class="wrap">
+    <header class="sec-head" data-split-head>
+      <p class="sec-head__idx"><b>02</b> Why Silenus</p>
+      <div class="sec-head__body">
+        <h2 class="sec-head__title" id="vs-title">Other tools find files. <span class="sec-head__muted">Silenus gives you the answer, and proves it.</span></h2>
+        <p class="sec-head__lead">Ask the same question to four kinds of tool. Pick one below.</p>
+      </div>
+    </header>
+
+    <div class="vs__mode" role="tablist" aria-label="View">
+      <button type="button" role="tab" id="vsm-0" aria-controls="vs-ask" aria-selected="true" tabindex="0" data-vs-mode="0">The same question</button>
+      <button type="button" role="tab" id="vsm-1" aria-controls="vs-score" aria-selected="false" tabindex="-1" data-vs-mode="1">Scorecard</button>
+    </div>
+
+    <div class="vs__view" id="vs-ask" role="tabpanel" aria-labelledby="vsm-0">
+    <div class="vs__qs" role="tablist" aria-label="Questions">
+        <button class="vs__q" role="tab" id="vsq-0" aria-controls="vs-wins" aria-selected="true" tabindex="0" data-vs-q="0"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg><span>Show revenue, profit and equity for every year on file.</span></button>
+        <button class="vs__q" role="tab" id="vsq-1" aria-controls="vs-wins" aria-selected="false" tabindex="-1" data-vs-q="1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg><span>List every contract that auto-renews.</span></button>
+        <button class="vs__q" role="tab" id="vsq-2" aria-controls="vs-wins" aria-selected="false" tabindex="-1" data-vs-q="2"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg><span>What termination fee does the Kovács agreement set?</span></button>
+        <button class="vs__q" role="tab" id="vsq-3" aria-controls="vs-wins" aria-selected="false" tabindex="-1" data-vs-q="3"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg><span>Where did our data go, and who saw it?</span></button>
+    </div>
+    <div class="vs__wins" id="vs-wins" role="tabpanel" aria-live="polite" data-reveal>
+        <div class="vsw">
+          <p class="vsw__bar"><i></i><i></i><i></i><span>Traditional knowledge base</span></p>
+          <p class="vsw__q" data-vs-wq>"Show revenue, profit and equity for every year on file."</p>
+          <p class="vsw__a" data-vs-wa>Finds <b>23 files</b> containing "revenue". You open each one and copy the figures yourself.</p>
+          <p class="vsw__v vsw__v--no" data-vs-wv>✕ Finds files</p>
+        </div>
+        <div class="vsw">
+          <p class="vsw__bar"><i></i><i></i><i></i><span>Generic AI chat</span></p>
+          <p class="vsw__q" data-vs-wq>"Show revenue, profit and equity for every year on file."</p>
+          <p class="vsw__a" data-vs-wa>A fluent table, but only from what you pasted in. Missing years are <b>filled with plausible guesses</b>.</p>
+          <p class="vsw__v vsw__v--no" data-vs-wv>✕ Guesses</p>
+        </div>
+        <div class="vsw">
+          <p class="vsw__bar"><i></i><i></i><i></i><span>AI knowledge-base tool</span></p>
+          <p class="vsw__q" data-vs-wq>"Show revenue, profit and equity for every year on file."</p>
+          <p class="vsw__a" data-vs-wa>Retrieves a few chunks. Tables split mid-row, so <b>some years come from the wrong column</b>.</p>
+          <p class="vsw__v vsw__v--part" data-vs-wv>~ Partial</p>
+        </div>
+        <div class="vsw vsw--us">
+          <p class="vsw__bar"><i></i><i></i><i></i><span>Silenus</span></p>
+          <p class="vsw__q" data-vs-wq>"Show revenue, profit and equity for every year on file."</p>
+          <p class="vsw__a" data-vs-wa>A reconciled table for <b>every year on file</b>, one value per cell, each linked to its page. Conflicts flagged.</p>
+          <p class="vsw__v vsw__v--yes" data-vs-wv>✓ Complete &amp; verified</p>
+        </div>
+    </div>
+    </div>
+
+    <div class="vs__view" id="vs-score" role="tabpanel" aria-labelledby="vsm-1" hidden>
+    <div class="score__wrap">
+    <table class="score">
+      <caption class="sr-only">How four kinds of tool compare</caption>
+      <thead><tr><th scope="col">You want…</th><th scope="col">Traditional knowledge base</th><th scope="col">Generic AI chat</th><th scope="col">AI knowledge-base tools</th><th scope="col" class="is-us">Silenus</th></tr></thead>
+      <tbody>
+            <tr><th scope="row">The answer, with a citation</th><td><span class="mk mk--n" aria-label="No">–</span></td><td><span class="mk mk--p" aria-label="Partly">~</span></td><td><span class="mk mk--y" aria-label="Yes">✓</span></td><td class="is-us"><span class="mk mk--y" aria-label="Yes">✓</span></td></tr>
+            <tr><th scope="row">Answers verified, not just cited</th><td><span class="mk mk--n" aria-label="No">–</span></td><td><span class="mk mk--n" aria-label="No">–</span></td><td><span class="mk mk--p" aria-label="Partly">~</span></td><td class="is-us"><span class="mk mk--y" aria-label="Yes">✓</span></td></tr>
+            <tr><th scope="row">Unlimited documents, still accurate</th><td><span class="mk mk--y" aria-label="Yes">✓</span></td><td><span class="mk mk--n" aria-label="No">–</span></td><td><span class="mk mk--y" aria-label="Yes">✓</span></td><td class="is-us"><span class="mk mk--y" aria-label="Yes">✓</span></td></tr>
+            <tr><th scope="row">Exact figures across every document</th><td><span class="mk mk--n" aria-label="No">–</span></td><td><span class="mk mk--n" aria-label="No">–</span></td><td><span class="mk mk--n" aria-label="No">–</span></td><td class="is-us"><span class="mk mk--y" aria-label="Yes">✓</span></td></tr>
+            <tr><th scope="row">Complete "list them all" answers</th><td><span class="mk mk--p" aria-label="Partly">~</span></td><td><span class="mk mk--n" aria-label="No">–</span></td><td><span class="mk mk--n" aria-label="No">–</span></td><td class="is-us"><span class="mk mk--y" aria-label="Yes">✓</span></td></tr>
+            <tr><th scope="row">Data and AI models on your own site</th><td><span class="mk mk--y" aria-label="Yes">✓</span></td><td><span class="mk mk--n" aria-label="No">–</span></td><td><span class="mk mk--n" aria-label="No">–</span></td><td class="is-us"><span class="mk mk--y" aria-label="Yes">✓</span></td></tr>
+            <tr><th scope="row">Projects, CRM, email and HR on the same knowledge</th><td><span class="mk mk--n" aria-label="No">–</span></td><td><span class="mk mk--n" aria-label="No">–</span></td><td><span class="mk mk--n" aria-label="No">–</span></td><td class="is-us"><span class="mk mk--y" aria-label="Yes">✓</span></td></tr>
+            <tr><th scope="row">Live without a consulting project</th><td><span class="mk mk--p" aria-label="Partly">~</span></td><td><span class="mk mk--y" aria-label="Yes">✓</span></td><td><span class="mk mk--p" aria-label="Partly">~</span></td><td class="is-us"><span class="mk mk--y" aria-label="Yes">✓</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+    </div>
+
+    <div class="score__cta vs__cta" data-reveal>
+      <p>Bring 30–50 of your own documents. We'll run this test with you, live.</p>
+      <a class="btn btn--primary" href="#demo">Book a live test <span class="btn__arrow" aria-hidden="true">→</span></a>
+    </div>
+    <script type="application/json" data-vs-data>[{"q": "Show revenue, profit and equity for every year on file.", "a": [["Finds <b>23 files</b> containing \"revenue\". You open each one and copy the figures yourself.", "no", "Finds files"], ["A fluent table, but only from what you pasted in. Missing years are <b>filled with plausible guesses</b>.", "no", "Guesses"], ["Retrieves a few chunks. Tables split mid-row, so <b>some years come from the wrong column</b>.", "part", "Partial"], ["A reconciled table for <b>every year on file</b>, one value per cell, each linked to its page. Conflicts flagged.", "yes", "Complete &amp; verified"]]}, {"q": "List every contract that auto-renews.", "a": [["Keyword search for \"auto-renew\" misses contracts that say <b>\"renews automatically\"</b>.", "no", "Misses items"], ["Only knows the contracts in this conversation and <b>loses track</b> as the list grows.", "no", "Incomplete"], ["Returns the <b>top few matches</b> and silently drops the rest.", "part", "Top matches only"], ["Detects a \"list them all\" question, <b>searches per contract</b> and returns the full set.", "yes", "Complete set"]]}, {"q": "What termination fee does the Kovács agreement set?", "a": [["Returns the agreement. <b>You read 40 pages</b> to find out.", "part", "You read it"], ["\"A fee of 15% of the annual value.\" <b>That clause doesn't exist.</b>", "no", "Invented"], ["Cites clause 12, but the passage <b>doesn't support</b> the fee it quotes.", "no", "Unsupported"], ["<b>\"The agreement does not set a termination fee.\"</b> Clause 12.2 allows 90 days' notice. Source attached.", "yes", "Honest answer"]]}, {"q": "Where did our data go, and who saw it?", "a": [["Access logs exist, but say <b>nothing about AI processing</b>.", "part", "Partial"], ["Your documents went to <b>a third-party cloud</b> under its own terms.", "no", "Left your walls"], ["Hosted SaaS. Model and region depend on <b>the vendor's contract</b>.", "no", "Vendor's cloud"], ["An append-only log of <b>every access and which model answered</b>. Zero documents left your environment.", "yes", "Provable"]]}]</script>
+  </div>
+</section>
+
+<!-- ================= 10 · PRICING ================= -->
+<section class="pricing" id="pricing" aria-labelledby="pricing-title">
+  <div class="wrap">
+    <header class="sec-head" data-split-head>
+      <p class="sec-head__idx"><b>03</b> Pricing</p>
+      <div class="sec-head__body">
+        <h2 class="sec-head__title" id="pricing-title">We don't price people or modules. <span class="sec-head__muted">We price information.</span></h2>
+        <p class="sec-head__lead">One package per company, every module and AI included. You pay for the information you process, not for seats.</p>
+      </div>
+    </header>
+
+    <div class="pricing__grid">
+      <div class="pricing__from" data-reveal>
+        <p class="pricing__k">At 100 people</p>
+        <p class="pricing__price">€872<span>/ month</span></p>
+        <p class="pricing__terms">Under a third of Odoo Standard (€2,777).</p>
+        <ul class="pricing__facts"><li>10 packages</li><li>300–128,000 AI units / month</li><li>12 months for the price of 10</li></ul>
+        <a class="btn btn--primary" href="#demo">Get a quote <span class="btn__arrow" aria-hidden="true">→</span></a>
+      </div>
+
+      <table class="pricing__table" data-reveal>
+        <caption class="sr-only">How Silenus pricing differs from per-user software</caption>
+        <thead><tr><th scope="col"></th><th scope="col">Typical business software</th><th scope="col">Silenus</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Users</th><td>Paid per user, per month</td><td>Unlimited users, up to 500</td></tr>
+          <tr><th scope="row">AI</th><td>Paid on top, in credits or tokens</td><td>Included in every package</td></tr>
+          <tr><th scope="row">Modules</th><td>Bought and priced one by one</td><td>All included. A module is a view</td></tr>
+          <tr><th scope="row">Over the limit</th><td>Overage charges</td><td>Upgrade only after two months over, with your approval. Critical processes keep running</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <ul class="pricing__units" data-reveal-group aria-label="What an AI unit is">
+      <li><span>0.12</span> AI units · one email</li>
+      <li><span>1</span> AI unit · one invoice</li>
+      <li><span>1.5</span> AI units · one AI question</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= 13 · FINAL CTA ================= -->
+<section class="cta" id="demo" aria-labelledby="cta-title">
+  <div class="bits bits--patch" aria-hidden="true"></div>
+  <div class="wrap">
+    <header class="sec-head" data-split-head>
+      <p class="sec-head__idx" hidden><b>04</b> Live test</p>   <!-- kept for the menu; not shown, so the fibre runs straight on to the footer -->
+      <div class="sec-head__body">
+        <h2 class="sec-head__title" id="cta-title">One company. One system. <span class="sec-head__muted">One source of context.</span></h2>
+        <p class="sec-head__lead">Welcome. One workspace for your dashboard, email, calendar, projects, CRM, HR and AI assistant. See it on your own documents.</p>
+      </div>
+    </header>
+
+    <!-- The live-test portal: one capsule (email · company · action), one consent line, one trust row -->
+    <div class="portal" data-reveal>
+        <form class="portal__form" data-form action="#" method="post" data-endpoint="" novalidate>
+                    <div class="portal__capsule">
+            <span class="field portal__field">
+              <label for="cta-email" class="sr-only">Work email</label>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.5 7 8.5 6 8.5-6"/></svg>
+              <input id="cta-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="Work email" spellcheck="false" required>
+            </span>
+            <span class="portal__sep" aria-hidden="true"></span>
+            <span class="field portal__field">
+              <label for="cta-company" class="sr-only">Company</label>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V6l8-3 8 3v14M9 20v-5h6v5M8 9h.01M12 9h.01M16 9h.01M8 12h.01M12 12h.01M16 12h.01"/></svg>
+              <input id="cta-company" name="company" type="text" autocomplete="organization" placeholder="Company" required>
+            </span>
+            <button class="portal__submit cta__submit" type="submit">Book a live test <span aria-hidden="true">→</span></button>
+          </div>
+          <input type="hidden" name="source_page" value="home">
+          <input type="hidden" name="utm_source"><input type="hidden" name="utm_medium"><input type="hidden" name="utm_campaign">
+          <label class="cta__consent portal__consent"><input type="checkbox" name="consent" required> I agree that Phannes Inc. may contact me about this request.</label>
+          <p class="cta__status" role="status" aria-live="polite" data-form-status></p>
+        </form>
+      <ul class="portal__trust" aria-label="Good to know">
+        <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-6.5"/></svg>No consulting project to get started</li>
+        <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-6.5"/></svg>Private, self-hosted deployment available</li>
+        <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-6.5"/></svg>Answers verified against your own sources</li>
+      </ul>
+      <p class="portal__login">Already using Silenus? <a href="https://silenus.app">Log in</a> · <a href="https://silenus.app">Create an account</a></p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer fh">
+  <!-- Horizon footer: no boxes, no rules. Brand · links · legal on one line; the fibre leaves past the bottom-right. -->
+  <div class="wrap fh__row">
+    <div class="fh__brand">
+      <a class="nav__brand" href="/" aria-label="Silenus home"><img src="assets/img/logo-mark.svg" width="16" height="19" alt=""><span class="nav__word">SILENUS</span></a>
+      <p class="fh__tag">Where your company's knowledge comes to work.</p>
+    </div>
+    <nav class="fh__nav" aria-label="Footer">
+      <a href="platform.html">Platform</a>
+      <a href="why-silenus.html">Why Silenus</a>
+      <a href="index.html#security">Security</a>
+      <a href="#pricing">Pricing</a>
+      <a href="company.html#company">Company</a>
+      <a href="https://silenus.app">Log in</a>
+    </nav>
+    <div class="fh__legal">
+      <p>SILENUS by Phannes Inc. · © 2026</p>
+      <p><a href="/privacy">Privacy</a><a href="/cookies">Cookies</a><a href="/imprint">Imprint</a></p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

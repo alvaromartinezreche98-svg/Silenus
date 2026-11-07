@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>(function(r){r.classList.add('js');if(matchMedia('(prefers-reduced-motion: reduce)').matches){r.classList.add('reduced-motion');return}r.classList.add('is-loading')})(document.documentElement)</script>
+
+<title>Security & Trust — Silenus | Your data stays on your servers</title>
+<meta name="description" content="Run Silenus on your own infrastructure, AI models included. One permission model for people and AI, model attribution, boundary tracking and an append-only audit trail.">
+<link rel="canonical" href="https://silenus.app/security">
+<meta name="theme-color" content="#09111A">
+<meta name="color-scheme" content="dark">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Silenus by Phannes Inc.">
+<meta property="og:title" content="Security & Trust — Silenus | Your data stays on your servers">
+<meta property="og:description" content="The AI-native business operating system. One knowledge layer, cited answers, self-hostable.">
+<meta property="og:image" content="assets/img/dashboard-placeholder.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="assets/img/logo-mark.svg" type="image/svg+xml">
+
+<!-- Fonts and libraries are self-hosted: no third-party request blocks the first paint -->
+<link rel="preload" href="assets/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/vEFI2_tTDB4M7-auWDN0ahZJW1gb8tc.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/css/site.min.css?v=20261107183713" as="style">
+<link rel="preload" href="assets/js/site.min.js?v=20261107183713" as="script">
+<style>
+/* Critical: the preloader paints on the first frame, before the stylesheet arrives (the stylesheet link sits after it in <body>) */
+html{background:#09111A}body{margin:0;background:#09111A}
+.preloader{display:none}
+.is-loading{overflow:hidden}
+.is-loading .preloader{position:fixed;inset:0;z-index:510;display:grid;place-content:center;justify-items:center;gap:40px;background:radial-gradient(45% 40% at 50% 46%,rgba(79,176,180,.10),transparent 70%),#09111A;color:#E4E7EB;font-family:"IBM Plex Mono",ui-monospace,monospace}
+.preloader__core{position:relative;width:164px;aspect-ratio:1;display:grid;place-items:center}
+.preloader__core>*{grid-area:1/1}
+.preloader__ring{border-radius:50%;aspect-ratio:1}
+.preloader__ring--a{width:128%;border:1px dashed rgba(143,211,213,.18);animation:pre-turn 22s linear infinite}
+.preloader__ring--b{width:230%;background:radial-gradient(closest-side,rgba(79,176,180,calc(.08 + var(--p,0)*.14)),transparent 72%);animation:pre-breathe 2.8s cubic-bezier(.45,0,.55,1) infinite alternate}
+.preloader__arc{width:100%;height:100%;transform:rotate(-90deg);overflow:visible}
+.preloader__arc circle{fill:none;stroke:#8FD3D5;stroke-width:1.2;stroke-linecap:round;stroke-dasharray:100;stroke-dashoffset:calc(100 - var(--p,0)*100);filter:drop-shadow(0 0 5px rgba(143,211,213,.85))}
+.preloader__arc .preloader__track{stroke:rgba(205,214,225,.08);stroke-dasharray:none;filter:none}
+.preloader__logo{width:54px;height:auto;overflow:visible;filter:drop-shadow(0 0 calc(10px + var(--p,0)*22px) rgba(79,176,180,calc(.25 + var(--p,0)*.35)));animation:pre-float 3.2s cubic-bezier(.45,0,.55,1) infinite alternate}
+.preloader__logo path{stroke-dasharray:1;stroke-dashoffset:calc(1 - min(1,var(--p,0)*1.25))}
+@keyframes pre-turn{to{transform:rotate(360deg)}}
+@keyframes pre-breathe{from{transform:scale(.92);opacity:.7}to{transform:scale(1.05);opacity:1}}
+@keyframes pre-float{to{transform:translateY(-3px)}}
+.preloader__log{list-style:none;margin:0;padding:0;display:grid;gap:8px;min-width:min(360px,80vw);font:500 12px/1.4 "IBM Plex Mono",ui-monospace,monospace;letter-spacing:.02em;color:#7A838F}
+.preloader__log li{display:flex;gap:10px;opacity:0;transform:translate3d(0,6px,0);transition:opacity .3s cubic-bezier(.16,1,.3,1),transform .4s cubic-bezier(.16,1,.3,1),color .4s ease}
+.preloader__log li span::after{content:"";display:inline-block;width:6px;height:1em;margin-left:2px;vertical-align:-2px;background:#8FD3D5;opacity:0}
+.preloader__log li.is-typing span::after{opacity:1}
+.preloader__log li:first-child,.preloader__log li.is-on{opacity:1;transform:none}
+.preloader__log li.is-done{color:#4B535E}
+.preloader__log li.is-done::after{content:"ok";margin-left:auto;color:#5FA873}
+.preloader__log b{font-weight:500;color:#4FB0B4;min-width:9ch}
+.preloader__foot{position:absolute;left:clamp(20px,4.4vw,72px);right:clamp(20px,4.4vw,72px);bottom:32px;display:flex;justify-content:space-between;align-items:baseline;font:500 .75rem/1 "IBM Plex Mono",ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase;color:#4B535E}
+.preloader__count b{display:inline-block;min-width:3ch;text-align:right;font-weight:500;color:#F3F4F6;font-variant-numeric:tabular-nums}
+.preloader.is-leaving .preloader__core{opacity:0;transform:translate3d(0,-24px,0) scale(1.35);filter:blur(4px);transition:opacity .55s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1),filter .55s cubic-bezier(.16,1,.3,1)}
+.preloader.is-leaving .preloader__log,.preloader.is-leaving .preloader__foot{opacity:0;transform:translate3d(0,-12px,0);transition:opacity .35s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1)}
+.preloader.is-leaving{opacity:0;transition:opacity .7s cubic-bezier(.16,1,.3,1) .22s;pointer-events:none}
+@media (prefers-reduced-motion:reduce){.preloader__ring--a,.preloader__ring--b,.preloader__logo{animation:none}}
+</style>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "#org",
+      "name": "Phannes Inc.",
+      "brand": { "@type": "Brand", "name": "Silenus" },
+      "logo": "assets/img/logo-mark.svg"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "Silenus",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web, self-hosted",
+      "description": "AI-native business operating system that unifies a company's knowledge, data and operations into one intelligent layer, with cited answers.",
+      "publisher": { "@id": "#org" }
+    }
+  ]
+}
+</script>
+
+<!-- GSAP 3.12.5 + ScrollTrigger + Lenis 1.1.13 and the page scripts, bundled by build.py -->
+<script src="assets/js/site.min.js?v=20261107183713" defer></script>
+</head>
+<body>
+<!-- Entry preloader: every load. Painted from the inline styles before the stylesheet arrives; tied to real
+     readiness (DOM, fonts, load), lifts like a curtain. Never shown without JS or with reduced motion. -->
+<div class="preloader" aria-hidden="true" data-preloader>
+  <div class="preloader__core">
+    <span class="preloader__ring preloader__ring--b"></span>
+    <span class="preloader__ring preloader__ring--a"></span>
+    <svg class="preloader__arc" viewBox="0 0 100 100"><circle class="preloader__track" cx="50" cy="50" r="46"/><circle cx="50" cy="50" r="46" pathLength="100" data-preloader-arc/></svg>
+    <svg class="preloader__logo" viewBox="0 0 100 116" fill="none"><defs><linearGradient id="plg" x1="20" y1="10" x2="80" y2="106" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#4FA3E0"/><stop offset="1" stop-color="#6FCF9A"/></linearGradient></defs><path d="M80 18H40a20 20 0 0 0 0 40h20a20 20 0 0 1 0 40H20" stroke="url(#plg)" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/></svg>
+  </div>
+  <ol class="preloader__log" data-preloader-log>
+    <li data-at="0"><b>[INIT]</b><span>Establishing secure connection</span></li>
+    <li data-at=".35"><b>[VAULT]</b><span>Opening the knowledge base</span></li>
+    <li data-at=".62"><b>[INDEX]</b><span>Linking clients, contracts and projects</span></li>
+    <li data-at=".9"><b>[READY]</b><span>Workspace online</span></li>
+  </ol>
+  <div class="preloader__foot">
+    <span class="preloader__by">SILENUS · by Phannes Inc.</span>
+    <span class="preloader__count"><b data-preloader-count>0</b>%</span>
+  </div>
+</div>
+<link rel="stylesheet" href="assets/css/site.min.css?v=20261107183713">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ================= 00 · NAVIGATION ================= -->
+<header class="nav" data-nav>
+  <div class="nav__dock">
+    <a class="nav__brand" href="/" aria-label="Silenus home">
+      <img src="assets/img/logo-mark.svg" width="16" height="19" alt="">
+      <span class="nav__word">SILENUS</span>
+    </a>
+
+    <!-- Live context: page progress + the section you are in (updates on scroll) -->
+    <p class="nav__ctx" aria-hidden="true">
+      <svg class="nav__ring" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8"/><circle class="nav__ring-fill" cx="10" cy="10" r="8" pathLength="100" data-nav-ring/></svg>
+      <span class="nav__ctx-text" data-nav-ctx>Overview</span>
+    </p>
+
+    <div class="nav__actions">
+      <button class="nav__menu" type="button" aria-expanded="false" aria-controls="site-menu" data-nav-toggle>
+        <span class="nav__menu-label" data-nav-label>Menu</span>
+        <span class="nav__menu-icon" aria-hidden="true"><i></i><i></i></span>
+      </button>
+      <a class="nav__login" href="https://silenus.app">Log in</a>
+      <a class="nav__cta" href="#demo"><i class="nav__sweep" aria-hidden="true"></i>Book a demo <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</header>
+
+<!-- Sidebar drawer: every chapter of the page, numbered like the page itself -->
+<div class="drawer" id="site-menu" data-nav-panel inert>
+  <div class="drawer__scrim" data-nav-close></div>
+  <aside class="drawer__panel" role="dialog" aria-modal="true" aria-label="Site menu">
+    <div class="drawer__head">
+      <p class="drawer__k">Contents</p>
+      <button class="drawer__close" type="button" data-nav-close aria-label="Close menu"><span aria-hidden="true"></span></button>
+    </div>
+    <nav aria-label="Sections">
+      <ol class="drawer__list" data-nav-links>
+          <li class="drawer__page" style="--i:0"><span class="drawer__pages"><a class="drawer__pg" href="index.html">Home</a><a class="drawer__pg" href="platform.html">Platform</a><a class="drawer__pg" href="why-silenus.html">Why Silenus</a><a class="drawer__pg is-here" href="security.html" aria-current="page">Security &amp; Trust</a><a class="drawer__pg" href="company.html">Company &amp; Vision</a></span></li>
+          <li style="--i:1"><a href="#security"><b>01</b><span>Data sovereignty</span><i aria-hidden="true">→</i></a></li>
+          <li style="--i:2"><a href="#demo"><b>02</b><span>Live test</span><i aria-hidden="true">→</i></a></li>
+      </ol>
+    </nav>
+    <div class="drawer__foot" style="--i:14">
+      <a class="btn btn--primary" href="#demo">Book a demo <span class="btn__arrow" aria-hidden="true">→</span></a>
+      <a class="btn btn--secondary" href="https://silenus.app">Log in</a>
+      <p>SILENUS by Phannes Inc.</p>
+    </div>
+  </aside>
+</div>
+
+<main id="main">
+<!-- ================= PAGE HERO: label pill · headline · one line · actions | a live preview of the page ================= -->
+<section class="page-hero" id="top" aria-labelledby="page-title">
+  <div class="bits" aria-hidden="true"></div>
+  <div class="wrap page-hero__grid">
+    <div class="page-hero__text">
+      <header class="sec-head" data-split-head>
+        <p class="sec-head__idx">Data security</p>
+        <div class="sec-head__body">
+          <h1 class="sec-head__title" id="page-title">Your data stays <span class="sec-head__muted">on your servers.</span></h1>
+          <p class="sec-head__lead">Self-hosted AI, one permission model for people and agents, and a record of every model call.</p>
+        </div>
+      </header>
+      <p class="page-hero__actions"><a class="btn btn--primary" href="#demo">Plan a private setup <span class="btn__arrow" aria-hidden="true">→</span></a><a class="btn btn--secondary" href="#security">How it works</a></p>
+    </div>
+    <div class="page-hero__stage" aria-hidden="true"><p class="ps__bar"><span class="ps__dots"><i></i><i></i><i></i></span>your environment<em><i></i>Private</em></p><ul class="ps__env"><li style="--d:0"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-6.5"/></svg>Documents</li><li style="--d:1"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-6.5"/></svg>Knowledge store</li><li style="--d:2"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-6.5"/></svg>Search index</li><li style="--d:3"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-6.5"/></svg>AI model · self-hosted</li><li style="--d:4"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-6.5"/></svg>Audit log · append-only</li></ul><p class="ps__big"><b>0</b> documents left your environment</p></div>
+  </div>
+</section>
+
+<!-- ================= 09 · SECURITY & TRUST ================= -->
+<section class="security" id="security" aria-labelledby="security-title" data-security>
+  <div class="wrap">
+    <header class="sec-head" data-split-head>
+      <p class="sec-head__idx"><b>01</b> Data sovereignty</p>
+      <div class="sec-head__body">
+        <h2 class="sec-head__title" id="security-title">Your data stays inside your walls. <span class="sec-head__muted">And you can prove it.</span></h2>
+        <p class="sec-head__lead">Run Silenus entirely on your own infrastructure, AI models included. Or pick the provider and model you trust, per deployment. Every step is on the record either way.</p>
+      </div>
+    </header>
+
+    <div class="security__body">
+      <div class="security__diagram" data-reveal>
+        <div class="security__tabs" role="group" aria-label="Deployment model">
+          <button type="button" aria-pressed="true" data-sec-mode="private">Private infrastructure</button>
+          <button type="button" aria-pressed="false" data-sec-mode="provider">Your chosen provider</button>
+        </div>
+        <div class="security__env" data-mode="private" data-sec-env>
+          <div class="security__inside">
+            <p class="security__zone">Your environment</p>
+            <ul class="security__parts">
+              <li>Documents</li>
+              <li>Knowledge store</li>
+              <li>Search index</li>
+              <li class="security__model">AI model · self-hosted</li>
+              <li>Audit log · append-only</li>
+            </ul>
+          </div>
+          <div class="security__outside">
+            <p class="security__zone">Outside</p>
+            <p class="security__provider">AI model · provider of your choice</p>
+            <p class="security__note">Every call to the provider is logged, with the model that answered.</p>
+          </div>
+        </div>
+        <p class="security__count" aria-live="polite" data-sec-count><span>0</span> documents left your environment</p>
+      </div>
+
+      <ul class="security__list" data-reveal-group>
+        <li><h3>Tamper-evident audit trail</h3><p>Append-only, and it never copies your data.</p></li>
+        <li><h3>Model attribution</h3><p>See which model produced every answer.</p></li>
+        <li><h3>Boundary tracking</h3><p>Know whether data ever left your environment.</p></li>
+        <li><h3>Compliance view</h3><p>Access history for GDPR and residency checks.</p></li>
+        <li><h3>Permissions travel with the data</h3><p>People and AI work under one permission model. Nobody sees an answer built from documents they can't open.</p></li>
+      </ul>
+    </div>
+
+    <div class="security__cta" data-reveal>
+      <p>Handling legal, financial or client data? Ask us about a private deployment.</p>
+      <a class="btn btn--secondary" href="#demo">Plan a private setup <span class="btn__arrow" aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 13 · FINAL CTA ================= -->
+<section class="cta" id="demo" aria-labelledby="cta-title">
+  <div class="bits bits--patch" aria-hidden="true"></div>
+  <div class="wrap">
+    <header class="sec-head" data-split-head>
+      <p class="sec-head__idx" hidden><b>02</b> Live test</p>   <!-- kept for the menu; not shown, so the fibre runs straight on to the footer -->
+      <div class="sec-head__body">
+        <h2 class="sec-head__title" id="cta-title">One company. One system. <span class="sec-head__muted">One source of context.</span></h2>
+        <p class="sec-head__lead">Welcome. One workspace for your dashboard, email, calendar, projects, CRM, HR and AI assistant. See it on your own documents.</p>
+      </div>
+    </header>
+
+    <!-- The live-test portal: one capsule (email · company · action), one consent line, one trust row -->
+    <div class="portal" data-reveal>
+        <form class="portal__form" data-form action="#" method="post" data-endpoint="" novalidate>
+                    <div class="portal__capsule">
+            <span class="field portal__field">
+              <label for="cta-email" class="sr-only">Work email</label>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.5 7 8.5 6 8.5-6"/></svg>
+              <input id="cta-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="Work email" spellcheck="false" required>
+            </span>
+            <span class="portal__sep" aria-hidden="true"></span>
+            <span class="field portal__field">
+              <label for="cta-company" class="sr-only">Company</label>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V6l8-3 8 3v14M9 20v-5h6v5M8 9h.01M12 9h.01M16 9h.01M8 12h.01M12 12h.01M16 12h.01"/></svg>
+              <input id="cta-company" name="company" type="text" autocomplete="organization" placeholder="Company" required>
+            </span>
+            <button class="portal__submit cta__submit" type="submit">Book a live test <span aria-hidden="true">→</span></button>
+          </div>
+          <input type="hidden" name="source_page" value="home">
+          <input type="hidden" name="utm_source"><input type="hidden" name="utm_medium"><input type="hidden" name="utm_campaign">
+          <label class="cta__consent portal__consent"><input type="checkbox" name="consent" required> I agree that Phannes Inc. may contact me about this request.</label>
+          <p class="cta__status" role="status" aria-live="polite" data-form-status></p>
+        </form>
+      <ul class="portal__trust" aria-label="Good to know">
+        <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-6.5"/></svg>No consulting project to get started</li>
+        <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-6.5"/></svg>Private, self-hosted deployment available</li>
+        <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-6.5"/></svg>Answers verified against your own sources</li>
+      </ul>
+      <p class="portal__login">Already using Silenus? <a href="https://silenus.app">Log in</a> · <a href="https://silenus.app">Create an account</a></p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer fh">
+  <!-- Horizon footer: no boxes, no rules. Brand · links · legal on one line; the fibre leaves past the bottom-right. -->
+  <div class="wrap fh__row">
+    <div class="fh__brand">
+      <a class="nav__brand" href="/" aria-label="Silenus home"><img src="assets/img/logo-mark.svg" width="16" height="19" alt=""><span class="nav__word">SILENUS</span></a>
+      <p class="fh__tag">Where your company's knowledge comes to work.</p>
+    </div>
+    <nav class="fh__nav" aria-label="Footer">
+      <a href="platform.html">Platform</a>
+      <a href="why-silenus.html">Why Silenus</a>
+      <a href="#security">Security</a>
+      <a href="index.html#pricing">Pricing</a>
+      <a href="company.html#company">Company</a>
+      <a href="https://silenus.app">Log in</a>
+    </nav>
+    <div class="fh__legal">
+      <p>SILENUS by Phannes Inc. · © 2026</p>
+      <p><a href="/privacy">Privacy</a><a href="/cookies">Cookies</a><a href="/imprint">Imprint</a></p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
