@@ -23,8 +23,8 @@
 <!-- Fonts and libraries are self-hosted: no third-party request blocks the first paint -->
 <link rel="preload" href="assets/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/vEFI2_tTDB4M7-auWDN0ahZJW1gb8tc.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/css/site.min.css?v=20261108070828" as="style">
-<link rel="preload" href="assets/js/site.min.js?v=20261108070828" as="script">
+<link rel="preload" href="assets/css/site.min.css?v=20261108085410" as="style">
+<link rel="preload" href="assets/js/site.min.js?v=20261108085410" as="script">
 <style>
 /* Critical: the preloader paints on the first frame, before the stylesheet arrives (the stylesheet link sits after it in <body>) */
 html{background:#09111A}body{margin:0;background:#09111A}
@@ -122,7 +122,7 @@ html{background:#09111A}body{margin:0;background:#09111A}
 </script>
 
 <!-- GSAP 3.12.5 + ScrollTrigger + Lenis 1.1.13 and the page scripts, bundled by build.py -->
-<script src="assets/js/site.min.js?v=20261108070828" defer></script>
+<script src="assets/js/site.min.js?v=20261108085410" defer></script>
 </head>
 <body>
 <!-- Entry preloader: every load. Painted from the inline styles before the stylesheet arrives; tied to real
@@ -145,7 +145,7 @@ html{background:#09111A}body{margin:0;background:#09111A}
     <span class="preloader__count"><b data-preloader-count>0</b>%</span>
   </div>
 </div>
-<link rel="stylesheet" href="assets/css/site.min.css?v=20261108070828">
+<link rel="stylesheet" href="assets/css/site.min.css?v=20261108085410">
 <a class="skip-link" href="#main">Skip to content</a>
 
 <!-- ================= 00 · NAVIGATION ================= -->
@@ -187,12 +187,10 @@ html{background:#09111A}body{margin:0;background:#09111A}
           <li style="--i:1"><a href="#problem"><b>01</b><span>The problem</span><i aria-hidden="true">→</i></a></li>
           <li style="--i:2"><a href="#workspace"><b>02</b><span>One window</span><i aria-hidden="true">→</i></a></li>
           <li style="--i:3"><a href="#why-silenus"><b>03</b><span>Why Silenus</span><i aria-hidden="true">→</i></a></li>
-          <li style="--i:4"><a href="#how"><b>04</b><span>How it works</span><i aria-hidden="true">→</i></a></li>
-          <li style="--i:5"><a href="#platform"><b>05</b><span>Everything in one place</span><i aria-hidden="true">→</i></a></li>
-          <li style="--i:6"><a href="#agents"><b>06</b><span>Where Silenus is heading</span><i aria-hidden="true">→</i></a></li>
-          <li style="--i:7"><a href="#pricing"><b>07</b><span>Yours, at SME cost</span><i aria-hidden="true">→</i></a></li>
-          <li style="--i:8"><a href="#faq"><b>08</b><span>Questions</span><i aria-hidden="true">→</i></a></li>
-          <li style="--i:9"><a href="#demo"><b>09</b><span>Live test</span><i aria-hidden="true">→</i></a></li>
+          <li style="--i:4"><a href="#platform"><b>04</b><span>Everything in one place</span><i aria-hidden="true">→</i></a></li>
+          <li style="--i:5"><a href="#pricing"><b>05</b><span>Yours, at SME cost</span><i aria-hidden="true">→</i></a></li>
+          <li style="--i:6"><a href="#faq"><b>06</b><span>Questions</span><i aria-hidden="true">→</i></a></li>
+          <li style="--i:7"><a href="#demo"><b>07</b><span>Live test</span><i aria-hidden="true">→</i></a></li>
       </ol>
     </nav>
     <div class="drawer__foot" style="--i:14">
@@ -304,7 +302,7 @@ html{background:#09111A}body{margin:0;background:#09111A}
 
     <!-- The data stream (databahn-style): the twelve places a company lives today (client site) flow into
          one intelligence layer and come out as the client's own outcomes. flow3.js draws the wires and packets (SVG). -->
-    <div class="f3" data-f3>
+    <div class="f3" data-f3 data-reveal>
       <svg class="f3__svg" aria-hidden="true" data-f3-svg></svg>
       <div class="f3__col f3__col--src">
         <p class="f3__k">Twelve places your company lives today</p>
@@ -892,54 +890,11 @@ html{background:#09111A}body{margin:0;background:#09111A}
   </div>
 </section>
 
-<!-- ================= 05 · HOW IT WORKS (client site: one document, nine steps) ================= -->
-<section class="pl" id="how" aria-labelledby="pl-title" data-pl>
-  <div class="wrap">
-    <header class="sec-head" data-split-head>
-      <p class="sec-head__idx"><b>04</b> How it works</p>
-      <div class="sec-head__body">
-        <h2 class="sec-head__title" id="pl-title">One document. Nine steps. <span class="sec-head__muted">Before anyone asks.</span></h2>
-        <p class="sec-head__lead">The hard work happens the moment a file arrives. By the time you ask a question, it has been read, understood, fact-checked and indexed.</p>
-      </div>
-    </header>
-
-    <div class="pl__body">
-      <ol class="pl__track" aria-label="The nine steps">
-        <li><button type="button" class="pl__st" data-pl-step="0" aria-pressed="true"><b>01</b><span>Bring it in</span></button><p class="pl__d">Upload or sync SharePoint; changes re-ingest automatically.</p></li>
-        <li><button type="button" class="pl__st" data-pl-step="1" aria-pressed="false"><b>02</b><span>Read anything</span></button><p class="pl__d">Office files, scans and photos. Nothing skipped.</p></li>
-        <li><button type="button" class="pl__st" data-pl-step="2" aria-pressed="false"><b>03</b><span>Understand tables</span></button><p class="pl__d">Every figure keeps its row and year.</p></li>
-        <li><button type="button" class="pl__st" data-pl-step="3" aria-pressed="false"><b>04</b><span>See the pictures</span></button><p class="pl__d">Charts and diagrams are read, not thrown away.</p></li>
-        <li><button type="button" class="pl__st" data-pl-step="4" aria-pressed="false"><b>05</b><span>Smart pieces</span></button><p class="pl__d">Passages sized for precise retrieval.</p></li>
-        <li><button type="button" class="pl__st" data-pl-step="5" aria-pressed="false"><b>06</b><span>Extract the facts</span></button><p class="pl__d">Entities, dates and figures, each verified.</p></li>
-        <li><button type="button" class="pl__st" data-pl-step="6" aria-pressed="false"><b>07</b><span>Tag &amp; organise</span></button><p class="pl__d">A controlled vocabulary, so questions can be scoped.</p></li>
-        <li><button type="button" class="pl__st" data-pl-step="7" aria-pressed="false"><b>08</b><span>Make it searchable</span></button><p class="pl__d">Meaning and exact match, together.</p></li>
-        <li><button type="button" class="pl__st" data-pl-step="8" aria-pressed="false"><b>09</b><span>Publish, isolated</span></button><p class="pl__d">Your own store. No one else can see it.</p></li>
-      </ol>
-      <div class="pl__doc" data-reveal>
-        <p class="pl__doc-bar"><span>Annual_report_2014.pdf</span><b data-pl-name>Bring it in</b></p>
-        <p class="pl__doc-prog" aria-hidden="true"><i class="is-on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></p>
-        <div class="pl__views" aria-live="polite">
-          <div class="dv is-on" data-pl-view="0"><p class="dv__k">SharePoint · Finance / Reports</p><p class="dv__big">Watching for changes · synced 2 min ago</p><p class="dv__chips"><span class="chip chip--ok">+ 14 new files</span><span class="chip">3 edited</span></p></div>
-          <div class="dv" data-pl-view="1"><p class="dv__k">Page 7 · scanned, no text layer</p><p class="dv__blur" aria-hidden="true"><i style="width:90%"></i><i style="width:72%"></i><i style="width:84%"></i></p><p class="dv__k dv__k--ok">After OCR</p><p class="dv__serif">In 2014 net revenue increased to €4.82 million, while operating profit reached €612,000…</p></div>
-          <div class="dv" data-pl-view="2"><p class="dv__k">Two-column statement · layout-aware</p><table class="dv__tbl"><tr><th></th><th>2014</th><th>2013</th></tr><tr><td>Net revenue</td><td>4,820</td><td>4,310</td></tr><tr><td>Operating profit</td><td>612</td><td>540</td></tr><tr><td>Equity</td><td>2,915</td><td>2,640</td></tr><tr><td>Total assets</td><td>6,204</td><td>5,870</td></tr></table><p class="dv__note">€ thousands</p></div>
-          <div class="dv" data-pl-view="3"><p class="dv__k">Figure 3 · understood visually</p><p class="dv__bars" aria-hidden="true"><i style="height:52%"></i><i style="height:61%"></i><i style="height:58%"></i><i style="height:70%"></i><i style="height:82%" class="is-hi"></i></p><p class="dv__years" aria-hidden="true"><span>2010</span><span>2011</span><span>2012</span><span>2013</span><span>2014</span></p><p class="dv__serif">"Revenue 2010–2014, rising to a five-year high."</p></div>
-          <div class="dv" data-pl-view="4"><p class="dv__k">Passages · with context</p><ul class="dv__pass"><li><b>§2 Management report · revenue</b><small>keeps heading and page</small></li><li><b>§4 Balance sheet · equity</b><small>keeps heading and page</small></li><li><b>§7 Notes · related parties</b><small>keeps heading and page</small></li></ul><p class="dv__note">01-09-338412 = 01 09 338412</p></div>
-          <div class="dv" data-pl-view="5"><p class="dv__k">Extracted facts · verified</p><ul class="facts"><li><span>Entity</span><b>Holox Kft.</b><em>✓ p.1</em></li><li><span>Fiscal year</span><b>2014</b><em>✓ p.1</em></li><li><span>Net revenue</span><b>€4,820,000</b><em>✓ p.7</em></li><li><span>Operating profit</span><b>€612,000</b><em>✓ p.7</em></li></ul></div>
-          <div class="dv" data-pl-view="6"><p class="dv__k">Tags · controlled vocabulary</p><p class="dv__chips"><span class="chip chip--ok">Annual report</span><span class="chip chip--ok">Finance</span><span class="chip">2014</span><span class="chip">Audited</span><span class="chip">Holox Kft.</span><span class="chip">Hungarian</span><span class="chip">Public filing</span></p><p class="dv__note">Ask "only audited annual reports" and Silenus searches exactly that slice.</p></div>
-          <div class="dv" data-pl-view="7"><p class="dv__k">Embeddings + keyword index</p><p class="dv__dots" aria-hidden="true"></p><p class="dv__note">"profit dropped" finds "operating income declined"</p></div>
-          <div class="dv" data-pl-view="8"><p class="dv__k">Published to your knowledge store</p><p class="dv__big">82 pages · 41 facts · 9 tags · 214 passages</p><p class="dv__chips"><span class="chip chip--ok">Isolated</span><span class="chip">Audit entry written</span></p></div>
-        </div>
-        <a class="pl__cta" href="#demo">See it process your files <span aria-hidden="true">→</span></a>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ================= 07 · EVERYTHING IN ONE PLACE ================= -->
 <section class="catalogue" id="platform" aria-labelledby="catalogue-title" data-hs>
   <div class="wrap">
     <header class="sec-head" data-split-head>
-      <p class="sec-head__idx"><b>05</b> Everything in one place</p>
+      <p class="sec-head__idx"><b>04</b> Everything in one place</p>
       <div class="sec-head__body">
         <h2 class="sec-head__title" id="catalogue-title">Everything your business runs on, <span class="sec-head__muted">in one place.</span></h2>
         <p class="sec-head__lead">One system today for documents, CRM, sales, HR, projects, chat, email and calendar. Finance and banking next. No more wiring apps together.</p>
@@ -952,7 +907,7 @@ html{background:#09111A}body{margin:0;background:#09111A}
     <div class="hs" data-hs-view>
     <div class="hs__move" data-hs-move>
     <div class="hs__rail" aria-hidden="true"><i data-hs-lit></i></div>
-    <ul class="bento" data-bento>
+    <ul class="bento" data-bento data-reveal-group>
       <!-- A · large -->
       <li class="bento__card bento__card--agent">
         <span class="bento__n" aria-hidden="true">01</span>
@@ -968,7 +923,7 @@ html{background:#09111A}body{margin:0;background:#09111A}
           <li style="--v:4;--i:5"><span>HR <em>read-only</em></span><i></i><b data-count>4</b></li>
           <li style="--v:3;--i:6"><span>Calendar</span><i></i><b data-count>3</b></li>
         </ul>
-        <a class="bento__link" href="#answers">Ask it something <span aria-hidden="true">→</span></a>
+        <a class="bento__link" href="#workspace">Ask it something <span aria-hidden="true">→</span></a>
       </li>
 
       <!-- B -->
@@ -1010,7 +965,7 @@ html{background:#09111A}body{margin:0;background:#09111A}
           <li><span>Incoming invoice</span><b>On receipt</b></li>
           <li><span>Bank item</span><b>When matched</b></li>
         </ul>
-        <a class="bento__link" href="#vision">See the roadmap <span aria-hidden="true">→</span></a>
+        <a class="bento__link" href="company.html#roadmap">See the roadmap <span aria-hidden="true">→</span></a>
       </li>
 
       <!-- E · narrow -->
@@ -1047,6 +1002,23 @@ html{background:#09111A}body{margin:0;background:#09111A}
           <div class="incl__g"><p class="incl__t">AI &amp; knowledge</p><p class="incl__i">AI chat with citations · Knowledge Vault · Domain-specific agents · AI workforce <span class="tag tag--roadmap">Planned</span></p></div>
         </div>
       </li>
+      <!-- H, I · home only: the chapters that live on Platform and Company -->
+      <li class="bento__card bento__card--door">
+        <span class="bento__n" aria-hidden="true">08</span>
+        <svg class="bento__ico" viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M6 3h8l4 4v14H6z M14 3v4h4"/><path pathLength="1" d="M9 12h6M9 16h4"/></svg>
+        <p class="bento__k">Platform · How it works</p>
+        <h3 class="bento__t">One document. Nine steps. Before anyone asks.</h3>
+        <p class="bento__p"><b>9</b> steps, from “Bring it in” to “Publish, isolated”.</p>
+        <a class="bento__link" href="platform.html#how">See the pipeline <span aria-hidden="true">→</span></a>
+      </li>
+      <li class="bento__card bento__card--door">
+        <span class="bento__n" aria-hidden="true">09</span>
+        <svg class="bento__ico" viewBox="0 0 24 24" aria-hidden="true"><circle pathLength="1" cx="12" cy="12" r="3.2"/><path pathLength="1" d="M12 3v4.5M12 16.5V21M3 12h4.5M16.5 12H21M5.6 5.6l3.2 3.2M15.2 15.2l3.2 3.2M5.6 18.4l3.2-3.2M15.2 8.8l3.2-3.2"/></svg>
+        <p class="bento__k">Vision · In development</p>
+        <h3 class="bento__t">Your whole company, run around one brain.</h3>
+        <p class="bento__p"><b>18</b> AI agents across 8 departments.</p>
+        <a class="bento__link" href="company.html#agents">See the agent map <span aria-hidden="true">→</span></a>
+      </li>
     </ul>
     </div>
     </div>
@@ -1057,106 +1029,11 @@ html{background:#09111A}body{margin:0;background:#09111A}
 
 </section>
 
-<!-- ================= 08 · AI AGENTS (client site: the company run around one brain) ================= -->
-<section class="brain" id="agents" aria-labelledby="brain-title" data-brain>
-  <div class="wrap">
-    <header class="sec-head" data-split-head>
-      <p class="sec-head__idx"><b>06</b> Where Silenus is heading</p>
-      <div class="sec-head__body">
-        <h2 class="sec-head__title" id="brain-title">Your whole company, <span class="sec-head__muted">run around one brain.</span></h2>
-        <p class="sec-head__lead">At the centre: the complete knowledge base. Around it: every department as a live map of AI agents and people. Click a department to see its work, and who does it. <span class="brain__badge"><i></i>In development · AI agent employees</span></p>
-      </div>
-    </header>
-
-    <div class="brain__body">
-      <div class="brain__map" data-reveal>
-        <span class="brain__ring" aria-hidden="true"></span>
-        <span class="brain__beam" aria-hidden="true" data-brain-beam><i></i></span>
-        <button type="button" class="brain__core" data-brain-dept="-1" aria-pressed="true"><small>Company brain</small><b>Shared knowledge base</b></button>
-          <button type="button" class="brain__node" style="--a:-90deg" data-brain-dept="0" aria-pressed="false"><span class="brain__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="9" cy="7" rx="6" ry="3"/><path d="M3 7v5c0 1.7 2.7 3 6 3s6-1.3 6-3V7M9 15v2c0 1.7 2.7 3 6 3s6-1.3 6-3v-5c0-1.7-2.7-3-6-3"/></svg></span><b>Finance</b></button>
-          <button type="button" class="brain__node" style="--a:-45deg" data-brain-dept="1" aria-pressed="false"><span class="brain__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M7 21h10M5 7h14M5 7l-3 7a3 3 0 0 0 6 0zM19 7l-3 7a3 3 0 0 0 6 0z"/></svg></span><b>Legal</b></button>
-          <button type="button" class="brain__node" style="--a:0deg" data-brain-dept="2" aria-pressed="false"><span class="brain__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M16 5a3 3 0 0 1 0 6M21 20c0-2.6-1.6-4.8-4-5.6"/></svg></span><b>HR</b></button>
-          <button type="button" class="brain__node" style="--a:45deg" data-brain-dept="3" aria-pressed="false"><span class="brain__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M14 10h4M14 14h4M6 16c.6-1.4 1.7-2 3-2s2.4.6 3 2"/></svg></span><b>Sales &amp; CRM</b></button>
-          <button type="button" class="brain__node" style="--a:90deg" data-brain-dept="4" aria-pressed="false"><span class="brain__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></svg></span><b>Operations</b></button>
-          <button type="button" class="brain__node" style="--a:135deg" data-brain-dept="5" aria-pressed="false"><span class="brain__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h6l2 2h10v11H3z"/></svg></span><b>Projects</b></button>
-          <button type="button" class="brain__node is-soon" style="--a:180deg" data-brain-dept="6" aria-pressed="false"><span class="brain__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8 12h2M12 12h2M8 16h2M12 16h2M16 12v4"/></svg></span><b>Accounting</b><em>Next</em></button>
-          <button type="button" class="brain__node" style="--a:225deg" data-brain-dept="7" aria-pressed="false"><span class="brain__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10v4h4l8 5V5L7 10z"/><path d="M18 9a4 4 0 0 1 0 6"/></svg></span><b>Marketing</b></button>
-      </div>
-      <div class="brain__panel" aria-live="polite" data-reveal>
-        <div class="brain__dept" data-brain-panel="-1">
-          <p class="brain__k">The centre</p>
-          <h3 class="brain__t">Company brain</h3>
-          <p class="brain__p">One structured, vectorised knowledge base that every department and every agent works from. Each agent sees what's relevant to it, but nothing is locked into a separate silo.</p>
-          <p class="brain__stats"><span><b>1</b> shared context</span><span><b>18</b> agents connected</span></p>
-          <ul class="brain__jobs"><li><span>Documents, email, meetings, CRM records</span><em class="m-auto">Ingested</em></li><li><span>Facts and relationships between them</span><em class="m-auto">Connected</em></li><li><span>Answers with sources</span><em class="m-auto">On request</em></li></ul>
-        </div>
-        <div class="brain__dept" data-brain-panel="0" hidden>
-          <p class="brain__k">Department</p>
-          <h3 class="brain__t">Finance</h3>
-          <p class="brain__p">Bank, invoices and reporting, reconciled against the documents behind every figure.</p>
-          <p class="brain__stats"><span><b>3</b> AI agents</span><span><b>2</b> people</span><span><b>4</b> jobs</span></p>
-          <ul class="brain__jobs"><li><span>Reconcile bank statements</span><em class="m-auto">Autonomous</em></li><li><span>Flag invoice mismatches</span><em class="m-auto">Autonomous</em></li><li><span>Prepare the monthly P&amp;L</span><em class="m-assist">Human-assisted</em></li><li><span>Approve payments</span><em class="m-human">Human-led</em></li></ul>
-        </div>
-        <div class="brain__dept" data-brain-panel="1" hidden>
-          <p class="brain__k">Department</p>
-          <h3 class="brain__t">Legal</h3>
-          <p class="brain__p">Every contract read, its obligations mapped and its deadlines watched.</p>
-          <p class="brain__stats"><span><b>2</b> AI agents</span><span><b>1</b> people</span><span><b>4</b> jobs</span></p>
-          <ul class="brain__jobs"><li><span>Track contract renewals</span><em class="m-auto">Autonomous</em></li><li><span>Map obligations from contracts</span><em class="m-auto">Autonomous</em></li><li><span>Review incoming NDAs</span><em class="m-assist">Human-assisted</em></li><li><span>Negotiate terms</span><em class="m-human">Human-led</em></li></ul>
-        </div>
-        <div class="brain__dept" data-brain-panel="2" hidden>
-          <p class="brain__k">Department</p>
-          <h3 class="brain__t">HR</h3>
-          <p class="brain__p">Records, leave, trainings and letters kept current from the documents people already send.</p>
-          <p class="brain__stats"><span><b>2</b> AI agents</span><span><b>2</b> people</span><span><b>4</b> jobs</span></p>
-          <ul class="brain__jobs"><li><span>Track expiring trainings</span><em class="m-auto">Autonomous</em></li><li><span>Draft HR letters</span><em class="m-assist">Human-assisted</em></li><li><span>Screen applications</span><em class="m-assist">Human-assisted</em></li><li><span>Approve leave</span><em class="m-human">Human-led</em></li></ul>
-        </div>
-        <div class="brain__dept" data-brain-panel="3" hidden>
-          <p class="brain__k">Department</p>
-          <h3 class="brain__t">Sales &amp; CRM</h3>
-          <p class="brain__p">Contacts created and enriched automatically, follow-ups drafted in your voice.</p>
-          <p class="brain__stats"><span><b>3</b> AI agents</span><span><b>3</b> people</span><span><b>4</b> jobs</span></p>
-          <ul class="brain__jobs"><li><span>Create contacts from orders and email</span><em class="m-auto">Autonomous</em></li><li><span>Score the pipeline</span><em class="m-auto">Autonomous</em></li><li><span>Draft follow-ups</span><em class="m-assist">Human-assisted</em></li><li><span>Close deals</span><em class="m-human">Human-led</em></li></ul>
-        </div>
-        <div class="brain__dept" data-brain-panel="4" hidden>
-          <p class="brain__k">Department</p>
-          <h3 class="brain__t">Operations</h3>
-          <p class="brain__p">Suppliers, deliveries and shifts coordinated from one context.</p>
-          <p class="brain__stats"><span><b>2</b> AI agents</span><span><b>6</b> people</span><span><b>3</b> jobs</span></p>
-          <ul class="brain__jobs"><li><span>Monitor supplier deliveries</span><em class="m-auto">Autonomous</em></li><li><span>Plan shifts</span><em class="m-assist">Human-assisted</em></li><li><span>Approve purchase orders</span><em class="m-human">Human-led</em></li></ul>
-        </div>
-        <div class="brain__dept" data-brain-panel="5" hidden>
-          <p class="brain__k">Department</p>
-          <h3 class="brain__t">Projects</h3>
-          <p class="brain__p">Plans that update themselves from meetings and chat.</p>
-          <p class="brain__stats"><span><b>2</b> AI agents</span><span><b>4</b> people</span><span><b>4</b> jobs</span></p>
-          <ul class="brain__jobs"><li><span>Turn chat requests into tasks</span><em class="m-auto">Autonomous</em></li><li><span>Update the Gantt from meetings</span><em class="m-auto">Autonomous</em></li><li><span>Weekly status report</span><em class="m-assist">Human-assisted</em></li><li><span>Set priorities</span><em class="m-human">Human-led</em></li></ul>
-        </div>
-        <div class="brain__dept" data-brain-panel="6" hidden>
-          <p class="brain__k">Department · coming next</p>
-          <h3 class="brain__t">Accounting</h3>
-          <p class="brain__p">Payroll, invoicing and audits on the same knowledge base. Coming next.</p>
-          <p class="brain__stats"><span><b>3</b> AI agents</span><span><b>1</b> people</span><span><b>4</b> jobs</span></p>
-          <ul class="brain__jobs"><li><span>Issue invoices</span><em class="m-auto">Autonomous</em></li><li><span>Track assets</span><em class="m-auto">Autonomous</em></li><li><span>Calculate payroll</span><em class="m-assist">Human-assisted</em></li><li><span>Prepare the audit file</span><em class="m-assist">Human-assisted</em></li></ul>
-        </div>
-        <div class="brain__dept" data-brain-panel="7" hidden>
-          <p class="brain__k">Department</p>
-          <h3 class="brain__t">Marketing</h3>
-          <p class="brain__p">Content that draws on what the company actually knows.</p>
-          <p class="brain__stats"><span><b>1</b> AI agents</span><span><b>2</b> people</span><span><b>3</b> jobs</span></p>
-          <ul class="brain__jobs"><li><span>Content calendar</span><em class="m-assist">Human-assisted</em></li><li><span>Draft newsletters</span><em class="m-assist">Human-assisted</em></li><li><span>Approve brand use</span><em class="m-human">Human-led</em></li></ul>
-        </div>
-        <p class="brain__foot">Want AI agents working in your company first? Join early access. <a href="#demo">Talk to us <span aria-hidden="true">→</span></a></p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ================= YOURS, AT SME COST · pricing + data sovereignty ================= -->
 <section class="sme-sec" id="pricing" aria-labelledby="pricing-title">
   <div class="wrap">
     <header class="sec-head" data-split-head>
-      <p class="sec-head__idx"><b>07</b> Yours, at SME cost</p>
+      <p class="sec-head__idx"><b>05</b> Yours, at SME cost</p>
       <div class="sec-head__body">
         <h2 class="sec-head__title" id="pricing-title">Self-hosted AI. <span class="sec-head__muted">Priced by information, not seats.</span></h2>
         <p class="sec-head__lead">Run it on your own infrastructure, AI models included. At 100 people, €872 a month: under a third of Odoo Standard.</p>
@@ -1193,7 +1070,7 @@ html{background:#09111A}body{margin:0;background:#09111A}
   <div class="wrap faq__grid">
     <div class="faq__main">
       <header class="sec-head" data-split-head>
-        <p class="sec-head__idx"><b>08</b> Questions</p>
+        <p class="sec-head__idx"><b>06</b> Questions</p>
         <div class="sec-head__body">
           <h2 class="sec-head__title" id="faq-title">Frequently asked.</h2>
         </div>
@@ -1236,11 +1113,11 @@ html{background:#09111A}body{margin:0;background:#09111A}
       <p class="fc__foot">Still have a question? <a href="#demo">Ask us in a live test <span aria-hidden="true">→</span></a></p>
     </aside>
 
-    <ul class="exm" aria-label="Go deeper">
-      <li><a href="platform.html#hr"><span>Platform · New</span>HR module <i aria-hidden="true">→</i></a></li>
-      <li><a href="security.html"><span>Security</span>Self-hosted, on the record <i aria-hidden="true">→</i></a></li>
-      <li><a href="company.html#roadmap"><span>Roadmap</span>13 modules live, finance next <i aria-hidden="true">→</i></a></li>
-      <li><a href="company.html#company"><span>Company</span>Meet the founders <i aria-hidden="true">→</i></a></li>
+    <ul class="exm" aria-label="Go deeper" data-reveal-group>
+      <li><a href="platform.html#hr"><span>Platform · New</span><b>HR module<i aria-hidden="true">→</i></b></a></li>
+      <li><a href="security.html"><span>Security</span><b>Self-hosted, on the record<i aria-hidden="true">→</i></b></a></li>
+      <li><a href="company.html#roadmap"><span>Roadmap</span><b>13 modules live, finance next<i aria-hidden="true">→</i></b></a></li>
+      <li><a href="company.html#company"><span>Company</span><b>Meet the founders<i aria-hidden="true">→</i></b></a></li>
     </ul>
   </div>
 </section>
@@ -1250,7 +1127,7 @@ html{background:#09111A}body{margin:0;background:#09111A}
   <div class="bits bits--patch" aria-hidden="true"></div>
   <div class="wrap">
     <header class="sec-head" data-split-head>
-      <p class="sec-head__idx" hidden><b>09</b> Live test</p>   <!-- kept for the menu; not shown, so the fibre runs straight on to the footer -->
+      <p class="sec-head__idx" hidden><b>07</b> Live test</p>   <!-- kept for the menu; not shown, so the fibre runs straight on to the footer -->
       <div class="sec-head__body">
         <h2 class="sec-head__title" id="cta-title">One company. One system. <span class="sec-head__muted">One source of context.</span></h2>
         <p class="sec-head__lead">Welcome. One workspace for your dashboard, email, calendar, projects, CRM, HR and AI assistant. See it on your own documents.</p>

@@ -23,8 +23,8 @@
 <!-- Fonts and libraries are self-hosted: no third-party request blocks the first paint -->
 <link rel="preload" href="assets/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/vEFI2_tTDB4M7-auWDN0ahZJW1gb8tc.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/css/site.min.css?v=20261108070828" as="style">
-<link rel="preload" href="assets/js/site.min.js?v=20261108070828" as="script">
+<link rel="preload" href="assets/css/site.min.css?v=20261108085410" as="style">
+<link rel="preload" href="assets/js/site.min.js?v=20261108085410" as="script">
 <style>
 /* Critical: the preloader paints on the first frame, before the stylesheet arrives (the stylesheet link sits after it in <body>) */
 html{background:#09111A}body{margin:0;background:#09111A}
@@ -85,7 +85,7 @@ html{background:#09111A}body{margin:0;background:#09111A}
 </script>
 
 <!-- GSAP 3.12.5 + ScrollTrigger + Lenis 1.1.13 and the page scripts, bundled by build.py -->
-<script src="assets/js/site.min.js?v=20261108070828" defer></script>
+<script src="assets/js/site.min.js?v=20261108085410" defer></script>
 </head>
 <body>
 <!-- Entry preloader: every load. Painted from the inline styles before the stylesheet arrives; tied to real
@@ -108,7 +108,7 @@ html{background:#09111A}body{margin:0;background:#09111A}
     <span class="preloader__count"><b data-preloader-count>0</b>%</span>
   </div>
 </div>
-<link rel="stylesheet" href="assets/css/site.min.css?v=20261108070828">
+<link rel="stylesheet" href="assets/css/site.min.css?v=20261108085410">
 <a class="skip-link" href="#main">Skip to content</a>
 
 <!-- ================= 00 · NAVIGATION ================= -->
@@ -714,7 +714,7 @@ html{background:#09111A}body{margin:0;background:#09111A}
     <div class="hs" data-hs-view>
     <div class="hs__move" data-hs-move>
     <div class="hs__rail" aria-hidden="true"><i data-hs-lit></i></div>
-    <ul class="bento" data-bento>
+    <ul class="bento" data-bento data-reveal-group>
       <!-- A · large -->
       <li class="bento__card bento__card--agent">
         <span class="bento__n" aria-hidden="true">01</span>
@@ -730,7 +730,7 @@ html{background:#09111A}body{margin:0;background:#09111A}
           <li style="--v:4;--i:5"><span>HR <em>read-only</em></span><i></i><b data-count>4</b></li>
           <li style="--v:3;--i:6"><span>Calendar</span><i></i><b data-count>3</b></li>
         </ul>
-        <a class="bento__link" href="#answers">Ask it something <span aria-hidden="true">→</span></a>
+        <a class="bento__link" href="#workspace">Ask it something <span aria-hidden="true">→</span></a>
       </li>
 
       <!-- B -->
@@ -772,7 +772,7 @@ html{background:#09111A}body{margin:0;background:#09111A}
           <li><span>Incoming invoice</span><b>On receipt</b></li>
           <li><span>Bank item</span><b>When matched</b></li>
         </ul>
-        <a class="bento__link" href="#vision">See the roadmap <span aria-hidden="true">→</span></a>
+        <a class="bento__link" href="company.html#roadmap">See the roadmap <span aria-hidden="true">→</span></a>
       </li>
 
       <!-- E · narrow -->
