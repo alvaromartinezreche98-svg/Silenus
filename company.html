@@ -23,8 +23,8 @@
 <!-- Fonts and libraries are self-hosted: no third-party request blocks the first paint -->
 <link rel="preload" href="assets/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/vEFI2_tTDB4M7-auWDN0ahZJW1gb8tc.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/css/site.min.css?v=20261109150441" as="style">
-<link rel="preload" href="assets/js/site.min.js?v=20261109150441" as="script">
+<link rel="preload" href="assets/css/site.min.css?v=20261109181440" as="style">
+<link rel="preload" href="assets/js/site.min.js?v=20261109181440" as="script">
 <style>
 /* Critical: the preloader paints on the first frame, before the stylesheet arrives (the stylesheet link sits after it in <body>) */
 html{background:#09111A}body{margin:0;background:#09111A}
@@ -90,7 +90,7 @@ html{background:#09111A}body{margin:0;background:#09111A}
 </script>
 
 <!-- GSAP 3.12.5 + ScrollTrigger + Lenis 1.1.13 and the page scripts, bundled by build.py -->
-<script src="assets/js/site.min.js?v=20261109150441" defer></script>
+<script src="assets/js/site.min.js?v=20261109181440" defer></script>
 </head>
 <body>
 <!-- Entry preloader: every load. Painted from the inline styles before the stylesheet arrives; tied to real
@@ -113,7 +113,7 @@ html{background:#09111A}body{margin:0;background:#09111A}
     <span class="preloader__count"><b data-preloader-count>0</b>%</span>
   </div>
 </div>
-<link rel="stylesheet" href="assets/css/site.min.css?v=20261109150441">
+<link rel="stylesheet" href="assets/css/site.min.css?v=20261109181440">
 <a class="skip-link" href="#main">Skip to content</a>
 
 <!-- ================= 00 · NAVIGATION ================= -->
@@ -187,7 +187,7 @@ html{background:#09111A}body{margin:0;background:#09111A}
         <p class="sec-head__idx">Company &amp; vision</p>
         <div class="sec-head__body">
           <h1 class="sec-head__title" id="page-title">The next AI breakthrough <span class="sec-head__muted">is organisational.</span></h1>
-          <p class="sec-head__lead">One foundation where people, AI agents and, later, machines work from the same knowledge.</p>
+          <p class="sec-head__lead">People, AI agents and, later, machines, working from one knowledge base.</p>
         </div>
       </header>
       <p class="page-hero__actions"><a class="btn btn--primary" href="#demo">Talk to us <span class="btn__arrow" aria-hidden="true">→</span></a><a class="btn btn--secondary" href="#roadmap">See the roadmap</a></p>
@@ -239,8 +239,8 @@ html{background:#09111A}body{margin:0;background:#09111A}
     <header class="sec-head" data-split-head>
       <p class="sec-head__idx"><b>01</b> Who it's for</p>
       <div class="sec-head__body">
-        <h2 class="sec-head__title" id="story-title">Enterprise-grade organisation, <span class="sec-head__muted">without enterprise cost.</span></h2>
-        <p class="sec-head__lead">Built for micro, small and medium-sized businesses in every industry, and for the people who keep them running.</p>
+        <h2 class="sec-head__title" id="story-title">Enterprise-grade, <span class="sec-head__muted">without the enterprise cost.</span></h2>
+        <p class="sec-head__lead">For small and mid-sized businesses, in every industry.</p>
       </div>
     </header>
 
@@ -333,7 +333,7 @@ html{background:#09111A}body{margin:0;background:#09111A}
       <p class="sec-head__idx"><b>02</b> Where Silenus is heading</p>
       <div class="sec-head__body">
         <h2 class="sec-head__title" id="brain-title">Your whole company, <span class="sec-head__muted">run around one brain.</span></h2>
-        <p class="sec-head__lead">At the centre: the complete knowledge base. Around it: every department as a live map of AI agents and people. Click a department to see its work, and who does it. <span class="brain__badge"><i></i>In development · AI agent employees</span></p>
+        <p class="sec-head__lead">Every department as a live map of people and AI agents. Click one to explore.<span class="brain__badge"><i></i>In development · AI agent employees</span></p>
       </div>
     </header>
 
@@ -428,7 +428,7 @@ html{background:#09111A}body{margin:0;background:#09111A}
       <p class="sec-head__idx"><b>03</b> Roadmap</p>
       <div class="sec-head__body">
         <h2 class="sec-head__title" id="vision-title">From knowledge base to <span class="sec-head__muted">a company run by agents.</span></h2>
-        <p class="sec-head__lead">Smarter AI alone won't run a company. People and agents need one shared foundation to work from, within clear boundaries. Silenus is building it.</p>
+        <p class="sec-head__lead">People and agents need one shared foundation. Silenus is building it.</p>
       </div>
     </header>
 
@@ -469,13 +469,13 @@ html{background:#09111A}body{margin:0;background:#09111A}
       <p class="sec-head__idx" hidden><b>04</b> Live test</p>   <!-- kept for the menu; not shown, so the fibre runs straight on to the footer -->
       <div class="sec-head__body">
         <h2 class="sec-head__title" id="cta-title">One company. One system. <span class="sec-head__muted">One source of context.</span></h2>
-        <p class="sec-head__lead">Welcome. One workspace for your dashboard, email, calendar, projects, CRM, HR and AI assistant. See it on your own documents.</p>
+        <p class="sec-head__lead">Bring 30–50 of your documents. We run the test with you, live.</p>
       </div>
     </header>
 
     <!-- The live-test portal: one capsule (email · company · action), one consent line, one trust row -->
-    <div class="portal" data-reveal>
-        <form class="portal__form" data-form action="#" method="post" data-endpoint="" novalidate>
+    <div class="portal" data-stagger>
+        <form class="portal__form" data-stagger-item data-form action="#" method="post" data-endpoint="" novalidate>
                     <!-- one field first; company and consent open as soon as an email is being typed (progressive disclosure) -->
           <div class="portal__capsule">
             <span class="field portal__field">
@@ -500,11 +500,11 @@ html{background:#09111A}body{margin:0;background:#09111A}
           <p class="cta__status" role="status" aria-live="polite" data-form-status></p>
         </form>
       <ul class="portal__trust" aria-label="Good to know">
-        <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-6.5"/></svg>No consulting project to get started</li>
-        <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-6.5"/></svg>Private, self-hosted deployment available</li>
-        <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-6.5"/></svg>Answers verified against your own sources</li>
+        <li data-stagger-item><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-6.5"/></svg>No consulting project to get started</li>
+        <li data-stagger-item><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-6.5"/></svg>Private, self-hosted deployment available</li>
+        <li data-stagger-item><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-6.5"/></svg>Answers verified against your own sources</li>
       </ul>
-      <p class="portal__login">Already using Silenus? <a href="https://silenus.app">Log in</a> · <a href="https://silenus.app">Create an account</a></p>
+      <p class="portal__login" data-stagger-item>Already using Silenus? <a href="https://silenus.app">Log in</a> · <a href="https://silenus.app">Create an account</a></p>
     </div>
   </div>
 </section>
@@ -514,12 +514,12 @@ html{background:#09111A}body{margin:0;background:#09111A}
 <!-- ================= FOOTER ================= -->
 <footer class="footer fh">
   <!-- Horizon footer: no boxes, no rules. Brand · links · legal on one line; the fibre leaves past the bottom-right. -->
-  <div class="wrap fh__row">
-    <div class="fh__brand">
+  <div class="wrap fh__row" data-stagger>
+    <div class="fh__brand" data-stagger-item>
       <a class="nav__brand" href="/" aria-label="Silenus home"><img src="assets/img/logo-mark.svg" width="16" height="19" alt=""><span class="nav__word">SILENUS</span></a>
       <p class="fh__tag">Where your company's knowledge comes to work.</p>
     </div>
-    <nav class="fh__nav" aria-label="Footer">
+    <nav class="fh__nav" data-stagger-item aria-label="Footer">
       <a href="platform.html">Platform</a>
       <a href="why-silenus.html">Why Silenus</a>
       <a href="index.html#security">Security</a>
@@ -527,7 +527,7 @@ html{background:#09111A}body{margin:0;background:#09111A}
       <a href="#company">Company</a>
       <a href="https://silenus.app">Log in</a>
     </nav>
-    <div class="fh__legal">
+    <div class="fh__legal" data-stagger-item>
       <p>SILENUS by Phannes Inc. · © 2026</p>
       <p><a href="/privacy">Privacy</a><a href="/cookies">Cookies</a><a href="/imprint">Imprint</a></p>
     </div>
