@@ -23,8 +23,8 @@
 <!-- Fonts and libraries are self-hosted: no third-party request blocks the first paint -->
 <link rel="preload" href="assets/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/vEFI2_tTDB4M7-auWDN0ahZJW1gb8tc.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/css/site.min.css?v=20261109100410" as="style">
-<link rel="preload" href="assets/js/site.min.js?v=20261109100410" as="script">
+<link rel="preload" href="assets/css/site.min.css?v=20261109150441" as="style">
+<link rel="preload" href="assets/js/site.min.js?v=20261109150441" as="script">
 <style>
 /* Critical: the preloader paints on the first frame, before the stylesheet arrives (the stylesheet link sits after it in <body>) */
 html{background:#09111A}body{margin:0;background:#09111A}
@@ -90,7 +90,7 @@ html{background:#09111A}body{margin:0;background:#09111A}
 </script>
 
 <!-- GSAP 3.12.5 + ScrollTrigger + Lenis 1.1.13 and the page scripts, bundled by build.py -->
-<script src="assets/js/site.min.js?v=20261109100410" defer></script>
+<script src="assets/js/site.min.js?v=20261109150441" defer></script>
 </head>
 <body>
 <!-- Entry preloader: every load. Painted from the inline styles before the stylesheet arrives; tied to real
@@ -113,7 +113,7 @@ html{background:#09111A}body{margin:0;background:#09111A}
     <span class="preloader__count"><b data-preloader-count>0</b>%</span>
   </div>
 </div>
-<link rel="stylesheet" href="assets/css/site.min.css?v=20261109100410">
+<link rel="stylesheet" href="assets/css/site.min.css?v=20261109150441">
 <a class="skip-link" href="#main">Skip to content</a>
 
 <!-- ================= 00 · NAVIGATION ================= -->
@@ -476,23 +476,27 @@ html{background:#09111A}body{margin:0;background:#09111A}
     <!-- The live-test portal: one capsule (email · company · action), one consent line, one trust row -->
     <div class="portal" data-reveal>
         <form class="portal__form" data-form action="#" method="post" data-endpoint="" novalidate>
-                    <div class="portal__capsule">
+                    <!-- one field first; company and consent open as soon as an email is being typed (progressive disclosure) -->
+          <div class="portal__capsule">
             <span class="field portal__field">
               <label for="cta-email" class="sr-only">Work email</label>
               <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.5 7 8.5 6 8.5-6"/></svg>
-              <input id="cta-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="Work email" spellcheck="false" required>
-            </span>
-            <span class="portal__sep" aria-hidden="true"></span>
-            <span class="field portal__field">
-              <label for="cta-company" class="sr-only">Company</label>
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V6l8-3 8 3v14M9 20v-5h6v5M8 9h.01M12 9h.01M16 9h.01M8 12h.01M12 12h.01M16 12h.01"/></svg>
-              <input id="cta-company" name="company" type="text" autocomplete="organization" placeholder="Company" required>
+              <input id="cta-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="Your work email" spellcheck="false" required>
             </span>
             <button class="portal__submit cta__submit" type="submit">Book a live test <span aria-hidden="true">→</span></button>
           </div>
+          <div class="portal__more" data-portal-more>
+            <div class="portal__more-in">
+            <span class="field portal__field portal__field--solo">
+              <label for="cta-company" class="sr-only">Company</label>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V6l8-3 8 3v14M9 20v-5h6v5M8 9h.01M12 9h.01M16 9h.01M8 12h.01M12 12h.01M16 12h.01"/></svg>
+              <input id="cta-company" name="company" type="text" autocomplete="organization" placeholder="Company name" required>
+            </span>
+          <label class="cta__consent portal__consent"><input type="checkbox" name="consent" required><span class="portal__box" aria-hidden="true"></span><span> I agree that Phannes Inc. may contact me about this request.</span></label>
+            </div>
+          </div>
           <input type="hidden" name="source_page" value="home">
           <input type="hidden" name="utm_source"><input type="hidden" name="utm_medium"><input type="hidden" name="utm_campaign">
-          <label class="cta__consent portal__consent"><input type="checkbox" name="consent" required> I agree that Phannes Inc. may contact me about this request.</label>
           <p class="cta__status" role="status" aria-live="polite" data-form-status></p>
         </form>
       <ul class="portal__trust" aria-label="Good to know">
