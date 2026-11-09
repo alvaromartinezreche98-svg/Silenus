@@ -23,8 +23,8 @@
 <!-- Fonts and libraries are self-hosted: no third-party request blocks the first paint -->
 <link rel="preload" href="assets/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/vEFI2_tTDB4M7-auWDN0ahZJW1gb8tc.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/css/site.min.css?v=20261108085410" as="style">
-<link rel="preload" href="assets/js/site.min.js?v=20261108085410" as="script">
+<link rel="preload" href="assets/css/site.min.css?v=20261109100410" as="style">
+<link rel="preload" href="assets/js/site.min.js?v=20261109100410" as="script">
 <style>
 /* Critical: the preloader paints on the first frame, before the stylesheet arrives (the stylesheet link sits after it in <body>) */
 html{background:#09111A}body{margin:0;background:#09111A}
@@ -69,7 +69,10 @@ html{background:#09111A}body{margin:0;background:#09111A}
       "@type": "Organization",
       "@id": "#org",
       "name": "Phannes Inc.",
-      "brand": { "@type": "Brand", "name": "Silenus" },
+      "brand": {
+        "@type": "Brand",
+        "name": "Silenus"
+      },
       "logo": "assets/img/logo-mark.svg"
     },
     {
@@ -78,7 +81,9 @@ html{background:#09111A}body{margin:0;background:#09111A}
       "applicationCategory": "BusinessApplication",
       "operatingSystem": "Web, self-hosted",
       "description": "AI-native business operating system that unifies a company's knowledge, data and operations into one intelligent layer, with cited answers.",
-      "publisher": { "@id": "#org" }
+      "publisher": {
+        "@id": "#org"
+      }
     },
     {
       "@type": "FAQPage",
@@ -101,18 +106,34 @@ html{background:#09111A}body{margin:0;background:#09111A}
         },
         {
           "@type": "Question",
-          "name": "Do we have to replace Microsoft 365 or SharePoint?",
+          "name": "Do we have to replace Microsoft 365 or our other tools?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "No. Keep SharePoint and your mailboxes. Silenus reads from them, checks every answer against the source, and runs the work that follows."
+            "text": "No. Keep Microsoft 365, SharePoint and your mailboxes: Silenus reads from them, checks every answer against the source, and runs the work that follows. It connects to Microsoft 365 and Gmail (shared mailboxes too), SharePoint, Google Drive, Google and Outlook calendars, Shopify, and external AI tools through MCP. Bank connections are next on the roadmap."
           }
         },
         {
           "@type": "Question",
-          "name": "Which tools does Silenus connect to?",
+          "name": "Do we have to keep files in folders?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Microsoft 365 and Gmail (shared mailboxes too), SharePoint, Google Drive, Google and Outlook calendars, Shopify, and external AI tools through MCP. Bank connections are next on the roadmap."
+            "text": "No folders to maintain. Every file carries its own metadata and lands in the right place automatically."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does the AI act on its own?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Every tool is classed as read, change or external effect, and changes arrive as approval cards with the exact arguments. An e-mail is never sent automatically: a person presses Send."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the AI workforce?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "AI colleagues with a role, schedule and permissions, managed next to your human team. It is on the roadmap."
           }
         }
       ]
@@ -122,7 +143,7 @@ html{background:#09111A}body{margin:0;background:#09111A}
 </script>
 
 <!-- GSAP 3.12.5 + ScrollTrigger + Lenis 1.1.13 and the page scripts, bundled by build.py -->
-<script src="assets/js/site.min.js?v=20261108085410" defer></script>
+<script src="assets/js/site.min.js?v=20261109100410" defer></script>
 </head>
 <body>
 <!-- Entry preloader: every load. Painted from the inline styles before the stylesheet arrives; tied to real
@@ -145,7 +166,7 @@ html{background:#09111A}body{margin:0;background:#09111A}
     <span class="preloader__count"><b data-preloader-count>0</b>%</span>
   </div>
 </div>
-<link rel="stylesheet" href="assets/css/site.min.css?v=20261108085410">
+<link rel="stylesheet" href="assets/css/site.min.css?v=20261109100410">
 <a class="skip-link" href="#main">Skip to content</a>
 
 <!-- ================= 00 · NAVIGATION ================= -->
@@ -178,21 +199,31 @@ html{background:#09111A}body{margin:0;background:#09111A}
   <div class="drawer__scrim" data-nav-close></div>
   <aside class="drawer__panel" role="dialog" aria-modal="true" aria-label="Site menu">
     <div class="drawer__head">
-      <p class="drawer__k">Contents</p>
+      <p class="drawer__k">Menu</p>
       <button class="drawer__close" type="button" data-nav-close aria-label="Close menu"><span aria-hidden="true"></span></button>
     </div>
-    <nav aria-label="Sections">
-      <ol class="drawer__list" data-nav-links>
-          <li class="drawer__page" style="--i:0"><span class="drawer__pages"><a class="drawer__pg is-here" href="index.html" aria-current="page">Home</a><a class="drawer__pg" href="platform.html">Platform</a><a class="drawer__pg" href="why-silenus.html">Why Silenus</a><a class="drawer__pg" href="security.html">Security &amp; Trust</a><a class="drawer__pg" href="company.html">Company &amp; Vision</a></span></li>
-          <li style="--i:1"><a href="#problem"><b>01</b><span>The problem</span><i aria-hidden="true">→</i></a></li>
-          <li style="--i:2"><a href="#workspace"><b>02</b><span>One window</span><i aria-hidden="true">→</i></a></li>
-          <li style="--i:3"><a href="#why-silenus"><b>03</b><span>Why Silenus</span><i aria-hidden="true">→</i></a></li>
-          <li style="--i:4"><a href="#platform"><b>04</b><span>Everything in one place</span><i aria-hidden="true">→</i></a></li>
-          <li style="--i:5"><a href="#pricing"><b>05</b><span>Yours, at SME cost</span><i aria-hidden="true">→</i></a></li>
-          <li style="--i:6"><a href="#faq"><b>06</b><span>Questions</span><i aria-hidden="true">→</i></a></li>
-          <li style="--i:7"><a href="#demo"><b>07</b><span>Live test</span><i aria-hidden="true">→</i></a></li>
-      </ol>
-    </nav>
+    <div class="drawer__body">
+      <nav class="drawer__tier drawer__tier--pages" aria-label="Pages">
+        <ul class="drawer__pagelist">
+            <li style="--i:0"><a class="drawer__pg is-here" href="index.html" aria-current="page"><span>Home</span><em>You are here</em><i aria-hidden="true">→</i></a></li>
+            <li style="--i:1"><a class="drawer__pg" href="platform.html"><span>Platform</span><i aria-hidden="true">→</i></a></li>
+            <li style="--i:2"><a class="drawer__pg" href="why-silenus.html"><span>Why Silenus</span><i aria-hidden="true">→</i></a></li>
+            <li style="--i:3"><a class="drawer__pg" href="security.html"><span>Security &amp; Trust</span><i aria-hidden="true">→</i></a></li>
+            <li style="--i:4"><a class="drawer__pg" href="company.html"><span>Company &amp; Vision</span><i aria-hidden="true">→</i></a></li>
+        </ul>
+      </nav>
+      <nav class="drawer__tier" aria-labelledby="drawer-onpage">
+        <p class="drawer__k drawer__k--sub" id="drawer-onpage">On this page</p>
+        <ol class="drawer__list" data-nav-links>
+          <li style="--i:6"><a href="#problem"><b>01</b><span>The problem</span><i aria-hidden="true">→</i></a></li>
+          <li style="--i:7"><a href="#workspace"><b>02</b><span>One window</span><i aria-hidden="true">→</i></a></li>
+          <li style="--i:8"><a href="#who"><b>03</b><span>Who it's for</span><i aria-hidden="true">→</i></a></li>
+          <li style="--i:9"><a href="#pricing"><b>04</b><span>Yours, at SME cost</span><i aria-hidden="true">→</i></a></li>
+          <li style="--i:10"><a href="#faq"><b>05</b><span>Questions</span><i aria-hidden="true">→</i></a></li>
+          <li style="--i:11"><a href="#demo"><b>06</b><span>Live test</span><i aria-hidden="true">→</i></a></li>
+        </ol>
+      </nav>
+    </div>
     <div class="drawer__foot" style="--i:14">
       <a class="btn btn--primary" href="#demo">Book a demo <span class="btn__arrow" aria-hidden="true">→</span></a>
       <a class="btn btn--secondary" href="https://silenus.app">Log in</a>
@@ -250,10 +281,10 @@ html{background:#09111A}body{margin:0;background:#09111A}
             </linearGradient>
             <filter id="fibre-soft" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="3"/></filter>
           </defs>
-          <path class="fibre fibre--halo" pathLength="1" d="M1070 110 C960 120, 880 320, 704 439" stroke="url(#fibre-in)" filter="url(#fibre-soft)"/>
-          <path class="fibre fibre--halo" pathLength="1" d="M704 439 C570 530, 480 650, 280 720" stroke="url(#fibre-out)" filter="url(#fibre-soft)"/>
-          <path class="fibre fibre--main" d="M1070 110 C960 120, 880 320, 704 439" stroke="url(#fibre-in)" pathLength="1" data-track-in/>
-          <path class="fibre fibre--main" d="M704 439 C570 530, 480 650, 280 720" stroke="url(#fibre-out)" pathLength="1" data-track-out/>
+          <path class="fibre fibre--halo" pathLength="1" d="M1070 190 C930 205, 811 311, 704 439" stroke="url(#fibre-in)" filter="url(#fibre-soft)"/>
+          <path class="fibre fibre--halo" pathLength="1" d="M704 439 C585 582, 395 688, 202 725" stroke="url(#fibre-out)" filter="url(#fibre-soft)"/>
+          <path class="fibre fibre--main" d="M1070 190 C930 205, 811 311, 704 439" stroke="url(#fibre-in)" pathLength="1" data-track-in/>
+          <path class="fibre fibre--main" d="M704 439 C585 582, 395 688, 202 725" stroke="url(#fibre-out)" pathLength="1" data-track-out/>
         </svg>
 
         <div class="core" data-core aria-hidden="true">
@@ -267,6 +298,7 @@ html{background:#09111A}body{margin:0;background:#09111A}
             <span class="core__k">AI knowledge base</span>
             <span class="core__v" data-count>48,210</span>
             <span class="core__u">documents</span>
+            <span class="core__w">312 added this week</span>
             <span class="core__now"><i></i><span data-core-now>Listening</span></span>
           </span>
         </div>
@@ -291,61 +323,66 @@ html{background:#09111A}body{margin:0;background:#09111A}
 </section>
 
 <!-- ================= 02 · THE PROBLEM → ONE LAYER ================= -->
-<section class="problem" id="problem" aria-labelledby="problem-title" data-problem>
-  <div class="bits bits--patch" aria-hidden="true"></div>
-  <div class="wrap">
+<section class="problem pb2" id="problem" aria-labelledby="problem-title" data-problem data-pb2>
+  <!-- 01 · Chaos to core (2026-11-09). Left: the headline and one focus card (tab: the twelve places → what
+       comes out; one item at a time, every item stays in the list for readers and search). Right: a quiet stage,
+       twelve points on the rim drawn into one core, six outcomes leaving it (problem-v1.js builds the SVG).
+       All wording is the client site's own. -->
+  <div class="wrap pb2__grid">
+    <div class="pb2__text">
     <div class="pb__head">
       <p class="sec-head__idx pb__idx"><b>01</b> The problem</p>
       <h2 class="pb__title" id="problem-title" data-split>Your business is spread across a dozen tools. <span class="pb__title-2">Silenus turns it into one.</span></h2>
-      <p class="pb__desc" data-reveal>Files in shared drives, decisions in inboxes, numbers in spreadsheets, clients in a CRM. Silenus connects them into one intelligence layer. <a class="pb__more" href="#why-silenus">See what's different <span aria-hidden="true">→</span></a></p>
+      <p class="pb__desc" data-reveal>Files in shared drives, decisions in inboxes, numbers in spreadsheets, clients in a CRM. Silenus connects them into one intelligence layer. <a class="pb__more" href="why-silenus.html#why">See what's different <span aria-hidden="true">→</span></a></p>
     </div>
-
-    <!-- The data stream (databahn-style): the twelve places a company lives today (client site) flow into
-         one intelligence layer and come out as the client's own outcomes. flow3.js draws the wires and packets (SVG). -->
-    <div class="f3" data-f3 data-reveal>
-      <svg class="f3__svg" aria-hidden="true" data-f3-svg></svg>
-      <div class="f3__col f3__col--src">
-        <p class="f3__k">Twelve places your company lives today</p>
-        <ul class="f3__list" aria-label="Tools a typical company uses today">
-          <li class="f3__src" data-f3-src><svg class="f3__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h6l2 2h10v10H3z"/></svg><b>Shared drive</b><span>4,200 files</span></li>
-          <li class="f3__src" data-f3-src><svg class="f3__ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="m3 7 9 6 9-6"/></svg><b>Inboxes</b><span>12 mailboxes</span></li>
-          <li class="f3__src" data-f3-src><svg class="f3__ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="1"/><path d="M4 10h16M4 15h16M10 4v16"/></svg><b>Spreadsheets</b><span>budget_v7_final.xlsx</span></li>
-          <li class="f3__src" data-f3-src><svg class="f3__ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/><path d="M16 4.5a3 3 0 0 1 0 6M21 20c0-2.5-1.6-4.2-4-4.8"/></svg><b>CRM</b><span>client records</span></li>
-          <li class="f3__src" data-f3-src><svg class="f3__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg><b>Team chat</b><span>#warehouse</span></li>
-          <li class="f3__src" data-f3-src><svg class="f3__ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="1"/><path d="M9 4v16M15 4v16"/></svg><b>Project tool</b><span>board + Gantt</span></li>
-          <li class="f3__src" data-f3-src><svg class="f3__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4M9 13h6M9 17h4"/></svg><b>Contracts folder</b><span>signed PDFs</span></li>
-          <li class="f3__src" data-f3-src><svg class="f3__ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="1"/><path d="M9 8h6M9 12h6M9 16h3"/></svg><b>Accounting</b><span>invoices</span></li>
-          <li class="f3__src" data-f3-src><svg class="f3__ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 21c0-3.9 3.1-6 7-6s7 2.1 7 6"/></svg><b>HR files</b><span>contracts, leave</span></li>
-          <li class="f3__src" data-f3-src><svg class="f3__ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="1"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><b>Calendars</b><span>3 apps</span></li>
-          <li class="f3__src" data-f3-src><svg class="f3__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M7 21h10M5 7h14M5 7l-3 7a3 3 0 0 0 6 0zM19 7l-3 7a3 3 0 0 0 6 0z"/></svg><b>Legal</b><span>obligations</span></li>
-          <li class="f3__src" data-f3-src><svg class="f3__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg><b>Reports</b><span>scattered KPIs</span></li>
-        </ul>
-      </div>
-      <div class="f3__col f3__col--core">
-        <p class="f3__k f3__k--core">Silenus</p>
-        <div class="f3__core" data-f3-core>
-          <p class="f3__bar" aria-hidden="true"><span class="f3__lights"><i></i><i></i><i></i></span>silenus · unified console<span class="f3__live"><i></i>Live</span></p>
-          <p class="f3__label"><b>One intelligence layer</b><span>one source of context</span></p>
-          <p class="f3__stats"><span><b>48,210</b> documents</span><span><b>312</b> added this week</span></p>
+      <div class="pb2__focus" data-pb2-focus data-reveal>
+        <p class="pb2__focus-k" id="pb2-in-k">Twelve places your company lives today</p>
+        <div class="pb2__panel is-on" id="pb2-in" aria-labelledby="pb2-in-k" data-pb2-panel="in">
+          <ol class="pb2__list">
+            <li class="pb2__item" data-pb2-item><svg class="pb2__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h6l2 2h10v10H3z"/></svg><span class="pb2__txt"><b>Shared drive</b><span>4,200 files</span></span></li>
+            <li class="pb2__item" data-pb2-item><svg class="pb2__ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="m3 7 9 6 9-6"/></svg><span class="pb2__txt"><b>Inboxes</b><span>12 mailboxes</span></span></li>
+            <li class="pb2__item" data-pb2-item><svg class="pb2__ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="1"/><path d="M4 10h16M4 15h16M10 4v16"/></svg><span class="pb2__txt"><b>Spreadsheets</b><span>budget_v7_final.xlsx</span></span></li>
+            <li class="pb2__item" data-pb2-item><svg class="pb2__ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/><path d="M16 4.5a3 3 0 0 1 0 6M21 20c0-2.5-1.6-4.2-4-4.8"/></svg><span class="pb2__txt"><b>CRM</b><span>client records</span></span></li>
+            <li class="pb2__item" data-pb2-item><svg class="pb2__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg><span class="pb2__txt"><b>Team chat</b><span>#warehouse</span></span></li>
+            <li class="pb2__item" data-pb2-item><svg class="pb2__ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="1"/><path d="M9 4v16M15 4v16"/></svg><span class="pb2__txt"><b>Project tool</b><span>board + Gantt</span></span></li>
+            <li class="pb2__item" data-pb2-item><svg class="pb2__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4M9 13h6M9 17h4"/></svg><span class="pb2__txt"><b>Contracts folder</b><span>signed PDFs</span></span></li>
+            <li class="pb2__item" data-pb2-item><svg class="pb2__ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="1"/><path d="M9 8h6M9 12h6M9 16h3"/></svg><span class="pb2__txt"><b>Accounting</b><span>invoices</span></span></li>
+            <li class="pb2__item" data-pb2-item><svg class="pb2__ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 21c0-3.9 3.1-6 7-6s7 2.1 7 6"/></svg><span class="pb2__txt"><b>HR files</b><span>contracts, leave</span></span></li>
+            <li class="pb2__item" data-pb2-item><svg class="pb2__ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="1"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span class="pb2__txt"><b>Calendars</b><span>3 apps</span></span></li>
+            <li class="pb2__item" data-pb2-item><svg class="pb2__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M7 21h10M5 7h14M5 7l-3 7a3 3 0 0 0 6 0zM19 7l-3 7a3 3 0 0 0 6 0z"/></svg><span class="pb2__txt"><b>Legal</b><span>obligations</span></span></li>
+            <li class="pb2__item" data-pb2-item><svg class="pb2__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg><span class="pb2__txt"><b>Reports</b><span>scattered KPIs</span></span></li>
+          </ol>
+        </div>
+        <div class="pb2__nav">
+          <span class="pb2__count"><b data-pb2-n>01</b> / <span data-pb2-total>12</span></span>
+          <span class="pb2__bar" aria-hidden="true"><i data-pb2-bar></i></span>
+          <button type="button" class="pb2__btn" data-pb2-prev aria-label="Previous"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+          <button type="button" class="pb2__btn" data-pb2-next aria-label="Next"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
         </div>
       </div>
-      <div class="f3__col f3__col--dst">
-        <p class="f3__k">What comes out</p>
-        <ul class="f3__list" aria-label="What Silenus gives back">
-          <li class="f3__dst" data-f3-dst><svg class="f3__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg><span><small>AI Chat</small><b>Answers you can check.</b></span></li>
-          <li class="f3__dst" data-f3-dst><svg class="f3__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l8.5 4.5-8.5 4.5L3.5 8z"/><path d="M3.5 12l8.5 4.5 8.5-4.5M3.5 16l8.5 4.5 8.5-4.5"/></svg><span><small>Knowledge base</small><b>Every document becomes knowledge.</b></span></li>
-          <li class="f3__dst" data-f3-dst><svg class="f3__ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M14 10h4M14 14h4M6 16c.6-1.4 1.7-2 3-2s2.4.6 3 2"/></svg><span><small>CRM</small><b>One client, recognised everywhere.</b></span></li>
-          <li class="f3__dst" data-f3-dst><svg class="f3__ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M9 4v16M15 4v16"/></svg><span><small>Projects</small><b>Work that knows its context.</b></span></li>
-          <li class="f3__dst" data-f3-dst><svg class="f3__ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><span><small>Email</small><b>Mail in your own voice.</b></span></li>
-          <li class="f3__dst" data-f3-dst><svg class="f3__ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span><small>Calendar</small><b>Deadlines find their own way in.</b></span></li>
-        </ul>
+    </div>
+
+    <div class="pb2__stage" data-pb2-stage>
+      <!-- inputs (top, one row on one bus) → the core (orbits + a living particle ring) → "Verified answers" → six outcomes and the question bar -->
+      <svg class="pb2__svg" viewBox="0 0 600 660" aria-hidden="true" data-pb2-svg></svg>
+      <canvas class="pb2__particles" aria-hidden="true" data-pb2-canvas></canvas>
+      <div class="pb2__core" data-pb2-core>
+        <span class="pb2__brand"><img class="pb2__mark" src="assets/img/logo-mark.svg" alt="" width="100" height="116"><span class="pb2__word">Silenus</span></span>
+        <p class="pb2__label"><b>One intelligence layer</b><span>one source of context</span></p>
+      </div>
+      <p class="pb2__engine" data-pb2-engine aria-hidden="true">Verified answers</p>
+      <div class="pb2__ask" data-pb2-ask>
+        <svg class="pb2__ask-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg>
+        <span class="pb2__q" aria-hidden="true"><span data-pb2-q>Search or ask Silenus anything…</span><i class="pb2__caret"></i></span>
+        <span class="pb2__ok" aria-hidden="true" data-pb2-ok>✓ Complete &amp; verified</span>
+        <a class="pb2__go" href="#demo" aria-label="Book a live test"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ================= 04 · ONE WINDOW (pinned app window, four modules) ================= -->
-<section class="ws" id="workspace" aria-labelledby="ws-title" data-ws>
+<section class="ws ws--clean" id="workspace" aria-labelledby="ws-title" data-ws>
   <div class="ws__pin" data-ws-pin>
     <div class="ws__glow" aria-hidden="true"></div>
     <div class="wrap ws__stage">
@@ -363,11 +400,12 @@ html{background:#09111A}body{margin:0;background:#09111A}
           <ul class="ow__nav">
             <li class="ow__nav-ind" data-ws-ind></li>
             <li tabindex="0" data-ws-nav="0"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>Dashboard</li>
+            <li tabindex="0" data-ws-nav="1"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4M9 13h6M9 17h4"/></svg>Documents</li>
             <li tabindex="0" data-ws-nav="2"><svg viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg>AI Chat</li>
             <li tabindex="0" data-ws-nav="3"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M9 4v16M15 4v16"/></svg>Projects</li>
             <li tabindex="0" data-ws-nav="4"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Email</li>
             <li tabindex="0" data-ws-nav="5"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Calendar</li>
-            <li tabindex="0" class="ow__more" data-ws-nav="1 6 7 8 9" data-ws-more><svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg><span>More</span><em data-ws-more-label></em></li>
+            <li tabindex="0" class="ow__more" data-ws-nav="6 7 8 9" data-ws-more><svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg><span>More</span><em data-ws-more-label></em></li>
           </ul>
           <p class="ow__user"><i>LL</i><span>Laura L.<small>Admin</small></span></p>
         </aside>
@@ -389,33 +427,14 @@ html{background:#09111A}body{margin:0;background:#09111A}
                 <p class="pane__sub">What moved across the company since yesterday.</p>
               </header>
               <div class="pane__body pane__body--stack">
-                <ul class="stats">
-                  <li data-ws-reveal><span>Knowledge base</span><b>48,210</b><small>documents · 312 added this week</small></li>
-                  <li data-ws-reveal><span>Open tasks</span><b>23</b><small>&nbsp;</small></li>
-                  <li data-ws-reveal><span>Inbox</span><b>7</b><small>need a reply · 2 already drafted</small></li>
-                  <li data-ws-reveal><span>Left of today</span><b>6h 20m</b><small>3 meetings · 1 deadline</small></li>
-                </ul>
+                
                 <div class="pane__grid pane__grid--wide">
-                  <div class="box">
-                    <p class="box__k">Needs you <em>4 open</em></p>
-                    <ul class="needs">
-                      <li data-ws-reveal><span><b>Kovács Ltd. supply agreement renews 31 Dec</b><small>Found by the Legal agent · notice period ended 2 Oct</small></span><i>Review</i></li>
-                      <li data-ws-reveal><span><b>Invoice INV-20931 doesn't match the order</b><small>€1,240 difference · Finance agent</small></span><i>Open</i></li>
-                      <li data-ws-reveal><span><b>2 leave requests waiting</b><small>HR · decide before Friday</small></span><i>Decide</i></li>
-                      <li data-ws-reveal><span><b>Warehouse move: 3 tasks due this week</b><small>Project · 62% complete</small></span><i>Open</i></li>
-                    </ul>
-                  </div>
+                  
                   <div class="box box--ai">
                     <p class="box__k">Morning briefing <span class="chip chip--ok">✓ Verified</span></p>
                     <p class="box__p" data-ws-reveal>Three contracts renew before year end<sup>1</sup>. Kovács Ltd. also appears in an open invoice dispute<sup>2</sup> and in last week's email thread about delivery delays<sup>3</sup>. Q3 revenue is tracking 6% above plan<sup>4</sup>.</p>
                     <p class="pane__chips"><span class="chip">Legal</span><span class="chip">Finance</span><span class="chip">Email</span><span class="chip">CRM</span></p>
-                    <p class="box__k box__k--sep">Today</p>
-                    <ul class="agenda">
-                      <li data-ws-reveal><b>09:00</b><span>Supplier call</span><em>Outlook</em></li>
-                      <li data-ws-reveal><b>11:30</b><span>Warehouse stand-up</span><em>Project</em></li>
-                      <li data-ws-reveal><b>Fri</b><span>Board deck due</span><em>From team chat</em></li>
-                      <li data-ws-reveal><b>16:00</b><span>Design review</span><em>Team chat</em></li>
-                    </ul>
+                    
                   </div>
                 </div>
               </div>
@@ -425,14 +444,10 @@ html{background:#09111A}body{margin:0;background:#09111A}
                 <p class="pane__k">Knowledge · Document intake</p>
                 <h3 class="pane__t" id="pane-1-t">Document intake</h3>
                 <p class="pane__sub">Files are read, understood and connected the moment they arrive.</p>
-                <p class="pane__chips"><span class="chip chip--ok">SharePoint synced</span><span class="chip">+ Upload</span></p>
+                
               </header>
               <div class="pane__body pane__grid">
-                <div class="box">
-                  <p class="drop"><b>Drag files or whole folders here</b><small>PDF, Word, Excel, scans, photos and charts · folder permissions decide who sees what</small></p>
-                  <p class="box__k">6 files processing <em>Upload · OCR · Layout · Vision · Extract · Tag · Publish</em></p>
-                  <ul class="files"><li data-ws-reveal><span class="files__n"><b>Supply_agreement_Kovacs.pdf</b><small>Scanned PDF · OCR</small></span><span class="files__st" aria-label="Stage 7 of 7"><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i></span><span class="chip chip--ok">Published</span></li><li data-ws-reveal><span class="files__n"><b>Annual_report_2014.pdf</b><small>Multi-column financial tables</small></span><span class="files__st" aria-label="Stage 6 of 7"><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="a"></i><i class=""></i></span><span class="chip">Tag…</span></li><li data-ws-reveal><span class="files__n"><b>INV-20931.jpg</b><small>Photographed invoice</small></span><span class="files__st" aria-label="Stage 4 of 7"><i class="d"></i><i class="d"></i><i class="d"></i><i class="a"></i><i class=""></i><i class=""></i><i class=""></i></span><span class="chip">Vision…</span></li><li data-ws-reveal><span class="files__n"><b>Board_minutes_Q3.docx</b><small>Word document</small></span><span class="files__st" aria-label="Stage 3 of 7"><i class="d"></i><i class="d"></i><i class="a"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="chip">Layout…</span></li><li data-ws-reveal><span class="files__n"><b>Warehouse_lease_Gyal.pdf</b><small>Contract · 38 pages</small></span><span class="files__st" aria-label="Stage 2 of 7"><i class="d"></i><i class="a"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="chip">OCR…</span></li><li data-ws-reveal><span class="files__n"><b>Org_chart_2026.png</b><small>Chart · read visually</small></span><span class="files__st" aria-label="Stage 1 of 7"><i class="a"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span><span class="chip">Upload…</span></li></ul>
-                </div>
+                
                 <div class="box">
                   <p class="box__k">Extracted facts <em>Supply_agreement_Kovacs.pdf</em></p>
                   <ul class="facts">
@@ -442,7 +457,7 @@ html{background:#09111A}body{margin:0;background:#09111A}
                     <li data-ws-reveal><span>Contract value</span><b>€184,000 / year</b><em>✓ p.6</em></li>
                     <li data-ws-reveal><span>Governing law</span><b>Hungary</b><em>✓ p.11</em></li>
                   </ul>
-                  <p class="pane__chips pane__chips--foot"><span class="chip">Contract</span><span class="chip">Supplier</span><span class="chip chip--warn">Renewing</span></p>
+                  
                 </div>
               </div>
             </article>
@@ -450,25 +465,15 @@ html{background:#09111A}body{margin:0;background:#09111A}
               <header class="pane__head">
                 <p class="pane__k">AI tool · Chat</p>
                 <h3 class="pane__t" id="pane-2-t">AI Chat</h3>
-                <p class="pane__chips"><span class="chip chip--label">Scope</span><span class="chip chip--ok">Whole company</span><span class="chip">This document</span><span class="chip">Project: Warehouse move</span></p>
+                
               </header>
               <div class="pane__body pane__grid">
-                <div class="box convo">
-                  <p class="convo__q" data-ws-reveal>Which of our contracts renew in the next quarter?</p>
-                  <p class="convo__a" data-ws-reveal>Four contracts renew between 1 October and 31 December 2026. I checked every contract in the knowledge base, not only the closest matches.</p>
-                  <ul class="convo__list">
-                    <li data-ws-reveal><span>Kovács Ltd. supply agreement</span><b>31 Dec</b><i>1</i></li>
-                    <li data-ws-reveal><span>Warehouse lease, Gyál</span><b>30 Nov</b><i>2</i></li>
-                    <li data-ws-reveal><span>Fleet insurance</span><b>15 Nov</b><i>3</i></li>
-                    <li data-ws-reveal><span>IT support, Nordtech</span><b>1 Oct</b><i>4</i></li>
-                  </ul>
-                  <p class="convo__v">✓ Verified against 4 sources</p>
-                </div>
+                
                 <div class="box convo">
                   <p class="convo__q" data-ws-reveal>What termination fee does the Kovács agreement set?</p>
                   <p class="convo__a" data-ws-reveal><span class="chip chip--warn">Not in the documents</span> The agreement does not set a termination fee. Clause 12.2 allows termination with 90 days' written notice and says nothing about a fee<sup>1</sup>.</p>
                   <blockquote class="convo__src" data-ws-reveal><span>Source 1 · Supply_agreement_Kovacs.pdf · p.4</span>12.1 This Agreement shall renew automatically for successive periods of twelve months unless terminated on <mark>31 December 2026</mark> or any anniversary thereof. 12.2 Either party may terminate this Agreement by giving <mark>ninety (90) days' written notice</mark> to the other party.</blockquote>
-                  <p class="pane__chips pane__chips--foot"><span class="chip">Legal agent</span><span class="chip">Model: self-hosted</span></p>
+                  
                 </div>
               </div>
             </article>
@@ -478,12 +483,9 @@ html{background:#09111A}body{margin:0;background:#09111A}
                 <h3 class="pane__t" id="pane-3-t">Warehouse relocation</h3>
                 <p class="pane__sub">Due 18 Dec · 62% complete · 2 open risks</p>
               </header>
-              <p class="pane__tabs" aria-hidden="true"><span>Overview</span><span class="is-on">Task tree</span><span>Board</span><span>Risks</span><span>Notes</span><span>Time</span><span>Knowledge base</span></p>
+              
               <div class="pane__body pane__grid pane__grid--gantt">
-                <div class="box">
-                  <p class="gantt__head"><span>Task</span><span class="gantt__weeks"><i>W40</i><i>W41</i><i>W42</i><i>W43</i><i>W44</i><i>W45</i><i>W46</i><i>W47</i></span></p>
-                  <ul class="gantt"><li data-ws-reveal><span class="gantt__n"><span class="chip chip--ok">Done</span>Sign new lease</span><span class="gantt__tl"><i style="left:0%;width:18%;background:#3E7C5A"></i></span></li><li data-ws-reveal><span class="gantt__n"><span class="chip">In progress</span>Inventory audit</span><span class="gantt__tl"><i style="left:12%;width:30%;background:#4FB0B4"></i></span></li><li data-ws-reveal><span class="gantt__n"><span class="chip">In progress</span>Move IT equipment</span><span class="gantt__tl"><i style="left:28%;width:22%;background:#4FB0B4"></i></span></li><li data-ws-reveal><span class="gantt__n"><span class="chip chip--warn">Waiting</span>Insurance update</span><span class="gantt__tl"><i style="left:34%;width:14%;background:#B8793D"></i></span></li><li data-ws-reveal><span class="gantt__n"><span class="chip">To do</span>Board presentation</span><span class="gantt__tl"><i style="left:22%;width:9%;background:#6C90BE"></i></span></li><li data-ws-reveal><span class="gantt__n"><span class="chip">To do</span>Staff transport plan</span><span class="gantt__tl"><i style="left:48%;width:24%;background:#8A9BAE"></i></span></li><li data-ws-reveal><span class="gantt__n"><span class="chip">To do</span>Go-live at Gyál site</span><span class="gantt__tl"><i style="left:76%;width:20%;background:#8A9BAE"></i></span></li></ul>
-                </div>
+                
                 <div class="box">
                   <p class="box__k">Team chat · Warehouse move</p>
                   <p class="msg" data-ws-reveal><b>Ádám:</b> Can someone prepare the board presentation by Friday?</p>
@@ -499,14 +501,14 @@ html{background:#09111A}body{margin:0;background:#09111A}
                 <p class="pane__chips"><span class="chip chip--ok">Outlook connected</span></p>
               </header>
               <div class="pane__body pane__grid pane__grid--mail">
-                <ul class="box threads"><li class="is-on" data-ws-reveal><b>Eszter Varga</b><span>Re: Autumn partner event</span><span class="chip chip--ok">Draft</span></li><li class="" data-ws-reveal><b>Kovács Ltd.</b><span>Delivery delay, week 41</span></li><li class="" data-ws-reveal><b>Nordtech Support</b><span>Contract renewal</span></li><li class="" data-ws-reveal><b>Bence Horváth</b><span>Leave 12–14 Oct</span></li><li class="" data-ws-reveal><b>Webshop</b><span>New order #8812</span></li><li class="" data-ws-reveal><b>Gyál Property</b><span>Lease addendum</span></li></ul>
+                
                 <div class="box">
-                  <p class="box__k">From Eszter Varga · 6 Oct</p>
-                  <p class="box__p" data-ws-reveal>Hi Laura, could you send the details of the autumn partner event? We'd like to bring two colleagues.</p>
-                  <p class="box__k box__k--sep">Your instruction</p>
+                  
+                  
+                  <p class="box__k">Your instruction</p>
                   <p class="box__p" data-ws-reveal>Reply with the event details. Use the price inquiry she sent on 12 September for the ticket prices.</p>
                   <div class="draft" data-ws-reveal>
-                    <p class="box__k">Draft <span class="chip chip--ok">Tone matched from your last 5 emails</span><span class="chip">Uses: 12 Sept inquiry</span></p>
+                    <p class="box__k">Draft <span class="chip chip--ok">Tone matched from your last 5 emails</span></p>
                     <p>Hi Eszter,<br>Lovely to hear you're bringing the team. The partner event is on 23 October from 17:00 at our Budapest office. As we discussed in September, tickets are €45 per person, so three places come to €135. I'll send the agenda next week.<br>Best, Laura</p>
                     <p class="box__actions" aria-hidden="true"><span class="pill pill--primary">Send</span><span class="pill">Edit</span></p>
                   </div>
@@ -518,12 +520,15 @@ html{background:#09111A}body{margin:0;background:#09111A}
                 <p class="pane__k">Workspace · Calendar</p>
                 <h3 class="pane__t" id="pane-5-t">Week 41</h3>
                 <p class="pane__sub">5 – 9 October 2026</p>
-                <p class="pane__chips"><span class="chip">Email</span><span class="chip">Project</span><span class="chip">Document</span><span class="chip">Team chat</span></p>
+                
               </header>
               <div class="pane__body">
-                <div class="box week">
-                  <div class="week__hours" aria-hidden="true"><i>09:00</i><i>10:00</i><i>11:00</i><i>12:00</i><i>13:00</i><i>14:00</i><i>15:00</i></div>
-                  <div class="week__col"><p class="week__d">Mon 5</p><div class="week__body"><p class="ev ev--e1" style="top:2%;height:11%" data-ws-reveal>Supplier call<small>from Outlook</small></p><p class="ev ev--e2" style="top:40%;height:16%" data-ws-reveal>Inventory audit<small>Warehouse move</small></p></div></div><div class="week__col"><p class="week__d">Tue 6</p><div class="week__body"><p class="ev ev--e4" style="top:15%;height:11%" data-ws-reveal>Design review<small>from team chat</small></p><p class="ev ev--e1" style="top:58%;height:11%" data-ws-reveal>Eszter Varga<small>from Outlook</small></p></div></div><div class="week__col"><p class="week__d">Wed 7</p><div class="week__body"><p class="ev ev--e2" style="top:2%;height:26%" data-ws-reveal>Move IT equipment<small>Warehouse move · day 1</small></p><p class="ev ev--e3" style="top:64%;height:13%" data-ws-reveal>Notice period ended<small>Kovács agreement · p.4</small></p></div></div><div class="week__col"><p class="week__d">Thu 8</p><div class="week__body"><p class="ev ev--e1" style="top:29%;height:11%" data-ws-reveal>Board prep<small>from Outlook</small></p><p class="ev ev--e3" style="top:72%;height:14%" data-ws-reveal>Fleet insurance renews 15 Nov<small>reminder · policy p.2</small></p></div></div><div class="week__col"><p class="week__d">Fri 9</p><div class="week__body"><p class="ev ev--e2" style="top:2%;height:18%" data-ws-reveal>Board presentation due<small>created from chat</small></p><p class="ev ev--e4" style="top:44%;height:11%" data-ws-reveal>Team retro<small>from team chat</small></p></div></div>
+                <div class="box">
+                  <p class="box__k">Wed 7</p>
+                  <ul class="agenda">
+                    <li data-ws-reveal><b>09:00</b><span>Move IT equipment</span><em>Warehouse move · day 1</em></li>
+                    <li data-ws-reveal><b>Deadline</b><span>Notice period ended</span><em>Kovács agreement · p.4</em></li>
+                  </ul>
                 </div>
               </div>
             </article>
@@ -534,17 +539,7 @@ html{background:#09111A}body{margin:0;background:#09111A}
                 <p class="pane__sub">Supplier · Budapest · Reg. 01-09-338412 · Created automatically from email · 14 Mar 2024</p>
               </header>
               <div class="pane__body pane__grid">
-                <div class="box">
-                  <p class="box__k">Contact</p>
-                  <p class="partner"><i>KP</i><span><b>Péter Kovács</b><small>Managing director</small></span></p>
-                  <ul class="kv">
-                    <li data-ws-reveal><span>Lifetime value</span><b>€512,400</b></li>
-                    <li data-ws-reveal><span>Open items</span><b>1 dispute · 1 renewal</b></li>
-                    <li data-ws-reveal><span>Last contact</span><b>2 Oct · email</b></li>
-                    <li data-ws-reveal><span>Owner</span><b>Ádám K.</b></li>
-                  </ul>
-                  <p class="box__actions" aria-hidden="true"><span class="pill">Generate form</span><span class="pill">Email</span></p>
-                </div>
+                
                 <div class="box">
                   <p class="box__k">Connected across the company <em>Kovács Ltd. · one record</em></p>
                   <ul class="links">
@@ -564,17 +559,10 @@ html{background:#09111A}body{margin:0;background:#09111A}
                 <p class="pane__k">Wednesday · 7 October 2026</p>
                 <h3 class="pane__t" id="pane-7-t">HR dashboard</h3>
                 <p class="pane__sub">Who is here, who is in the pipeline, and what needs your decision today.</p>
-                <p class="pane__chips"><span class="chip chip--ok">HR view</span><span class="chip">Employee view</span><span class="chip">Check in · 00:00:00</span></p>
+                
               </header>
               <div class="pane__body pane__body--stack">
-                <ul class="stats stats--6">
-                  <li data-ws-reveal><span>Active employees</span><b>17</b><small>6 departments · 1 new this month</small></li>
-                  <li data-ws-reveal><span>Candidates</span><b>6</b><small>2 interviews this week</small></li>
-                  <li data-ws-reveal><span>Waiting on you</span><b>3</b><small>2 leave · 1 close · Decide before Friday</small></li>
-                  <li data-ws-reveal><span>On leave today</span><b>2</b><small>Nóra Juhász · Bence Horváth</small></li>
-                  <li data-ws-reveal><span>Expiring trainings</span><b>1</b><small>Fire safety · Máté Papp · 12 Oct</small></li>
-                  <li data-ws-reveal><span>On probation</span><b>1</b><small>Anna Kovács · day 9 of 90</small></li>
-                </ul>
+                
                 <div class="pane__grid pane__grid--wide">
                   <div class="box">
                     <p class="box__k">Needs your attention <em>5 open</em></p>
@@ -584,14 +572,7 @@ html{background:#09111A}body{margin:0;background:#09111A}
                       <li data-ws-reveal><span><b>Statutory reference check</b><small>Parameters not yet compared with 2026.2</small></span><i>Run the check</i></li>
                     </ul>
                   </div>
-                  <div class="box">
-                    <p class="box__k">Today</p>
-                    <ul class="kv">
-                      <li data-ws-reveal><span>Working</span><b>15</b></li>
-                      <li data-ws-reveal><span>On leave</span><b>2</b></li>
-                      <li data-ws-reveal><span>Absent</span><b>0</b></li>
-                    </ul>
-                  </div>
+                  
                 </div>
               </div>
             </article>
@@ -601,7 +582,7 @@ html{background:#09111A}body{margin:0;background:#09111A}
                 <h3 class="pane__t" id="pane-8-t">Quote Q-2026-0142 · Kovács Ltd.</h3>
                 <p class="pane__chips"><span class="chip chip--ok">Brand Guide applied</span><span class="chip">PDF/A-3 · embedded XML</span></p>
               </header>
-              <p class="pane__tabs" aria-hidden="true"><span class="is-on">Quote</span><span>Invoice</span><span>Pro forma</span><span>Delivery note</span><span>Certificate</span><span>E-mail</span></p>
+              
               <div class="pane__body pane__body--docs">
                 <div class="paper" aria-hidden="true">
                   <p class="paper__top"><i>S</i><span>QUOTE</span><b>Q-2026-0142</b></p>
@@ -614,22 +595,7 @@ html{background:#09111A}body{margin:0;background:#09111A}
                   <p class="paper__sum"><span>Total incl. 27% VAT</span><b>€18,707</b></p>
                   <p class="paper__foot"><i class="paper__qr"></i><span>View on the customer portal</span></p>
                 </div>
-                <div class="pane__side">
-                  <div class="box">
-                    <p class="box__k">What's still missing</p>
-                    <ul class="checks">
-                      <li class="is-ok" data-ws-reveal>Partner · from the CRM</li>
-                      <li class="is-ok" data-ws-reveal>Line items · from the database</li>
-                      <li class="is-ok" data-ws-reveal>Payment terms</li>
-                      <li class="is-todo" data-ws-reveal>Delivery address</li>
-                    </ul>
-                  </div>
-                  <div class="box box--ai">
-                    <p class="box__k"><i></i>AI check while editing</p>
-                    <p class="box__p" data-ws-reveal>VAT analysis: 27% on every line.</p>
-                    <p class="box__p" data-ws-reveal>Prices match the price list.</p>
-                  </div>
-                </div>
+                
               </div>
             </article>
             <article class="pane" data-ws-pane="9" data-ws-name="Transactions" aria-labelledby="pane-9-t">
@@ -650,22 +616,7 @@ html{background:#09111A}body{margin:0;background:#09111A}
                   <li><i></i><b>Settlement</b><span>Monitored</span></li>
                   <li class="tl__bar" aria-hidden="true"><span data-ws-bar></span></li>
                 </ol>
-                <div class="pane__grid">
-                  <div class="box box--next">
-                    <p class="box__k">Next step</p>
-                    <p class="box__t">Certificate of completion</p>
-                    <p class="box__p">Records fulfilment. Without it, no final invoice can be issued.</p>
-                    <p class="box__actions" aria-hidden="true"><span class="pill pill--primary">Prepare</span><span class="pill">Open graph</span></p>
-                  </div>
-                  <div class="box">
-                    <p class="box__k">Linked to this transaction</p>
-                    <ul class="links">
-                      <li data-ws-reveal><span>Supply agreement</span><b>Contract</b></li>
-                      <li data-ws-reveal><span>Re: delivery window</span><b>E-mail</b></li>
-                      <li data-ws-reveal><span>Advance €5,612 · 30%</span><b>Payment</b></li>
-                    </ul>
-                  </div>
-                </div>
+                
               </div>
             </article>
           </div>
@@ -739,326 +690,165 @@ html{background:#09111A}body{margin:0;background:#09111A}
       <!-- Step rail: progress + jump to a screen -->
       <nav class="ws__rail" aria-label="Screens in the window">
         <button type="button" data-ws-step="0"><b>01</b>Dashboard</button>
-        <button type="button" data-ws-step="2"><b>02</b>AI Chat</button>
-        <button type="button" data-ws-step="3"><b>03</b>Projects</button>
-        <button type="button" data-ws-step="4"><b>04</b>Email</button>
-        <button type="button" data-ws-step="5"><b>05</b>Calendar</button>
+        <button type="button" data-ws-step="1"><b>02</b>Documents</button>
+        <button type="button" data-ws-step="2"><b>03</b>AI Chat</button>
+        <button type="button" data-ws-step="3"><b>04</b>Projects</button>
+        <button type="button" data-ws-step="4"><b>05</b>Email</button>
+        <button type="button" data-ws-step="5"><b>06</b>Calendar</button>
         <span class="ws__rail-bar" aria-hidden="true"><i data-ws-progress></i></span>
       </nav>
     </div>
   </div>
 </section>
 
-<!-- ================= WHY SILENUS · the difference + the same question to four kinds of tool ================= -->
-<section class="vs vs--home" id="why-silenus" aria-labelledby="why-silenus-title" data-vs data-diff>
+<!-- ================= 08 · WHO IT'S FOR + WHY WE BUILT IT ================= -->
+<section class="story story--home" id="who" aria-labelledby="story-title">
   <div class="wrap">
     <header class="sec-head" data-split-head>
-      <p class="sec-head__idx"><b>03</b> Why Silenus</p>
+      <p class="sec-head__idx"><b>03</b> Who it's for</p>
       <div class="sec-head__body">
-        <h2 class="sec-head__title" id="why-silenus-title">Apps organise your business. <span class="sec-head__muted">Silenus understands it.</span></h2>
-        <p class="sec-head__lead">Others sync separate apps or bolt AI on top. See how each is built, then ask them all the same question.</p>
-      </div>
-    </header>
-    <div class="dock" data-reveal>
-      <div class="dock__t1 vs__mode" role="tablist" aria-label="View">
-        <button type="button" role="tab" id="vsm-0" aria-controls="vs-built" aria-selected="true" tabindex="0" data-vs-mode="0">Built differently</button>
-        <button type="button" role="tab" id="vsm-1" aria-controls="vs-ask" aria-selected="false" tabindex="-1" data-vs-mode="1">The same question</button>
-      </div>
-      <span class="dock__sep" aria-hidden="true"></span>
-      <div class="dock__t2"><div class="diff__tabs dock__tabs" role="tablist" aria-label="Compare how platforms are built">
-        <button class="diff__tab" role="tab" id="diff-tab-sync" aria-controls="diff-panel-sync" aria-selected="true" tabindex="0" data-diff-tab="sync"><span class="diff__tab-long">Apps kept in sync</span><span class="diff__tab-short" aria-hidden="true">Synced apps</span></button>
-        <button class="diff__tab" role="tab" id="diff-tab-ai" aria-controls="diff-panel-ai" aria-selected="false" tabindex="-1" data-diff-tab="ai">AI on top</button>
-        <button class="diff__tab" role="tab" id="diff-tab-silenus" aria-controls="diff-panel-silenus" aria-selected="false" tabindex="-1" data-diff-tab="silenus">Silenus</button>
-      </div></div>
-    </div>
-    <div class="vs__view vs__view--built" id="vs-built" role="tabpanel" aria-labelledby="vsm-0">
-      <div class="diff__body">
-        <div class="diff__panels">
-          <div class="diff__panel" role="tabpanel" id="diff-panel-sync" aria-labelledby="diff-tab-sync" tabindex="0">
-            <p class="diff__kicker">01 · Bundled apps</p>
-            <h3 class="diff__title">Separate apps, kept in sync</h3>
-            <p class="diff__text">Each app keeps its own copy of a customer. Data travels between pairs of apps, and things fall through the gaps.</p>
-            <ul class="diff__points">
-              <li class="is-con">One customer, four copies</li>
-              <li class="is-con">Every new module is a new integration</li>
-              <li class="is-con">AI added later, paid in credits</li>
-            </ul>
-          </div>
-          <div class="diff__panel" role="tabpanel" id="diff-panel-ai" aria-labelledby="diff-tab-ai" tabindex="0" hidden>
-            <p class="diff__kicker">02 · AI on top</p>
-            <h3 class="diff__title">An AI layer over existing tools</h3>
-            <p class="diff__text">The AI can find information, but the business stays fragmented, and you keep paying for every tool underneath.</p>
-            <ul class="diff__points">
-              <li class="is-con">Search, but no shared operations</li>
-              <li class="is-con">Sees only what each tool hands it</li>
-              <li class="is-con">Every tool still billed underneath</li>
-            </ul>
-          </div>
-          <div class="diff__panel" role="tabpanel" id="diff-panel-silenus" aria-labelledby="diff-tab-silenus" tabindex="0" hidden>
-            <p class="diff__kicker diff__kicker--accent">03 · Silenus</p>
-            <h3 class="diff__title">One knowledge layer, modules on top</h3>
-            <p class="diff__text">Everything goes into one knowledge base first. Every module reads the same facts, so nothing is copied and nothing gets out of step.</p>
-            <ul class="diff__points">
-              <li class="is-pro">One customer, one record</li>
-              <li class="is-pro">A new module is a new view</li>
-              <li class="is-pro">AI built in, included</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- One diagram, three states. Nodes move between states; connections cross-fade. Decorative: the panels carry the meaning. -->
-        <figure class="diff__figure" aria-hidden="true">
-          <svg class="diff__svg" viewBox="24 56 592 324" data-state="sync" data-diff-svg>
-            <!-- state: apps kept in sync -->
-            <g class="diff__layer diff__layer--sync">
-              <g class="diff__sync-lines">
-                <path d="M222 96H418"/><path d="M222 296H418"/><path d="M156 122V270"/><path d="M484 122V270"/>
-                <path d="M222 122L418 270"/><path d="M418 122L222 270"/>
-              </g>
-              <text class="diff__mono" x="320" y="86" text-anchor="middle">sync</text>
-              <text class="diff__mono" x="320" y="318" text-anchor="middle">sync</text>
-              <circle class="diff__gap" cx="320" cy="196" r="5"/>
-              <text class="diff__mono diff__mono--warn" x="332" y="200">out of step</text>
-            </g>
-
-            <!-- state: AI on top -->
-            <g class="diff__layer diff__layer--ai">
-              <rect class="diff__bar" x="40" y="80" width="564" height="56" rx="14"/>
-              <text class="diff__bar-label" x="322" y="113" text-anchor="middle">AI search &amp; connectors</text>
-              <g class="diff__drop-lines"><path d="M106 136V290"/><path d="M250 136V290"/><path d="M394 136V290"/><path d="M538 136V290"/></g>
-            </g>
-
-            <!-- state: Silenus -->
-            <g class="diff__layer diff__layer--silenus">
-              <g class="diff__view-lines"><path d="M106 122V250"/><path d="M250 122V250"/><path d="M394 122V250"/><path d="M538 122V250"/></g>
-              <rect class="diff__core" x="40" y="250" width="564" height="72" rx="18"/>
-              <text class="diff__core-label" x="322" y="282" text-anchor="middle">ONE KNOWLEDGE LAYER</text>
-              <text class="diff__mono" x="322" y="304" text-anchor="middle">the AI understands it</text>
-              <text class="diff__mono" x="322" y="362" text-anchor="middle">email · documents · invoices · bank · chat</text>
-              <path class="diff__feed" d="M322 344V328"/>
-            </g>
-
-            <!-- persistent nodes -->
-            <g class="diff__node diff__node--1"><rect width="132" height="52" rx="12"/><text x="66" y="31" text-anchor="middle">CRM</text><text class="diff__db" x="66" y="70" text-anchor="middle">own database</text></g>
-            <g class="diff__node diff__node--2"><rect width="132" height="52" rx="12"/><text x="66" y="31" text-anchor="middle">Finance</text><text class="diff__db" x="66" y="70" text-anchor="middle">own database</text></g>
-            <g class="diff__node diff__node--3"><rect width="132" height="52" rx="12"/><text x="66" y="31" text-anchor="middle">HR</text><text class="diff__db" x="66" y="70" text-anchor="middle">own database</text></g>
-            <g class="diff__node diff__node--4"><rect width="132" height="52" rx="12"/><text x="66" y="31" text-anchor="middle">Projects</text><text class="diff__db" x="66" y="70" text-anchor="middle">own database</text></g>
-          </svg>
-        </figure>
-      </div>
-    </div>
-    <div class="vs__view" id="vs-ask" role="tabpanel" aria-labelledby="vsm-1" hidden>
-    <div class="vs__qs" role="tablist" aria-label="Questions">
-        <button class="vs__q" role="tab" id="vsq-0" aria-controls="vs-wins" aria-selected="true" tabindex="0" data-vs-q="0"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg><span>Show revenue, profit and equity for every year on file.</span></button>
-        <button class="vs__q" role="tab" id="vsq-1" aria-controls="vs-wins" aria-selected="false" tabindex="-1" data-vs-q="1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg><span>List every contract that auto-renews.</span></button>
-        <button class="vs__q" role="tab" id="vsq-2" aria-controls="vs-wins" aria-selected="false" tabindex="-1" data-vs-q="2"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg><span>What termination fee does the Kovács agreement set?</span></button>
-        <button class="vs__q" role="tab" id="vsq-3" aria-controls="vs-wins" aria-selected="false" tabindex="-1" data-vs-q="3"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg><span>Where did our data go, and who saw it?</span></button>
-    </div>
-    <div class="vs__wins" id="vs-wins" role="tabpanel" aria-live="polite" data-reveal>
-        <div class="vsw">
-          <p class="vsw__bar"><i></i><i></i><i></i><span>Traditional knowledge base</span></p>
-          <p class="vsw__q" data-vs-wq>"Show revenue, profit and equity for every year on file."</p>
-          <p class="vsw__a" data-vs-wa>Finds <b>23 files</b> containing "revenue". You open each one and copy the figures yourself.</p>
-          <p class="vsw__v vsw__v--no" data-vs-wv>✕ Finds files</p>
-        </div>
-        <div class="vsw">
-          <p class="vsw__bar"><i></i><i></i><i></i><span>Generic AI chat</span></p>
-          <p class="vsw__q" data-vs-wq>"Show revenue, profit and equity for every year on file."</p>
-          <p class="vsw__a" data-vs-wa>A fluent table, but only from what you pasted in. Missing years are <b>filled with plausible guesses</b>.</p>
-          <p class="vsw__v vsw__v--no" data-vs-wv>✕ Guesses</p>
-        </div>
-        <div class="vsw">
-          <p class="vsw__bar"><i></i><i></i><i></i><span>AI knowledge-base tool</span></p>
-          <p class="vsw__q" data-vs-wq>"Show revenue, profit and equity for every year on file."</p>
-          <p class="vsw__a" data-vs-wa>Retrieves a few chunks. Tables split mid-row, so <b>some years come from the wrong column</b>.</p>
-          <p class="vsw__v vsw__v--part" data-vs-wv>~ Partial</p>
-        </div>
-        <div class="vsw vsw--us">
-          <p class="vsw__bar"><i></i><i></i><i></i><span>Silenus</span></p>
-          <p class="vsw__q" data-vs-wq>"Show revenue, profit and equity for every year on file."</p>
-          <p class="vsw__a" data-vs-wa>A reconciled table for <b>every year on file</b>, one value per cell, each linked to its page. Conflicts flagged.</p>
-          <p class="vsw__v vsw__v--yes" data-vs-wv>✓ Complete &amp; verified</p>
-        </div>
-    </div>
-    </div>
-    <div class="score__cta vs__cta" data-reveal>
-      <p>Bring 30–50 of your own documents. We'll run this test with you, live.</p>
-      <a class="btn btn--secondary" href="why-silenus.html#why-silenus">See the full scorecard</a>
-      <a class="btn btn--primary" href="#demo">Book a live test <span class="btn__arrow" aria-hidden="true">→</span></a>
-    </div>
-    <script type="application/json" data-vs-data>[{"q": "Show revenue, profit and equity for every year on file.", "a": [["Finds <b>23 files</b> containing \"revenue\". You open each one and copy the figures yourself.", "no", "Finds files"], ["A fluent table, but only from what you pasted in. Missing years are <b>filled with plausible guesses</b>.", "no", "Guesses"], ["Retrieves a few chunks. Tables split mid-row, so <b>some years come from the wrong column</b>.", "part", "Partial"], ["A reconciled table for <b>every year on file</b>, one value per cell, each linked to its page. Conflicts flagged.", "yes", "Complete &amp; verified"]]}, {"q": "List every contract that auto-renews.", "a": [["Keyword search for \"auto-renew\" misses contracts that say <b>\"renews automatically\"</b>.", "no", "Misses items"], ["Only knows the contracts in this conversation and <b>loses track</b> as the list grows.", "no", "Incomplete"], ["Returns the <b>top few matches</b> and silently drops the rest.", "part", "Top matches only"], ["Detects a \"list them all\" question, <b>searches per contract</b> and returns the full set.", "yes", "Complete set"]]}, {"q": "What termination fee does the Kovács agreement set?", "a": [["Returns the agreement. <b>You read 40 pages</b> to find out.", "part", "You read it"], ["\"A fee of 15% of the annual value.\" <b>That clause doesn't exist.</b>", "no", "Invented"], ["Cites clause 12, but the passage <b>doesn't support</b> the fee it quotes.", "no", "Unsupported"], ["<b>\"The agreement does not set a termination fee.\"</b> Clause 12.2 allows 90 days' notice. Source attached.", "yes", "Honest answer"]]}, {"q": "Where did our data go, and who saw it?", "a": [["Access logs exist, but say <b>nothing about AI processing</b>.", "part", "Partial"], ["Your documents went to <b>a third-party cloud</b> under its own terms.", "no", "Left your walls"], ["Hosted SaaS. Model and region depend on <b>the vendor's contract</b>.", "no", "Vendor's cloud"], ["An append-only log of <b>every access and which model answered</b>. Zero documents left your environment.", "yes", "Provable"]]}]</script>
-  </div>
-</section>
-
-<!-- ================= 07 · EVERYTHING IN ONE PLACE ================= -->
-<section class="catalogue" id="platform" aria-labelledby="catalogue-title" data-hs>
-  <div class="wrap">
-    <header class="sec-head" data-split-head>
-      <p class="sec-head__idx"><b>04</b> Everything in one place</p>
-      <div class="sec-head__body">
-        <h2 class="sec-head__title" id="catalogue-title">Everything your business runs on, <span class="sec-head__muted">in one place.</span></h2>
-        <p class="sec-head__lead">One system today for documents, CRM, sales, HR, projects, chat, email and calendar. Finance and banking next. No more wiring apps together.</p>
+        <h2 class="sec-head__title" id="story-title">Enterprise-grade organisation, <span class="sec-head__muted">without enterprise cost.</span></h2>
+        <p class="sec-head__lead">Built for micro, small and medium-sized businesses in every industry, and for the people who keep them running.</p>
       </div>
     </header>
 
-    <!-- Bento: what the system does underneath. Facts from the features document.
-         Desktop: a horizontal stream (hscroll.js pins the section and moves .hs__move sideways; the rail
-         behind the cards fills as you go). Phones / reduced motion: the asymmetric grid. -->
-    <div class="hs" data-hs-view>
-    <div class="hs__move" data-hs-move>
-    <div class="hs__rail" aria-hidden="true"><i data-hs-lit></i></div>
-    <ul class="bento" data-bento data-reveal-group>
-      <!-- A · large -->
-      <li class="bento__card bento__card--agent">
-        <span class="bento__n" aria-hidden="true">01</span>
-        <svg class="bento__ico" viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M4 5.5h16v10.5H10l-4.5 3.5V16H4z"/><path pathLength="1" d="M12 8.2l.9 2 2 .9-2 .9-.9 2-.9-2-2-.9 2-.9z"/></svg>
-        <h3 class="bento__t">One agent, <span data-count>118 tools</span></h3>
-        <p class="bento__p">The same AI works across every module. It searches, reads the passages around a match, and cites every claim.</p>
-        <ul class="bars" aria-label="AI tools by module">
-          <li style="--v:34;--i:0"><span>Projects</span><i></i><b data-count>34</b></li>
-          <li style="--v:20;--i:1"><span>CRM</span><i></i><b data-count>20</b></li>
-          <li style="--v:14;--i:2"><span>Documents</span><i></i><b data-count>14</b></li>
-          <li style="--v:8;--i:3"><span>E-mail</span><i></i><b data-count>8</b></li>
-          <li style="--v:5;--i:4"><span>Team chat</span><i></i><b data-count>5</b></li>
-          <li style="--v:4;--i:5"><span>HR <em>read-only</em></span><i></i><b data-count>4</b></li>
-          <li style="--v:3;--i:6"><span>Calendar</span><i></i><b data-count>3</b></li>
-        </ul>
-        <a class="bento__link" href="#workspace">Ask it something <span aria-hidden="true">→</span></a>
-      </li>
-
-      <!-- B -->
-      <li class="bento__card bento__card--ask">
-        <span class="bento__n" aria-hidden="true">02</span>
-        <svg class="bento__ico" viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M12 3.5l7 3v5.2c0 4.2-3 7.4-7 8.8-4-1.4-7-4.6-7-8.8V6.5z"/><path pathLength="1" d="M8.8 12.2l2.2 2.2 4.2-4.4"/></svg>
-        <h3 class="bento__t">Asks before it acts</h3>
-        <p class="bento__p">Every tool is classed as read, change or external effect. Changes arrive as approval cards with the exact arguments.</p>
-        <p class="classes" aria-label="Every tool is classed"><span>Read</span><span>Change</span><span class="is-on">External effect</span></p>
-        <div class="approve" aria-hidden="true">
-          <p class="approve__k"><i aria-hidden="true"></i>Approval needed · external effect</p>
-          <p class="approve__t">Send e-mail · Re: delivery window</p>
-          <p class="approve__m">To Kovács Ltd. · 1 attachment</p>
-          <p class="approve__b"><span class="pill pill--primary">Send</span><span class="pill">Edit</span></p>
-        </div>
-        <p class="bento__note">An e-mail is never sent automatically. A person presses Send.</p>
-      </li>
-
-      <!-- C -->
-      <li class="bento__card bento__card--read">
-        <span class="bento__n" aria-hidden="true">03</span>
-        <svg class="bento__ico" viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M6 3h8l4 4v14H6z"/><path pathLength="1" d="M9 11h6M9 14.5h6M9 18h3"/></svg>
-        <h3 class="bento__t">Every document, read closely</h3>
-        <dl class="nums">
-          <div><dt>specialised agents per document</dt><dd data-count>14</dd></div>
-          <div><dt>file types, scans included</dt><dd data-count>28</dd></div>
+    <figure class="fv__quote" data-reveal>
+      <div class="fv__lead">
+        <blockquote>“We were quoted €50,000 and nine months for a custom AI knowledge base. <span>So we built it ourselves, and kept going.”</span></blockquote>
+          <dl class="fv__compare">
+          <div><dt>Custom knowledge base, quoted to us</dt><dd>€50k · 9 months</dd></div>
+          <div><dt>Silenus, with no consulting project</dt><dd>Upload &amp; go</dd></div>
         </dl>
-        <p class="types types--live" aria-label="Examples of file types"><span style="--d:0.00s"><i aria-hidden="true"></i>PDF</span><span style="--d:0.35s"><i aria-hidden="true"></i>Scan</span><span style="--d:0.70s"><i aria-hidden="true"></i>Word</span><span style="--d:1.05s"><i aria-hidden="true"></i>Excel</span><span style="--d:1.40s"><i aria-hidden="true"></i>PowerPoint</span><span style="--d:1.75s"><i aria-hidden="true"></i>E-mail</span></p>
-      </li>
+      </div>
+      <p class="story__by fv__by"><i>AL</i><i>LL</i>Aron &amp; Laura, co-founders · <a href="company.html">Read our story <span aria-hidden="true">→</span></a></p>
+    </figure>
 
-      <!-- D -->
-      <li class="bento__card bento__card--books">
-        <span class="bento__n" aria-hidden="true">04</span>
-        <svg class="bento__ico" viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M4 5h16v14H4z"/><path pathLength="1" d="M4 9.5h16M9.5 9.5V19"/></svg>
-        <h3 class="bento__t">Books without a close <span class="tag tag--roadmap">Next</span></h3>
-        <p class="bento__p">Every event is posted the moment it happens, so the period can be closed at any minute.</p>
-        <ul class="post">
-          <li><span>Outgoing invoice</span><b>On issue</b></li>
-          <li><span>Incoming invoice</span><b>On receipt</b></li>
-          <li><span>Bank item</span><b>When matched</b></li>
-        </ul>
-        <a class="bento__link" href="company.html#roadmap">See the roadmap <span aria-hidden="true">→</span></a>
-      </li>
-
-      <!-- E · narrow -->
-      <li class="bento__card bento__card--models">
-        <span class="bento__n" aria-hidden="true">05</span>
-        <svg class="bento__ico" viewBox="0 0 24 24" aria-hidden="true"><circle pathLength="1" cx="12" cy="12" r="3"/><path pathLength="1" d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/></svg>
-        <h3 class="bento__t">Your model</h3>
-        <ul class="models">
-          <li>OpenAI</li><li>Anthropic Claude</li><li>Azure OpenAI</li><li>DeepSeek</li><li class="is-on">Self-hosted</li>
-        </ul>
-        <p class="bento__note">Per company, per user or per chat.</p>
-      </li>
-
-      <!-- F -->
-      <li class="bento__card bento__card--open">
-        <span class="bento__n" aria-hidden="true">06</span>
-        <svg class="bento__ico" viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M4 8h12M12 4l4 4-4 4"/><path pathLength="1" d="M20 16H8M12 12l-4 4 4 4"/></svg>
-        <h3 class="bento__t">Open to other tools</h3>
-        <p class="bento__p">External tools connect through MCP, each call approved by a person. Silenus also serves its own tools to other AI clients.</p>
-        <p class="links-row"><span>Microsoft 365</span><span>Google</span><span class="is-on">MCP · both ways</span><span>Shopify</span></p>
-        <a class="bento__link" href="#security">How the data stays yours <span aria-hidden="true">→</span></a>
-      </li>
-      <!-- G · the full feature catalogue (Messaging Guide: grouped by what the customer is trying to do) -->
-      <li class="bento__card bento__card--incl">
-        <span class="bento__n" aria-hidden="true">07</span>
-        <svg class="bento__ico" viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4z"/><path pathLength="1" d="M16.5 13v7M13 16.5h7"/></svg>
-        <h3 class="bento__t">Everything included</h3>
-        <div class="incl">
-          <div class="incl__g"><p class="incl__t">Finance <span class="tag tag--roadmap">Next</span></p><p class="incl__i">Invoicing · Bank integration · Accounting · Commissions · Cash-flow &amp; liquidity forecast</p></div>
-          <div class="incl__g"><p class="incl__t">Sales &amp; commerce</p><p class="incl__i">Sales · CRM · Shopify integration · Inventory management · Quotes</p></div>
-          <div class="incl__g"><p class="incl__t">People &amp; HR</p><p class="incl__i">Employee profiles · HR · Payroll · Recruitment · Employment contracts · Performance reviews · Org structure · Time tracking</p></div>
-          <div class="incl__g"><p class="incl__t">Operations</p><p class="incl__i">Project management · Worksheets · Templates · Company profile · Calendar</p></div>
-          <div class="incl__g"><p class="incl__t">Communication</p><p class="incl__i">Team chat · Email in your own tone of voice · AI meeting summaries</p></div>
-          <div class="incl__g"><p class="incl__t">AI &amp; knowledge</p><p class="incl__i">AI chat with citations · Knowledge Vault · Domain-specific agents · AI workforce <span class="tag tag--roadmap">Planned</span></p></div>
+    <ul class="aud" data-reveal-group data-aud>
+      <!-- 01 · one layer instead of a stack of tools -->
+      <li class="aud__card">
+        <div class="aud__viz" aria-hidden="true">
+          <div class="viz viz--layers" data-viz="layers">
+            <span class="vl" data-vl="0">Invoices</span>
+            <span class="vl" data-vl="1">Email</span>
+            <span class="vl" data-vl="2">CRM</span>
+            <span class="vl" data-vl="3">Files</span>
+            <span class="vl-one" data-vl-one><i></i>One operating layer</span>
+          </div>
+        </div>
+        <div class="aud__body">
+          <p class="aud__n">01</p>
+          <h3 class="aud__t">Small &amp; micro businesses</h3>
+          <p class="aud__p">One operating layer instead of a stack of tools, without the cost and rollout of an ERP.</p>
         </div>
       </li>
-      <!-- H, I · home only: the chapters that live on Platform and Company -->
-      <li class="bento__card bento__card--door">
-        <span class="bento__n" aria-hidden="true">08</span>
-        <svg class="bento__ico" viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M6 3h8l4 4v14H6z M14 3v4h4"/><path pathLength="1" d="M9 12h6M9 16h4"/></svg>
-        <p class="bento__k">Platform · How it works</p>
-        <h3 class="bento__t">One document. Nine steps. Before anyone asks.</h3>
-        <p class="bento__p"><b>9</b> steps, from “Bring it in” to “Publish, isolated”.</p>
-        <a class="bento__link" href="platform.html#how">See the pipeline <span aria-hidden="true">→</span></a>
+
+      <!-- 02 · keeps pace as volume grows -->
+      <li class="aud__card">
+        <div class="aud__viz" aria-hidden="true">
+          <div class="viz viz--wave" data-viz="wave">
+            <p class="vw__k">Documents processed <b data-vw-count>12,800</b></p>
+            <svg viewBox="0 0 260 110" preserveAspectRatio="none">
+              <path class="vw__grid" d="M0 28H260M0 56H260M0 84H260"/>
+              <path class="vw__area" d="M0 96 C30 94 48 86 70 84 S110 78 130 66 S170 52 190 40 S232 20 260 14 V110 H0Z"/>
+              <path class="vw__line" data-vw-line d="M0 96 C30 94 48 86 70 84 S110 78 130 66 S170 52 190 40 S232 20 260 14"/>
+            </svg>
+            <span class="vw__dot" data-vw-dot></span>
+          </div>
+        </div>
+        <div class="aud__body">
+          <p class="aud__n">02</p>
+          <h3 class="aud__t">Growth companies</h3>
+          <p class="aud__p">Connected workflows and automation that keep pace as the team and documents multiply.</p>
+        </div>
       </li>
-      <li class="bento__card bento__card--door">
-        <span class="bento__n" aria-hidden="true">09</span>
-        <svg class="bento__ico" viewBox="0 0 24 24" aria-hidden="true"><circle pathLength="1" cx="12" cy="12" r="3.2"/><path pathLength="1" d="M12 3v4.5M12 16.5V21M3 12h4.5M16.5 12H21M5.6 5.6l3.2 3.2M15.2 15.2l3.2 3.2M5.6 18.4l3.2-3.2M15.2 8.8l3.2-3.2"/></svg>
-        <p class="bento__k">Vision · In development</p>
-        <h3 class="bento__t">Your whole company, run around one brain.</h3>
-        <p class="bento__p"><b>18</b> AI agents across 8 departments.</p>
-        <a class="bento__link" href="company.html#agents">See the agent map <span aria-hidden="true">→</span></a>
+
+      <!-- 03 · cited search across case files -->
+      <li class="aud__card">
+        <div class="aud__viz" aria-hidden="true">
+          <div class="viz viz--search" data-viz="search">
+            <p class="vs__field"><svg viewBox="0 0 16 16"><circle cx="7" cy="7" r="4.5"/><path d="M10.5 10.5L14 14"/></svg><span data-vs-text>site handover date, Gyál warehouse</span><i class="vs__caret"></i></p>
+            <div class="vs__result" data-vs-result>
+              <p class="vs__doc"><span>Handover protocol · Gyál site</span><b>p.2 §3</b></p>
+              <p class="vs__ex">The site is handed over <mark>on 18 December 2026</mark>, after the final inspection.</p>
+              <p class="vs__cite"><i>1</i>Cited · page and clause</p>
+            </div>
+          </div>
+        </div>
+        <div class="aud__body">
+          <p class="aud__n">03</p>
+          <h3 class="aud__t">Law firms &amp; chambers</h3>
+          <p class="aud__p">Contracts, case files and correspondence made searchable, with cited answers and an audit trail.</p>
+        </div>
+      </li>
+
+      <!-- 04 · figures reconciled across years (the annual report from How it works) -->
+      <li class="aud__card">
+        <div class="aud__viz" aria-hidden="true">
+          <div class="viz viz--ledger" data-viz="ledger">
+            <ul class="vg__rows">
+              <li data-vg-row><i></i><span>Net revenue · 2014</span><b>€4,820,000</b></li>
+              <li data-vg-row><i></i><span>Operating profit · 2014</span><b>€612,000</b></li>
+              <li data-vg-row><i></i><span>Net revenue · 2013</span><b>€4,310,000</b></li>
+              <li data-vg-row><i></i><span>Equity · 2014</span><b>€2,915,000</b></li>
+            </ul>
+            <p class="vg__sum"><span>Reconciled across statements</span><b data-vg-count>4 / 4</b></p>
+          </div>
+        </div>
+        <div class="aud__body">
+          <p class="aud__n">04</p>
+          <h3 class="aud__t">Finance &amp; regulated teams</h3>
+          <p class="aud__p">Figures reconciled across years of statements, with AI that never leaves the building.</p>
+        </div>
       </li>
     </ul>
-    </div>
-    </div>
 
   </div>
-
-  <!-- Module groups: pinned stage, one group per scroll step (stackbyte structure). Below 1024px / reduced motion: a plain stack. -->
-
 </section>
 
 <!-- ================= YOURS, AT SME COST · pricing + data sovereignty ================= -->
 <section class="sme-sec" id="pricing" aria-labelledby="pricing-title">
   <div class="wrap">
     <header class="sec-head" data-split-head>
-      <p class="sec-head__idx"><b>05</b> Yours, at SME cost</p>
+      <p class="sec-head__idx"><b>04</b> Yours, at SME cost</p>
       <div class="sec-head__body">
         <h2 class="sec-head__title" id="pricing-title">Self-hosted AI. <span class="sec-head__muted">Priced by information, not seats.</span></h2>
-        <p class="sec-head__lead">Run it on your own infrastructure, AI models included. At 100 people, €872 a month: under a third of Odoo Standard.</p>
+        <p class="sec-head__lead">Run it on your own infrastructure, AI models included.</p>
       </div>
     </header>
-    <div class="sme" data-reveal-group>
-      <div class="sme__col sme__col--price">
-        <div class="pricing__from">
-        <p class="pricing__k">At 100 people</p>
-        <p class="pricing__price">€872<span>/ month</span></p>
-        <p class="pricing__terms">Under a third of Odoo Standard (€2,777).</p>
-        <ul class="pricing__facts"><li>10 packages</li><li>300–128,000 AI units / month</li><li>12 months for the price of 10</li></ul>
-        <a class="btn btn--primary" href="#demo">Get a quote <span class="btn__arrow" aria-hidden="true">→</span></a>
+    <div class="sme2" data-sme-grid>
+      <div class="sme2__card sme2__card--price" data-sme>
+        <div class="sme2__top">
+          <label class="sme2__k" for="sme-range">Seat licences at <output data-sme-n for="sme-range">100</output> people</label>
+          <input class="sme2__range" id="sme-range" type="range" min="10" max="500" step="10" value="100" data-sme-range aria-describedby="sme-note">
+          <div class="sme2__scale" aria-hidden="true"><span>10</span><span>100</span><span>250</span><span>500</span></div>
+        </div>
+        <dl class="sme2__rows">
+          <div class="sme2__row"><dt>Per-seat licence <small>Odoo Standard list price · €27.77 a person</small></dt><dd data-sme-seat>€2,777</dd><span class="sme2__bar" aria-hidden="true"><i data-sme-bar></i></span></div>
+          <div class="sme2__row sme2__row--us"><dt>Silenus users <small>Unlimited, up to 500</small></dt><dd>€0</dd><span class="sme2__bar" aria-hidden="true"><i></i></span></div>
+        </dl>
+        <div class="sme2__price">
+          <p class="sme2__k">At 100 people</p>
+          <p class="sme2__big">€872<span>/ month</span></p>
+          <p class="sme2__note" id="sme-note" data-sme-note>Under a third of Odoo Standard (€2,777).</p>
+          <ul class="sme2__facts"><li>10 packages</li><li>300–128,000 AI units / month</li><li>12 months for the price of 10</li></ul>
+        </div>
+        <div class="sme2__foot">
+          <a class="btn btn--primary sme2__btn" href="#demo">Get a quote <span class="btn__arrow" aria-hidden="true">→</span></a>
+          <a class="sme__more" href="why-silenus.html#pricing">AI included · every module · full pricing <span aria-hidden="true">→</span></a>
+        </div>
       </div>
-        <a class="sme__more" href="why-silenus.html#pricing">Unlimited users up to 500 · AI included · every module <span aria-hidden="true">→</span></a>
-      </div>
-      <div class="sme__col sme__col--sec" id="security">
-        <p class="sme__k"><i></i>Your data stays on your servers</p>
-        <ul class="security__list">
-        <li><svg class="sme__ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><span><h3>Tamper-evident audit trail</h3><p>Append-only, and it never copies your data.</p></span></li>
-        <li><svg class="sme__ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></svg><span><h3>Model attribution</h3><p>See which model produced every answer.</p></span></li>
-        <li><svg class="sme__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h18M12 3v18"/><circle cx="12" cy="12" r="8" stroke-dasharray="3 3"/></svg><span><h3>Boundary tracking</h3><p>Know whether data ever left your environment.</p></span></li>
-        <li><svg class="sme__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg><span><h3>Compliance view</h3><p>Access history for GDPR and residency checks.</p></span></li>
-        <li><svg class="sme__ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M16 7l3 3"/></svg><span><h3>Permissions travel with the data</h3><p>People and AI work under one permission model. Nobody sees an answer built from documents they can't open.</p></span></li>
-      </ul>
+      <div class="sme2__card sme2__card--sec" id="security">
+        <div class="sme2__sechead">
+          <p class="sme2__k">Your data stays on your servers</p>
+          <span class="sme2__live"><i aria-hidden="true"></i>Self-hosted</span>
+        </div>
+        <ul class="sme2__grid">
+          <li class="sme2__g"><span class="sme2__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span><h3>Tamper-evident audit trail</h3><p>Append-only, and it never copies your data.</p></li>
+          <li class="sme2__g"><span class="sme2__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></svg></span><h3>Model attribution</h3><p>See which model produced every answer.</p></li>
+          <li class="sme2__g"><span class="sme2__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h18M12 3v18"/><circle cx="12" cy="12" r="8" stroke-dasharray="3 3"/></svg></span><h3>Boundary tracking</h3><p>Know whether data ever left your environment.</p></li>
+          <li class="sme2__g"><span class="sme2__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></span><h3>Compliance view</h3><p>Access history for GDPR and residency checks.</p></li>
+          <li class="sme2__g sme2__g--wide"><span class="sme2__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M16 7l3 3"/></svg></span><h3>Permissions travel with the data</h3><p>People and AI work under one permission model. Nobody sees an answer built from documents they can't open.</p></li>
+        </ul>
         <a class="sme__more" href="security.html">0 documents left your environment · see how <span aria-hidden="true">→</span></a>
       </div>
     </div>
@@ -1070,7 +860,7 @@ html{background:#09111A}body{margin:0;background:#09111A}
   <div class="wrap faq__grid">
     <div class="faq__main">
       <header class="sec-head" data-split-head>
-        <p class="sec-head__idx"><b>06</b> Questions</p>
+        <p class="sec-head__idx"><b>05</b> Questions</p>
         <div class="sec-head__body">
           <h2 class="sec-head__title" id="faq-title">Frequently asked.</h2>
         </div>
@@ -1088,12 +878,20 @@ html{background:#09111A}body{margin:0;background:#09111A}
           <p>ERPs add an assistant beside separate modules, each with its own database. In Silenus everything enters one knowledge base first and every module is a view of it, so nothing is copied and answers draw on the whole company.</p>
         </details>
         <details class="faq__item">
-          <summary><h3>Do we have to replace Microsoft 365 or SharePoint?</h3></summary>
-          <p>No. Keep SharePoint and your mailboxes. Silenus reads from them, checks every answer against the source, and runs the work that follows.</p>
+          <summary><h3>Do we have to replace Microsoft 365 or our other tools?</h3></summary>
+          <p>No. Keep Microsoft 365, SharePoint and your mailboxes: Silenus reads from them, checks every answer against the source, and runs the work that follows. It connects to Microsoft 365 and Gmail (shared mailboxes too), SharePoint, Google Drive, Google and Outlook calendars, Shopify, and external AI tools through MCP. Bank connections are next on the roadmap.</p>
         </details>
         <details class="faq__item">
-          <summary><h3>Which tools does Silenus connect to?</h3></summary>
-          <p>Microsoft 365 and Gmail (shared mailboxes too), SharePoint, Google Drive, Google and Outlook calendars, Shopify, and external AI tools through MCP. Bank connections are next on the roadmap.</p>
+          <summary><h3>Do we have to keep files in folders?</h3></summary>
+          <p>No folders to maintain. Every file carries its own metadata and lands in the right place automatically.</p>
+        </details>
+        <details class="faq__item">
+          <summary><h3>Does the AI act on its own?</h3></summary>
+          <p>No. Every tool is classed as read, change or external effect, and changes arrive as approval cards with the exact arguments. An e-mail is never sent automatically: a person presses Send.</p>
+        </details>
+        <details class="faq__item">
+          <summary><h3>What is the AI workforce?</h3></summary>
+          <p>AI colleagues with a role, schedule and permissions, managed next to your human team. It is on the roadmap.</p>
         </details>
       </div>
     </div>
@@ -1114,10 +912,10 @@ html{background:#09111A}body{margin:0;background:#09111A}
     </aside>
 
     <ul class="exm" aria-label="Go deeper" data-reveal-group>
-      <li><a href="platform.html#hr"><span>Platform · New</span><b>HR module<i aria-hidden="true">→</i></b></a></li>
-      <li><a href="security.html"><span>Security</span><b>Self-hosted, on the record<i aria-hidden="true">→</i></b></a></li>
-      <li><a href="company.html#roadmap"><span>Roadmap</span><b>13 modules live, finance next<i aria-hidden="true">→</i></b></a></li>
-      <li><a href="company.html#company"><span>Company</span><b>Meet the founders<i aria-hidden="true">→</i></b></a></li>
+      <li><a href="platform.html#platform"><span>Platform</span><b>Everything included<i aria-hidden="true">→</i></b></a></li>
+      <li><a href="platform.html#how"><span>How it works</span><b>One document, nine steps<i aria-hidden="true">→</i></b></a></li>
+      <li><a href="company.html#agents"><span>Vision · In development</span><b>18 AI agents, 8 departments<i aria-hidden="true">→</i></b></a></li>
+      <li><a href="why-silenus.html#why-silenus"><span>Why Silenus</span><b>Four tools, the same question<i aria-hidden="true">→</i></b></a></li>
     </ul>
   </div>
 </section>
@@ -1127,10 +925,10 @@ html{background:#09111A}body{margin:0;background:#09111A}
   <div class="bits bits--patch" aria-hidden="true"></div>
   <div class="wrap">
     <header class="sec-head" data-split-head>
-      <p class="sec-head__idx" hidden><b>07</b> Live test</p>   <!-- kept for the menu; not shown, so the fibre runs straight on to the footer -->
+      <p class="sec-head__idx" hidden><b>06</b> Live test</p>   <!-- kept for the menu; not shown, so the fibre runs straight on to the footer -->
       <div class="sec-head__body">
         <h2 class="sec-head__title" id="cta-title">One company. One system. <span class="sec-head__muted">One source of context.</span></h2>
-        <p class="sec-head__lead">Welcome. One workspace for your dashboard, email, calendar, projects, CRM, HR and AI assistant. See it on your own documents.</p>
+        <p class="sec-head__lead">Welcome. One workspace for your dashboard, email, calendar, projects, CRM, HR and AI assistant. Bring 30–50 of your own documents and we will run the test with you, live.</p>
       </div>
     </header>
 

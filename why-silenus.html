@@ -23,8 +23,8 @@
 <!-- Fonts and libraries are self-hosted: no third-party request blocks the first paint -->
 <link rel="preload" href="assets/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/vEFI2_tTDB4M7-auWDN0ahZJW1gb8tc.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/css/site.min.css?v=20261108085410" as="style">
-<link rel="preload" href="assets/js/site.min.js?v=20261108085410" as="script">
+<link rel="preload" href="assets/css/site.min.css?v=20261109100410" as="style">
+<link rel="preload" href="assets/js/site.min.js?v=20261109100410" as="script">
 <style>
 /* Critical: the preloader paints on the first frame, before the stylesheet arrives (the stylesheet link sits after it in <body>) */
 html{background:#09111A}body{margin:0;background:#09111A}
@@ -69,7 +69,10 @@ html{background:#09111A}body{margin:0;background:#09111A}
       "@type": "Organization",
       "@id": "#org",
       "name": "Phannes Inc.",
-      "brand": { "@type": "Brand", "name": "Silenus" },
+      "brand": {
+        "@type": "Brand",
+        "name": "Silenus"
+      },
       "logo": "assets/img/logo-mark.svg"
     },
     {
@@ -78,14 +81,16 @@ html{background:#09111A}body{margin:0;background:#09111A}
       "applicationCategory": "BusinessApplication",
       "operatingSystem": "Web, self-hosted",
       "description": "AI-native business operating system that unifies a company's knowledge, data and operations into one intelligent layer, with cited answers.",
-      "publisher": { "@id": "#org" }
+      "publisher": {
+        "@id": "#org"
+      }
     }
   ]
 }
 </script>
 
 <!-- GSAP 3.12.5 + ScrollTrigger + Lenis 1.1.13 and the page scripts, bundled by build.py -->
-<script src="assets/js/site.min.js?v=20261108085410" defer></script>
+<script src="assets/js/site.min.js?v=20261109100410" defer></script>
 </head>
 <body>
 <!-- Entry preloader: every load. Painted from the inline styles before the stylesheet arrives; tied to real
@@ -108,7 +113,7 @@ html{background:#09111A}body{margin:0;background:#09111A}
     <span class="preloader__count"><b data-preloader-count>0</b>%</span>
   </div>
 </div>
-<link rel="stylesheet" href="assets/css/site.min.css?v=20261108085410">
+<link rel="stylesheet" href="assets/css/site.min.css?v=20261109100410">
 <a class="skip-link" href="#main">Skip to content</a>
 
 <!-- ================= 00 · NAVIGATION ================= -->
@@ -141,18 +146,29 @@ html{background:#09111A}body{margin:0;background:#09111A}
   <div class="drawer__scrim" data-nav-close></div>
   <aside class="drawer__panel" role="dialog" aria-modal="true" aria-label="Site menu">
     <div class="drawer__head">
-      <p class="drawer__k">Contents</p>
+      <p class="drawer__k">Menu</p>
       <button class="drawer__close" type="button" data-nav-close aria-label="Close menu"><span aria-hidden="true"></span></button>
     </div>
-    <nav aria-label="Sections">
-      <ol class="drawer__list" data-nav-links>
-          <li class="drawer__page" style="--i:0"><span class="drawer__pages"><a class="drawer__pg" href="index.html">Home</a><a class="drawer__pg" href="platform.html">Platform</a><a class="drawer__pg is-here" href="why-silenus.html" aria-current="page">Why Silenus</a><a class="drawer__pg" href="security.html">Security &amp; Trust</a><a class="drawer__pg" href="company.html">Company &amp; Vision</a></span></li>
-          <li style="--i:1"><a href="#why"><b>01</b><span>The difference</span><i aria-hidden="true">→</i></a></li>
-          <li style="--i:2"><a href="#why-silenus"><b>02</b><span>Why Silenus</span><i aria-hidden="true">→</i></a></li>
-          <li style="--i:3"><a href="#pricing"><b>03</b><span>Pricing</span><i aria-hidden="true">→</i></a></li>
-          <li style="--i:4"><a href="#demo"><b>04</b><span>Live test</span><i aria-hidden="true">→</i></a></li>
-      </ol>
-    </nav>
+    <div class="drawer__body">
+      <nav class="drawer__tier drawer__tier--pages" aria-label="Pages">
+        <ul class="drawer__pagelist">
+            <li style="--i:0"><a class="drawer__pg" href="index.html"><span>Home</span><i aria-hidden="true">→</i></a></li>
+            <li style="--i:1"><a class="drawer__pg" href="platform.html"><span>Platform</span><i aria-hidden="true">→</i></a></li>
+            <li style="--i:2"><a class="drawer__pg is-here" href="why-silenus.html" aria-current="page"><span>Why Silenus</span><em>You are here</em><i aria-hidden="true">→</i></a></li>
+            <li style="--i:3"><a class="drawer__pg" href="security.html"><span>Security &amp; Trust</span><i aria-hidden="true">→</i></a></li>
+            <li style="--i:4"><a class="drawer__pg" href="company.html"><span>Company &amp; Vision</span><i aria-hidden="true">→</i></a></li>
+        </ul>
+      </nav>
+      <nav class="drawer__tier" aria-labelledby="drawer-onpage">
+        <p class="drawer__k drawer__k--sub" id="drawer-onpage">On this page</p>
+        <ol class="drawer__list" data-nav-links>
+          <li style="--i:6"><a href="#why"><b>01</b><span>The difference</span><i aria-hidden="true">→</i></a></li>
+          <li style="--i:7"><a href="#why-silenus"><b>02</b><span>Why Silenus</span><i aria-hidden="true">→</i></a></li>
+          <li style="--i:8"><a href="#pricing"><b>03</b><span>Pricing</span><i aria-hidden="true">→</i></a></li>
+          <li style="--i:9"><a href="#demo"><b>04</b><span>Live test</span><i aria-hidden="true">→</i></a></li>
+        </ol>
+      </nav>
+    </div>
     <div class="drawer__foot" style="--i:14">
       <a class="btn btn--primary" href="#demo">Book a demo <span class="btn__arrow" aria-hidden="true">→</span></a>
       <a class="btn btn--secondary" href="https://silenus.app">Log in</a>
