@@ -23,41 +23,26 @@
 <!-- Fonts and libraries are self-hosted: no third-party request blocks the first paint -->
 <link rel="preload" href="assets/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/vEFI2_tTDB4M7-auWDN0ahZJW1gb8tc.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/css/site.min.css?v=20261109181440" as="style">
-<link rel="preload" href="assets/js/site.min.js?v=20261109181440" as="script">
+<link rel="preload" href="assets/css/site.min.css?v=20261111071645" as="style">
+<link rel="preload" href="assets/js/site.min.js?v=20261111071645" as="script">
 <style>
 /* Critical: the preloader paints on the first frame, before the stylesheet arrives (the stylesheet link sits after it in <body>) */
 html{background:#09111A}body{margin:0;background:#09111A}
-.preloader{display:none}
+.pl4{display:none}
 .is-loading{overflow:hidden}
-.is-loading .preloader{position:fixed;inset:0;z-index:510;display:grid;place-content:center;justify-items:center;gap:40px;background:radial-gradient(45% 40% at 50% 46%,rgba(79,176,180,.10),transparent 70%),#09111A;color:#E4E7EB;font-family:"IBM Plex Mono",ui-monospace,monospace}
-.preloader__core{position:relative;width:164px;aspect-ratio:1;display:grid;place-items:center}
-.preloader__core>*{grid-area:1/1}
-.preloader__ring{border-radius:50%;aspect-ratio:1}
-.preloader__ring--a{width:128%;border:1px dashed rgba(143,211,213,.18);animation:pre-turn 22s linear infinite}
-.preloader__ring--b{width:230%;background:radial-gradient(closest-side,rgba(79,176,180,calc(.08 + var(--p,0)*.14)),transparent 72%);animation:pre-breathe 2.8s cubic-bezier(.45,0,.55,1) infinite alternate}
-.preloader__arc{width:100%;height:100%;transform:rotate(-90deg);overflow:visible}
-.preloader__arc circle{fill:none;stroke:#8FD3D5;stroke-width:1.2;stroke-linecap:round;stroke-dasharray:100;stroke-dashoffset:calc(100 - var(--p,0)*100);filter:drop-shadow(0 0 5px rgba(143,211,213,.85))}
-.preloader__arc .preloader__track{stroke:rgba(205,214,225,.08);stroke-dasharray:none;filter:none}
-.preloader__logo{width:54px;height:auto;overflow:visible;filter:drop-shadow(0 0 calc(10px + var(--p,0)*22px) rgba(79,176,180,calc(.25 + var(--p,0)*.35)));animation:pre-float 3.2s cubic-bezier(.45,0,.55,1) infinite alternate}
-.preloader__logo path{stroke-dasharray:1;stroke-dashoffset:calc(1 - min(1,var(--p,0)*1.25))}
-@keyframes pre-turn{to{transform:rotate(360deg)}}
-@keyframes pre-breathe{from{transform:scale(.92);opacity:.7}to{transform:scale(1.05);opacity:1}}
-@keyframes pre-float{to{transform:translateY(-3px)}}
-.preloader__log{list-style:none;margin:0;padding:0;display:grid;gap:8px;min-width:min(360px,80vw);font:500 12px/1.4 "IBM Plex Mono",ui-monospace,monospace;letter-spacing:.02em;color:#7A838F}
-.preloader__log li{display:flex;gap:10px;opacity:0;transform:translate3d(0,6px,0);transition:opacity .3s cubic-bezier(.16,1,.3,1),transform .4s cubic-bezier(.16,1,.3,1),color .4s ease}
-.preloader__log li span::after{content:"";display:inline-block;width:6px;height:1em;margin-left:2px;vertical-align:-2px;background:#8FD3D5;opacity:0}
-.preloader__log li.is-typing span::after{opacity:1}
-.preloader__log li:first-child,.preloader__log li.is-on{opacity:1;transform:none}
-.preloader__log li.is-done{color:#4B535E}
-.preloader__log li.is-done::after{content:"ok";margin-left:auto;color:#5FA873}
-.preloader__log b{font-weight:500;color:#4FB0B4;min-width:9ch}
-.preloader__foot{position:absolute;left:clamp(20px,4.4vw,72px);right:clamp(20px,4.4vw,72px);bottom:32px;display:flex;justify-content:space-between;align-items:baseline;font:500 .75rem/1 "IBM Plex Mono",ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase;color:#4B535E}
-.preloader__count b{display:inline-block;min-width:3ch;text-align:right;font-weight:500;color:#F3F4F6;font-variant-numeric:tabular-nums}
-.preloader.is-leaving .preloader__core{opacity:0;transform:translate3d(0,-24px,0) scale(1.35);filter:blur(4px);transition:opacity .55s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1),filter .55s cubic-bezier(.16,1,.3,1)}
-.preloader.is-leaving .preloader__log,.preloader.is-leaving .preloader__foot{opacity:0;transform:translate3d(0,-12px,0);transition:opacity .35s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1)}
-.preloader.is-leaving{opacity:0;transition:opacity .7s cubic-bezier(.16,1,.3,1) .22s;pointer-events:none}
-@media (prefers-reduced-motion:reduce){.preloader__ring--a,.preloader__ring--b,.preloader__logo{animation:none}}
+.is-loading .pl4{position:fixed;inset:0;z-index:510;display:grid;place-items:center;background:radial-gradient(40% 32% at 50% 50%,rgba(79,176,180,.07),transparent 70%),#09111A}
+.pl4__word{width:min(620px,80vw);height:auto;overflow:visible}
+.pl4__track{stroke:rgba(205,214,225,.07);stroke-width:1.2}
+.pl4__wire{stroke:url(#pl4w);stroke-width:1.6;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;filter:drop-shadow(0 0 4px rgba(143,211,213,.6))}
+.pl4__head{fill:#e6fafa;filter:drop-shadow(0 0 6px rgba(143,211,213,.95));opacity:0}
+.pl4__l{fill:none;stroke:#8FD3D5;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-width .7s cubic-bezier(.16,1,.3,1),stroke .5s ease}
+.pl4.is-full .pl4__l{stroke:#F3F4F6;stroke-width:12}
+.pl4.is-full .pl4__l--s{stroke:url(#pl4g);stroke-width:14}
+.pl4.is-leaving .pl4__wire,.pl4.is-leaving .pl4__track,.pl4.is-leaving .pl4__head{opacity:0;transition:opacity .4s ease}
+.pl4__by{position:absolute;bottom:32px;left:0;right:0;margin:0;text-align:center;font:500 11px/1 "IBM Plex Mono",ui-monospace,monospace;letter-spacing:.22em;color:#4B535E}
+.pl4__by span{letter-spacing:.08em;text-transform:none}
+.pl4.is-leaving{opacity:0;transition:opacity .7s cubic-bezier(.16,1,.3,1) .1s;pointer-events:none}
+.pl4.is-leaving .pl4__word{transform:translateY(-14px) scale(.98);transition:transform .8s cubic-bezier(.16,1,.3,1)}
 </style>
 
 
@@ -135,30 +120,23 @@ html{background:#09111A}body{margin:0;background:#09111A}
 </script>
 
 <!-- GSAP 3.12.5 + ScrollTrigger + Lenis 1.1.13 and the page scripts, bundled by build.py -->
-<script src="assets/js/site.min.js?v=20261109181440" defer></script>
+<script src="assets/js/site.min.js?v=20261111071645" defer></script>
 </head>
 <body>
 <!-- Entry preloader: every load. Painted from the inline styles before the stylesheet arrives; tied to real
      readiness (DOM, fonts, load), lifts like a curtain. Never shown without JS or with reduced motion. -->
-<div class="preloader" aria-hidden="true" data-preloader>
-  <div class="preloader__core">
-    <span class="preloader__ring preloader__ring--b"></span>
-    <span class="preloader__ring preloader__ring--a"></span>
-    <svg class="preloader__arc" viewBox="0 0 100 100"><circle class="preloader__track" cx="50" cy="50" r="46"/><circle cx="50" cy="50" r="46" pathLength="100" data-preloader-arc/></svg>
-    <svg class="preloader__logo" viewBox="0 0 100 116" fill="none"><defs><linearGradient id="plg" x1="20" y1="10" x2="80" y2="106" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#4FA3E0"/><stop offset="1" stop-color="#6FCF9A"/></linearGradient></defs><path d="M80 18H40a20 20 0 0 0 0 40h20a20 20 0 0 1 0 40H20" stroke="url(#plg)" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/></svg>
-  </div>
-  <ol class="preloader__log" data-preloader-log>
-    <li data-at="0"><b>[INIT]</b><span>Establishing secure connection</span></li>
-    <li data-at=".35"><b>[VAULT]</b><span>Opening the knowledge base</span></li>
-    <li data-at=".62"><b>[INDEX]</b><span>Linking clients, contracts and projects</span></li>
-    <li data-at=".9"><b>[READY]</b><span>Workspace online</span></li>
-  </ol>
-  <div class="preloader__foot">
-    <span class="preloader__by">SILENUS · by Phannes Inc.</span>
-    <span class="preloader__count"><b data-preloader-count>0</b>%</span>
-  </div>
+<div class="pl4" aria-hidden="true" data-pl4 data-x0="-200" data-x1="798">
+  <svg class="pl4__word" viewBox="-60 0 718 150" aria-hidden="true">
+    <defs><linearGradient id="pl4g" x1="0" y1="-.1" x2="1" y2="1.1"><stop offset="0" stop-color="#4FA3E0"/><stop offset="1" stop-color="#6FCF9A"/></linearGradient>
+      <linearGradient id="pl4w" x1="-200" x2="798" y1="0" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#8FD3D5" stop-opacity="0"/><stop offset=".22" stop-color="#8FD3D5"/><stop offset=".78" stop-color="#8FD3D5"/><stop offset="1" stop-color="#8FD3D5" stop-opacity="0"/></linearGradient></defs>
+    <line class="pl4__track" x1="-200" y1="132" x2="798" y2="132"/>
+    <line class="pl4__wire" x1="-200" y1="132" x2="798" y2="132" pathLength="1" data-wire/>
+    <circle class="pl4__head" cx="-200" cy="132" r="3.2" data-head/>
+    <path class="pl4__l pl4__l--s" d="M60 18H20a20 20 0 0 0 0 40h20a20 20 0 0 1 0 40H0" transform="translate(0 0)" pathLength="1" data-x="0" data-w="60"/><path class="pl4__l" d="M0 18V98" transform="translate(104 0)" pathLength="1" data-x="104" data-w="8"/><path class="pl4__l" d="M0 18V98H50" transform="translate(148 0)" pathLength="1" data-x="148" data-w="50"/><path class="pl4__l" d="M52 18H0V98H52M0 58H44" transform="translate(242 0)" pathLength="1" data-x="242" data-w="52"/><path class="pl4__l" d="M0 98V18L56 98V18" transform="translate(338 0)" pathLength="1" data-x="338" data-w="56"/><path class="pl4__l" d="M0 18V68a28 28 0 0 0 56 0V18" transform="translate(438 0)" pathLength="1" data-x="438" data-w="56"/><path class="pl4__l" d="M60 18H20a20 20 0 0 0 0 40h20a20 20 0 0 1 0 40H0" transform="translate(538 0)" pathLength="1" data-x="538" data-w="60"/>
+  </svg>
+  <p class="pl4__by">SILENUS <span>by Phannes Inc.</span></p>
 </div>
-<link rel="stylesheet" href="assets/css/site.min.css?v=20261109181440">
+<link rel="stylesheet" href="assets/css/site.min.css?v=20261111071645">
 <a class="skip-link" href="#main">Skip to content</a>
 
 <!-- ================= 00 · NAVIGATION ================= -->
@@ -168,6 +146,8 @@ html{background:#09111A}body{margin:0;background:#09111A}
       <img src="assets/img/logo-mark.svg" width="16" height="19" alt="">
       <span class="nav__word">SILENUS</span>
     </a>
+
+    <nav class="nav__pagelinks" aria-label="Pages"><a class="nav__pl is-here" href="index.html" aria-current="page">Home</a><a class="nav__pl" href="platform.html">Platform</a><a class="nav__pl" href="why-silenus.html">Why Silenus</a><a class="nav__pl" href="security.html">Security</a><a class="nav__pl" href="company.html">Company</a><a class="nav__pl" href="faq.html">FAQ</a></nav>
 
     <!-- Live context: page progress + the section you are in (updates on scroll) -->
     <p class="nav__ctx" aria-hidden="true">
@@ -180,7 +160,7 @@ html{background:#09111A}body{margin:0;background:#09111A}
         <span class="nav__menu-label" data-nav-label>Menu</span>
         <span class="nav__menu-icon" aria-hidden="true"><i></i><i></i></span>
       </button>
-      <a class="nav__login" href="https://silenus.app">Log in</a>
+      <a class="nav__login btn btn--secondary" href="https://silenus.app">Log in</a>
       <a class="nav__cta" href="#demo"><i class="nav__sweep" aria-hidden="true"></i>Book a demo <span aria-hidden="true">→</span></a>
     </div>
   </div>
@@ -197,23 +177,13 @@ html{background:#09111A}body{margin:0;background:#09111A}
     <div class="drawer__body">
       <nav class="drawer__tier drawer__tier--pages" aria-label="Pages">
         <ul class="drawer__pagelist">
-            <li style="--i:0"><a class="drawer__pg is-here" href="index.html" aria-current="page"><span>Home</span><em>You are here</em><i aria-hidden="true">→</i></a></li>
-            <li style="--i:1"><a class="drawer__pg" href="platform.html"><span>Platform</span><i aria-hidden="true">→</i></a></li>
-            <li style="--i:2"><a class="drawer__pg" href="why-silenus.html"><span>Why Silenus</span><i aria-hidden="true">→</i></a></li>
-            <li style="--i:3"><a class="drawer__pg" href="security.html"><span>Security &amp; Trust</span><i aria-hidden="true">→</i></a></li>
-            <li style="--i:4"><a class="drawer__pg" href="company.html"><span>Company &amp; Vision</span><i aria-hidden="true">→</i></a></li>
+            <li style="--i:0"><a class="drawer__pg is-here" href="index.html" aria-current="page"><b aria-hidden="true">01</b><span>Home<small>The overview</small></span><em>You are here</em><i aria-hidden="true">→</i></a></li>
+            <li style="--i:1"><a class="drawer__pg" href="platform.html"><b aria-hidden="true">02</b><span>Platform<small>One window for every module</small></span><i aria-hidden="true">→</i></a></li>
+            <li style="--i:2"><a class="drawer__pg" href="why-silenus.html"><b aria-hidden="true">03</b><span>Why Silenus<small>Built the other way round</small></span><i aria-hidden="true">→</i></a></li>
+            <li style="--i:3"><a class="drawer__pg" href="security.html"><b aria-hidden="true">04</b><span>Security &amp; Trust<small>Your data stays on your servers</small></span><i aria-hidden="true">→</i></a></li>
+            <li style="--i:4"><a class="drawer__pg" href="company.html"><b aria-hidden="true">05</b><span>Company &amp; Vision<small>Founders, roadmap and AI agents</small></span><i aria-hidden="true">→</i></a></li>
+            <li style="--i:5"><a class="drawer__pg" href="faq.html"><b aria-hidden="true">06</b><span>FAQ<small>Every question, answered</small></span><i aria-hidden="true">→</i></a></li>
         </ul>
-      </nav>
-      <nav class="drawer__tier" aria-labelledby="drawer-onpage">
-        <p class="drawer__k drawer__k--sub" id="drawer-onpage">On this page</p>
-        <ol class="drawer__list" data-nav-links>
-          <li style="--i:6"><a href="#problem"><b>01</b><span>The problem</span><i aria-hidden="true">→</i></a></li>
-          <li style="--i:7"><a href="#workspace"><b>02</b><span>One window</span><i aria-hidden="true">→</i></a></li>
-          <li style="--i:8"><a href="#who"><b>03</b><span>Who it's for</span><i aria-hidden="true">→</i></a></li>
-          <li style="--i:9"><a href="#pricing"><b>04</b><span>Yours, at SME cost</span><i aria-hidden="true">→</i></a></li>
-          <li style="--i:10"><a href="#faq"><b>05</b><span>Questions</span><i aria-hidden="true">→</i></a></li>
-          <li style="--i:11"><a href="#demo"><b>06</b><span>Live test</span><i aria-hidden="true">→</i></a></li>
-        </ol>
       </nav>
     </div>
     <div class="drawer__foot" style="--i:14">
@@ -383,17 +353,19 @@ html{background:#09111A}body{margin:0;background:#09111A}
       <div class="ow" data-ws-window>
         <!-- Sidebar -->
         <aside class="ow__side">
-          <p class="ow__brand"><img src="assets/img/logo-mark.svg" width="14" height="17" alt=""><b>SILENUS</b><span>Workspace</span></p>
+          <p class="ow__brand"><b>SILENUS</b><span>Enterprise AI workplace</span><svg class="ow__fold" viewBox="0 0 24 24"><path d="M14.5 7l-5 5 5 5"/></svg></p>
           <ul class="ow__nav">
             <li class="ow__nav-ind" data-ws-ind></li>
+            <li class="ow__sec" aria-hidden="true">Workspace<svg class="ow__chev" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></li>
             <li tabindex="0" data-ws-nav="0"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>Dashboard</li>
             <li tabindex="0" data-ws-nav="1"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4M9 13h6M9 17h4"/></svg>Documents</li>
             <li tabindex="0" data-ws-nav="2"><svg viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg>AI Chat</li>
             <li tabindex="0" data-ws-nav="3"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M9 4v16M15 4v16"/></svg>Projects</li>
             <li tabindex="0" data-ws-nav="4"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Email</li>
+            <li class="ow__sec" aria-hidden="true">Business<svg class="ow__chev" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></li>
             <li tabindex="0" class="ow__more" data-ws-nav="5 6 7 8 9" data-ws-more><svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg><span>More</span><em data-ws-more-label></em></li>
           </ul>
-          <p class="ow__user"><i>LL</i><span>Laura L.<small>Admin</small></span></p>
+          <div class="ow__foot" aria-hidden="true"><p class="ow__bell"><i><svg viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20.5h4"/></svg></i><span>Notifications<small>4 unread</small></span></p><p class="ow__user"><i>LL</i><span>Laura L.<small>Admin</small></span><em>User</em></p></div>
         </aside>
 
         <!-- Main -->
@@ -403,6 +375,7 @@ html{background:#09111A}body{margin:0;background:#09111A}
             <p class="ow__ai"><i></i>AI ready</p>
           </div>
 
+          <div class="ow__dock" aria-hidden="true"><span class="ow__track"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="7"/><path d="M12 13V9.5M10 3h4"/></svg>Track time</span><span class="ow__check"><i></i>Check in <b>00:00:00</b></span><span class="ow__bot"><svg viewBox="0 0 24 24"><rect x="5" y="8" width="14" height="10" rx="3"/><path d="M12 8V5M9.5 12.5v1M14.5 12.5v1M3 12v3M21 12v3"/></svg></span></div>
           <div class="ow__panes">
             <i class="ow__scan" aria-hidden="true" data-ws-scan></i>
             <!-- The client's eight platform screens (their site, verbatim), then Documents and Transactions -->
@@ -701,7 +674,7 @@ html{background:#09111A}body{margin:0;background:#09111A}
       <div class="fv__lead">
         <blockquote>“We were quoted €50,000 and nine months for a custom AI knowledge base. <span>So we built it ourselves, and kept going.”</span></blockquote>
       </div>
-      <p class="story__by fv__by"><i>AL</i><i>LL</i>Aron &amp; Laura, co-founders<a class="lbtn lbtn--sm" href="company.html">Read our story <span aria-hidden="true">→</span></a></p>
+      <p class="story__by fv__by"><i>AL</i><i>LL</i>Aron &amp; Laura, co-founders</p>
 
       <div class="fv__race" role="img" aria-label="A custom knowledge base was quoted at €50,000 and nine months; Silenus starts with an upload, no consulting project.">
         <div class="fv__lane"><span class="fv__lab">Quoted to us</span><span class="fv__track"><i class="fv__bar"></i></span><b>€50k · 9 months</b></div>
@@ -803,19 +776,37 @@ html{background:#09111A}body{margin:0;background:#09111A}
     </header>
     <div class="sme2" data-sme-grid data-stagger>
       <div class="sme2__card sme2__card--price" data-stagger-item data-sme>
-        <div class="sme2__top">
-          <label class="sme2__k" for="sme-range">Seat licences at <output data-sme-n for="sme-range">100</output> people</label>
-          <input class="sme2__range" id="sme-range" type="range" min="10" max="500" step="10" value="100" data-sme-range aria-describedby="sme-note">
-          <div class="sme2__scale" aria-hidden="true"><span>10</span><span>100</span><span>250</span><span>500</span></div>
-        </div>
-        <dl class="sme2__rows">
-          <div class="sme2__row"><dt>Per-seat licence <small>Odoo Standard list price · €27.77 a person</small></dt><dd data-sme-seat>€2,777</dd><span class="sme2__bar" aria-hidden="true"><i data-sme-bar></i></span></div>
-          <div class="sme2__row sme2__row--us"><dt>Silenus users <small>Unlimited, up to 500</small></dt><dd>€0</dd><span class="sme2__bar" aria-hidden="true"><i></i></span></div>
-        </dl>
-        <div class="sme2__price">
-          <p class="sme2__k">At 100 people</p>
-          <p class="sme2__big">€872<span>/ month</span></p>
-          <p class="sme2__note" id="sme-note" data-sme-note>Under a third of Odoo Standard.</p>
+        <!-- 2026-11-11 · pricing calculator as a cited ledger (scoped .calc-; logic in sme-v1.js).
+             Silenus's platform price stays the client's own figure (€872 at 100 people): it is not computed for other sizes. -->
+        <div class="calc" data-calc>
+          <div class="calc-head">
+            <p class="calc-k" id="calc-label">Team size</p>
+            <p class="calc-n"><input class="calc-num" id="calc-num" type="text" inputmode="numeric" autocomplete="off" maxlength="3" value="100" aria-label="Team size in people, 10 to 500" data-calc-input><span class="calc-unit">people</span></p>
+          </div>
+          <div class="calc-ruler" role="slider" tabindex="0" aria-labelledby="calc-label" aria-valuemin="10" aria-valuemax="500" aria-valuenow="100" aria-valuetext="100 people" data-calc-ruler>
+            <span class="calc-ticks" aria-hidden="true"><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="calc-t5"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="calc-t10"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="calc-t5"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="calc-t10"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="calc-t5"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="calc-t10"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="calc-t5"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="calc-t10"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="calc-t5"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="calc-t10"></i></span>
+          </div>
+          <p class="calc-scale" aria-hidden="true"><span>10</span><span>100</span><span>250</span><span>500</span></p>
+          <div class="calc-ledger">
+            <section class="calc-col" aria-labelledby="calc-c1">
+              <h3 class="calc-ct" id="calc-c1">Per-seat model</h3>
+              <p class="calc-line"><span class="calc-lbl">Licences × <b data-calc-n>100</b></span><i class="calc-dots" aria-hidden="true"></i><b class="calc-fig" data-calc-seat aria-live="polite">€2,777</b><button class="calc-src" type="button" aria-expanded="false" aria-controls="calc-pop-1" aria-label="Source for the per-seat figure">1</button></p>
+              <p class="calc-sub">per month</p>
+            </section>
+            <section class="calc-col calc-col--us" aria-labelledby="calc-c2">
+              <h3 class="calc-ct" id="calc-c2">Silenus</h3>
+              <p class="calc-line"><span class="calc-lbl">Users · unlimited</span><i class="calc-dots" aria-hidden="true"></i><b class="calc-fig">€0</b></p>
+              <p class="calc-line"><span class="calc-lbl">Platform · at 100 people</span><i class="calc-dots" aria-hidden="true"></i><b class="calc-fig calc-fig--us">€872</b><button class="calc-src" type="button" aria-expanded="false" aria-controls="calc-pop-2" aria-label="Source for the Silenus figure">2</button></p>
+              <p class="calc-sub">per month</p>
+            </section>
+            <div class="calc-pop" id="calc-pop-1" role="note" hidden><p class="calc-pop-k">Source ¹</p><p>Odoo Standard list price: €27.77 × <b data-calc-n>100</b> users = <b data-calc-seat-txt>€2,777</b> a month.</p><p class="calc-pop-s">$31.10 per user at 1.12 $/€, from the client's competitor analysis.</p></div>
+            <div class="calc-pop" id="calc-pop-2" role="note" hidden><p class="calc-pop-k">Source ²</p><p>€872 a month: Silenus's own figure for a 100-person company.</p><p class="calc-pop-s">Silenus is priced by information, not by users: any team up to 500 people uses the same package.</p></div>
+          </div>
+          <div class="calc-diff">
+            <div class="calc-bar" aria-hidden="true"><i data-calc-bar></i></div>
+            <p class="calc-pct" data-calc-pct>31% of per-seat cost</p>
+          </div>
+          <p class="sme2__note calc-note" id="sme-note" data-calc-note>Under a third of Odoo Standard.</p>
         </div>
         <div class="sme2__foot">
           <a class="btn btn--primary sme2__btn" href="#demo">Get a quote <span class="btn__arrow" aria-hidden="true">→</span></a>
@@ -868,6 +859,7 @@ html{background:#09111A}body{margin:0;background:#09111A}
           <p>No. Every tool is classed as read, change or external effect, and changes arrive as approval cards with the exact arguments. An e-mail is never sent automatically: a person presses Send. The AI workforce on the roadmap, AI colleagues with a role, schedule and permissions, works under the same rules, managed next to your human team.</p>
         </details>
       </div>
+          <p class="faq__more"><a class="lbtn" href="faq.html">See all questions <span aria-hidden="true">→</span></a></p>
     </div>
 
     <!-- Answer console (desktop): shows the answer of the active question. Filled by faq.js. -->
@@ -884,12 +876,6 @@ html{background:#09111A}body{margin:0;background:#09111A}
       </div>
       <p class="fc__foot">Still have a question? <a class="lbtn lbtn--sm" href="#demo">Ask us in a live test <span aria-hidden="true">→</span></a></p>
     </aside>
-
-    <ul class="exm exm--live" aria-label="Go deeper" data-reveal-group>
-      <li><a href="platform.html#platform"><div class="door door--mods" aria-hidden="true"><i style="--k:0">Documents</i><i style="--k:1">CRM</i><i style="--k:2">Projects</i><i style="--k:3">Email</i><i style="--k:4">Calendar</i><i style="--k:5">HR</i><i style="--k:6">Finance</i><i style="--k:7">AI chat</i></div><span>Platform</span><b>Everything included<i aria-hidden="true">→</i></b></a></li>
-      <li><a href="platform.html#how"><div class="door door--steps" aria-hidden="true"><div class="door__track"><i style="--k:0"></i><i style="--k:1"></i><i style="--k:2"></i><i style="--k:3"></i><i style="--k:4"></i><i style="--k:5"></i><i style="--k:6"></i><i style="--k:7"></i><i style="--k:8"></i><u></u></div><div class="door__names"><span style="--k:0"><b>01</b>Bring it in</span><span style="--k:1"><b>02</b>Read anything</span><span style="--k:2"><b>03</b>Understand tables</span><span style="--k:3"><b>04</b>See the pictures</span><span style="--k:4"><b>05</b>Smart pieces</span><span style="--k:5"><b>06</b>Extract the facts</span><span style="--k:6"><b>07</b>Tag &amp; organise</span><span style="--k:7"><b>08</b>Make it searchable</span><span style="--k:8"><b>09</b>Publish, isolated</span></div></div><span>How it works</span><b>One document, nine steps<i aria-hidden="true">→</i></b></a></li>
-      <li><a href="why-silenus.html#why-silenus"><div class="door door--four" aria-hidden="true"><span class="door__row door__row--no" style="--k:0"><em>Traditional knowledge base</em><b>Finds files</b></span><span class="door__row door__row--no" style="--k:1"><em>Generic AI chat</em><b>Guesses</b></span><span class="door__row door__row--part" style="--k:2"><em>AI knowledge-base tool</em><b>Partial</b></span><span class="door__row door__row--ok" style="--k:3"><em>Silenus</em><b>Complete &amp; verified</b></span></div><span>Why Silenus</span><b>Four tools, the same question<i aria-hidden="true">→</i></b></a></li>
-    </ul>
   </div>
 </section>
 

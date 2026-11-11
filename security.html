@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<script>(function(r){r.classList.add('js');if(matchMedia('(prefers-reduced-motion: reduce)').matches){r.classList.add('reduced-motion');return}r.classList.add('is-loading')})(document.documentElement)</script>
+<script>(function(r){r.classList.add('js');if(matchMedia('(prefers-reduced-motion: reduce)').matches){r.classList.add('reduced-motion');return}})(document.documentElement)</script>
 
 <title>Security & Trust — Silenus | Your data stays on your servers</title>
 <meta name="description" content="Run Silenus on your own infrastructure, AI models included. One permission model for people and AI, model attribution, boundary tracking and an append-only audit trail.">
@@ -23,41 +23,26 @@
 <!-- Fonts and libraries are self-hosted: no third-party request blocks the first paint -->
 <link rel="preload" href="assets/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/vEFI2_tTDB4M7-auWDN0ahZJW1gb8tc.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/css/site.min.css?v=20261109181440" as="style">
-<link rel="preload" href="assets/js/site.min.js?v=20261109181440" as="script">
+<link rel="preload" href="assets/css/site.min.css?v=20261111071645" as="style">
+<link rel="preload" href="assets/js/site.min.js?v=20261111071645" as="script">
 <style>
 /* Critical: the preloader paints on the first frame, before the stylesheet arrives (the stylesheet link sits after it in <body>) */
 html{background:#09111A}body{margin:0;background:#09111A}
-.preloader{display:none}
+.pl4{display:none}
 .is-loading{overflow:hidden}
-.is-loading .preloader{position:fixed;inset:0;z-index:510;display:grid;place-content:center;justify-items:center;gap:40px;background:radial-gradient(45% 40% at 50% 46%,rgba(79,176,180,.10),transparent 70%),#09111A;color:#E4E7EB;font-family:"IBM Plex Mono",ui-monospace,monospace}
-.preloader__core{position:relative;width:164px;aspect-ratio:1;display:grid;place-items:center}
-.preloader__core>*{grid-area:1/1}
-.preloader__ring{border-radius:50%;aspect-ratio:1}
-.preloader__ring--a{width:128%;border:1px dashed rgba(143,211,213,.18);animation:pre-turn 22s linear infinite}
-.preloader__ring--b{width:230%;background:radial-gradient(closest-side,rgba(79,176,180,calc(.08 + var(--p,0)*.14)),transparent 72%);animation:pre-breathe 2.8s cubic-bezier(.45,0,.55,1) infinite alternate}
-.preloader__arc{width:100%;height:100%;transform:rotate(-90deg);overflow:visible}
-.preloader__arc circle{fill:none;stroke:#8FD3D5;stroke-width:1.2;stroke-linecap:round;stroke-dasharray:100;stroke-dashoffset:calc(100 - var(--p,0)*100);filter:drop-shadow(0 0 5px rgba(143,211,213,.85))}
-.preloader__arc .preloader__track{stroke:rgba(205,214,225,.08);stroke-dasharray:none;filter:none}
-.preloader__logo{width:54px;height:auto;overflow:visible;filter:drop-shadow(0 0 calc(10px + var(--p,0)*22px) rgba(79,176,180,calc(.25 + var(--p,0)*.35)));animation:pre-float 3.2s cubic-bezier(.45,0,.55,1) infinite alternate}
-.preloader__logo path{stroke-dasharray:1;stroke-dashoffset:calc(1 - min(1,var(--p,0)*1.25))}
-@keyframes pre-turn{to{transform:rotate(360deg)}}
-@keyframes pre-breathe{from{transform:scale(.92);opacity:.7}to{transform:scale(1.05);opacity:1}}
-@keyframes pre-float{to{transform:translateY(-3px)}}
-.preloader__log{list-style:none;margin:0;padding:0;display:grid;gap:8px;min-width:min(360px,80vw);font:500 12px/1.4 "IBM Plex Mono",ui-monospace,monospace;letter-spacing:.02em;color:#7A838F}
-.preloader__log li{display:flex;gap:10px;opacity:0;transform:translate3d(0,6px,0);transition:opacity .3s cubic-bezier(.16,1,.3,1),transform .4s cubic-bezier(.16,1,.3,1),color .4s ease}
-.preloader__log li span::after{content:"";display:inline-block;width:6px;height:1em;margin-left:2px;vertical-align:-2px;background:#8FD3D5;opacity:0}
-.preloader__log li.is-typing span::after{opacity:1}
-.preloader__log li:first-child,.preloader__log li.is-on{opacity:1;transform:none}
-.preloader__log li.is-done{color:#4B535E}
-.preloader__log li.is-done::after{content:"ok";margin-left:auto;color:#5FA873}
-.preloader__log b{font-weight:500;color:#4FB0B4;min-width:9ch}
-.preloader__foot{position:absolute;left:clamp(20px,4.4vw,72px);right:clamp(20px,4.4vw,72px);bottom:32px;display:flex;justify-content:space-between;align-items:baseline;font:500 .75rem/1 "IBM Plex Mono",ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase;color:#4B535E}
-.preloader__count b{display:inline-block;min-width:3ch;text-align:right;font-weight:500;color:#F3F4F6;font-variant-numeric:tabular-nums}
-.preloader.is-leaving .preloader__core{opacity:0;transform:translate3d(0,-24px,0) scale(1.35);filter:blur(4px);transition:opacity .55s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1),filter .55s cubic-bezier(.16,1,.3,1)}
-.preloader.is-leaving .preloader__log,.preloader.is-leaving .preloader__foot{opacity:0;transform:translate3d(0,-12px,0);transition:opacity .35s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1)}
-.preloader.is-leaving{opacity:0;transition:opacity .7s cubic-bezier(.16,1,.3,1) .22s;pointer-events:none}
-@media (prefers-reduced-motion:reduce){.preloader__ring--a,.preloader__ring--b,.preloader__logo{animation:none}}
+.is-loading .pl4{position:fixed;inset:0;z-index:510;display:grid;place-items:center;background:radial-gradient(40% 32% at 50% 50%,rgba(79,176,180,.07),transparent 70%),#09111A}
+.pl4__word{width:min(620px,80vw);height:auto;overflow:visible}
+.pl4__track{stroke:rgba(205,214,225,.07);stroke-width:1.2}
+.pl4__wire{stroke:url(#pl4w);stroke-width:1.6;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;filter:drop-shadow(0 0 4px rgba(143,211,213,.6))}
+.pl4__head{fill:#e6fafa;filter:drop-shadow(0 0 6px rgba(143,211,213,.95));opacity:0}
+.pl4__l{fill:none;stroke:#8FD3D5;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-width .7s cubic-bezier(.16,1,.3,1),stroke .5s ease}
+.pl4.is-full .pl4__l{stroke:#F3F4F6;stroke-width:12}
+.pl4.is-full .pl4__l--s{stroke:url(#pl4g);stroke-width:14}
+.pl4.is-leaving .pl4__wire,.pl4.is-leaving .pl4__track,.pl4.is-leaving .pl4__head{opacity:0;transition:opacity .4s ease}
+.pl4__by{position:absolute;bottom:32px;left:0;right:0;margin:0;text-align:center;font:500 11px/1 "IBM Plex Mono",ui-monospace,monospace;letter-spacing:.22em;color:#4B535E}
+.pl4__by span{letter-spacing:.08em;text-transform:none}
+.pl4.is-leaving{opacity:0;transition:opacity .7s cubic-bezier(.16,1,.3,1) .1s;pointer-events:none}
+.pl4.is-leaving .pl4__word{transform:translateY(-14px) scale(.98);transition:transform .8s cubic-bezier(.16,1,.3,1)}
 </style>
 
 
@@ -90,30 +75,12 @@ html{background:#09111A}body{margin:0;background:#09111A}
 </script>
 
 <!-- GSAP 3.12.5 + ScrollTrigger + Lenis 1.1.13 and the page scripts, bundled by build.py -->
-<script src="assets/js/site.min.js?v=20261109181440" defer></script>
+<script src="assets/js/site.min.js?v=20261111071645" defer></script>
 </head>
 <body>
 <!-- Entry preloader: every load. Painted from the inline styles before the stylesheet arrives; tied to real
      readiness (DOM, fonts, load), lifts like a curtain. Never shown without JS or with reduced motion. -->
-<div class="preloader" aria-hidden="true" data-preloader>
-  <div class="preloader__core">
-    <span class="preloader__ring preloader__ring--b"></span>
-    <span class="preloader__ring preloader__ring--a"></span>
-    <svg class="preloader__arc" viewBox="0 0 100 100"><circle class="preloader__track" cx="50" cy="50" r="46"/><circle cx="50" cy="50" r="46" pathLength="100" data-preloader-arc/></svg>
-    <svg class="preloader__logo" viewBox="0 0 100 116" fill="none"><defs><linearGradient id="plg" x1="20" y1="10" x2="80" y2="106" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#4FA3E0"/><stop offset="1" stop-color="#6FCF9A"/></linearGradient></defs><path d="M80 18H40a20 20 0 0 0 0 40h20a20 20 0 0 1 0 40H20" stroke="url(#plg)" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/></svg>
-  </div>
-  <ol class="preloader__log" data-preloader-log>
-    <li data-at="0"><b>[INIT]</b><span>Establishing secure connection</span></li>
-    <li data-at=".35"><b>[VAULT]</b><span>Opening the knowledge base</span></li>
-    <li data-at=".62"><b>[INDEX]</b><span>Linking clients, contracts and projects</span></li>
-    <li data-at=".9"><b>[READY]</b><span>Workspace online</span></li>
-  </ol>
-  <div class="preloader__foot">
-    <span class="preloader__by">SILENUS · by Phannes Inc.</span>
-    <span class="preloader__count"><b data-preloader-count>0</b>%</span>
-  </div>
-</div>
-<link rel="stylesheet" href="assets/css/site.min.css?v=20261109181440">
+<link rel="stylesheet" href="assets/css/site.min.css?v=20261111071645">
 <a class="skip-link" href="#main">Skip to content</a>
 
 <!-- ================= 00 · NAVIGATION ================= -->
@@ -123,6 +90,8 @@ html{background:#09111A}body{margin:0;background:#09111A}
       <img src="assets/img/logo-mark.svg" width="16" height="19" alt="">
       <span class="nav__word">SILENUS</span>
     </a>
+
+    <nav class="nav__pagelinks" aria-label="Pages"><a class="nav__pl" href="index.html">Home</a><a class="nav__pl" href="platform.html">Platform</a><a class="nav__pl" href="why-silenus.html">Why Silenus</a><a class="nav__pl is-here" href="security.html" aria-current="page">Security</a><a class="nav__pl" href="company.html">Company</a><a class="nav__pl" href="faq.html">FAQ</a></nav>
 
     <!-- Live context: page progress + the section you are in (updates on scroll) -->
     <p class="nav__ctx" aria-hidden="true">
@@ -135,7 +104,7 @@ html{background:#09111A}body{margin:0;background:#09111A}
         <span class="nav__menu-label" data-nav-label>Menu</span>
         <span class="nav__menu-icon" aria-hidden="true"><i></i><i></i></span>
       </button>
-      <a class="nav__login" href="https://silenus.app">Log in</a>
+      <a class="nav__login btn btn--secondary" href="https://silenus.app">Log in</a>
       <a class="nav__cta" href="#demo"><i class="nav__sweep" aria-hidden="true"></i>Book a demo <span aria-hidden="true">→</span></a>
     </div>
   </div>
@@ -152,19 +121,13 @@ html{background:#09111A}body{margin:0;background:#09111A}
     <div class="drawer__body">
       <nav class="drawer__tier drawer__tier--pages" aria-label="Pages">
         <ul class="drawer__pagelist">
-            <li style="--i:0"><a class="drawer__pg" href="index.html"><span>Home</span><i aria-hidden="true">→</i></a></li>
-            <li style="--i:1"><a class="drawer__pg" href="platform.html"><span>Platform</span><i aria-hidden="true">→</i></a></li>
-            <li style="--i:2"><a class="drawer__pg" href="why-silenus.html"><span>Why Silenus</span><i aria-hidden="true">→</i></a></li>
-            <li style="--i:3"><a class="drawer__pg is-here" href="security.html" aria-current="page"><span>Security &amp; Trust</span><em>You are here</em><i aria-hidden="true">→</i></a></li>
-            <li style="--i:4"><a class="drawer__pg" href="company.html"><span>Company &amp; Vision</span><i aria-hidden="true">→</i></a></li>
+            <li style="--i:0"><a class="drawer__pg" href="index.html"><b aria-hidden="true">01</b><span>Home<small>The overview</small></span><i aria-hidden="true">→</i></a></li>
+            <li style="--i:1"><a class="drawer__pg" href="platform.html"><b aria-hidden="true">02</b><span>Platform<small>One window for every module</small></span><i aria-hidden="true">→</i></a></li>
+            <li style="--i:2"><a class="drawer__pg" href="why-silenus.html"><b aria-hidden="true">03</b><span>Why Silenus<small>Built the other way round</small></span><i aria-hidden="true">→</i></a></li>
+            <li style="--i:3"><a class="drawer__pg is-here" href="security.html" aria-current="page"><b aria-hidden="true">04</b><span>Security &amp; Trust<small>Your data stays on your servers</small></span><em>You are here</em><i aria-hidden="true">→</i></a></li>
+            <li style="--i:4"><a class="drawer__pg" href="company.html"><b aria-hidden="true">05</b><span>Company &amp; Vision<small>Founders, roadmap and AI agents</small></span><i aria-hidden="true">→</i></a></li>
+            <li style="--i:5"><a class="drawer__pg" href="faq.html"><b aria-hidden="true">06</b><span>FAQ<small>Every question, answered</small></span><i aria-hidden="true">→</i></a></li>
         </ul>
-      </nav>
-      <nav class="drawer__tier" aria-labelledby="drawer-onpage">
-        <p class="drawer__k drawer__k--sub" id="drawer-onpage">On this page</p>
-        <ol class="drawer__list" data-nav-links>
-          <li style="--i:6"><a href="#security"><b>01</b><span>Data sovereignty</span><i aria-hidden="true">→</i></a></li>
-          <li style="--i:7"><a href="#demo"><b>02</b><span>Live test</span><i aria-hidden="true">→</i></a></li>
-        </ol>
       </nav>
     </div>
     <div class="drawer__foot" style="--i:14">
@@ -181,7 +144,7 @@ html{background:#09111A}body{margin:0;background:#09111A}
   <div class="bits" aria-hidden="true"></div>
   <div class="wrap page-hero__grid">
     <div class="page-hero__text">
-      <header class="sec-head" data-split-head>
+      <header class="sec-head" data-ph-head>
         <p class="sec-head__idx">Data security</p>
         <div class="sec-head__body">
           <h1 class="sec-head__title" id="page-title">Your data stays <span class="sec-head__muted">on your servers.</span></h1>
@@ -189,8 +152,24 @@ html{background:#09111A}body{margin:0;background:#09111A}
         </div>
       </header>
       <p class="page-hero__actions"><a class="btn btn--primary" href="#demo">Plan a private setup <span class="btn__arrow" aria-hidden="true">→</span></a><a class="btn btn--secondary" href="#security">How it works</a></p>
+      <ul class="sbadge" aria-label="Security status"><li><i aria-hidden="true"></i>Self-hosted AI</li><li><i aria-hidden="true"></i>One permission model</li><li><i aria-hidden="true"></i>Audit log · append-only</li></ul>
     </div>
-    <div class="page-hero__stage" aria-hidden="true"><p class="ps__bar"><span class="ps__dots"><i></i><i></i><i></i></span>your environment<em><i></i>Private</em></p><ul class="ps__env"><li style="--d:0"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-6.5"/></svg>Documents</li><li style="--d:1"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-6.5"/></svg>Knowledge store</li><li style="--d:2"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-6.5"/></svg>Search index</li><li style="--d:3"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-6.5"/></svg>AI model · self-hosted</li><li style="--d:4"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-6.5"/></svg>Audit log · append-only</li></ul><p class="ps__big"><b>0</b> documents left your environment</p></div>
+    <div class="page-hero__stage ssh" data-ssh data-mode="private">
+      <p class="ps__bar"><span class="ps__dots"><i></i><i></i><i></i></span>where a question is answered<em><i></i>Live</em></p>
+      <div class="ssh__seg" role="group" aria-label="Compare where the AI runs">
+        <i class="ssh__thumb" aria-hidden="true"></i>
+        <button type="button" aria-pressed="false" data-ssh-mode="cloud">Standard cloud AI</button>
+        <button type="button" aria-pressed="true" data-ssh-mode="private">Silenus private engine</button>
+      </div>
+      <div class="ssh__map" aria-hidden="true">
+        <div class="ssh__wall"><span class="ssh__zone">your environment</span><i class="ssh__breach"></i></div>
+        <span class="ssh__out">outside</span>
+        <ul class="ssh__parts"><li>Documents</li><li>Knowledge store</li><li>Search index</li><li>Audit log · append-only</li></ul>
+        <div class="ssh__wire"><i></i><i></i><i></i></div>
+        <span class="ssh__model"><b>AI model</b><em data-ssh-where>self-hosted</em></span>
+      </div>
+      <p class="ssh__stat" aria-live="polite"><b data-ssh-count>0</b> <span data-ssh-say>documents left your environment</span></p>
+    </div>
   </div>
 </section>
 
@@ -205,8 +184,21 @@ html{background:#09111A}body{margin:0;background:#09111A}
       </div>
     </header>
 
-    <div class="security__body">
-      <div class="security__diagram" data-reveal>
+    <div class="stb" data-stb>
+        <div class="stb__tabs" role="tablist" aria-orientation="vertical" aria-label="How it stays provable">
+          <i class="stb__ind" aria-hidden="true"></i>
+          <button type="button" role="tab" class="stb__tab" id="stb-t0" aria-controls="stb-p0" aria-selected="true" tabindex="0"><span class="stb__n">01</span><span class="stb__tt"><b>Tamper-evident audit trail</b><em>Append-only, and it never copies your data.</em></span><i class="stb__prog" aria-hidden="true"></i></button>
+          <button type="button" role="tab" class="stb__tab" id="stb-t1" aria-controls="stb-p1" aria-selected="false" tabindex="-1"><span class="stb__n">02</span><span class="stb__tt"><b>Model attribution</b><em>See which model produced every answer.</em></span><i class="stb__prog" aria-hidden="true"></i></button>
+          <button type="button" role="tab" class="stb__tab" id="stb-t2" aria-controls="stb-p2" aria-selected="false" tabindex="-1"><span class="stb__n">03</span><span class="stb__tt"><b>Boundary tracking</b><em>Know whether data ever left your environment.</em></span><i class="stb__prog" aria-hidden="true"></i></button>
+          <button type="button" role="tab" class="stb__tab" id="stb-t3" aria-controls="stb-p3" aria-selected="false" tabindex="-1"><span class="stb__n">04</span><span class="stb__tt"><b>Compliance view</b><em>Access history for GDPR and residency checks.</em></span><i class="stb__prog" aria-hidden="true"></i></button>
+          <button type="button" role="tab" class="stb__tab" id="stb-t4" aria-controls="stb-p4" aria-selected="false" tabindex="-1"><span class="stb__n">05</span><span class="stb__tt"><b>Permissions travel with the data</b><em>People and AI work under one permission model. Nobody sees an answer built from documents they can't open.</em></span><i class="stb__prog" aria-hidden="true"></i></button>
+        </div>
+        <div class="stb__frame">
+          <p class="ps__bar stb__bar"><span class="ps__dots"><i></i><i></i><i></i></span><span data-stb-name>tamper-evident audit trail</span><em><i></i>Live</em></p>
+          <div class="stb__panes">
+          <div class="stb__p is-on" role="tabpanel" id="stb-p0" aria-labelledby="stb-t0" data-name="tamper-evident audit trail"><div class="stp stp--log"><p class="stp__k">audit log · append-only</p><div class="stp__logwin"><ul class="stp__log"><li><b>09:41</b><span>Contract opened · Ádám</span><em>#a3f9</em></li><li><b>09:42</b><span>Answer generated · self-hosted model</span><em>#77c1</em></li><li><b>09:44</b><span>Invoice approved · Laura</span><em>#0e5b</em></li><li><b>09:45</b><span>Export blocked · policy</span><em>#d218</em></li><li><b>09:47</b><span>E-mail sent · Laura</span><em>#5c40</em></li><li><b>09:49</b><span>Permission changed · admin</span><em>#9b3e</em></li><li><b>09:41</b><span>Contract opened · Ádám</span><em>#a3f9</em></li><li><b>09:42</b><span>Answer generated · self-hosted model</span><em>#77c1</em></li><li><b>09:44</b><span>Invoice approved · Laura</span><em>#0e5b</em></li><li><b>09:45</b><span>Export blocked · policy</span><em>#d218</em></li><li><b>09:47</b><span>E-mail sent · Laura</span><em>#5c40</em></li><li><b>09:49</b><span>Permission changed · admin</span><em>#9b3e</em></li></ul></div></div></div>
+          <div class="stb__p" role="tabpanel" id="stb-p1" aria-labelledby="stb-t1" data-name="model attribution"><div class="stp stp--model"><div class="stp__ans"><p class="stp__k">Answer · Supply agreement, p.4</p><i></i><i></i><i style="--w:62%"></i><p class="stp__by"><span>model</span><span class="stp__models"><span>Self-hosted</span><span>OpenAI</span><span>Anthropic Claude</span><span>Azure OpenAI</span><span>DeepSeek</span><span>Self-hosted</span></span></p></div></div></div>
+          <div class="stb__p" role="tabpanel" id="stb-p2" aria-labelledby="stb-t2" data-name="boundary tracking"><div class="stp stp--fence"><div class="security__diagram">
         <div class="security__tabs" role="group" aria-label="Deployment model">
           <button type="button" aria-pressed="true" data-sec-mode="private">Private infrastructure</button>
           <button type="button" aria-pressed="false" data-sec-mode="provider">Your chosen provider</button>
@@ -229,22 +221,39 @@ html{background:#09111A}body{margin:0;background:#09111A}
           </div>
         </div>
         <p class="security__count" aria-live="polite" data-sec-count><span>0</span> documents left your environment</p>
-        <div class="security__cta">
+      </div></div></div>
+          <div class="stb__p" role="tabpanel" id="stb-p3" aria-labelledby="stb-t3" data-name="compliance view"><div class="stp stp--acc"><p class="stp__k">access history</p><ul class="stp__acc"><li><span>Ádám · opened the contract</span><b>EU · HU</b></li><li><span>Legal agent · read p.4</span><b>EU · HU</b></li></ul><p class="stp__res"><span>Residency check</span><b>All in the EU</b></p></div></div>
+          <div class="stb__p" role="tabpanel" id="stb-p4" aria-labelledby="stb-t4" data-name="permissions travel with the data"><div class="stp stp--perm"><span class="stp__doc">Supply_agreement.pdf</span><span class="stp__wire"><i></i></span><span class="stp__roles"><span class="stp__role is-ok">Legal · can open<b><svg class="sx-ic" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-6.5"/></svg></b></span><span class="stp__role is-no">Sales · no access<b><svg class="sx-ic" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 4.5l7 7m0-7l-7 7"/></svg></b></span></span></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="security__cta stb__cta">
       <p>Handling legal, financial or client data? Ask us about a private deployment.</p>
       <a class="btn btn--secondary" href="#demo">Plan a private setup <span class="btn__arrow" aria-hidden="true">→</span></a>
     </div>
+  </div>
+</section>
+
+<!-- ================= SECURITY · rules the AI cannot skip (extended edition, Oct 2026) ================= -->
+<section class="controls" id="controls" aria-labelledby="controls-title">
+  <div class="wrap">
+    <header class="sec-head" data-split-head>
+      <p class="sec-head__idx"><b>02</b> Controls</p>
+      <div class="sec-head__body">
+        <h2 class="sec-head__title" id="controls-title">Rules the AI <span class="sec-head__muted">cannot skip.</span></h2>
+        <p class="sec-head__lead">The same rules for people and for the AI, built into every module.</p>
       </div>
-
-      <ul class="sme2__grid sec2" data-stagger data-live>
-        <li class="sme2__g" data-stagger-item><div class="sv sv--log" aria-hidden="true"><ul class="sv__log"><li><i></i><b>09:41</b><span>Contract opened · Ádám</span><em>#a3f9</em></li><li><i></i><b>09:42</b><span>Answer generated · self-hosted model</span><em>#77c1</em></li><li><i></i><b>09:44</b><span>Invoice approved · Laura</span><em>#0e5b</em></li><li><i></i><b>09:45</b><span>Export blocked · policy</span><em>#d218</em></li><li><i></i><b>09:47</b><span>E-mail sent · Laura</span><em>#5c40</em></li><li><i></i><b>09:49</b><span>Permission changed · admin</span><em>#9b3e</em></li><li><i></i><b>09:41</b><span>Contract opened · Ádám</span><em>#a3f9</em></li><li><i></i><b>09:42</b><span>Answer generated · self-hosted model</span><em>#77c1</em></li><li><i></i><b>09:44</b><span>Invoice approved · Laura</span><em>#0e5b</em></li><li><i></i><b>09:45</b><span>Export blocked · policy</span><em>#d218</em></li><li><i></i><b>09:47</b><span>E-mail sent · Laura</span><em>#5c40</em></li><li><i></i><b>09:49</b><span>Permission changed · admin</span><em>#9b3e</em></li></ul></div><h3>Tamper-evident audit trail</h3><p>Append-only, and it never copies your data.</p></li>
-        <li class="sme2__g" data-stagger-item><div class="sv sv--model" aria-hidden="true"><p class="sv__ans">Answer · Supply agreement, p.4</p><p class="sv__by">model <span class="sv__models"><span style="--k:0">Self-hosted</span><span style="--k:1">OpenAI</span><span style="--k:2">Anthropic Claude</span><span style="--k:3">Azure OpenAI</span><span style="--k:4">DeepSeek</span></span></p></div><h3>Model attribution</h3><p>See which model produced every answer.</p></li>
-        <li class="sme2__g" data-stagger-item><div class="sv sv--fence" aria-hidden="true"><span class="sv__fence"><i></i><i></i><i></i><i></i><i></i></span><span class="sv__tag">0 left your environment</span></div><h3>Boundary tracking</h3><p>Know whether data ever left your environment.</p></li>
-        <li class="sme2__g" data-stagger-item><div class="sv sv--access" aria-hidden="true"><span class="sv__acc" style="--k:0"><em>Ádám · opened the contract</em><b>EU · HU</b></span><span class="sv__acc" style="--k:1"><em>Legal agent · read p.4</em><b>EU · HU</b></span><span class="sv__acc" style="--k:2"><em>Residency check</em><b>All in the EU</b></span></div><h3>Compliance view</h3><p>Access history for GDPR and residency checks.</p></li>
-        <li class="sme2__g sme2__g--wide" data-stagger-item><div class="sv sv--perm" aria-hidden="true"><span class="sv__doc">Supply_agreement.pdf</span><span class="sv__wire"><i></i></span><span class="sv__roles"><span class="sv__role sv__role--ok">Legal · can open<b>✓</b></span><span class="sv__role sv__role--no">Sales · no access<b>✕</b></span></span></div><h3>Permissions travel with the data</h3><p>People and AI work under one permission model. Nobody sees an answer built from documents they can't open.</p></li>
-      </ul>
-    </div>
-
-    
+    </header>
+    <ul class="ctlb" data-ctlb>
+      <li class="ctlb__c ctlb__c--w" style="--i:0"><div class="ctlb__art" aria-hidden="true"><span class="ca ca--ask"><span class="ca__chip is-ok">read</span><span class="ca__chip is-ok">change</span><span class="ca__chip is-ok">external effect</span><span class="ca__chip is-no">unclassified<b>refused</b></span></span></div><h3>Asks before it acts</h3><p>Every AI tool is classed as read, change or external effect. An unclassified tool is refused.</p></li>
+      <li class="ctlb__c" style="--i:1"><div class="ctlb__art" aria-hidden="true"><span class="ca ca--send"><span class="ca__auto">automation<b><svg class="sx-ic" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 4.5l7 7m0-7l-7 7"/></svg></b></span><span class="ca__btn">Send<svg viewBox="0 0 24 24"><path d="M6 3l12 9-5.5 1.2L16 20l-2.6 1.2-2.6-6.6L6 18z"/></svg></span></span></div><h3>Sending stays human</h3><p>No automation or standing approval can send an e-mail. A person presses Send.</p></li>
+      <li class="ctlb__c" style="--i:2"><div class="ctlb__art" aria-hidden="true"><span class="ca ca--mail"><svg viewBox="0 0 160 64"><rect x="10" y="14" width="44" height="32" rx="5"/><path d="M12 17l20 15 20-15"/><path class="ca__flow" d="M62 30h46"/><circle cx="128" cy="30" r="13"/><path d="M118 30c3-5 7-7 10-7s7 2 10 7c-3 5-7 7-10 7s-7-2-10-7z"/><circle cx="128" cy="30" r="2.6" class="ca__fill"/></svg><span class="ca__note">no copy kept</span></span></div><h3>Mail without a copy</h3><p>Mail is read live from Microsoft 365 or Gmail with the user’s own rights. Silenus keeps no copy.</p></li>
+      <li class="ctlb__c ctlb__c--w" style="--i:3"><div class="ctlb__art" aria-hidden="true"><span class="ca ca--safe"><span class="ca__frame"><span class="ca__lbl">isolated frame</span><i></i><i></i><i style="--w:55%"></i></span><span class="ca__scripts">scripts<b>off</b></span></span></div><h3>Safe reading</h3><p>Every message opens in its own isolated frame, without scripts.</p></li>
+      <li class="ctlb__c ctlb__c--w" style="--i:4"><div class="ctlb__art" aria-hidden="true"><span class="ca ca--matrix"><span class="ca__grid"><i style="--d:0" class="on"></i><i style="--d:7"></i><i style="--d:3" class="on"></i><i style="--d:10"></i><i style="--d:6"></i><i style="--d:2" class="on"></i><i style="--d:9"></i><i style="--d:5" class="on"></i><i style="--d:1"></i><i style="--d:8"></i><i style="--d:4" class="on"></i><i style="--d:0"></i><i style="--d:7" class="on"></i><i style="--d:3"></i><i style="--d:10"></i><i style="--d:6" class="on"></i><i style="--d:2"></i><i style="--d:9" class="on"></i><i style="--d:5"></i><i style="--d:1"></i><i style="--d:8" class="on"></i><i style="--d:4"></i><i style="--d:0" class="on"></i><i style="--d:7"></i><i style="--d:5"></i><i style="--d:1" class="on"></i><i style="--d:8"></i><i style="--d:4" class="on"></i><i style="--d:0"></i><i style="--d:7"></i><i style="--d:3" class="on"></i><i style="--d:10"></i><i style="--d:6" class="on"></i><i style="--d:2"></i><i style="--d:9"></i><i style="--d:5" class="on"></i><i style="--d:1"></i><i style="--d:8" class="on"></i><i style="--d:4"></i><i style="--d:0"></i><i style="--d:7" class="on"></i><i style="--d:3"></i><i style="--d:10" class="on"></i><i style="--d:6"></i><i style="--d:2"></i><i style="--d:9" class="on"></i><i style="--d:5"></i><i style="--d:1" class="on"></i><i style="--d:10"></i><i style="--d:6"></i><i style="--d:2" class="on"></i><i style="--d:9"></i><i style="--d:5" class="on"></i><i style="--d:1"></i><i style="--d:8"></i><i style="--d:4" class="on"></i><i style="--d:0"></i><i style="--d:7" class="on"></i><i style="--d:3"></i><i style="--d:10"></i><i style="--d:6" class="on"></i><i style="--d:2"></i><i style="--d:9" class="on"></i><i style="--d:5"></i><i style="--d:1"></i><i style="--d:8" class="on"></i><i style="--d:4"></i><i style="--d:0" class="on"></i><i style="--d:7"></i><i style="--d:3"></i><i style="--d:10" class="on"></i><i style="--d:6"></i><i style="--d:4" class="on"></i><i style="--d:0"></i><i style="--d:7"></i><i style="--d:3" class="on"></i><i style="--d:10"></i><i style="--d:6" class="on"></i><i style="--d:2"></i><i style="--d:9"></i><i style="--d:5" class="on"></i><i style="--d:1"></i><i style="--d:8" class="on"></i><i style="--d:4"></i><i style="--d:0"></i><i style="--d:7" class="on"></i><i style="--d:3"></i><i style="--d:10" class="on"></i><i style="--d:6"></i><i style="--d:2"></i><i style="--d:9" class="on"></i><i style="--d:5"></i><i style="--d:1" class="on"></i><i style="--d:8"></i><i style="--d:4"></i><i style="--d:0" class="on"></i></span><span class="ca__axis"><span>24 modules</span><span>scopes · actions</span></span></span></div><h3>One permission matrix</h3><p>24 modules, each with scopes and actions. Anything not granted is refused, for people and for the AI.</p></li>
+      <li class="ctlb__c" style="--i:5"><div class="ctlb__art" aria-hidden="true"><span class="ca ca--hold"><span class="ca__line"><i></i><i></i><i></i><i class="is-hold"></i><i></i></span><span class="ca__lock">legal hold</span></span></div><h3>Retention and legal hold</h3><p>Retention policies, legal holds nothing can override, and data-deletion requests.</p></li>
+      <li class="ctlb__c" style="--i:6"><div class="ctlb__art" aria-hidden="true"><span class="ca ca--rec"><span class="ca__file">audit_log.csv</span><svg viewBox="0 0 24 24"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></svg></span></div><h3>A compliance record</h3><p>Audit log with export, a data inventory, and which AI providers received company data.</p></li>
+      <li class="ctlb__c ctlb__c--w" style="--i:7"><div class="ctlb__art" aria-hidden="true"><span class="ca ca--cost"><span class="ca__row"><span>Self-hosted · chat</span><span>1,240 tokens</span><b>€0.00</b></span><span class="ca__row"><span>OpenAI · project</span><span>3,860 tokens</span><b>€0.02</b></span><span class="ca__row"><span>Claude · source</span><span>2,110 tokens</span><b>€0.01</b></span></span></div><h3>AI cost on record</h3><p>Every AI call is logged with its tokens and price, by model, chat, project and source.</p></li>
+    </ul>
   </div>
 </section>
 
@@ -253,7 +262,7 @@ html{background:#09111A}body{margin:0;background:#09111A}
   <div class="bits bits--patch" aria-hidden="true"></div>
   <div class="wrap">
     <header class="sec-head" data-split-head>
-      <p class="sec-head__idx" hidden><b>02</b> Live test</p>   <!-- kept for the menu; not shown, so the fibre runs straight on to the footer -->
+      <p class="sec-head__idx" hidden><b>03</b> Live test</p>   <!-- kept for the menu; not shown, so the fibre runs straight on to the footer -->
       <div class="sec-head__body">
         <h2 class="sec-head__title" id="cta-title">One company. One system. <span class="sec-head__muted">One source of context.</span></h2>
         <p class="sec-head__lead">Bring 30–50 of your documents. We run the test with you, live.</p>

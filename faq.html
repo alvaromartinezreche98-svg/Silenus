@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>(function(r){r.classList.add('js');if(matchMedia('(prefers-reduced-motion: reduce)').matches){r.classList.add('reduced-motion');return}})(document.documentElement)</script>
+
+<title>FAQ — Silenus | Questions about the AI-native business OS</title>
+<meta name="description" content="Answers about Silenus: what it is, how it differs from an ERP with AI, your tools and files, the AI and its approvals, self-hosting, pricing and getting started.">
+<link rel="canonical" href="https://silenus.app/faq">
+<meta name="theme-color" content="#09111A">
+<meta name="color-scheme" content="dark">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Silenus by Phannes Inc.">
+<meta property="og:title" content="FAQ — Silenus | Questions about the AI-native business OS">
+<meta property="og:description" content="The AI-native business operating system. One knowledge layer, cited answers, self-hostable.">
+<meta property="og:image" content="assets/img/dashboard-placeholder.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="assets/img/logo-mark.svg" type="image/svg+xml">
+
+<!-- Fonts and libraries are self-hosted: no third-party request blocks the first paint -->
+<link rel="preload" href="assets/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/vEFI2_tTDB4M7-auWDN0ahZJW1gb8tc.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/css/site.min.css?v=20261111071645" as="style">
+<link rel="preload" href="assets/js/site.min.js?v=20261111071645" as="script">
+<style>
+/* Critical: the preloader paints on the first frame, before the stylesheet arrives (the stylesheet link sits after it in <body>) */
+html{background:#09111A}body{margin:0;background:#09111A}
+.pl4{display:none}
+.is-loading{overflow:hidden}
+.is-loading .pl4{position:fixed;inset:0;z-index:510;display:grid;place-items:center;background:radial-gradient(40% 32% at 50% 50%,rgba(79,176,180,.07),transparent 70%),#09111A}
+.pl4__word{width:min(620px,80vw);height:auto;overflow:visible}
+.pl4__track{stroke:rgba(205,214,225,.07);stroke-width:1.2}
+.pl4__wire{stroke:url(#pl4w);stroke-width:1.6;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;filter:drop-shadow(0 0 4px rgba(143,211,213,.6))}
+.pl4__head{fill:#e6fafa;filter:drop-shadow(0 0 6px rgba(143,211,213,.95));opacity:0}
+.pl4__l{fill:none;stroke:#8FD3D5;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-width .7s cubic-bezier(.16,1,.3,1),stroke .5s ease}
+.pl4.is-full .pl4__l{stroke:#F3F4F6;stroke-width:12}
+.pl4.is-full .pl4__l--s{stroke:url(#pl4g);stroke-width:14}
+.pl4.is-leaving .pl4__wire,.pl4.is-leaving .pl4__track,.pl4.is-leaving .pl4__head{opacity:0;transition:opacity .4s ease}
+.pl4__by{position:absolute;bottom:32px;left:0;right:0;margin:0;text-align:center;font:500 11px/1 "IBM Plex Mono",ui-monospace,monospace;letter-spacing:.22em;color:#4B535E}
+.pl4__by span{letter-spacing:.08em;text-transform:none}
+.pl4.is-leaving{opacity:0;transition:opacity .7s cubic-bezier(.16,1,.3,1) .1s;pointer-events:none}
+.pl4.is-leaving .pl4__word{transform:translateY(-14px) scale(.98);transition:transform .8s cubic-bezier(.16,1,.3,1)}
+</style>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "#org",
+      "name": "Phannes Inc.",
+      "brand": {
+        "@type": "Brand",
+        "name": "Silenus"
+      },
+      "logo": "assets/img/logo-mark.svg"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "Silenus",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web, self-hosted",
+      "description": "AI-native business operating system that unifies a company's knowledge, data and operations into one intelligent layer, with cited answers.",
+      "publisher": {
+        "@id": "#org"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is Silenus?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "An AI-native business operating system by Phannes Inc. Documents, projects, CRM, email, calendar and HR run on one shared knowledge base, and people approve what the AI prepares."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is Silenus different from an ERP with AI features?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ERPs add an assistant beside separate modules, each with its own database. In Silenus everything enters one knowledge base first and every module is a view of it, so nothing is copied and answers draw on the whole company."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is included?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Documents, CRM, sales and commerce (Shopify, inventory, quotes), projects, worksheets, templates, team chat, e-mail in your own tone of voice, AI meeting summaries, calendar and the full HR module. Finance and banking are next: invoicing, bank integration, accounting, commissions and a cash-flow forecast."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What about accounting?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Coming next: books without a close. Every event is posted the moment it happens (outgoing invoices on issue, incoming invoices on receipt, bank items when matched), so the period can be closed at any minute."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do we have to replace Microsoft 365 or our other tools?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Keep Microsoft 365, SharePoint and your mailboxes: Silenus reads from them, checks every answer against the source, and runs the work that follows."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which tools does Silenus connect to?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Microsoft 365 and Gmail (shared mailboxes too), SharePoint, Google Drive, Google and Outlook calendars and Shopify. External tools connect through MCP, each call approved by a person, and Silenus also serves its own tools to other AI clients. Bank connections are next on the roadmap."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do we have to keep files in folders?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No folders to maintain. Every file carries its own metadata and lands in the right place automatically."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which documents can it read?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "28 file types, scans included: PDF, Word, Excel, PowerPoint and e-mail, read by 14 specialised agents."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What does the HR module include?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Every decision on one screen: who is here, who is in the pipeline and what needs your decision, with compliance signals before they become problems. HR dashboard, Employee dashboard (new), Employees by department, Profiles & onboarding, Organisation chart, Recruitment channels, Performance, HR assistant, Time tracking, My time (new), Attendance, Shift management (new), HR letters (new) and HR analytics (new)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I know an answer is right?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Every answer cites the passage it came from, down to the page and clause. Ask for “all of them” and you get the complete list. When your documents don't support an answer, Silenus says so instead of guessing."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much can the AI do?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "One agent with 118 tools works across every module: Projects 34, CRM 20, Documents 14, E-mail 8, Team chat 5, HR 4 (read-only) and Calendar 3. It searches, reads the passages around a match and cites every claim."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does the AI act on its own?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Every tool is classed as read, change or external effect, and changes arrive as approval cards with the exact arguments. An e-mail is never sent automatically: a person presses Send."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which AI model does it use?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Your choice: OpenAI, Anthropic Claude, Azure OpenAI, DeepSeek or a self-hosted model, set per company, per user or per chat."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the AI workforce?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "AI colleagues with a role, a schedule and permissions, managed next to your human team. It is on the roadmap, and it works under the same rules as the AI today: people approve every change."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can Silenus run on our own servers?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Silenus can run entirely on your own infrastructure, AI models included. You can also choose the AI provider and model per company, user or conversation. An append-only audit trail records which model produced each answer and whether any data left your environment."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is Silenus priced?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "By the information your company processes, not by users or modules. Every package includes all modules, AI and unlimited users up to 500. At 100 people it comes to €872 a month."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What does it take to get started?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No consulting project. Connect your sources and the views work straight away. If you want proof first, bring 30 to 50 of your own documents and we'll run a live test with you."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<!-- GSAP 3.12.5 + ScrollTrigger + Lenis 1.1.13 and the page scripts, bundled by build.py -->
+<script src="assets/js/site.min.js?v=20261111071645" defer></script>
+</head>
+<body>
+<!-- Entry preloader: every load. Painted from the inline styles before the stylesheet arrives; tied to real
+     readiness (DOM, fonts, load), lifts like a curtain. Never shown without JS or with reduced motion. -->
+<link rel="stylesheet" href="assets/css/site.min.css?v=20261111071645">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ================= 00 · NAVIGATION ================= -->
+<header class="nav" data-nav>
+  <div class="nav__dock">
+    <a class="nav__brand" href="/" aria-label="Silenus home">
+      <img src="assets/img/logo-mark.svg" width="16" height="19" alt="">
+      <span class="nav__word">SILENUS</span>
+    </a>
+
+    <nav class="nav__pagelinks" aria-label="Pages"><a class="nav__pl" href="index.html">Home</a><a class="nav__pl" href="platform.html">Platform</a><a class="nav__pl" href="why-silenus.html">Why Silenus</a><a class="nav__pl" href="security.html">Security</a><a class="nav__pl" href="company.html">Company</a><a class="nav__pl is-here" href="faq.html" aria-current="page">FAQ</a></nav>
+
+    <!-- Live context: page progress + the section you are in (updates on scroll) -->
+    <p class="nav__ctx" aria-hidden="true">
+      <svg class="nav__ring" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8"/><circle class="nav__ring-fill" cx="10" cy="10" r="8" pathLength="100" data-nav-ring/></svg>
+      <span class="nav__ctx-text" data-nav-ctx>Overview</span>
+    </p>
+
+    <div class="nav__actions">
+      <button class="nav__menu" type="button" aria-expanded="false" aria-controls="site-menu" data-nav-toggle>
+        <span class="nav__menu-label" data-nav-label>Menu</span>
+        <span class="nav__menu-icon" aria-hidden="true"><i></i><i></i></span>
+      </button>
+      <a class="nav__login btn btn--secondary" href="https://silenus.app">Log in</a>
+      <a class="nav__cta" href="#demo"><i class="nav__sweep" aria-hidden="true"></i>Book a demo <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</header>
+
+<!-- Sidebar drawer: every chapter of the page, numbered like the page itself -->
+<div class="drawer" id="site-menu" data-nav-panel inert>
+  <div class="drawer__scrim" data-nav-close></div>
+  <aside class="drawer__panel" role="dialog" aria-modal="true" aria-label="Site menu">
+    <div class="drawer__head">
+      <p class="drawer__k">Menu</p>
+      <button class="drawer__close" type="button" data-nav-close aria-label="Close menu"><span aria-hidden="true"></span></button>
+    </div>
+    <div class="drawer__body">
+      <nav class="drawer__tier drawer__tier--pages" aria-label="Pages">
+        <ul class="drawer__pagelist">
+            <li style="--i:0"><a class="drawer__pg" href="index.html"><b aria-hidden="true">01</b><span>Home<small>The overview</small></span><i aria-hidden="true">→</i></a></li>
+            <li style="--i:1"><a class="drawer__pg" href="platform.html"><b aria-hidden="true">02</b><span>Platform<small>One window for every module</small></span><i aria-hidden="true">→</i></a></li>
+            <li style="--i:2"><a class="drawer__pg" href="why-silenus.html"><b aria-hidden="true">03</b><span>Why Silenus<small>Built the other way round</small></span><i aria-hidden="true">→</i></a></li>
+            <li style="--i:3"><a class="drawer__pg" href="security.html"><b aria-hidden="true">04</b><span>Security &amp; Trust<small>Your data stays on your servers</small></span><i aria-hidden="true">→</i></a></li>
+            <li style="--i:4"><a class="drawer__pg" href="company.html"><b aria-hidden="true">05</b><span>Company &amp; Vision<small>Founders, roadmap and AI agents</small></span><i aria-hidden="true">→</i></a></li>
+            <li style="--i:5"><a class="drawer__pg is-here" href="faq.html" aria-current="page"><b aria-hidden="true">06</b><span>FAQ<small>Every question, answered</small></span><em>You are here</em><i aria-hidden="true">→</i></a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="drawer__foot" style="--i:14">
+      <a class="btn btn--primary" href="#demo">Book a demo <span class="btn__arrow" aria-hidden="true">→</span></a>
+      <a class="btn btn--secondary" href="https://silenus.app">Log in</a>
+      <p>SILENUS by Phannes Inc.</p>
+    </div>
+  </aside>
+</div>
+
+<main id="main">
+<!-- ================= PAGE HERO: label pill · headline · one line · actions | a live preview of the page ================= -->
+<section class="page-hero" id="top" aria-labelledby="page-title">
+  <div class="bits" aria-hidden="true"></div>
+  <div class="wrap page-hero__grid">
+    <div class="page-hero__text">
+      <header class="sec-head" data-ph-head>
+        <p class="sec-head__idx">FAQ</p>
+        <div class="sec-head__body">
+          <h1 class="sec-head__title" id="page-title">Questions, <span class="sec-head__muted">answered.</span></h1>
+          <p class="sec-head__lead">Everything teams ask us before a live test.</p>
+        </div>
+      </header>
+      <p class="page-hero__actions"><a class="btn btn--primary" href="#questions">Read the answers <span class="btn__arrow" aria-hidden="true">→</span></a><a class="btn btn--secondary" href="#demo">Book a live test</a></p>
+    </div>
+    <div class="page-hero__stage" aria-hidden="true"><p class="ps__bar"><span class="ps__dots"><i></i><i></i><i></i></span>silenus · answers<em><i></i>17 questions</em></p><ul class="ps__rows ps__rows--faq"><li style="--d:0"><span>The basics</span><em>4</em></li><li style="--d:1"><span>Your tools and files</span><em>5</em></li><li style="--d:2"><span>The AI</span><em>5</em></li><li style="--d:3"><span>Data and security</span><em>1</em></li><li style="--d:4"><span>Pricing and getting started</span><em>2</em></li></ul><p class="ps__foot">Not here? Ask us in a live test.</p></div>
+  </div>
+</section>
+
+<!-- ================= FAQ · every question, grouped ================= -->
+<section class="faqx" id="questions" aria-labelledby="faqx-title">
+  <div class="wrap">
+    <header class="sec-head" data-split-head>
+      <p class="sec-head__idx"><b>01</b> All questions</p>
+      <div class="sec-head__body">
+        <h2 class="sec-head__title" id="faqx-title">17 answers, <span class="sec-head__muted">in five topics.</span></h2>
+      </div>
+    </header>
+    <div class="faqx__grid">
+      <nav class="faqx__nav" aria-label="Topics"><ul><li><a href="#faq-basics"><span>The basics</span><em>4</em></a></li><li><a href="#faq-tools"><span>Your tools and files</span><em>5</em></a></li><li><a href="#faq-ai"><span>The AI</span><em>5</em></a></li><li><a href="#faq-data"><span>Data and security</span><em>1</em></a></li><li><a href="#faq-start"><span>Pricing and getting started</span><em>2</em></a></li></ul></nav>
+      <div class="faqx__groups">
+        <div class="faqx__group" id="faq-basics">
+          <h2 class="faqx__gt">The basics</h2>
+          <details class="faqx__item">
+            <summary><b>01</b><h3>What is Silenus?</h3><i aria-hidden="true"></i></summary>
+            <p>An AI-native business operating system by Phannes Inc. Documents, projects, CRM, email, calendar and HR run on one shared knowledge base, and people approve what the AI prepares.</p>
+          </details>
+          <details class="faqx__item">
+            <summary><b>02</b><h3>How is Silenus different from an ERP with AI features?</h3><i aria-hidden="true"></i></summary>
+            <p>ERPs add an assistant beside separate modules, each with its own database. In Silenus everything enters one knowledge base first and every module is a view of it, so nothing is copied and answers draw on the whole company.</p>
+          </details>
+          <details class="faqx__item">
+            <summary><b>03</b><h3>What is included?</h3><i aria-hidden="true"></i></summary>
+            <p>Documents, CRM, sales and commerce (Shopify, inventory, quotes), projects, worksheets, templates, team chat, e-mail in your own tone of voice, AI meeting summaries, calendar and the full HR module. Finance and banking are next: invoicing, bank integration, accounting, commissions and a cash-flow forecast.</p>
+          </details>
+          <details class="faqx__item">
+            <summary><b>04</b><h3>What about accounting?</h3><i aria-hidden="true"></i></summary>
+            <p>Coming next: books without a close. Every event is posted the moment it happens (outgoing invoices on issue, incoming invoices on receipt, bank items when matched), so the period can be closed at any minute.</p>
+          </details>
+        </div>
+        <div class="faqx__group" id="faq-tools">
+          <h2 class="faqx__gt">Your tools and files</h2>
+          <details class="faqx__item">
+            <summary><b>05</b><h3>Do we have to replace Microsoft 365 or our other tools?</h3><i aria-hidden="true"></i></summary>
+            <p>No. Keep Microsoft 365, SharePoint and your mailboxes: Silenus reads from them, checks every answer against the source, and runs the work that follows.</p>
+          </details>
+          <details class="faqx__item">
+            <summary><b>06</b><h3>Which tools does Silenus connect to?</h3><i aria-hidden="true"></i></summary>
+            <p>Microsoft 365 and Gmail (shared mailboxes too), SharePoint, Google Drive, Google and Outlook calendars and Shopify. External tools connect through MCP, each call approved by a person, and Silenus also serves its own tools to other AI clients. Bank connections are next on the roadmap.</p>
+          </details>
+          <details class="faqx__item">
+            <summary><b>07</b><h3>Do we have to keep files in folders?</h3><i aria-hidden="true"></i></summary>
+            <p>No folders to maintain. Every file carries its own metadata and lands in the right place automatically.</p>
+          </details>
+          <details class="faqx__item">
+            <summary><b>08</b><h3>Which documents can it read?</h3><i aria-hidden="true"></i></summary>
+            <p>28 file types, scans included: PDF, Word, Excel, PowerPoint and e-mail, read by 14 specialised agents.</p>
+          </details>
+          <details class="faqx__item">
+            <summary><b>09</b><h3>What does the HR module include?</h3><i aria-hidden="true"></i></summary>
+            <p>Every decision on one screen: who is here, who is in the pipeline and what needs your decision, with compliance signals before they become problems. HR dashboard, Employee dashboard (new), Employees by department, Profiles & onboarding, Organisation chart, Recruitment channels, Performance, HR assistant, Time tracking, My time (new), Attendance, Shift management (new), HR letters (new) and HR analytics (new).</p>
+          </details>
+        </div>
+        <div class="faqx__group" id="faq-ai">
+          <h2 class="faqx__gt">The AI</h2>
+          <details class="faqx__item">
+            <summary><b>10</b><h3>How do I know an answer is right?</h3><i aria-hidden="true"></i></summary>
+            <p>Every answer cites the passage it came from, down to the page and clause. Ask for “all of them” and you get the complete list. When your documents don't support an answer, Silenus says so instead of guessing.</p>
+          </details>
+          <details class="faqx__item">
+            <summary><b>11</b><h3>How much can the AI do?</h3><i aria-hidden="true"></i></summary>
+            <p>One agent with 118 tools works across every module: Projects 34, CRM 20, Documents 14, E-mail 8, Team chat 5, HR 4 (read-only) and Calendar 3. It searches, reads the passages around a match and cites every claim.</p>
+          </details>
+          <details class="faqx__item">
+            <summary><b>12</b><h3>Does the AI act on its own?</h3><i aria-hidden="true"></i></summary>
+            <p>No. Every tool is classed as read, change or external effect, and changes arrive as approval cards with the exact arguments. An e-mail is never sent automatically: a person presses Send.</p>
+          </details>
+          <details class="faqx__item">
+            <summary><b>13</b><h3>Which AI model does it use?</h3><i aria-hidden="true"></i></summary>
+            <p>Your choice: OpenAI, Anthropic Claude, Azure OpenAI, DeepSeek or a self-hosted model, set per company, per user or per chat.</p>
+          </details>
+          <details class="faqx__item">
+            <summary><b>14</b><h3>What is the AI workforce?</h3><i aria-hidden="true"></i></summary>
+            <p>AI colleagues with a role, a schedule and permissions, managed next to your human team. It is on the roadmap, and it works under the same rules as the AI today: people approve every change.</p>
+          </details>
+        </div>
+        <div class="faqx__group" id="faq-data">
+          <h2 class="faqx__gt">Data and security</h2>
+          <details class="faqx__item">
+            <summary><b>15</b><h3>Can Silenus run on our own servers?</h3><i aria-hidden="true"></i></summary>
+            <p>Yes. Silenus can run entirely on your own infrastructure, AI models included. You can also choose the AI provider and model per company, user or conversation. An append-only audit trail records which model produced each answer and whether any data left your environment.</p>
+          </details>
+        </div>
+        <div class="faqx__group" id="faq-start">
+          <h2 class="faqx__gt">Pricing and getting started</h2>
+          <details class="faqx__item">
+            <summary><b>16</b><h3>How is Silenus priced?</h3><i aria-hidden="true"></i></summary>
+            <p>By the information your company processes, not by users or modules. Every package includes all modules, AI and unlimited users up to 500. At 100 people it comes to €872 a month.</p>
+          </details>
+          <details class="faqx__item">
+            <summary><b>17</b><h3>What does it take to get started?</h3><i aria-hidden="true"></i></summary>
+            <p>No consulting project. Connect your sources and the views work straight away. If you want proof first, bring 30 to 50 of your own documents and we'll run a live test with you.</p>
+          </details>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 13 · FINAL CTA ================= -->
+<section class="cta" id="demo" aria-labelledby="cta-title">
+  <div class="bits bits--patch" aria-hidden="true"></div>
+  <div class="wrap">
+    <header class="sec-head" data-split-head>
+      <p class="sec-head__idx" hidden><b>02</b> Live test</p>   <!-- kept for the menu; not shown, so the fibre runs straight on to the footer -->
+      <div class="sec-head__body">
+        <h2 class="sec-head__title" id="cta-title">One company. One system. <span class="sec-head__muted">One source of context.</span></h2>
+        <p class="sec-head__lead">Bring 30–50 of your documents. We run the test with you, live.</p>
+      </div>
+    </header>
+
+    <!-- The live-test portal: one capsule (email · company · action), one consent line, one trust row -->
+    <div class="portal" data-stagger>
+        <form class="portal__form" data-stagger-item data-form action="#" method="post" data-endpoint="" novalidate>
+                    <!-- one field first; company and consent open as soon as an email is being typed (progressive disclosure) -->
+          <div class="portal__capsule">
+            <span class="field portal__field">
+              <label for="cta-email" class="sr-only">Work email</label>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.5 7 8.5 6 8.5-6"/></svg>
+              <input id="cta-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="Your work email" spellcheck="false" required>
+            </span>
+            <button class="portal__submit cta__submit" type="submit">Book a live test <span aria-hidden="true">→</span></button>
+          </div>
+          <div class="portal__more" data-portal-more>
+            <div class="portal__more-in">
+            <span class="field portal__field portal__field--solo">
+              <label for="cta-company" class="sr-only">Company</label>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V6l8-3 8 3v14M9 20v-5h6v5M8 9h.01M12 9h.01M16 9h.01M8 12h.01M12 12h.01M16 12h.01"/></svg>
+              <input id="cta-company" name="company" type="text" autocomplete="organization" placeholder="Company name" required>
+            </span>
+          <label class="cta__consent portal__consent"><input type="checkbox" name="consent" required><span class="portal__box" aria-hidden="true"></span><span> I agree that Phannes Inc. may contact me about this request.</span></label>
+            </div>
+          </div>
+          <input type="hidden" name="source_page" value="home">
+          <input type="hidden" name="utm_source"><input type="hidden" name="utm_medium"><input type="hidden" name="utm_campaign">
+          <p class="cta__status" role="status" aria-live="polite" data-form-status></p>
+        </form>
+      <ul class="portal__trust" aria-label="Good to know">
+        <li data-stagger-item><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-6.5"/></svg>No consulting project to get started</li>
+        <li data-stagger-item><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-6.5"/></svg>Private, self-hosted deployment available</li>
+        <li data-stagger-item><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-6.5"/></svg>Answers verified against your own sources</li>
+      </ul>
+      <p class="portal__login" data-stagger-item>Already using Silenus? <a href="https://silenus.app">Log in</a> · <a href="https://silenus.app">Create an account</a></p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer fh">
+  <!-- Horizon footer: no boxes, no rules. Brand · links · legal on one line; the fibre leaves past the bottom-right. -->
+  <div class="wrap fh__row" data-stagger>
+    <div class="fh__brand" data-stagger-item>
+      <a class="nav__brand" href="/" aria-label="Silenus home"><img src="assets/img/logo-mark.svg" width="16" height="19" alt=""><span class="nav__word">SILENUS</span></a>
+      <p class="fh__tag">Where your company's knowledge comes to work.</p>
+    </div>
+    <nav class="fh__nav" data-stagger-item aria-label="Footer">
+      <a href="platform.html">Platform</a>
+      <a href="why-silenus.html">Why Silenus</a>
+      <a href="index.html#security">Security</a>
+      <a href="index.html#pricing">Pricing</a>
+      <a href="company.html#company">Company</a>
+      <a href="https://silenus.app">Log in</a>
+    </nav>
+    <div class="fh__legal" data-stagger-item>
+      <p>SILENUS by Phannes Inc. · © 2026</p>
+      <p><a href="/privacy">Privacy</a><a href="/cookies">Cookies</a><a href="/imprint">Imprint</a></p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
