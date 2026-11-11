@@ -23,8 +23,8 @@
 <!-- Fonts and libraries are self-hosted: no third-party request blocks the first paint -->
 <link rel="preload" href="assets/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/vEFI2_tTDB4M7-auWDN0ahZJW1gb8tc.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/css/site.min.css?v=20261111071645" as="style">
-<link rel="preload" href="assets/js/site.min.js?v=20261111071645" as="script">
+<link rel="preload" href="assets/css/site.min.css?v=20261111081251" as="style">
+<link rel="preload" href="assets/js/site.min.js?v=20261111081251" as="script">
 <style>
 /* Critical: the preloader paints on the first frame, before the stylesheet arrives (the stylesheet link sits after it in <body>) */
 html{background:#09111A}body{margin:0;background:#09111A}
@@ -39,8 +39,6 @@ html{background:#09111A}body{margin:0;background:#09111A}
 .pl4.is-full .pl4__l{stroke:#F3F4F6;stroke-width:12}
 .pl4.is-full .pl4__l--s{stroke:url(#pl4g);stroke-width:14}
 .pl4.is-leaving .pl4__wire,.pl4.is-leaving .pl4__track,.pl4.is-leaving .pl4__head{opacity:0;transition:opacity .4s ease}
-.pl4__by{position:absolute;bottom:32px;left:0;right:0;margin:0;text-align:center;font:500 11px/1 "IBM Plex Mono",ui-monospace,monospace;letter-spacing:.22em;color:#4B535E}
-.pl4__by span{letter-spacing:.08em;text-transform:none}
 .pl4.is-leaving{opacity:0;transition:opacity .7s cubic-bezier(.16,1,.3,1) .1s;pointer-events:none}
 .pl4.is-leaving .pl4__word{transform:translateY(-14px) scale(.98);transition:transform .8s cubic-bezier(.16,1,.3,1)}
 </style>
@@ -120,7 +118,7 @@ html{background:#09111A}body{margin:0;background:#09111A}
 </script>
 
 <!-- GSAP 3.12.5 + ScrollTrigger + Lenis 1.1.13 and the page scripts, bundled by build.py -->
-<script src="assets/js/site.min.js?v=20261111071645" defer></script>
+<script src="assets/js/site.min.js?v=20261111081251" defer></script>
 </head>
 <body>
 <!-- Entry preloader: every load. Painted from the inline styles before the stylesheet arrives; tied to real
@@ -134,9 +132,8 @@ html{background:#09111A}body{margin:0;background:#09111A}
     <circle class="pl4__head" cx="-200" cy="132" r="3.2" data-head/>
     <path class="pl4__l pl4__l--s" d="M60 18H20a20 20 0 0 0 0 40h20a20 20 0 0 1 0 40H0" transform="translate(0 0)" pathLength="1" data-x="0" data-w="60"/><path class="pl4__l" d="M0 18V98" transform="translate(104 0)" pathLength="1" data-x="104" data-w="8"/><path class="pl4__l" d="M0 18V98H50" transform="translate(148 0)" pathLength="1" data-x="148" data-w="50"/><path class="pl4__l" d="M52 18H0V98H52M0 58H44" transform="translate(242 0)" pathLength="1" data-x="242" data-w="52"/><path class="pl4__l" d="M0 98V18L56 98V18" transform="translate(338 0)" pathLength="1" data-x="338" data-w="56"/><path class="pl4__l" d="M0 18V68a28 28 0 0 0 56 0V18" transform="translate(438 0)" pathLength="1" data-x="438" data-w="56"/><path class="pl4__l" d="M60 18H20a20 20 0 0 0 0 40h20a20 20 0 0 1 0 40H0" transform="translate(538 0)" pathLength="1" data-x="538" data-w="60"/>
   </svg>
-  <p class="pl4__by">SILENUS <span>by Phannes Inc.</span></p>
 </div>
-<link rel="stylesheet" href="assets/css/site.min.css?v=20261111071645">
+<link rel="stylesheet" href="assets/css/site.min.css?v=20261111081251">
 <a class="skip-link" href="#main">Skip to content</a>
 
 <!-- ================= 00 · NAVIGATION ================= -->
@@ -147,7 +144,7 @@ html{background:#09111A}body{margin:0;background:#09111A}
       <span class="nav__word">SILENUS</span>
     </a>
 
-    <nav class="nav__pagelinks" aria-label="Pages"><a class="nav__pl is-here" href="index.html" aria-current="page">Home</a><a class="nav__pl" href="platform.html">Platform</a><a class="nav__pl" href="why-silenus.html">Why Silenus</a><a class="nav__pl" href="security.html">Security</a><a class="nav__pl" href="company.html">Company</a><a class="nav__pl" href="faq.html">FAQ</a></nav>
+    <nav class="nav__pagelinks" aria-label="Pages"><a class="nav__pl is-here" href="index.html" aria-label="Home" aria-current="page"><span class="nav__rw" aria-hidden="true"><i style="--i:0" data-c="H">H</i><i style="--i:1" data-c="o">o</i><i style="--i:2" data-c="m">m</i><i style="--i:3" data-c="e">e</i></span></a><a class="nav__pl" href="platform.html" aria-label="Platform"><span class="nav__rw" aria-hidden="true"><i style="--i:0" data-c="P">P</i><i style="--i:1" data-c="l">l</i><i style="--i:2" data-c="a">a</i><i style="--i:3" data-c="t">t</i><i style="--i:4" data-c="f">f</i><i style="--i:5" data-c="o">o</i><i style="--i:6" data-c="r">r</i><i style="--i:7" data-c="m">m</i></span></a><a class="nav__pl" href="why-silenus.html" aria-label="Why Silenus"><span class="nav__rw" aria-hidden="true"><i style="--i:0" data-c="W">W</i><i style="--i:1" data-c="h">h</i><i style="--i:2" data-c="y">y</i><i class="nav__sp"> </i><i style="--i:4" data-c="S">S</i><i style="--i:5" data-c="i">i</i><i style="--i:6" data-c="l">l</i><i style="--i:7" data-c="e">e</i><i style="--i:8" data-c="n">n</i><i style="--i:9" data-c="u">u</i><i style="--i:10" data-c="s">s</i></span></a><a class="nav__pl" href="security.html" aria-label="Security"><span class="nav__rw" aria-hidden="true"><i style="--i:0" data-c="S">S</i><i style="--i:1" data-c="e">e</i><i style="--i:2" data-c="c">c</i><i style="--i:3" data-c="u">u</i><i style="--i:4" data-c="r">r</i><i style="--i:5" data-c="i">i</i><i style="--i:6" data-c="t">t</i><i style="--i:7" data-c="y">y</i></span></a><a class="nav__pl" href="company.html" aria-label="Company"><span class="nav__rw" aria-hidden="true"><i style="--i:0" data-c="C">C</i><i style="--i:1" data-c="o">o</i><i style="--i:2" data-c="m">m</i><i style="--i:3" data-c="p">p</i><i style="--i:4" data-c="a">a</i><i style="--i:5" data-c="n">n</i><i style="--i:6" data-c="y">y</i></span></a><a class="nav__pl" href="faq.html" aria-label="FAQ"><span class="nav__rw" aria-hidden="true"><i style="--i:0" data-c="F">F</i><i style="--i:1" data-c="A">A</i><i style="--i:2" data-c="Q">Q</i></span></a></nav>
 
     <!-- Live context: page progress + the section you are in (updates on scroll) -->
     <p class="nav__ctx" aria-hidden="true">
