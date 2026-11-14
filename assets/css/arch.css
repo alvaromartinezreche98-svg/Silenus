@@ -1,0 +1,869 @@
+/* =====================================================================================================
+   SILENUS — Architectural grid + editorial type (2026-11-14, v2)
+   Hero, background grid, navbar integration and the preloader → hero entrance.
+
+   · Typography is the hero. One sentence in three registers from the brand's own fonts:
+       "Everything your business"  Inter Display, light, small        (restrained)
+       "knows,"                    Source Serif 4, regular, larger    (same baseline: sans → serif mid-line)
+       "connected."                Source Serif 4, heaviest (600), display optical size, brand teal,
+                                   sized to span the type columns — the statement.
+     (No real italic ships with either family, so none is faked.)
+   · Grid: four unequal columns in the page frame (10/12 of the viewport, like every section below);
+     rows: nav · type · CTA band · product frame. No line crosses the type; lines frame it.
+   · No eyebrows, badges or metadata labels. One accent (signal green, the green end of the logo
+     gradient) for the trail on the grid, the current page and focus — nothing else.
+   · Motion: transform / opacity only. Ambient trails are CSS; the entrance is a GSAP timeline.
+   · Rules carry the site's own specificity guard (#_sh…), as #_ax, to beat the legacy overrides.
+   ===================================================================================================== */
+
+:root {
+  --ax-ground: #F3F4F6;
+  --ax-sheet: #FFFFFF;
+  --ax-line: #DCE0E5;
+  --ax-line-strong: #B9C1CA;
+  --ax-ink: #1B222B;
+  --ax-text: #4E5864;
+  --ax-teal-ink: #1D6A6E;
+  --ax-teal: #2E8A8E;             /* the site's accent teal: "connected." (≈ 4:1 on the ground; large text) */
+  --ax-sig: #1FCB74;             /* signal green: the accent */
+  --ax-sig-ink: #0B7A45;         /* the accent as text (≥ 4.5:1 on white and ground) */
+  --ax-sans: Inter, system-ui, -apple-system, sans-serif;
+  --ax-display: "Inter Display", Inter, system-ui, sans-serif;
+  --ax-serif: "Source Serif 4", Georgia, serif;
+  --ax-ease: cubic-bezier(.16, 1, .3, 1);
+
+  /* column proportions inside the frame — shared by the hero and the nav, so their dividers meet */
+  --ax-c1: 140fr; --ax-c2: 620fr; --ax-c3: 112fr; --ax-c4: 328fr;
+  --ax-pad: clamp(16px, 1.55vw, 30px);
+}
+
+/* ---------------------------------------------------------------- HERO ---------------------------- */
+html body.theme-light:is(body, #_ax#_ax#_ax#_ax) #main > section.ax-hero {
+  position: relative !important;
+  display: block !important;
+  min-height: 100svh !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: var(--ax-ground) !important;
+  overflow: clip !important;
+  isolation: isolate;
+  color: var(--ax-ink);
+}
+.ax-lines { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+
+html body.theme-light:is(body, #_ax#_ax#_ax#_ax) #main .ax-hero .ax-grid {
+  position: relative;
+  z-index: 1;
+  display: grid !important;
+  min-height: 100svh !important;
+  padding: 0 !important;
+  grid-template-columns: minmax(0, var(--ax-c1)) minmax(0, var(--ax-c2)) minmax(0, var(--ax-c3)) minmax(0, var(--ax-c4));
+  grid-template-rows: var(--ax-nav-h, 72px) auto 84px var(--ax-frame-row, minmax(clamp(220px, 32svh, 420px), 1fr));
+  grid-template-areas:
+    "nav   nav   nav   nav"
+    ".     head  head  head"
+    ".     sec   cta   cta"
+    "frame frame frame frame";
+}
+.ax-cell { position: relative; min-width: 0; }
+.ax-fill { position: absolute; inset: 0; z-index: -1; transform-origin: 0 50%; }
+
+/* the type: one heading, three registers */
+.ax-head {
+  grid-area: head;
+  padding: var(--ax-top) var(--ax-pad) clamp(18px, 3vh, 34px);
+}
+.ax-hero { --ax-top: clamp(40px, 7.5vh, 96px); }
+html body.theme-light:is(body, #_ax#_ax#_ax#_ax) #main .ax-hero h1.ax-title {
+  margin: 0; max-width: none;
+  font: 400 1rem/1 var(--ax-serif);
+  letter-spacing: 0;
+  color: var(--ax-ink);
+}
+.ax-ln { display: block; overflow: hidden; }
+.ax-ln > span { display: block; will-change: transform; }
+/* a legacy heading rule sets -webkit-text-fill-color, which beats color: give each register its own colour back */
+.ax-title .ax-t1, .ax-title .ax-t2, .ax-title .ax-t3 { -webkit-text-fill-color: currentColor; }
+.ax-ln--a { padding-bottom: .1em; }
+.ax-t1 {
+  font: 300 clamp(1.15rem, 1.75vw, 2.1rem)/1 var(--ax-display);
+  letter-spacing: -.012em;
+  color: var(--ax-ink);
+}
+.ax-t2 {
+  font: 400 clamp(2.6rem, 5.4vw, 6.6rem)/1 var(--ax-serif);
+  font-variation-settings: "opsz" 60;
+  letter-spacing: -.025em;
+  margin-left: .12em;
+  color: var(--ax-ink);
+}
+.ax-ln--b { padding-bottom: .04em; }
+.ax-t3 {
+  display: block;
+  /* spans the three type columns: (frame × 1060/1200 − 2 pad) ÷ the word's width at 1em (≈ 4.2) */
+  font: 600 clamp(5rem, calc(17.3vw - 14px), 21rem)/.86 var(--ax-serif);
+  font-variation-settings: "wght" 600, "opsz" 60;
+  letter-spacing: -.035em;
+  margin-left: -.045em;            /* optical: the c's bowl hangs to the type edge */
+  padding-top: .07em;              /* air between the d's ascender and the line above */
+  color: var(--ax-teal);
+}
+
+/* lead: top-right of the head row, set against the small line, not under the statement */
+.ax-lead {
+  grid-column: 4; grid-row: 2;      /* shares the type row (the type's first line is short); left edge on the column line */
+  align-self: start; z-index: 1;
+  padding: var(--ax-top) var(--ax-pad) 0;
+}
+html body.theme-light:is(body, #_ax#_ax#_ax#_ax) #main .ax-hero .ax-lead p {
+  margin: 0; max-width: 30ch;
+  font: 400 18px/1.55 var(--ax-sans);
+  color: var(--ax-text);
+}
+
+/* CTA band */
+html body.theme-light:is(body, #_ax#_ax#_ax#_ax) #main .ax-hero a.ax-sec {
+  grid-area: sec;
+  display: flex; align-items: center; gap: 12px;
+  padding: 0 var(--ax-pad);
+  font: 500 15px/1.2 var(--ax-sans); color: var(--ax-ink); text-decoration: none;
+}
+.ax-sec__t { position: relative; }
+.ax-sec__t::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -5px; height: 1px;
+  background: var(--ax-ink); transform: scaleX(0); transform-origin: 0 50%; transition: transform .5s var(--ax-ease);
+}
+.ax-sec:hover .ax-sec__t::after, .ax-sec:focus-visible .ax-sec__t::after { transform: scaleX(1); }
+.ax-sec svg { width: 16px; height: 16px; stroke: currentColor; stroke-width: 1.6; fill: none; transition: transform .5s var(--ax-ease); }
+.ax-sec:hover svg { transform: translateY(3px); }
+
+html body.theme-light:is(body, #_ax#_ax#_ax#_ax) #main .ax-hero a.ax-cta {
+  grid-area: cta;
+  display: grid; grid-template-columns: 1fr auto; align-items: center;
+  padding: 0 0 0 var(--ax-pad);
+  color: #FFFFFF; text-decoration: none;
+}
+.ax-cta > .ax-fill { background: var(--ax-ink); transition: background-color .45s var(--ax-ease); }
+.ax-cta:hover > .ax-fill, .ax-cta:focus-visible > .ax-fill { background: var(--ax-teal-ink); }
+.ax-cta__t { font: 500 clamp(16px, 1.15vw, 19px)/1 var(--ax-sans); letter-spacing: -.005em; }
+.ax-cta__go {
+  display: grid; place-items: center; align-self: stretch;
+  width: clamp(64px, 6vw, 84px); border-left: 1px solid rgba(255, 255, 255, .14);
+}
+.ax-cta__go svg { width: 20px; height: 20px; stroke: currentColor; stroke-width: 1.6; fill: none; transition: transform .5s var(--ax-ease); }
+.ax-cta:hover .ax-cta__go svg { transform: translateX(4px); }
+.ax-hero a:focus-visible { outline: 2px solid var(--ax-sig); outline-offset: -4px; }
+
+/* product frame: the dashboard (the 02 demo) rises into this cell */
+.ax-frame { grid-area: frame; pointer-events: none; }
+
+/* ---------------------------------------------------------------- BODY TYPE (homepage) ------------ */
+/* One description style for the homepage, every width: Inter Regular 18 px / 1.55 — the hero lead (above),
+   the section leads, the "How it works" lead and step descriptions, the Trust cells' explanatory text.
+   (12–14 px UI copy inside the product demo cards and mono captions are labels, not descriptions: unchanged.) */
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main :is(.sec-head__lead, .ks__lead, .kx__lead, .kx-copy__d, #security .bt-c p:not([class])) {
+  font-family: var(--ax-sans) !important;
+  font-size: 18px !important;
+  font-weight: 400 !important;
+  line-height: 1.55 !important;
+  letter-spacing: 0 !important;
+}
+
+/* ---------------------------------------------------------------- LINE WORK ----------------------- */
+.ax-l { position: absolute; display: block; background: var(--ax-line); }
+.ax-l--h { height: 1px; }
+.ax-l--v { width: 1px; }
+
+.ax-x { position: absolute; width: 11px; height: 11px; margin: -5px 0 0 -5px; }
+.ax-x::before, .ax-x::after { content: ""; position: absolute; background: var(--ax-line-strong); }
+.ax-x::before { left: 5px; top: 0; width: 1px; height: 11px; }
+.ax-x::after { top: 5px; left: 0; height: 1px; width: 11px; }
+.ax-x--sig::before, .ax-x--sig::after { background: var(--ax-sig); }
+.ax-x > b { position: absolute; left: 1px; top: 1px; width: 9px; height: 9px; border: 1px solid var(--ax-sig); opacity: 0; }
+
+/* light trails: a short segment of the signal travels a line, then rests. No glow. */
+.ax-t { position: absolute; display: block; overflow: hidden; pointer-events: none; }
+.ax-t--h { height: 1px; }
+.ax-t--v { width: 1px; }
+.ax-t > b { position: absolute; display: block; opacity: 0; }
+.ax-t--h > b { left: 0; top: 0; height: 1px; width: clamp(90px, 11vw, 190px); background: linear-gradient(90deg, rgba(31, 203, 116, 0), var(--ax-sig)); }
+.ax-t--v > b { top: 0; left: 0; width: 1px; height: clamp(80px, 9vw, 160px); background: linear-gradient(180deg, rgba(31, 203, 116, 0), var(--ax-sig)); }
+.ax-t--rev.ax-t--h > b { background: linear-gradient(270deg, rgba(31, 203, 116, 0), var(--ax-sig)); }
+.ax-t--rev.ax-t--v > b { background: linear-gradient(0deg, rgba(31, 203, 116, 0), var(--ax-sig)); }
+
+.ax-live .ax-t--h > b { animation: axRunX var(--dur, 12s) linear var(--delay, 0s) infinite; }
+.ax-live .ax-t--v > b { animation: axRunY var(--dur, 12s) linear var(--delay, 0s) infinite; }
+.ax-live .ax-t--h.ax-t--rev > b { animation-name: axRunXr; }
+.ax-live .ax-t--v.ax-t--rev > b { animation-name: axRunYr; }
+.ax-live .ax-x--pulse > b { animation: axFlash var(--dur, 12s) ease-out var(--delay, 0s) infinite; }
+/* the travel takes the first 28 % of the cycle; the rest is rest */
+@keyframes axRunX  { 0% { transform: translateX(-100%); opacity: 1; } 28% { transform: translateX(var(--w)); opacity: 1; } 28.01%, 100% { transform: translateX(var(--w)); opacity: 0; } }
+@keyframes axRunXr { 0% { transform: translateX(var(--w)); opacity: 1; } 28% { transform: translateX(-100%); opacity: 1; } 28.01%, 100% { transform: translateX(-100%); opacity: 0; } }
+@keyframes axRunY  { 0% { transform: translateY(-100%); opacity: 1; } 28% { transform: translateY(var(--h)); opacity: 1; } 28.01%, 100% { transform: translateY(var(--h)); opacity: 0; } }
+@keyframes axRunYr { 0% { transform: translateY(var(--h)); opacity: 1; } 28% { transform: translateY(-100%); opacity: 1; } 28.01%, 100% { transform: translateY(-100%); opacity: 0; } }
+@keyframes axFlash { 0% { opacity: 0; transform: scale(.5); } 4% { opacity: 1; transform: scale(1); } 16%, 100% { opacity: 0; transform: scale(1.6); } }
+.ax-idle .ax-t > b, .ax-idle .ax-x > b { animation-play-state: paused; }
+
+/* The preloader (the restored SILENUS wordmark, critical CSS in index.html) hands over to the grid in arch-hero.js:
+   its luminous line splits into the hero's horizontal lines and the verticals grow out of them. */
+
+/* ---------------------------------------------------------------- TABLET 768–1199 ----------------- */
+@media (max-width: 1199.98px) {
+  :root { --ax-pad: clamp(18px, 3vw, 28px); }
+  html body.theme-light:is(body, #_ax#_ax#_ax#_ax) #main .ax-hero .ax-grid {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, .5fr) minmax(0, 1fr);
+    grid-template-rows: var(--ax-nav-h, 64px) auto auto 76px var(--ax-frame-row, minmax(clamp(200px, 30svh, 360px), 1fr));
+    grid-template-areas:
+      "nav  nav  nav"
+      "head head head"
+      "lead lead ."
+      "sec  cta  cta"
+      "frame frame frame";
+  }
+  .ax-hero { --ax-top: clamp(40px, 7vw, 72px); }
+  .ax-head { padding-bottom: clamp(16px, 2.6vw, 28px); }
+  .ax-lead { grid-area: lead; padding: clamp(20px, 3vw, 28px) var(--ax-pad) clamp(24px, 3.6vw, 34px); }
+  .ax-t1 { font-size: clamp(1.1rem, 2.6vw, 1.6rem); }
+  .ax-t2 { font-size: clamp(2.5rem, 7.6vw, 5.4rem); }
+  .ax-t3 { font-size: calc(19.6vw - 12px); }   /* the whole frame width */
+}
+
+/* ---------------------------------------------------------------- PHONE < 768 --------------------- */
+/* A composition of its own: the small line alone, "knows," stepped in on the next line,
+   "connected." edge to edge between the frame lines. */
+@media (max-width: 767.98px) {
+  :root { --ax-pad: 18px; }
+  html body.theme-light:is(body, #_ax#_ax#_ax#_ax) #main .ax-hero .ax-grid {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: var(--ax-nav-h, 56px) auto auto 64px 56px var(--ax-frame-row, minmax(clamp(180px, 26svh, 300px), 1fr));
+    grid-template-areas: "nav" "head" "lead" "cta" "sec" "frame";
+  }
+  .ax-head { padding: clamp(44px, 9vh, 72px) var(--ax-pad) 18px; }
+  .ax-t1 { display: block; font-size: 1.125rem; letter-spacing: -.005em; margin-bottom: .5rem; }
+  .ax-t2 { display: block; font-size: clamp(2.6rem, 12.5vw, 3.6rem); margin-left: 28%; }
+  .ax-ln--a { padding-bottom: .12em; }
+  .ax-t3 { font-size: calc((100vw * 10 / 12 - 2 * var(--ax-pad) - 6px) / 4.25); margin-left: -.05em; }
+  .ax-lead { padding: 20px var(--ax-pad) 26px; }
+  html body.theme-light:is(body, #_ax#_ax#_ax#_ax) #main .ax-hero .ax-lead p { max-width: 34ch; }
+  .ax-cta__go { width: 60px; }
+  .ax-t--h > b { width: 110px; }
+}
+
+/* ---------------------------------------------------------------- REDUCED MOTION / NO JS ---------- */
+/* Without the flying demo the product window stays in its own section below, so the hero closes
+   after the CTA band with a short frame row instead of an empty product frame. */
+html.reduced-motion .ax-hero, html:not(.js) .ax-hero { --ax-frame-row: clamp(40px, 6vh, 64px); }
+html.reduced-motion body.theme-light:is(body, #_ax#_ax#_ax#_ax) #main > section.ax-hero,
+html.reduced-motion body.theme-light:is(body, #_ax#_ax#_ax#_ax) #main .ax-hero .ax-grid,
+html:not(.js) body.theme-light:is(body, #_ax#_ax#_ax#_ax) #main > section.ax-hero,
+html:not(.js) body.theme-light:is(body, #_ax#_ax#_ax#_ax) #main .ax-hero .ax-grid { min-height: 0 !important; }
+@media (prefers-reduced-motion: reduce) {
+  .ax-t, .ax-x > b { display: none !important; }
+  .ax-sec__t::after, .ax-sec svg, .ax-cta__go svg, .ax-cta > .ax-fill { transition: none; }
+}
+
+/* =====================================================================================================
+   SECTIONS (homepage) — titles composed like the hero, the step videos, the page grid
+   ===================================================================================================== */
+
+/* Source Serif 4 Italic: the italic of the site's own serif (self-hosted like the rest; latin + latin-ext),
+   used only for single emphasised words in section titles. */
+@font-face { font-family: "Source Serif 4"; font-style: italic; font-weight: 400 600; font-display: swap;
+  src: url(../fonts/vEFK2_tTDB4M7-auWDN0ahZJW1gewtu_Wo7H.woff2) format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "Source Serif 4"; font-style: italic; font-weight: 400 600; font-display: swap;
+  src: url(../fonts/vEFK2_tTDB4M7-auWDN0ahZJW1gewtW_Wg.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+/* Section titles: the hero's registers at section scale, one composition per title (markup in index.html).
+     .tx-s  Inter Display Light, small — the quiet lead-in
+     .tx-m  serif Regular — the sentence
+     .tx-l  serif 600, larger, teal — the word that matters
+     .tx-i  the serif's real italic, teal — a single emphasised word
+   Two clauses stay two masked lines (the section-head reveal). Sized here, not by the 4-column fit. */
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main .sec-head__title.tx {
+  --tx: clamp(2.5rem, 3.35vw, 4rem);
+  font-family: var(--ax-serif) !important; font-size: var(--tx) !important; font-weight: 400 !important;
+  font-variation-settings: "opsz" 60; line-height: 1.02 !important; letter-spacing: -.02em !important;
+  max-width: none !important;
+}
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #knowledge .ks__title.tx { --tx: clamp(2rem, 2.65vw, 2.9rem); font-size: var(--tx) !important; }   /* the narrow 'How it works' column; a legacy rule sizes this title from --sec-t */
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main .sec-head__title.tx .sec-head__muted { color: inherit !important; -webkit-text-fill-color: currentColor; }
+.sec-head__title.tx .hr-l { padding-bottom: .1em; margin-bottom: -.06em; }
+.sec-head__title.tx .hr-l, .sec-head__title.tx .hr-i { white-space: normal !important; max-width: 100%; }   /* a long clause wraps inside its own mask on narrow screens */
+.tx-s, .tx-m, .tx-l, .tx-i { -webkit-text-fill-color: currentColor; }
+.tx-s { font: 300 .4em/1 var(--ax-display); letter-spacing: -.008em; color: var(--ax-text); margin-right: .2em; vertical-align: .08em; }
+.tx-m { font-weight: 400; color: var(--ax-ink); }
+.tx-l { font-size: 1.5em; font-weight: 600; font-variation-settings: "wght" 600, "opsz" 60; letter-spacing: -.032em; line-height: .9; color: var(--ax-teal); }
+.tx-i { font-style: italic; font-weight: 400; font-size: 1.1em; letter-spacing: -.012em; color: var(--ax-teal); }
+.tx-i.tx-l { font-weight: 500; font-variation-settings: "wght" 500, "opsz" 60; font-size: 1.55em; }
+/* dark sections: the same registers, light */
+:is(.bt-sec--dark, .ks, .kx, .cta) .tx-m { color: #F3F4F6; }
+:is(.bt-sec--dark, .ks, .kx, .cta) .tx-s { color: rgba(243, 244, 246, .72); }
+:is(.bt-sec--dark, .ks, .kx, .cta) :is(.tx-l, .tx-i) { color: #5FC4A6; }
+@media (max-width: 1023.98px) {
+  html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main .sec-head__title.tx,
+  html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #knowledge .ks__title.tx { --tx: clamp(2.1rem, 5.6vw, 3rem); }
+  .tx-s { font-size: .46em; }
+}
+
+
+/* Type system (homepage): the serif is for titles and headings only; everything that supports them is Inter.
+   These were set in the serif by older rules: the platform demo's guide titles (Documents, AI Chat, …), the Connected
+   hub's customer name and record count, and the Traction figures. Sizes stay; family and weight change. */
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #platform .sx-guide h3,
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #connected .bt-cn__hub b,
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #traction .bt-kpi b,
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #traction .wh-chart__v span {
+  font-family: var(--ax-sans) !important; font-weight: 500 !important; font-style: normal !important;
+  font-variation-settings: normal !important; -webkit-text-fill-color: currentColor;
+}
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #platform .sx-guide h3 { letter-spacing: -.012em !important; line-height: 1.3 !important; font-size: 19px !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main :is(#connected .bt-cn__hub b, #traction .bt-kpi b, #traction .wh-chart__v span) { letter-spacing: -.03em !important; font-variant-numeric: tabular-nums; }
+
+/* The page grid (arch-sections.js): each section's architecture is drawn as it approaches. The lines sit on
+   the sections' real edges (they coincide with the cell borders), never take a click. */
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main > section:not(.ax-hero) { position: relative; }
+.ax-sgrid { position: absolute; inset: 0; z-index: 3; pointer-events: none; overflow: hidden; }
+.ax-sl { position: absolute; display: block; }
+.ax-sl--h { height: 1px; }
+.ax-sl--v { width: 1px; }
+.ax-sl--accent { height: 2px; margin-top: -1px; }   /* a section's edge in the green (Workflows, Trust) */
+.ax-srun { position: absolute; left: 0; top: 0; width: 160px; height: 2px; margin-top: -.5px; opacity: 0; pointer-events: none;
+  background: linear-gradient(90deg, rgba(79, 163, 224, 0), #4FA3E0 55%, #6FCF9A 92%, rgba(111, 207, 154, 0)); will-change: transform, opacity; }
+@media (prefers-reduced-motion: reduce) { .ax-srun { display: none; } }
+
+/* ---------------------------------------------------------------- HOW IT WORKS (stage, dark) ------- */
+/* A dark chapter on the site's own dark ground (#0B1014, as Product and the closing call): light type, fine light
+   lines, the light teal for the step marks, the logo gradient for light. Between two white sections it reads as its
+   own chapter, and the light recordings sit in it as framed windows. Desktop (≥1024): the track scrolls while the stage pins under the header; the scroll through it selects
+   step 01 → 04 in place. Cells, every width:  head · tabs | recording | step · text  (arch-steps.js draws the lines
+   on these cells' edges, builds them first, then places the content, and runs the step transitions). */
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main > section#knowledge {
+  --kx-bg: #0B1014; --kx-line: rgba(255, 255, 255, .12); --kx-chrome: #141B21; --kx-body: #0F151A;
+  --kx-ink: #F3F4F6; --kx-text: rgba(243, 244, 246, .72); --kx-mute: rgba(243, 244, 246, .56); --kx-accent: #5FC4A6;
+  --kx-stage: calc(100svh - var(--ax-nav-h, 72px));
+  background: var(--kx-bg) !important; color: var(--kx-ink) !important;
+  padding: 0 !important; margin: 0 !important; border: 0 !important; overflow: visible !important;
+}
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main > section#knowledge::before, html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main > section#knowledge::after { display: none !important; }
+.kx__track { position: relative; }
+.kx__stage { position: relative; display: flex; align-items: center; }
+.kx__lines { position: absolute; inset: 0; z-index: 3; pointer-events: none; }
+.kx__lines .ax-sl { position: absolute; display: block; background: var(--kx-line); }
+.kx__lines .ax-sl--h { height: 1px; } .kx__lines .ax-sl--v { width: 1px; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main .kx__grid {
+  position: relative; display: grid !important; padding: 0 !important; margin-top: 0 !important; margin-bottom: 0 !important;
+  grid-template-columns: minmax(0, 31fr) minmax(0, 27fr) minmax(0, 42fr);
+  grid-template-rows: minmax(0, 1fr) clamp(176px, 22vh, 210px);
+  grid-template-areas: "head vis vis" "tabs copy copy";
+}
+.kx-cell { position: relative; min-width: 0; min-height: 0; }
+
+/* head */
+.kx__head { grid-area: head; display: flex; flex-direction: column; align-items: flex-start; gap: 22px; padding: clamp(28px, 4.2vh, 44px) var(--ax-pad); }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main .kx__eyebrow { margin: 0; font: 500 12px/1 var(--ax-mono, "IBM Plex Mono", monospace); letter-spacing: .14em; text-transform: uppercase; color: var(--kx-accent); }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main .kx__head .kx__title { margin: 0 !important; color: var(--kx-ink) !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main .kx__lead { margin: 0; max-width: 32ch; color: var(--kx-text) !important; }
+.kx__title .kx-l { display: block; overflow: hidden; padding-bottom: .1em; margin-bottom: -.06em; }
+.kx__title .kx-li { display: block; }
+
+/* tabs: four unequal-height-free cells in the tab column, the marker rides the column's left line */
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main .kx__tabs { grid-area: tabs; list-style: none; margin: 0; padding: 0; display: grid; grid-template-rows: repeat(4, minmax(0, 1fr)); }
+.kx__tabs li { position: relative; min-height: 0; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main .kx-tab {
+  all: unset; box-sizing: border-box; display: flex; align-items: center; gap: 14px; width: 100%; height: 100%; cursor: pointer;
+  padding: 0 var(--ax-pad); font: 400 15px/1.2 var(--ax-sans); color: var(--kx-text);
+  transition: background-color .35s var(--ax-ease), color .35s var(--ax-ease);
+}
+.kx-tab__n { font: 500 11px/1 var(--ax-mono, "IBM Plex Mono", monospace); letter-spacing: .08em; color: var(--kx-mute); transition: color .35s var(--ax-ease); }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main .kx-tab:hover { background-color: rgba(95, 196, 166, .10); color: var(--kx-ink); }
+/* the chosen step: a solid cell of the site's green (#0B7A45, the signal green's accessible shade: 5.4:1 with white),
+   white text — the green itself is the indicator, nothing else */
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main .kx-tab[aria-selected="true"], html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main .kx-tab[aria-selected="true"]:hover { background-color: var(--ax-sig-ink); color: #FFFFFF; font-weight: 500; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main .kx-tab[aria-selected="true"] .kx-tab__n { color: rgba(255, 255, 255, .8); }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main .kx-tab[aria-selected="true"]:focus-visible { outline-color: #FFFFFF; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main .kx-tab:focus-visible { outline: 2px solid var(--ax-sig); outline-offset: -4px; }
+
+/* the recording: a window that fills its cell; the windows stack, one shown */
+.kx__vis { grid-area: vis; overflow: hidden; }   /* each window paints its own ground: nothing shows before the lines */
+.kx-win { position: absolute; inset: 0; margin: 0; display: flex; flex-direction: column; opacity: 0; visibility: hidden; background: var(--kx-body); }
+.kx-win.is-on { opacity: 1; visibility: visible; z-index: 2; }
+.kx-win__bar { flex: none; display: flex; align-items: center; gap: 6px; height: 30px; padding: 0 14px; background: var(--kx-chrome); border-bottom: 1px solid var(--kx-line); }
+.kx-win__bar i { width: 7px; height: 7px; border-radius: 50%; background: rgba(255, 255, 255, .16); }
+.kx-win__bar span { margin-left: 10px; font: 500 11px/1 var(--ax-mono, "IBM Plex Mono", monospace); letter-spacing: .06em; color: var(--kx-mute); }
+.kx-win__body { position: relative; flex: 1; min-height: 0; display: grid; place-items: center; overflow: hidden; container-type: size; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main .kx-win__body > video { width: 100% !important; height: 100% !important; object-fit: contain !important; object-position: 50% 50% !important; display: block; transform-origin: 50% 50%; }
+/* the Documents recording was exported with its title bar sliced through: its top 30 of 564 px stay hidden */
+.kx-trim { width: min(100cqw, 100cqh * 1000 / 534); aspect-ratio: 1000 / 534; overflow: hidden; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main .kx-trim > video { width: 100% !important; height: 100% !important; object-fit: cover !important; object-position: 50% 100% !important; display: block; }
+.kx__wipe { position: absolute; top: 0; bottom: 0; left: 0; width: 2px; margin-left: -1px; z-index: 5; opacity: 0; pointer-events: none;
+  background: linear-gradient(180deg, rgba(79, 163, 224, 0), #4FA3E0 30%, #6FCF9A 70%, rgba(111, 207, 154, 0)); box-shadow: 0 0 10px rgba(111, 207, 154, .45); }
+
+/* the step copy: one panel per step, stacked in the two lower cells */
+/* one frame per step: its title, then its description directly underneath */
+.kx-copy { grid-column: 2 / 4; grid-row: 2; display: flex; flex-direction: column; justify-content: center; opacity: 0; visibility: hidden; z-index: 2; padding: clamp(20px, 3vh, 30px) var(--ax-pad); }
+.kx-copy.is-on { opacity: 1; visibility: visible; }
+.kx-copy__meta, .kx-copy__text { min-width: 0; }
+.kx-copy__text { margin-top: 10px; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main .kx-copy__t { margin: 0 !important; font-family: var(--ax-sans) !important; font-size: clamp(22px, 1.75vw, 30px) !important; font-weight: 500 !important; line-height: 1.2 !important; letter-spacing: -.015em !important; color: var(--kx-ink) !important; -webkit-text-fill-color: currentColor; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main .kx-copy__d { margin: 0; color: var(--kx-text) !important; max-width: 60ch; }
+.kx__copy-cell { grid-area: copy; pointer-events: none; }
+
+/* desktop: the pinned stage */
+@media (min-width: 1024px) {
+  .kx__track { height: calc(var(--kx-stage) + 3 * 75svh); }
+  .kx__stage { position: sticky; top: var(--ax-nav-h, 72px); height: var(--kx-stage); }
+  html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main .kx__grid { height: min(calc(var(--kx-stage) - 64px), calc(32.3vw + 30px + clamp(176px, 22vh, 210px))); }
+}
+/* tablet / phone: one column, recomposed — head · recording · tabs (2 × 2) · step */
+@media (max-width: 1023.98px) {
+  html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main .kx__grid { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto auto auto auto; grid-template-areas: "head" "vis" "tabs" "copy"; margin-block: clamp(48px, 8vw, 72px) !important; }
+  .kx__vis { aspect-ratio: 16 / 10; }
+  html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main .kx__tabs { grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); grid-template-rows: auto auto; }
+  html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main .kx-tab { min-height: 54px; padding: 12px var(--ax-pad); }
+  .kx-copy { grid-column: 1; grid-row: 4; }
+  .kx__copy-cell { display: none; }
+  .kx__head { gap: 16px; }
+}
+@media (max-width: 767.98px) { .kx__vis { aspect-ratio: 4 / 3; } html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main .kx-tab { font-size: 14px; gap: 10px; } }
+
+/* before the build (set by arch-steps.js only when it will animate): the cells wait for their lines */
+.kx-pre [data-kx-in], .kx-pre .kx__tabs li, .kx-pre .kx-copy.is-on > *, .kx-pre .kx-pre .kx-win.is-on { clip-path: inset(0 100% 0 0); }
+.kx-pre .kx__title .kx-li { transform: translateY(108%); }
+.kx-pre .kx__lines { opacity: 0; }
+@media (prefers-reduced-motion: reduce) { .kx__wipe { display: none; } html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main .kx-tab, .kx-tab__n { transition: none; } }
+
+/* ---------------------------------------------------------------- CONTEXT (#connected) --------------- */
+/* Its own entrance (arch-context.js), after the page grid has drawn its cell lines: the customer hub, then the five
+   linked records one by one (0.92 → 1.025 → 1, transform only: no layout moves), each card's illustration plays its
+   own small motion, then the briefing and its action. The CSS cell transitions are off here so the two never fight. */
+html.bt-anim body.page-home #main #connected .bt-cn > .bt-c { transition: none !important; }
+/* the grid draws its dividers with a grey ground through 1 px gaps; while its cells are still arriving that ground would
+   show as grey blocks, so it stays clear (the page grid's lines already mark the edges) until the entrance is done */
+html.bt-anim body.page-home #main #connected .bt-cn:not(.cn-done) { background-color: transparent !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #connected .bt-cn__top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+/* concept illustrations: fine strokes in the ink, the moving part in the brand teal */
+.cn-ill { flex: none; width: 26px; height: 26px; overflow: visible; color: var(--ax-ink); fill: none; stroke: currentColor;
+  stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; margin-top: 2px; }   /* Lucide-style: 24 grid, 2 px strokes */
+.cn-ill .a { stroke: #58B69A; }
+
+/* The cards follow the original "Built for business, designed for trust" grid: white cells divided only by 1 px lines
+   (the grey ground showing through 1 px gaps), generous padding, one small outlined icon box at the top left, then a
+   plain label, the title and one line of fact. No pills, no second icon, no underlines, no dark cells, no tints.
+   The customer is the featured cell (as "Data ownership" was): its name set large at the foot of the cell.
+   Green: #58B69A for the icon accents and the large figure; the keywords in a deeper shade of the same green
+   (#2E7D66, 4.95:1 on white) so they stay readable at text size. */
+@media (min-width: 768px) { html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #connected .bt-cn { gap: 1px !important; background-color: #E2E6EA !important; border: 1px solid #E2E6EA !important; } }
+/* phone: the cells are a swipe strip, so each carries its own hairline edge */
+@media (max-width: 767.98px) { html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #connected .bt-cn > .bt-c { border: 1px solid #E2E6EA !important; } }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #connected .bt-cn > .bt-c { background: #FFFFFF !important; border-radius: 0 !important; box-shadow: none !important; color: var(--ax-ink) !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #connected .bt-cn > .bt-c::before, html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #connected .bt-cn > .bt-c::after { display: none !important; content: none !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #connected .bt-cn > .bt-c, html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #connected .bt-cn > .bt-c * { -webkit-text-fill-color: currentColor; }
+
+/* the five records: icon box · label · title · fact, top-aligned so every row lines up */
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #connected .bt-cn__l { display: flex !important; flex-direction: column !important; justify-content: flex-start !important; align-items: flex-start !important;
+  gap: 0 !important; padding: clamp(28px, 2.6vw, 38px) !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #connected .bt-cn__top { display: flex !important; flex-direction: column-reverse !important; align-items: flex-start !important; justify-content: flex-start !important; gap: 28px !important; margin: 0 0 10px !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #connected .cn-ill { box-sizing: border-box; width: 44px !important; height: 44px !important; padding: 11px; margin: 0 !important;
+  border: 1px solid #E2E6EA; background: #FFFFFF; stroke-width: 1.75; color: var(--ax-ink); }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #connected .cn-ill .a { stroke: #58B69A; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #connected .cn-tag { display: block !important; height: auto !important; padding: 0 !important; border-radius: 0 !important; background: none !important;
+  font: 500 13px/1.3 var(--ax-sans) !important; letter-spacing: 0 !important; text-transform: none !important; color: #6B7682 !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #connected .bt-cn__l > b { display: block; margin: 0 0 8px !important; font: 600 17px/1.3 var(--ax-sans) !important; letter-spacing: -.005em !important; color: var(--ax-ink) !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #connected .bt-cn__l .cn-f { display: block; font: 400 15px/1.55 var(--ax-sans) !important; color: #4E5864 !important; max-width: 30ch; }
+
+/* emphasis: the few facts that matter, SemiBold in the deeper green — the same treatment in the lead and the cells */
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #connected :is(.sec-head__lead, .cn-f, .cn-res__d) strong { font-family: var(--ax-sans); font-weight: 600; font-style: normal; text-decoration: none !important;
+  color: #2E7D66 !important; -webkit-text-fill-color: currentColor; }
+
+/* the customer: the featured cell — label at the top, the name large at the foot, the count under a hairline */
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #connected .bt-cn__hub { display: flex !important; flex-direction: column !important; justify-content: flex-start !important; align-items: stretch !important; gap: 0 !important;
+  padding: clamp(28px, 2.6vw, 38px) clamp(22px, 2.2vw, 32px) !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #connected .bt-cn__hub p.bt-k { margin: 0 !important; font: 500 13px/1.3 var(--ax-sans) !important; letter-spacing: 0 !important; text-transform: none !important; color: #6B7682 !important; -webkit-text-fill-color: #6B7682 !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #connected .bt-cn__hub > b { display: block; margin: auto 0 6px !important; font: 500 clamp(26px, 2.2vw, 34px)/1.1 var(--ax-sans) !important; letter-spacing: -.025em !important; color: var(--ax-ink) !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #connected .bt-cn__hub > span { display: block; font: 400 15px/1.5 var(--ax-sans) !important; color: #4E5864 !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #connected .bt-cn__hub .bt-cn__n { display: flex !important; align-items: baseline; gap: 10px; margin: 22px 0 0 !important; padding: 18px 0 0 !important; border: 0 !important; border-top: 1px solid #E2E6EA !important;
+  font: 400 15px/1.3 var(--ax-sans) !important; letter-spacing: 0 !important; text-transform: none !important; color: #4E5864 !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #connected .bt-cn__hub .bt-cn__n b { font: 500 clamp(36px, 3vw, 44px)/1 var(--ax-sans) !important; letter-spacing: -.03em !important; color: #58B69A !important; }
+
+/* the morning briefing: the conclusion — the same white cell, its label, a headline, one sentence */
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #connected .bt-cn__res { display: flex !important; flex-direction: column !important; justify-content: flex-start !important; gap: 0 !important;
+  padding: clamp(28px, 2.6vw, 38px) !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #connected .cn-res__top { display: flex !important; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px 12px; margin: 0 !important; padding: 0 !important;
+  font: 500 13px/1.3 var(--ax-sans) !important; letter-spacing: 0 !important; text-transform: none !important; color: #6B7682 !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #connected .cn-res__top span { color: inherit !important; white-space: nowrap; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #connected .cn-res__top span:first-child { color: #2E7D66 !important; font-weight: 600; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #connected .cn-res__t { margin: auto 0 0 !important; padding: 18px 0 0 !important; font: 500 clamp(22px, 1.8vw, 26px)/1.2 var(--ax-sans) !important;
+  letter-spacing: -.02em !important; color: var(--ax-ink) !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #connected .cn-res__d { margin: 10px 0 0 !important; padding: 0 !important; font: 400 15px/1.55 var(--ax-sans) !important; color: #4E5864 !important; max-width: 34ch; }
+
+/* ---------------------------------------------------------------- WORKFLOWS (#product) ---------------- */
+/* Into the section: a crisp edge — Context's solid white meets the Workflows ink directly (no gradient, no gap). */
+
+/* Tabs that read as tabs: inactive cells on the ink with a clear edge; hover lifts them; the active tab turns light and
+   joins the recording's frame below it, a thin logo-gradient rule on its top edge and the clip's progress along its
+   bottom. Colour and background ease between states. The bundled controller (site.min.js) still switches the clips,
+   sets .is-on / aria-pressed and writes the progress (--p). */
+/* no white gap between the two: Context's solid white meets the Workflows ink at one crisp edge */
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main > section#product { margin-top: 0 !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #product .pd-tabs { background: rgba(255, 255, 255, .1) !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #product .pd-tab::after { content: none !important; display: none !important; }   /* the old teal pointer under the active tab: the tab now joins its frame instead */
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #product .pd-tab {
+  position: relative; cursor: pointer; align-items: center !important; gap: 14px !important;
+  background: #10171D !important; color: rgba(243, 244, 246, .66) !important; -webkit-text-fill-color: currentColor;
+  font: 400 15px/1.3 var(--ax-sans) !important; letter-spacing: 0 !important; text-align: left;
+  transition: background-color .35s var(--ax-ease), color .35s var(--ax-ease) !important;
+}
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #product .pd-tab b { font-weight: inherit !important; color: inherit !important; -webkit-text-fill-color: currentColor; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #product .pd-tab::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; z-index: 1;
+  background: linear-gradient(90deg, #4FA3E0, #6FCF9A); transform: scaleX(0); transform-origin: 0 50%; transition: transform .45s var(--ax-ease); }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #product .pd-tab:hover { background: #18232C !important; color: #FFFFFF !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #product .pd-tab.is-on, html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #product .pd-tab.is-on:hover { background: #F3F5F7 !important; color: #0B1014 !important; font-weight: 500 !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #product .pd-tab.is-on::before { transform: scaleX(1); }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #product .pd-tab:focus-visible { outline: 2px solid #6FCF9A !important; outline-offset: -4px; }
+
+/* icons: one stroke weight, no boxes filled white; the accent stroke carries the logo's green, the active tab inks it teal */
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #product .pd-tab .mg__ico {
+  flex: none; display: grid !important; place-items: center; width: 36px !important; height: 36px !important; border-radius: 0 !important;
+  background: transparent !important; border: 1px solid rgba(255, 255, 255, .16) !important; color: rgba(243, 244, 246, .78) !important;
+  transition: border-color .35s var(--ax-ease), color .35s var(--ax-ease), background-color .35s var(--ax-ease);
+}
+.wf-ico { width: 20px; height: 20px; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.wf-ico .wf-a { stroke: #6FCF9A; transition: stroke .35s var(--ax-ease); }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #product .pd-tab:hover .mg__ico { border-color: rgba(255, 255, 255, .34) !important; color: #FFFFFF !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #product .pd-tab.is-on .mg__ico { background: #FFFFFF !important; border-color: rgba(11, 16, 20, .12) !important; color: #0B1014 !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #product .pd-tab.is-on .wf-a { stroke: #2E8A8E; }
+
+/* the clip's progress: along the active tab's bottom edge, in the logo gradient */
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #product .pd-tab .mg__bar { position: absolute !important; left: 0 !important; right: 0 !important; bottom: 0 !important; width: auto !important; height: 2px !important;
+  background: transparent !important; opacity: 0; transition: opacity .3s var(--ax-ease); }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #product .pd-tab.is-on .mg__bar { opacity: 1; background: rgba(11, 16, 20, .08) !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #product .pd-tab .mg__bar u { display: block !important; width: 100% !important; height: 100% !important; background: linear-gradient(90deg, #4FA3E0, #6FCF9A) !important;
+  transform: scaleX(var(--p, 0)) !important; transform-origin: 0 50% !important; }
+
+/* phones: the tab row scrolls; it snaps tab to tab, and fades at its right edge to show there is more (tablets wrap
+   the tabs into a grid that does not scroll, so no fade there) */
+@media (max-width: 767.98px) {
+  /* start-aligned: a centred row that overflows is cut off on its left, where it cannot be scrolled to — the first tabs
+     (and the active one) were unreachable */
+  html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #product .pd-tabs { justify-content: flex-start !important; scroll-snap-type: x mandatory; -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent); mask-image: linear-gradient(90deg, #000 85%, transparent); }
+  html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #product .pd-tab { scroll-snap-align: start; min-width: max-content; padding-right: 22px !important; }
+}
+
+/* the chat card's outcome: a clear green note instead of a faded one */
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #product .pd-chat__pane .pd-st { background: rgba(31, 203, 116, .12) !important; border-color: rgba(31, 203, 116, .38) !important; color: #0B7A45 !important; font-weight: 500 !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #product .pd-tab, html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #product .pd-tab::before, html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #product .pd-tab .mg__ico, .wf-ico .wf-a, html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #product .pd-tab .mg__bar { transition: none !important; }
+}
+
+/* ---------------------------------------------------------------- TRUST (#security) — one grid -------- */
+/* One grid of six equal cells: the head (title, line, link) is the first cell, the five principles fill the rest —
+   3 × 2 on desktop, 2 × 3 on tablets, one column on phones. Same size, padding, white ground and 1 px rules for every
+   cell; no empty slot. The list keeps its semantics: the <ul> joins the grid as a subgrid. */
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #security .bt-ghost { display: none !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #security > .wrap {
+  display: grid !important; grid-template-columns: repeat(3, minmax(0, 1fr)) !important; grid-auto-rows: minmax(clamp(230px, 30vh, 280px), auto);
+  gap: 1px !important; background: #DCE0E5 !important; border: 1px solid #DCE0E5 !important; padding: 0 !important;
+}
+/* the head cell */
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #security .bt-head {
+  grid-column: 1 !important; grid-row: 1 !important; display: flex !important; flex-direction: column !important; justify-content: space-between; gap: 22px;
+  margin: 0 !important; padding: clamp(26px, 2.6vw, 38px) !important; background: #FFFFFF !important; border: 0 !important; box-shadow: none !important; min-height: 0 !important;
+}
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #security .bt-head > .bt-c { display: block !important; width: auto !important; min-height: 0 !important; padding: 0 !important; border: 0 !important; background: transparent !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #security .bt-head::before, html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #security .bt-head::after, html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #security .bt-head > .bt-c::before, html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #security .bt-head > .bt-c::after { display: none !important; content: none !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #security .bt-head__l { display: flex !important; flex-direction: column !important; align-items: flex-start !important; gap: 18px !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #security .bt-head__l .sec-head__lead { margin: 0 !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #security .sec-head__title.tx { --tx: clamp(2rem, 2.5vw, 2.9rem); }
+/* the five principles: the list joins the same grid */
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #security .bt-sc {
+  grid-column: 1 / -1 !important; grid-row: 1 / span 2 !important; display: grid !important; grid-template-columns: subgrid !important; grid-template-rows: subgrid !important;
+  gap: 1px !important; list-style: none !important; margin: 0 !important; padding: 0 !important; background: transparent !important; border: 0 !important; height: auto !important;
+  pointer-events: none;   /* the list box spans the head cell too; its cells take the pointer back */
+}
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #security .bt-sc > .bt-sc__i:first-child { grid-column: 2 !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #security .bt-sc > .bt-sc__i {
+  pointer-events: auto; display: flex !important; flex-direction: column !important; justify-content: flex-start; gap: 0;
+  grid-column: auto !important; grid-row: auto !important; width: auto !important; height: auto !important; min-height: 0 !important; margin: 0 !important;   /* the old bento spans are reset */
+  padding: clamp(26px, 2.6vw, 38px) !important; background: #FFFFFF !important; background-image: none !important; border: 0 !important; box-shadow: none !important;
+}
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #security .bt-sc > .bt-sc__i::before, html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #security .bt-sc > .bt-sc__i::after { display: none !important; content: none !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #security .bt-sc > .bt-sc__i .sc-ico { position: static !important; display: grid !important; place-items: center; width: 40px !important; height: 40px !important; margin: 0 !important;   /* text follows at a fixed distance, so titles line up across each row */
+  background: #FFFFFF !important; border: 1px solid #DCE0E5 !important; border-radius: 0 !important; color: var(--ax-ink) !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #security .bt-sc > .bt-sc__i .sc-ico svg { width: 20px !important; height: 20px !important; position: static !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #security .bt-sc > .bt-sc__i h3 { margin: 28px 0 8px !important; position: static !important;
+  font-size: clamp(19px, 1.45vw, 22px) !important; font-weight: 500 !important; line-height: 1.25 !important; letter-spacing: -.01em !important; color: var(--ax-ink) !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #security .bt-sc > .bt-sc__i p { margin: 0 !important; position: static !important; max-width: 36ch; }
+@media (max-width: 1023.98px) {
+  html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #security > .wrap { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #security .bt-sc { grid-row: 1 / span 3 !important; }
+}
+@media (max-width: 767.98px) {
+  html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #security > .wrap { grid-template-columns: minmax(0, 1fr) !important; grid-auto-rows: auto; }
+  html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #security .bt-sc { grid-row: 2 / span 5 !important; }
+  html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #security .bt-sc > .bt-sc__i:first-child { grid-column: 1 !important; }
+  html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #security .bt-sc > .bt-sc__i h3 { margin-top: 22px !important; }
+}
+
+/* ---------------------------------------------------------------- FINAL CTA + FOOTER — one ending ----------- */
+/* The page ends on one light field (the pale ground of the light sections, white cells): the CTA's grid runs straight on into the footer's grid (same 1 px lines, same
+   width, no gap), and the last thing on the page is SILENUS set across the whole grid, its letters cut by the same
+   column lines as the links above. No cards, no dark surfaces, no gradients; #58B69A on the button, the icons and the link hovers, its deeper shade
+   (#2E7D66, 4.95:1 on white) for the small green labels. */
+:root { --end-bg: #F4F6F7; --end-cell: #FFFFFF; --end-line: #E2E6EA; --end-text: #0B1014; --end-2: #4E5864; --end-3: #6B7682; --end-label: #2E7D66; }
+
+/* — the CTA: a statement cell (8 columns) and the form cell (4), split on the same line as the footer, both open ink cells — */
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #demo { background: var(--end-bg) !important; padding-bottom: 0 !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #demo .cta2__grid { display: grid !important; grid-template-columns: repeat(12, minmax(0, 1fr)) !important; grid-template-areas: none !important;
+  gap: 1px !important; background: var(--end-line) !important; border: 1px solid var(--end-line) !important; border-bottom: 0 !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #demo .cta2__grid > .bt-c { background: var(--end-cell) !important; border: 0 !important; box-shadow: none !important; border-radius: 0 !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #demo .cta2__grid > .bt-c::before, html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #demo .cta2__grid > .bt-c::after { display: none !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #demo .cta2__head { grid-column: 1 / span 8 !important; grid-row: 1 !important; justify-content: space-between !important; gap: 40px !important;
+  min-height: clamp(380px, 34vw, 480px); padding: clamp(36px, 4vw, 64px) clamp(28px, 3vw, 48px) !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #demo .cta2__head .sec-head__title { white-space: normal !important; font-size: clamp(3rem, 6.2vw, 6rem) !important; line-height: .98 !important; letter-spacing: -.025em !important; color: var(--end-text) !important; -webkit-text-fill-color: currentColor !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #demo .cta2__head .sec-head__title .sec-head__muted { color: var(--end-text) !important; -webkit-text-fill-color: var(--end-text) !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #demo .cta2__head .sec-head__title .tx-l { color: #2E7D66 !important; -webkit-text-fill-color: #2E7D66 !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #demo .cta2__head .sec-head__title .tx-s { color: var(--end-2) !important; -webkit-text-fill-color: var(--end-2) !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #demo .cta2__head .sec-head__title .tx-i { color: var(--end-text) !important; -webkit-text-fill-color: var(--end-text) !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #demo .cta2__head .sec-head__lead { max-width: 34ch !important; font-size: 18px !important; line-height: 1.55 !important; color: var(--end-2) !important; -webkit-text-fill-color: currentColor !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #demo .cta2__form { grid-column: 9 / span 4 !important; grid-row: 1 !important; gap: 22px !important; padding: clamp(32px, 3vw, 48px) !important; color: var(--end-text) !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #demo .cta2__form * { -webkit-text-fill-color: currentColor; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #demo .cta2__badge { display: none !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #demo .cta2__k { font: 500 13px/1.3 var(--ax-sans) !important; letter-spacing: 0 !important; color: var(--end-label) !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #demo .cta2__lab { color: var(--end-2) !important; -webkit-text-fill-color: currentColor !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #demo .cta2__form .portal__field input { background: transparent !important; border: 1px solid #CDD3D9 !important; border-radius: 0 !important; color: var(--end-text) !important; -webkit-text-fill-color: var(--end-text) !important; box-shadow: none !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #demo .cta2__form .portal__field input::placeholder { color: var(--end-3) !important; -webkit-text-fill-color: var(--end-3) !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #demo .cta2__form .portal__field input:focus { border-color: #58B69A !important; box-shadow: 0 0 0 1px #58B69A !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #demo .cta2__form .portal__submit { background: #58B69A !important; color: var(--end-text) !important; -webkit-text-fill-color: var(--end-text) !important; border: 0 !important; border-radius: 0 !important; box-shadow: none !important; font: 600 16px/1 var(--ax-sans) !important; transition: background-color .2s ease !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #demo .cta2__form .portal__submit:hover { background: #4AA88C !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #demo .cta2__form .portal__submit svg { stroke: currentColor !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #demo .cta2__form .portal__box { background: transparent !important; border-color: #CDD3D9 !important; border-radius: 0 !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #demo .cta2__form :is(.portal__consent, .portal__consent span:last-child, .cta__status) { color: var(--end-2) !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #demo .cta2__assure { display: flex !important; flex-wrap: wrap; gap: 10px 24px !important; margin: 0 !important; padding: 20px 0 0 !important; list-style: none; border-top: 1px solid var(--end-line) !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #demo .cta2__assure li { display: flex !important; align-items: center; gap: 8px; font: 400 14px/1.4 var(--ax-sans) !important; color: var(--end-2) !important; background: none !important; border: 0 !important; padding: 0 !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #demo .cta2__assure svg { width: 16px !important; height: 16px !important; stroke: #58B69A !important; color: #58B69A !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #demo .cta2__contact { margin: 0 !important; padding: 0 !important; border: 0 !important; font: 400 14px/1.5 var(--ax-sans) !important; color: var(--end-3) !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #demo .cta2__form .portal__login { margin: auto 0 0 !important; font: 400 14px/1.5 var(--ax-sans) !important; color: var(--end-3) !important; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #demo .cta2__form .portal__login a { color: var(--end-text) !important; -webkit-text-fill-color: var(--end-text) !important; text-decoration: underline; text-decoration-color: #CDD3D9; text-underline-offset: 3px; }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #demo .cta2__form .portal__login a:hover { text-decoration-color: #58B69A; }
+
+/* — the footer: the same ink and lines; on the home page it joins the CTA's grid with no gap — */
+html body:is(body, #_ax#_ax#_ax#_ax) footer.afoot2 { background: var(--end-bg) !important; padding: clamp(56px, 7vw, 96px) 0 0 !important; margin: 0 !important; border: 0 !important; box-shadow: none !important; color: var(--end-text); }
+html body.page-home:is(body, #_ax#_ax#_ax#_ax) footer.afoot2 { padding-top: 0 !important; }
+html body:is(body, #_ax#_ax#_ax#_ax) footer.afoot2 .afoot2__grid { width: var(--gw) !important; max-width: calc(100vw - 32px); margin: 0 auto !important; grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
+  gap: 1px !important; background: var(--end-line) !important; border: 1px solid var(--end-line) !important; border-bottom: 0 !important; }
+html body:is(body, #_ax#_ax#_ax#_ax) footer.afoot2 .afoot2__c { background: var(--end-cell) !important; border: 0 !important; box-shadow: none !important; padding: clamp(28px, 2.6vw, 40px) clamp(24px, 2.4vw, 36px) !important; }
+html body:is(body, #_ax#_ax#_ax#_ax) footer.afoot2 * { -webkit-text-fill-color: currentColor; }
+html body:is(body, #_ax#_ax#_ax#_ax) footer.afoot2 .afoot2__brand { grid-column: span 4 !important; gap: 20px !important; }
+html body:is(body, #_ax#_ax#_ax#_ax) footer.afoot2 .afoot__brand img { filter: none; }
+html body:is(body, #_ax#_ax#_ax#_ax) footer.afoot2 .afoot__brand span { color: var(--end-text) !important; }
+html body:is(body, #_ax#_ax#_ax#_ax) footer.afoot2 .afoot2__brand p { max-width: 32ch !important; font: 400 15px/1.6 var(--ax-sans) !important; color: var(--end-2) !important; }
+html body:is(body, #_ax#_ax#_ax#_ax) footer.afoot2 nav.afoot2__c { grid-column: span 2 !important; }
+html body:is(body, #_ax#_ax#_ax#_ax) footer.afoot2 .afoot__k { margin: 0 0 18px !important; font: 500 13px/1 var(--ax-sans) !important; color: var(--end-label) !important; -webkit-text-fill-color: var(--end-label) !important; }
+html body:is(body, #_ax#_ax#_ax#_ax) footer.afoot2 ul { gap: 12px !important; }
+html body:is(body, #_ax#_ax#_ax#_ax) footer.afoot2 ul a { font: 400 15px/1.3 var(--ax-sans) !important; color: var(--end-text) !important; background: none !important; padding: 0 !important;
+  text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 4px; transition: text-decoration-color .2s ease !important; }
+html body:is(body, #_ax#_ax#_ax#_ax) footer.afoot2 ul a:hover { color: var(--end-text) !important; text-decoration-color: #58B69A; }
+html body:is(body, #_ax#_ax#_ax#_ax) footer.afoot2 a:focus-visible { outline: 2px solid #58B69A !important; outline-offset: 3px; }
+
+/* the signature: SILENUS across the full grid. The type fills its cell exactly (Inter 600, −0.05 em: the word is
+   3.89 em wide, so font-size = cell width ÷ 3.9), sits on the cell's floor, and the column lines of the link grid
+   above (after columns 4, 6, 8, 10) run on through the letters. */
+html body:is(body, #_ax#_ax#_ax#_ax) footer.afoot2 .afoot2__wm { grid-column: 1 / -1 !important; position: relative; overflow: hidden; container-type: inline-size; margin: 0 !important;
+  padding: clamp(28px, 4vw, 64px) clamp(16px, 1.6vw, 24px) 0 !important; }
+html body:is(body, #_ax#_ax#_ax#_ax) footer.afoot2 .afoot2__wt { display: block; white-space: nowrap; text-align: center; font: 600 calc(100cqi / 3.9)/.74 var(--ax-sans); letter-spacing: -.05em; color: var(--end-text);
+  padding-bottom: .02em; user-select: none; }
+html body:is(body, #_ax#_ax#_ax#_ax) footer.afoot2 .afoot2__wl { display: inline-block; }
+html body:is(body, #_ax#_ax#_ax#_ax) footer.afoot2 .afoot2__cuts { position: absolute; inset: 0; pointer-events: none; }
+html body:is(body, #_ax#_ax#_ax#_ax) footer.afoot2 .afoot2__cuts i { position: absolute; top: 0; bottom: 0; width: 1px; background: var(--end-line); left: calc((100% + 2px - 12px) * var(--n) / 12 + (var(--n) - 1) * 1px); }
+html.wm-anim body footer.afoot2 .afoot2__wl { transition: transform 1.1s cubic-bezier(.16, 1, .3, 1) calc(var(--i) * 55ms), opacity .6s ease calc(var(--i) * 55ms); }
+html.wm-anim body footer.afoot2 .afoot2__wm:not(.is-in) .afoot2__wl { transform: translateY(105%); opacity: 0; }
+
+html body:is(body, #_ax#_ax#_ax#_ax) footer.afoot2 .afoot2__copy { grid-column: span 8 !important; font: 400 13px/1.4 var(--ax-sans) !important; color: var(--end-3) !important; }
+html body:is(body, #_ax#_ax#_ax#_ax) footer.afoot2 .afoot2__top { grid-column: span 4 !important; }
+html body:is(body, #_ax#_ax#_ax#_ax) footer.afoot2 .afoot2__top a { font: 500 13px/1.4 var(--ax-sans) !important; color: var(--end-2) !important; }
+html body:is(body, #_ax#_ax#_ax#_ax) footer.afoot2 .afoot2__top a:hover { color: #58B69A !important; }
+
+@media (max-width: 1023.98px) {
+  html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #demo .cta2__head, html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #demo .cta2__form { grid-column: 1 / -1 !important; grid-row: auto !important; }
+  html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #demo .cta2__head { min-height: 0; }
+  html body:is(body, #_ax#_ax#_ax#_ax) footer.afoot2 .afoot2__grid { grid-template-columns: repeat(12, minmax(0, 1fr)) !important; }
+  html body:is(body, #_ax#_ax#_ax#_ax) footer.afoot2 .afoot2__brand { grid-column: 1 / -1 !important; }
+  html body:is(body, #_ax#_ax#_ax#_ax) footer.afoot2 nav.afoot2__c { grid-column: span 3 !important; }
+  html body:is(body, #_ax#_ax#_ax#_ax) footer.afoot2 .afoot2__cuts i { --n: 3 !important; }
+  html body:is(body, #_ax#_ax#_ax#_ax) footer.afoot2 .afoot2__cuts i:nth-child(2) { --n: 6 !important; } html body:is(body, #_ax#_ax#_ax#_ax) footer.afoot2 .afoot2__cuts i:nth-child(3) { --n: 9 !important; } html body:is(body, #_ax#_ax#_ax#_ax) footer.afoot2 .afoot2__cuts i:nth-child(4) { display: none; }
+}
+@media (max-width: 767.98px) {
+  html body.page-home:is(body, #_ax#_ax#_ax#_ax) #main #demo .cta2__head .sec-head__title { font-size: clamp(2.6rem, 13vw, 3.4rem) !important; }
+  html body:is(body, #_ax#_ax#_ax#_ax) footer.afoot2 .afoot2__grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; max-width: none; grid-auto-flow: row !important; }
+  html body:is(body, #_ax#_ax#_ax#_ax) footer.afoot2 .afoot2__grid > * { grid-row: auto !important; }
+  html body:is(body, #_ax#_ax#_ax#_ax) footer.afoot2 nav.afoot2__c { grid-column: span 1 !important; }
+  html body:is(body, #_ax#_ax#_ax#_ax) footer.afoot2 :is(.afoot2__brand, .afoot2__wm, .afoot2__copy, .afoot2__top) { grid-column: 1 / -1 !important; }
+  html body:is(body, #_ax#_ax#_ax#_ax) footer.afoot2 .afoot2__copy { padding-bottom: 6px !important; } html body:is(body, #_ax#_ax#_ax#_ax) footer.afoot2 .afoot2__top { padding-top: 6px !important; }
+  html body:is(body, #_ax#_ax#_ax#_ax) footer.afoot2 .afoot2__cuts i { display: none; }
+  html body:is(body, #_ax#_ax#_ax#_ax) footer.afoot2 .afoot2__cuts i:first-child { display: block; left: 50%; }
+  html body:is(body, #_ax#_ax#_ax#_ax) footer.afoot2 .afoot2__copy, html body:is(body, #_ax#_ax#_ax#_ax) footer.afoot2 .afoot2__top { grid-column: 1 / -1 !important; text-align: left !important; }
+}
+@media (prefers-reduced-motion: reduce) { html body footer.afoot2 .afoot2__wl { transition: none !important; transform: none !important; opacity: 1 !important; } }
+
+/* =====================================================================================================
+   TYPE SYSTEM — strict, every page (2026-11-14). Source Serif 4 is used for one thing only: the main title of each
+   section (the page's h1 and each section's h2.sec-head__title). Everything else — body, card titles, subheadings,
+   navigation, tabs, buttons, labels, captions, figures, form controls, chart labels, the product demo's UI — is Inter.
+   Inside a main title, its parts follow the title, except the small lead-in register, which is Inter.
+   The selectors carry a high specificity on purpose: they must win over every older rule in white.css / site.min.css.
+   ===================================================================================================== */
+html body:is(body, #_ty#_ty#_ty#_ty#_ty#_ty) *,
+html body:is(body, #_ty#_ty#_ty#_ty#_ty#_ty) *::before,
+html body:is(body, #_ty#_ty#_ty#_ty#_ty#_ty) *::after { font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif !important; }
+html body:is(body, #_ty#_ty#_ty#_ty#_ty#_ty) :is(h1, h2.sec-head__title) { font-family: "Source Serif 4", Georgia, serif !important; }
+html body:is(body, #_ty#_ty#_ty#_ty#_ty#_ty) :is(h1, h2.sec-head__title) :is(*, *::before, *::after) { font-family: inherit !important; }
+html body:is(body, #_ty#_ty#_ty#_ty#_ty#_ty) :is(h1, h2.sec-head__title) :is(.tx-s, .ax-t1) { font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif !important; }
+
+/* =====================================================================================================
+   NAV — part of the grid. Its cells share the hero's column proportions (≥1200): brand · pages ·
+   log in + CTA. Thin dividers; the signal only marks the page you are on.
+   ===================================================================================================== */
+html body.theme-light:is(body, #_ax#_ax#_ax#_ax) header.nav {
+  background: var(--ax-sheet);
+  border-bottom: 1px solid var(--ax-line);
+  box-shadow: none;
+}
+html body.theme-light:is(body, #_ax#_ax#_ax#_ax) .nav .nav__dock {
+  border-left: 1px solid var(--ax-line);
+  border-right: 1px solid var(--ax-line);
+  background: transparent;
+  box-shadow: none;
+}
+
+@media (min-width: 1200px) {
+  html body.theme-light:is(body, #_ax#_ax#_ax#_ax) .nav .nav__dock {
+    display: grid !important;
+    grid-template-columns: minmax(0, var(--ax-c1)) minmax(0, var(--ax-c2)) minmax(0, var(--ax-c3)) minmax(0, var(--ax-c4)) !important;
+    align-items: stretch;
+    gap: 0 !important;
+    padding: 0 !important;
+  }
+  html body.theme-light:is(body, #_ax#_ax#_ax#_ax) .nav .nav__brand {
+    grid-column: 1 !important; grid-row: 1 !important; display: flex; align-items: center; gap: 10px;
+    padding: 0 0 0 var(--ax-pad) !important; margin: 0 !important; width: auto !important; border: 0 !important;
+  }
+  html body.theme-light:is(body, #_ax#_ax#_ax#_ax) .nav .nav__pagelinks {
+    grid-column: 2 / 4 !important; grid-row: 1 !important; display: flex !important; align-items: stretch !important; align-self: stretch !important; height: auto !important; justify-content: flex-start;
+    gap: 0 !important; padding: 0 !important; margin: 0 !important; position: static !important; transform: none !important;
+    border-left: 1px solid var(--ax-line) !important; border-right: 0 !important;
+  }
+
+  html body.theme-light:is(body, #_ax#_ax#_ax#_ax) .nav .nav__ctx { display: none !important; }
+
+  html body.theme-light:is(body, #_ax#_ax#_ax#_ax) .nav .nav__actions {
+    grid-column: 4 !important; grid-row: 1 !important; display: grid !important; grid-template-columns: minmax(0, 108fr) minmax(0, 220fr) !important;
+    gap: 0 !important; margin: 0 !important; padding: 0 !important; align-items: stretch;
+    border-left: 1px solid var(--ax-line);
+  }
+  html body.theme-light:is(body, #_ax#_ax#_ax#_ax) .nav .nav__menu { display: none !important; }
+  html body.theme-light:is(body, #_ax#_ax#_ax#_ax) .nav .nav__actions > .nav__login { grid-column: 1 !important; grid-row: 1 !important; width: auto !important; padding: 0 !important; }
+  html body.theme-light:is(body, #_ax#_ax#_ax#_ax) .nav .nav__actions > .nav__cta { grid-column: 2 !important; grid-row: 1 !important; width: auto !important; }
+}
+
+/* ---- Page links as grid cells (≥1200) -------------------------------------------------------------
+   Every link is its own cell, as wide as its label plus one fixed padding on each side, so the cells are
+   unequal by construction. 1 px dividers close each cell. Hover lights the cell with a faint tint of the
+   palette's muted green (#5FC4A6). Labels: Inter Regular 14 px; the current page in Medium (500) — nothing else.
+   Only colours change on hover: no size, padding or position moves. */
+:root { --ax-cell-x: clamp(14px, 1.25vw, 20px); --ax-cell-hover: rgba(95, 196, 166, .13); }
+@media (min-width: 1200px) {
+  html body.theme-light:is(body, #_ax#_ax#_ax#_ax) .nav .nav__pl,
+  html body.theme-light:is(body, #_ax#_ax#_ax#_ax) .nav .nav__pl .nav__rw i { font-family: var(--ax-sans) !important; font-size: 14px !important; font-weight: 400 !important; letter-spacing: 0 !important; }
+  html body.theme-light:is(body, #_ax#_ax#_ax#_ax) .nav .nav__pl {
+    position: relative; flex: 0 0 auto; display: flex !important; align-items: center;
+    height: auto !important; margin: 0 !important;
+    padding: 0 var(--ax-cell-x) !important;
+    border-right: 1px solid var(--ax-line);
+    border-radius: 0 !important;
+    background-color: transparent !important;
+    color: var(--ax-text) !important;
+    transition: background-color .35s var(--ax-ease), color .35s var(--ax-ease);
+  }
+  html body.theme-light:is(body, #_ax#_ax#_ax#_ax) .nav .nav__pl:hover,
+  html body.theme-light:is(body, #_ax#_ax#_ax#_ax) .nav .nav__pl:focus-visible { background-color: var(--ax-cell-hover) !important; color: var(--ax-ink) !important; }
+  /* the current page: weight only — same colour, no line, no tint, no mark */
+  html body.theme-light:is(body, #_ax#_ax#_ax#_ax) .nav .nav__pl.is-here { font-weight: 500 !important; color: var(--ax-text) !important; }
+  html body.theme-light:is(body, #_ax#_ax#_ax#_ax) .nav .nav__pl.is-here .nav__rw i { font-weight: 500 !important; }
+  html body.theme-light:is(body, #_ax#_ax#_ax#_ax) .nav .nav__pl.is-here:hover { color: var(--ax-ink) !important; }
+  html body.theme-light:is(body, #_ax#_ax#_ax#_ax) .nav .nav__pl:active { background-color: rgba(95, 196, 166, .2) !important; }
+}
+
+/* 1024–1199: six padded cells need ~470 px and only ~415 px is free between brand and actions, so — as on
+   tablet — the pages move into the existing menu drawer instead of being squeezed into equal slivers. */
+@media (min-width: 1024px) and (max-width: 1199.98px) {
+  html body.theme-light:is(body, #_ax#_ax#_ax#_ax) .nav .nav__pagelinks { display: none !important; }
+  html body.theme-light:is(body, #_ax#_ax#_ax#_ax) .nav .nav__menu { display: flex !important; }
+}
+/* the menu toggle (<1200) is a cell too: divider, ink label, the same muted-green hover */
+@media (max-width: 1199.98px) {
+  html body.theme-light:is(body, #_ax#_ax#_ax#_ax) .nav .nav__menu {
+    flex: 0 0 auto !important; width: auto !important; min-width: 0 !important; justify-self: start !important;
+    align-items: center; gap: 10px; align-self: stretch; height: auto !important; margin: 0 !important;
+    padding: 0 18px !important; border: 0 !important; border-left: 1px solid var(--ax-line) !important; border-right: 1px solid var(--ax-line) !important; border-radius: 0 !important;
+    background-color: transparent !important; box-shadow: none !important; color: var(--ax-ink) !important; opacity: 1 !important;
+    transition: background-color .35s var(--ax-ease);
+  }
+  html body.theme-light:is(body, #_ax#_ax#_ax#_ax) .nav .nav__menu:hover,
+  html body.theme-light:is(body, #_ax#_ax#_ax#_ax) .nav .nav__menu[aria-expanded="true"] { background-color: rgba(95, 196, 166, .13) !important; }
+  html body.theme-light:is(body, #_ax#_ax#_ax#_ax) .nav .nav__menu-label { color: var(--ax-ink) !important; opacity: 1 !important; font: 500 14px/1 var(--ax-sans); }
+  html body.theme-light:is(body, #_ax#_ax#_ax#_ax) .nav .nav__menu:focus-visible { outline: 2px solid var(--ax-sig); outline-offset: -4px; }
+}
+
+/* log in: a plain cell */
+html body.theme-light:is(body, #_ax#_ax#_ax#_ax) .nav .nav__login {
+  display: flex; align-items: center; justify-content: center;
+  height: auto; min-height: 0; margin: 0; padding: 0 18px;
+  background: transparent !important; border: 0 !important; border-radius: 0 !important; box-shadow: none !important;
+  font: 500 14px/1 var(--ax-sans); color: var(--ax-ink) !important;
+  transition: background-color .35s var(--ax-ease);
+}
+html body.theme-light:is(body, #_ax#_ax#_ax#_ax) .nav .nav__login:hover { background: var(--ax-ground) !important; }
+
+/* the CTA cell: ink, the arrow on its own divider; the signal line runs in on hover only */
+html body.theme-light:is(body, #_ax#_ax#_ax#_ax) .nav .nav__cta {
+  position: relative; display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  margin: 0 !important; padding: 0 0 0 var(--ax-pad) !important; height: auto; min-height: 0;
+  background: var(--ax-ink) !important; color: #FFFFFF !important; border: 0 !important; border-radius: 0 !important; box-shadow: none !important;
+  font: 500 14px/1 var(--ax-sans); letter-spacing: 0; overflow: hidden;
+  transition: background-color .45s var(--ax-ease);
+}
+html body.theme-light:is(body, #_ax#_ax#_ax#_ax) .nav .nav__cta::before {
+  content: ""; position: absolute; left: 0; top: 0; width: 100%; height: 2px; background: var(--ax-sig);
+  transform: scaleX(0); transform-origin: 0 50%; transition: transform .6s var(--ax-ease);
+}
+html body.theme-light:is(body, #_ax#_ax#_ax#_ax) .nav .nav__cta:hover::before { transform: scaleX(1); }
+html body.theme-light:is(body, #_ax#_ax#_ax#_ax) .nav .nav__cta:hover { background: var(--ax-teal-ink) !important; }
+html body.theme-light:is(body, #_ax#_ax#_ax#_ax) .nav .nav__cta .ico {
+  flex: none; align-self: stretch; box-sizing: content-box; width: 18px; height: auto; padding: 0 18px;
+  border-left: 1px solid rgba(255, 255, 255, .14); transition: transform .5s var(--ax-ease);
+}
+html body.theme-light:is(body, #_ax#_ax#_ax#_ax) .nav .nav__cta:focus-visible,
+html body.theme-light:is(body, #_ax#_ax#_ax#_ax) .nav .nav__login:focus-visible,
+html body.theme-light:is(body, #_ax#_ax#_ax#_ax) .nav .nav__pl:focus-visible { outline: 2px solid var(--ax-sig); outline-offset: -4px; }
+
+/* below 1200 the nav keeps its own layout; only its frame meets the page frame */
+@media (max-width: 1199.98px) {
+  html body.theme-light:is(body, #_ax#_ax#_ax#_ax) .nav .nav__dock { width: calc(100% * 10 / 12) !important; margin-left: auto !important; margin-right: auto !important; }
+  html body.theme-light:is(body, #_ax#_ax#_ax#_ax) .nav .nav__brand { padding-left: var(--ax-pad) !important; }
+  html body.theme-light:is(body, #_ax#_ax#_ax#_ax) .nav .nav__actions { align-self: stretch; gap: 0 !important; }
+  html body.theme-light:is(body, #_ax#_ax#_ax#_ax) .nav .nav__cta { padding-left: 18px !important; border-left: 1px solid var(--ax-line) !important; }
+}
+@media (max-width: 767.98px) {
+  html body.theme-light:is(body, #_ax#_ax#_ax#_ax) .nav .nav__cta { font-size: 13px; padding: 0 14px !important; justify-content: center; }
+  html body.theme-light:is(body, #_ax#_ax#_ax#_ax) .nav .nav__cta .ico { padding: 0 12px; width: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html body.theme-light:is(body, #_ax#_ax#_ax#_ax) .nav .nav__cta::before,
+  html body.theme-light:is(body, #_ax#_ax#_ax#_ax) .nav .nav__pl,
+  html body.theme-light:is(body, #_ax#_ax#_ax#_ax) .nav .nav__pl::after { transition: none; }
+}
