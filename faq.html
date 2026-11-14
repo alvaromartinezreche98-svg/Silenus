@@ -23,8 +23,8 @@
 <!-- Fonts and libraries are self-hosted: no third-party request blocks the first paint -->
 <link rel="preload" href="assets/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/vEFI2_tTDB4M7-auWDN0ahZJW1gb8tc.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/css/site.min.css?v=20261112195122" as="style">
-<link rel="preload" href="assets/js/site.min.js?v=20261112195122" as="script">
+<link rel="preload" href="assets/css/site.min.css?v=20261114134110" as="style">
+<link rel="preload" href="assets/js/site.min.js?v=20261114134110" as="script">
 <style>
 /* Critical: the preloader paints on the first frame, before the stylesheet arrives (the stylesheet link sits after it in <body>) */
 html{background:#09111A}body{margin:0;background:#09111A}
@@ -108,7 +108,7 @@ html{background:#09111A}body{margin:0;background:#09111A}
           "name": "Do we have to replace Microsoft 365 or our other tools?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "No. Keep Microsoft 365, SharePoint and your mailboxes: Silenus reads from them, checks every answer against the source, and runs the work that follows."
+            "text": "No. No. Your mail, calendar and SharePoint connect to Silenus, and the work around them happens inside Silenus, on one knowledge base."
           }
         },
         {
@@ -214,12 +214,13 @@ html{background:#09111A}body{margin:0;background:#09111A}
 </script>
 
 <!-- GSAP 3.12.5 + ScrollTrigger + Lenis 1.1.13 and the page scripts, bundled by build.py -->
-<script src="assets/js/site.min.js?v=20261112195122" defer></script>
+<script src="assets/js/site.min.js?v=20261114134110" defer></script>
 </head>
-<body>
+<body class="theme-light">
 <!-- Entry preloader: every load. Painted from the inline styles before the stylesheet arrives; tied to real
      readiness (DOM, fonts, load), lifts like a curtain. Never shown without JS or with reduced motion. -->
-<link rel="stylesheet" href="assets/css/site.min.css?v=20261112195122">
+<link rel="stylesheet" href="assets/css/site.min.css?v=20261114134110">
+<link rel="stylesheet" href="assets/css/white.css?v=1794663672">
 <a class="skip-link" href="#main">Skip to content</a>
 
 <!-- ================= 00 · NAVIGATION ================= -->
@@ -230,11 +231,11 @@ html{background:#09111A}body{margin:0;background:#09111A}
       <span class="nav__word">SILENUS</span>
     </a>
 
-    <nav class="nav__pagelinks" aria-label="Pages"><a class="nav__pl" href="index.html" aria-label="Home"><span class="nav__rw" aria-hidden="true"><i style="--i:0" data-c="H">H</i><i style="--i:1" data-c="o">o</i><i style="--i:2" data-c="m">m</i><i style="--i:3" data-c="e">e</i></span></a><a class="nav__pl" href="platform.html" aria-label="Platform"><span class="nav__rw" aria-hidden="true"><i style="--i:0" data-c="P">P</i><i style="--i:1" data-c="l">l</i><i style="--i:2" data-c="a">a</i><i style="--i:3" data-c="t">t</i><i style="--i:4" data-c="f">f</i><i style="--i:5" data-c="o">o</i><i style="--i:6" data-c="r">r</i><i style="--i:7" data-c="m">m</i></span></a><a class="nav__pl" href="why-silenus.html" aria-label="Why Silenus"><span class="nav__rw" aria-hidden="true"><i style="--i:0" data-c="W">W</i><i style="--i:1" data-c="h">h</i><i style="--i:2" data-c="y">y</i><i class="nav__sp"> </i><i style="--i:4" data-c="S">S</i><i style="--i:5" data-c="i">i</i><i style="--i:6" data-c="l">l</i><i style="--i:7" data-c="e">e</i><i style="--i:8" data-c="n">n</i><i style="--i:9" data-c="u">u</i><i style="--i:10" data-c="s">s</i></span></a><a class="nav__pl" href="why-silenus.html#pricing" aria-label="Pricing"><span class="nav__rw" aria-hidden="true"><i style="--i:0" data-c="P">P</i><i style="--i:1" data-c="r">r</i><i style="--i:2" data-c="i">i</i><i style="--i:3" data-c="c">c</i><i style="--i:4" data-c="i">i</i><i style="--i:5" data-c="n">n</i><i style="--i:6" data-c="g">g</i></span></a><a class="nav__pl" href="security.html" aria-label="Security"><span class="nav__rw" aria-hidden="true"><i style="--i:0" data-c="S">S</i><i style="--i:1" data-c="e">e</i><i style="--i:2" data-c="c">c</i><i style="--i:3" data-c="u">u</i><i style="--i:4" data-c="r">r</i><i style="--i:5" data-c="i">i</i><i style="--i:6" data-c="t">t</i><i style="--i:7" data-c="y">y</i></span></a><a class="nav__pl" href="company.html" aria-label="Company"><span class="nav__rw" aria-hidden="true"><i style="--i:0" data-c="C">C</i><i style="--i:1" data-c="o">o</i><i style="--i:2" data-c="m">m</i><i style="--i:3" data-c="p">p</i><i style="--i:4" data-c="a">a</i><i style="--i:5" data-c="n">n</i><i style="--i:6" data-c="y">y</i></span></a><a class="nav__pl is-here" href="faq.html" aria-label="FAQ" aria-current="page"><span class="nav__rw" aria-hidden="true"><i style="--i:0" data-c="F">F</i><i style="--i:1" data-c="A">A</i><i style="--i:2" data-c="Q">Q</i></span></a></nav>
+    <nav class="nav__pagelinks" aria-label="Pages"><a class="nav__pl" href="index.html" aria-label="Home"><span class="nav__rw" aria-hidden="true"><i style="--i:0" data-c="H">H</i><i style="--i:1" data-c="o">o</i><i style="--i:2" data-c="m">m</i><i style="--i:3" data-c="e">e</i></span></a><a class="nav__pl" href="platform.html" aria-label="Platform"><span class="nav__rw" aria-hidden="true"><i style="--i:0" data-c="P">P</i><i style="--i:1" data-c="l">l</i><i style="--i:2" data-c="a">a</i><i style="--i:3" data-c="t">t</i><i style="--i:4" data-c="f">f</i><i style="--i:5" data-c="o">o</i><i style="--i:6" data-c="r">r</i><i style="--i:7" data-c="m">m</i></span></a><a class="nav__pl" href="why-silenus.html" aria-label="Why Silenus"><span class="nav__rw" aria-hidden="true"><i style="--i:0" data-c="W">W</i><i style="--i:1" data-c="h">h</i><i style="--i:2" data-c="y">y</i><i class="nav__sp"> </i><i style="--i:4" data-c="S">S</i><i style="--i:5" data-c="i">i</i><i style="--i:6" data-c="l">l</i><i style="--i:7" data-c="e">e</i><i style="--i:8" data-c="n">n</i><i style="--i:9" data-c="u">u</i><i style="--i:10" data-c="s">s</i></span></a><a class="nav__pl" href="security.html" aria-label="Security"><span class="nav__rw" aria-hidden="true"><i style="--i:0" data-c="S">S</i><i style="--i:1" data-c="e">e</i><i style="--i:2" data-c="c">c</i><i style="--i:3" data-c="u">u</i><i style="--i:4" data-c="r">r</i><i style="--i:5" data-c="i">i</i><i style="--i:6" data-c="t">t</i><i style="--i:7" data-c="y">y</i></span></a><a class="nav__pl" href="company.html" aria-label="Company"><span class="nav__rw" aria-hidden="true"><i style="--i:0" data-c="C">C</i><i style="--i:1" data-c="o">o</i><i style="--i:2" data-c="m">m</i><i style="--i:3" data-c="p">p</i><i style="--i:4" data-c="a">a</i><i style="--i:5" data-c="n">n</i><i style="--i:6" data-c="y">y</i></span></a><a class="nav__pl is-here" href="faq.html" aria-label="FAQ" aria-current="page"><span class="nav__rw" aria-hidden="true"><i style="--i:0" data-c="F">F</i><i style="--i:1" data-c="A">A</i><i style="--i:2" data-c="Q">Q</i></span></a></nav>
 
     <!-- Live context: page progress + the section you are in (updates on scroll) -->
     <p class="nav__ctx" aria-hidden="true">
-      <svg class="nav__ring" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8"/><circle class="nav__ring-fill" cx="10" cy="10" r="8" pathLength="100" data-nav-ring/></svg>
+      <svg class="nav__ring" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><circle cx="10" cy="10" r="8"/><circle class="nav__ring-fill" cx="10" cy="10" r="8" pathLength="100" data-nav-ring/></svg>
       <span class="nav__ctx-text" data-nav-ctx>Overview</span>
     </p>
 
@@ -244,7 +245,7 @@ html{background:#09111A}body{margin:0;background:#09111A}
         <span class="nav__menu-icon" aria-hidden="true"><i></i><i></i></span>
       </button>
       <a class="nav__login btn btn--secondary" href="https://silenus.app">Log in</a>
-      <a class="nav__cta" href="#demo"><i class="nav__sweep" aria-hidden="true"></i>Book a live test <span aria-hidden="true">→</span></a>
+      <a class="nav__cta" href="#demo"><i class="nav__sweep" aria-hidden="true"></i>Book a live test <svg class="ico ico--arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
     </div>
   </div>
 </header>
@@ -270,7 +271,7 @@ html{background:#09111A}body{margin:0;background:#09111A}
       </nav>
     </div>
     <div class="drawer__foot" style="--i:14">
-      <a class="btn btn--primary" href="#demo">Book a live test <span class="btn__arrow" aria-hidden="true">→</span></a>
+      <a class="btn btn--primary" href="#demo">Book a live test <svg class="ico ico--arrow-right btn__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
       <a class="btn btn--secondary" href="https://silenus.app">Log in</a>
       <p>SILENUS by Phannes Inc.</p>
     </div>
@@ -279,34 +280,30 @@ html{background:#09111A}body{margin:0;background:#09111A}
 
 <main id="main">
 <!-- ================= PAGE HERO: label pill · headline · one line · actions | a live preview of the page ================= -->
-<section class="page-hero fqh" data-thread-top-center id="top" aria-labelledby="page-title">
+<section data-sub-hero class="wh-hero wh-hero--text sub-hero page-hero fqh" data-thread-top-center id="top" aria-labelledby="page-title">
+  <div class="hx-grid" aria-hidden="true" data-hx-grid></div>
+  <div class="wrap wh-hero__text hxe" data-hxe>
+    <div class="hxe-h" data-hxe-cell><h1 class="sec-head__title hxe-t" id="page-title"><span class="hxe-l1">Questions,</span> <span class="sec-head__muted hxe-l3">answered.</span></h1></div>
+    <div class="hxe-s" data-hxe-cell><p class="sec-head__lead">Everything teams ask us before a live test.</p><p class="wh-actions hxe-acts"><a class="btn btn--primary hxe-cta" href="#questions"><span>Read the answers</span><svg class="ico ico--arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a><a class="hxe-sec" href="#demo"><span>Book a live test</span><svg class="ico ico--arrow-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M12 4v15M6 13l6 6 6-6"/></svg></a></p></div>
+  </div>
+<div class="sub-hero__rest">
   <div class="fqh__bg" aria-hidden="true"><i class="fqh__grid"></i><i class="fqh__glow"></i><i class="fqh__glow fqh__glow--b"></i></div>
   <div class="wrap page-hero__grid">
     <div class="page-hero__text">
-      <header class="sec-head" data-ph-head>
-        <p class="sec-head__idx" data-thread-center>FAQ</p>
-        <div class="sec-head__body">
-          <h1 class="sec-head__title" id="page-title">Questions, <span class="sec-head__muted">answered.</span></h1>
-          <p class="sec-head__lead">Everything teams ask us before a live test.</p>
-        </div>
-      </header>
-      <p class="page-hero__actions" data-thread-resume><a class="btn btn--primary" href="#questions">Read the answers <span class="btn__arrow" aria-hidden="true">→</span></a><a class="btn btn--secondary" href="#demo">Book a live test</a></p>
+      
+      
     </div>
   </div>
+</div>
 </section>
 
 <!-- ================= FAQ · search, topic chips, one compact grid ================= -->
 <section class="faqx fq" id="questions" aria-labelledby="faqx-title" data-fq>
   <div class="wrap">
-    <header class="sec-head" data-split-head>
-      <p class="sec-head__idx"><b>01</b> All questions</p>
-      <div class="sec-head__body">
-        <h2 class="sec-head__title" id="faqx-title">17 answers, <span class="sec-head__muted">in five topics.</span></h2>
-      </div>
-    </header>
+    <p class="bt-ghost" aria-hidden="true" data-bt-ghost>Answers</p><header class="bt bt-head sub-head" data-bt-head><div class="bt-c bt-head__t"><h2 class="sec-head__title" id="faqx-title">17 answers, <span class="sec-head__muted">in five topics.</span></h2></div><div class="bt-c bt-head__l"></div></header>
     <div class="fq__bar">
       <label class="fq__search"><span class="sr-only">Search questions</span>
-        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4 4"/></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4 4"/></svg>
         <input type="search" placeholder="Search questions…" autocomplete="off" spellcheck="false" data-fq-q>
         <kbd aria-hidden="true">/</kbd>
       </label>
@@ -332,7 +329,7 @@ html{background:#09111A}body{margin:0;background:#09111A}
         </details>
         <details class="fq__item" data-topic="tools" id="faq-tools">
           <summary><span class="fq__n">05</span><span class="fq__q"><span class="fq__tag">Tools & files</span><h3>Do we have to replace Microsoft 365 or our other tools?</h3></span><i aria-hidden="true"></i></summary>
-          <div class="fq__a"><p>No. Keep Microsoft 365, SharePoint and your mailboxes: Silenus reads from them, checks every answer against the source, and runs the work that follows.</p></div>
+          <div class="fq__a"><p>No. No. Your mail, calendar and SharePoint connect to Silenus, and the work around them happens inside Silenus, on one knowledge base.</p></div>
         </details>
         <details class="fq__item" data-topic="tools">
           <summary><span class="fq__n">06</span><span class="fq__q"><span class="fq__tag">Tools & files</span><h3>Which tools does Silenus connect to?</h3></span><i aria-hidden="true"></i></summary>
@@ -388,35 +385,26 @@ html{background:#09111A}body{margin:0;background:#09111A}
 </section>
 
 <!-- ================= 13 · FINAL CTA ================= -->
-<section class="cta" id="demo" aria-labelledby="cta-title">
-  <div class="bits bits--patch" aria-hidden="true"></div>
+<section class="cta acta cta2 bt-sec bt-sec--dark" id="demo" aria-labelledby="cta-title">
   <div class="wrap">
-    <header class="sec-head" data-split-head>
-      <p class="sec-head__idx" hidden><b>02</b> Live test</p>   <!-- kept for the menu; not shown, so the fibre runs straight on to the footer -->
-      <div class="sec-head__body">
-        <p class="sec-head__kicker">The future is connected</p>
-        <h2 class="sec-head__title" id="cta-title">The next operating system <span class="sec-head__muted">for business.</span></h2>
-        <p class="sec-head__lead">Discover what becomes possible when your business operates as one connected system. Bring 30–50 of your documents; we run the test with you, live.</p>
-      </div>
-    </header>
-
-    <!-- The live-test portal: one capsule (email · company · action), one consent line, one trust row -->
-    <div class="portal" data-stagger>
-        <form class="portal__form" data-stagger-item data-form action="#" method="post" data-endpoint="" novalidate>
+    <p class="sec-head__idx" hidden>Live test</p>
+    <div class="bt cta2__grid">
+      <header class="bt-c cta2__head"><h2 class="sec-head__title" id="cta-title">See Silenus <span class="sec-head__muted">in action.</span></h2><p class="sec-head__lead">Bring 30–50 of your own documents and we run Silenus on them with you, live.</p></header>
+      <div class="bt-c cta2__form"><div class="cta2__hd"><span class="cta2__badge"><svg class="ico ico--calendar-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M4 5h16v16H4zM4 9.5h16M8.5 3v4M15.5 3v4"/><path d="M9 15l2 2 4-4"/></svg></span><p class="cta2__k">Request a live test</p></div><form class="portal__form" data-stagger-item data-form action="#" method="post" data-endpoint="" novalidate>
                     <!-- one field first; company and consent open as soon as an email is being typed (progressive disclosure) -->
           <div class="portal__capsule">
-            <span class="field portal__field">
+            <span class="field portal__field"><span class="cta2__lab" aria-hidden="true">Work email</span>
               <label for="cta-email" class="sr-only">Work email</label>
-              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.5 7 8.5 6 8.5-6"/></svg>
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.5 7 8.5 6 8.5-6"/></svg>
               <input id="cta-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="Your work email" spellcheck="false" required>
             </span>
-            <button class="portal__submit cta__submit" type="submit">Book a live test <span aria-hidden="true">→</span></button>
+            <button class="portal__submit cta__submit" type="submit">Book a live test <svg class="ico ico--arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button>
           </div>
           <div class="portal__more" data-portal-more>
             <div class="portal__more-in">
-            <span class="field portal__field portal__field--solo">
+            <span class="field portal__field portal__field--solo"><span class="cta2__lab" aria-hidden="true">Company</span>
               <label for="cta-company" class="sr-only">Company</label>
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V6l8-3 8 3v14M9 20v-5h6v5M8 9h.01M12 9h.01M16 9h.01M8 12h.01M12 12h.01M16 12h.01"/></svg>
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 20V6l8-3 8 3v14M9 20v-5h6v5M8 9h.01M12 9h.01M16 9h.01M8 12h.01M12 12h.01M16 12h.01"/></svg>
               <input id="cta-company" name="company" type="text" autocomplete="organization" placeholder="Company name" required>
             </span>
           <label class="cta__consent portal__consent"><input type="checkbox" name="consent" required><span class="portal__box" aria-hidden="true"></span><span> I agree that Phannes Inc. may contact me about this request.</span></label>
@@ -425,13 +413,7 @@ html{background:#09111A}body{margin:0;background:#09111A}
           <input type="hidden" name="source_page" value="home">
           <input type="hidden" name="utm_source"><input type="hidden" name="utm_medium"><input type="hidden" name="utm_campaign">
           <p class="cta__status" role="status" aria-live="polite" data-form-status></p>
-        </form>
-      <ul class="portal__trust" aria-label="Good to know">
-        <li data-stagger-item><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-6.5"/></svg>No consulting project to get started</li>
-        <li data-stagger-item><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-6.5"/></svg>Private, self-hosted deployment available</li>
-        <li data-stagger-item><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-6.5"/></svg>Answers verified against your own sources</li>
-      </ul>
-      <p class="portal__login" data-stagger-item>Already using Silenus? <a href="https://silenus.app">Log in</a> · <a href="https://silenus.app">Create an account</a></p>
+        </form><ul class="cta2__assure" aria-label="Good to know"><li><svg class="ico ico--clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM12 7v5l3.5 2"/></svg><span>No consulting project</span></li><li><svg class="ico ico--server" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M4 4h16v6H4zM4 14h16v6H4zM8 7h.01M8 17h.01M12 7h4M12 17h4"/></svg><span>Self-hosted option</span></li><li><svg class="ico ico--file-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path d="M6 3h8l4 4v14H6zM14 3v4h4M9 14l2.2 2.2L15.5 12"/></svg><span>Answers with sources</span></li></ul><p class="cta2__contact">Questions first? Write to us through the form and we will suggest a time.</p><p class="portal__login" data-stagger-item>Already using Silenus? <a href="https://silenus.app">Log in</a> · <a href="https://silenus.app">Create an account</a></p></div>
     </div>
   </div>
 </section>
@@ -439,27 +421,176 @@ html{background:#09111A}body{margin:0;background:#09111A}
 </main>
 
 <!-- ================= FOOTER ================= -->
-<footer class="footer fh">
-  <!-- Horizon footer: no boxes, no rules. Brand · links · legal on one line; the fibre leaves past the bottom-right. -->
-  <div class="wrap fh__row" data-stagger>
-    <div class="fh__brand" data-stagger-item>
-      <a class="nav__brand" href="/" aria-label="Silenus home"><img src="assets/img/logo-mark.svg" width="16" height="19" alt=""><span class="nav__word">SILENUS</span></a>
-      <p class="fh__tag">Where your company's knowledge comes to work.</p>
-    </div>
-    <nav class="fh__nav" data-stagger-item aria-label="Footer">
-      <a href="platform.html">Platform</a>
-      <a href="why-silenus.html">Why Silenus</a>
-      <a href="index.html#security">Security</a>
-      <a href="index.html#pricing">Pricing</a>
-      <a href="company.html#company">Company</a>
-      <a href="https://silenus.app">Log in</a>
-    </nav>
-    <div class="fh__legal" data-stagger-item>
-      <p>SILENUS by Phannes Inc. · © 2026</p>
-      <p><a href="/privacy">Privacy</a><a href="/cookies">Cookies</a><a href="/imprint">Imprint</a></p>
-    </div>
+<footer class="afoot afoot2">
+  <div class="afoot2__grid">
+    <div class="afoot2__c afoot2__brand"><a class="afoot__brand" href="index.html" aria-label="Silenus home"><img src="assets/img/logo-mark.svg" width="22" height="26" alt=""><span>SILENUS</span></a><p>AI-native business operating system. Documents, projects, customers, email, HR and finance on one connected platform.</p></div>
+    <nav class="afoot2__c" aria-label="Product"><p class="afoot__k">Product</p><ul><li><a href="platform.html">Platform</a></li><li><a href="why-silenus.html">Why Silenus</a></li><li><a href="security.html">Security</a></li></ul></nav><nav class="afoot2__c" aria-label="Company"><p class="afoot__k">Company</p><ul><li><a href="company.html">About us</a></li><li><a href="company.html#roadmap">Roadmap</a></li><li><a href="faq.html">FAQ</a></li><li><a href="https://silenus.app">Log in</a></li></ul></nav><nav class="afoot2__c" aria-label="Legal"><p class="afoot__k">Legal</p><ul><li><a href="/privacy">Privacy</a></li><li><a href="/cookies">Cookies</a></li><li><a href="/imprint">Imprint</a></li></ul></nav>
+    <p class="afoot2__c afoot2__copy">© 2026 SILENUS by Phannes Inc. All rights reserved.</p>
+    <p class="afoot2__c afoot2__top"><a href="#main">Back to top <span aria-hidden="true">↑</span></a></p>
   </div>
 </footer>
 
+<script>
+/* Sub-page hero grid (2026-11-14): the same cells as Home — one cell = a tenth of the frame (8th on tablets, 6th on
+   phones), rows from the header's bottom line. The copy grid uses the cell size (--hx-c) and the header line (--hx-oy);
+   the hairline grid stops on the copy's last row and the hero is white below it. The headline steps down until it
+   fits its block. */
+addEventListener('DOMContentLoaded', () => {
+  const hero = document.querySelector('[data-sub-hero]'), hxe = hero && hero.querySelector('[data-hxe]'), grid = hero && hero.querySelector('[data-hx-grid]');
+  if (!hxe) return;
+  const nav = document.querySelector('header.nav'), t = hxe.querySelector('.hxe-t'), blk = hxe.querySelector('.hxe-h');
+  const set = () => {
+    const h = hero.getBoundingClientRect(), r = hxe.getBoundingClientRect(), n = innerWidth >= 1024 ? 10 : innerWidth >= 768 ? 8 : 6, c = r.width / n;
+    const oy = (nav ? nav.offsetHeight - 1 : 0) - (h.top + scrollY);
+    hero.style.setProperty('--hx-c', c + 'px'); hero.style.setProperty('--hx-oy', oy + 'px');
+    const gx = r.left - h.left, gyo = ((oy % c) + c) % c;
+    hero.style.setProperty('--hx-gx', ((gx % c) + c) % c + 'px'); hero.style.setProperty('--hx-gy', gyo + 'px');
+    // fit the headline into its block (desktop: two rows)
+    if (t && blk && innerWidth >= 1200) { t.style.removeProperty('font-size'); let fs = parseFloat(getComputedStyle(t).fontSize), k = 0;
+      while ((t.scrollHeight > blk.clientHeight - 24 || t.scrollWidth > t.clientWidth + 1) && fs > 28 && k++ < 40) { fs -= 2; t.style.setProperty('font-size', fs + 'px', 'important'); } }
+    else if (t) t.style.removeProperty('font-size');
+    const end = hxe.getBoundingClientRect().bottom - h.top, last = gyo + Math.ceil((end - gyo) / c - 1e-4) * c;
+    if (grid) { grid.style.bottom = 'auto'; grid.style.height = (last + 1).toFixed(1) + 'px'; }
+    hero.style.setProperty('background', `linear-gradient(to bottom, #F3F4F6 ${(last + 1).toFixed(1)}px, #FFFFFF ${(last + 1).toFixed(1)}px)`, 'important');
+  };
+  const req = () => requestAnimationFrame(set);
+  addEventListener('resize', req); addEventListener('load', req); (document.fonts ? document.fonts.ready : Promise.resolve()).then(req);
+  set();
+  // entrance: the copy lines rise, the blocks settle in (Home's rhythm)
+  if (!window.gsap || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const cells = [...hxe.querySelectorAll('[data-hxe-cell]')], lines = [...hxe.querySelectorAll('.hxe-t > span')];
+  gsap.set(cells, { opacity: 0, y: 10 }); gsap.set(lines, { yPercent: 105 });
+  const go = () => { gsap.to(cells, { opacity: 1, y: 0, duration: .8, ease: 'power3.out', stagger: .08, clearProps: 'transform,opacity' });
+    gsap.to(lines, { yPercent: 0, duration: 1.05, ease: 'power4.out', stagger: .14, delay: .12, clearProps: 'transform' }); };
+  document.documentElement.classList.contains('is-loading') ? addEventListener('silenus:enter', go, { once: true }) : setTimeout(go, 120);
+});
+</script>
+<script>
+/* Section heads v2 (user 2026-11-14): one size and one entrance for every section title + description except the hero.
+   Size: the bento-head title / lead sizes (set by the 4-column fit) are copied to --sec-t / --sec-l, which the
+   'How it works' column and the closing call use too.
+   Entrance, once, when a head is 30% in view: eyebrow fades in → the title rises clause by clause out of a mask (the
+   white clause, then the teal one, 110 ms later; 1 s, ease-out-expo) → the description and what follows fade up 14 px,
+   70 ms apart. Same curve as the hero copy. Reduced motion / no IO: everything shown at once. */
+addEventListener('DOMContentLoaded', () => {
+  const root = document.documentElement;
+  const sync = () => { const t = document.querySelector('#main .bt-head .sec-head__title'), l = document.querySelector('#main .bt-head .sec-head__lead');
+    if (t) { root.style.setProperty('--sec-t', getComputedStyle(t).fontSize); } if (l) root.style.setProperty('--sec-l', getComputedStyle(l).fontSize); };
+  const resync = () => { requestAnimationFrame(() => requestAnimationFrame(sync)); };
+  { const ft = document.querySelector('#main .bt-head .sec-head__title'); ft && new MutationObserver(resync).observe(ft, { attributes: true, attributeFilter: ['style'] }); }   // the 4-column fit sets the size inline
+  addEventListener('resize', resync); addEventListener('load', resync); (document.fonts ? document.fonts.ready : Promise.resolve()).then(resync); resync();
+  const heads = [...document.querySelectorAll('#main .bt-head, #main .cta2__head, #main .ks__pin')]; if (!heads.length) return;
+  heads.forEach((h) => {
+    const t = h.querySelector('.sec-head__title'); let d = 0;
+    const eb = h.querySelector('.ks__eyebrow, .sec-head__kicker'); if (eb) { eb.setAttribute('data-hr', ''); eb.style.setProperty('--d', '0ms'); d = 80; }
+    if (t && !t.querySelector('.hr-l')) {
+      const mut = t.querySelector('.sec-head__muted'); const a = document.createElement('span'), b = mut ? document.createElement('span') : null;
+      a.className = 'hr-l'; const ai = document.createElement('span'); ai.className = 'hr-i'; a.appendChild(ai);
+      [...t.childNodes].forEach((n) => { if (n !== mut) ai.appendChild(n); });
+      t.appendChild(a); ai.style.setProperty('--d', d + 'ms');
+      if (mut) { b.className = 'hr-l'; const bi = document.createElement('span'); bi.className = 'hr-i'; bi.appendChild(mut); b.appendChild(bi); t.appendChild(b); bi.style.setProperty('--d', (d + 110) + 'ms'); }
+      d += mut ? 260 : 180;
+    }
+    const rest = [...h.querySelectorAll('.bt-head__l > *, .cta2__head > :not(.sec-head__title):not(.sec-head__kicker), .ks__lead, .ks__nav > li')];
+    rest.forEach((x, i) => { x.setAttribute('data-hr', ''); x.style.setProperty('--d', (d + i * 70) + 'ms'); });
+  });
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) { heads.forEach((h) => h.classList.add('is-hr')); return; }
+  root.classList.add('hr2');
+  const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('is-hr'); io.unobserve(e.target); } }), { threshold: .3, rootMargin: '0px 0px -6% 0px' });
+  heads.forEach((h) => io.observe(h));
+});
+</script>
+<script>
+/* Head-box side line, scroll-linked (user 2026-11-14): a bar in the logo colours (#4FA3E0 → #6FCF9A) on the box's
+   left edge. As the section comes in, the bar enters from the box's top and runs down until it spans the whole box;
+   as the section leaves under the header, the bar carries on down and exits through the box's bottom. Scrolling back
+   plays it in reverse. Position only (background offset), one rAF per scroll. Reduced motion: the full bar, still. */
+addEventListener('DOMContentLoaded', () => {
+  const hs = [...document.querySelectorAll('#main .bt.bt-head')]; if (!hs.length) return;
+  const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.documentElement.classList.add('hl-scroll');
+  const nav = () => (document.querySelector('header.nav') || {}).offsetHeight || 72;
+  const ease = (t) => (t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+  let raf = 0;
+  const tick = () => { raf = 0; const vh = innerHeight, n = nav();
+    hs.forEach((h) => { const r = h.getBoundingClientRect(), H = r.height || 1;
+      if (calm) { h.style.setProperty('--hl', '0px'); return; }
+      const e = Math.min(1, Math.max(0, (vh - r.top) / (vh * .5)));          // in: box top from the screen's foot to its middle
+      const x = Math.min(1, Math.max(0, (n + 40 - r.top) / (H + 40)));       // out: box top passing under the header
+      const y = x > 0 ? ease(x) * H : (ease(e) - 1) * H;
+      h.style.setProperty('--hl', y.toFixed(1) + 'px'); }); };
+  const req = () => { if (!raf) raf = requestAnimationFrame(tick); };
+  addEventListener('scroll', req, { passive: true }); addEventListener('resize', req);
+  window.Silenus && window.Silenus.lenis && window.Silenus.lenis.on('scroll', req);
+  tick();
+});
+</script>
+<script>
+/* Sub-page dark bands (2026-11-14): text sitting straight on the dark ground that was styled for a white page (under
+   3:1 against what is really behind it) is lifted to light; text on white cards inside the band is left alone. */
+addEventListener('DOMContentLoaded', () => {
+  const secs = [...document.querySelectorAll('#main .sub-dark')]; if (!secs.length) return;
+  const lum = (c) => { const m = (c.match(/[\d.]+/g) || []).map(Number); if (m.length < 3) return 1; return [m[0], m[1], m[2]].map((v) => { v /= 255; return v <= .03928 ? v / 12.92 : Math.pow((v + .055) / 1.055, 2.4); }).reduce((a, v, i) => a + v * [.2126, .7152, .0722][i], 0); };
+  const ground = (e) => { while (e) { const c = getComputedStyle(e).backgroundColor, a = (c.match(/[\d.]+/g) || [])[3]; if (c !== 'rgba(0, 0, 0, 0)' && (a === undefined || +a > .5)) return c; e = e.parentElement; } return 'rgb(11,16,20)'; };
+  const fix = () => secs.forEach((sec) => sec.querySelectorAll('h2,h3,h4,p,li,span,b,strong,em,small,dt,dd,a,button,label,figcaption').forEach((e) => {
+    if (e.hasAttribute('data-ondark') || !e.textContent.trim() || e.closest('.ow, .wh-app, .sub-head, .bt-ghost, video') || e.matches('.bt-ghost')) return;
+    if ([...e.childNodes].every((n) => n.nodeType !== 3 || !n.textContent.trim())) return;   // only elements that own text
+    const bg = lum(ground(e)); if (bg > .2) return;                                          // on a light card: leave it
+    const fg = lum(getComputedStyle(e).color), cr = (Math.max(fg, bg) + .05) / (Math.min(fg, bg) + .05);
+    if (cr < 3) e.setAttribute('data-ondark', fg < .03 ? '' : 'soft');
+  }));
+  fix(); setTimeout(fix, 1200); addEventListener('load', fix);
+});
+</script>
+<script>
+/* Phone pass (2026-11-14, ≤767 px only). 1) Card groups become carousels: native swipe with snap, dots that fill
+   while a slide is shown, prev / next, autoplay every 5 s while the group is on screen (paused for 10 s after any touch,
+   key or click; off with reduced motion); only the shown slide's video plays. 2) Tab rows scroll the active tab into
+   view. Set up when the screen is a phone, taken down when it is not. */
+addEventListener('DOMContentLoaded', () => {
+  const mq = matchMedia('(max-width: 767px)'), calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const GROUPS = [['#connected .bt-cn', ':scope > .bt-c'], ['#security .bt-sc', ':scope > .bt-c'], ['#knowledge .ks__steps', ':scope > .ks-step'], ['#pricing .pd__grid', ':scope > .pd__cell'], ['.aud', ':scope > .aud__card']];
+  const T = 5000, made = [];
+  const arrow = (d) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="${d}"/></svg>`;
+  const setup = () => GROUPS.forEach(([sel, kids]) => document.querySelectorAll(sel).forEach((g) => {
+    if (g.classList.contains('xcar')) return;
+    const slides = [...g.querySelectorAll(kids)].filter((x) => x.offsetParent !== null || getComputedStyle(x).display !== 'none'); if (slides.length < 2) return;
+    g.classList.add('xcar'); g.setAttribute('aria-roledescription', 'carousel'); g.setAttribute('tabindex', '0');
+    slides.forEach((s, i) => { s.classList.add('xcar__s'); s.setAttribute('aria-roledescription', 'slide'); s.setAttribute('aria-label', `${i + 1} of ${slides.length}`); });
+    const nav = document.createElement('div'); nav.className = 'xcar__nav'; nav.style.setProperty('--xcar-t', T + 'ms');
+    nav.innerHTML = `<div class="xcar__dots">${slides.map((_, i) => `<button type="button" aria-label="Show ${i + 1} of ${slides.length}"></button>`).join('')}</div><div class="xcar__arrows"><button type="button" aria-label="Previous">${arrow('M15 6l-6 6 6 6')}</button><button type="button" aria-label="Next">${arrow('M9 6l6 6-6 6')}</button></div>`;
+    g.after(nav);
+    const dots = [...nav.querySelectorAll('.xcar__dots button')], [prev, next] = nav.querySelectorAll('.xcar__arrows button');
+    let cur = -1, seen = false, hold = 0, timer = 0;
+    const play = () => slides.forEach((s, i) => s.querySelectorAll('video').forEach((v) => { if (i === cur && seen && !calm) { v.preload = 'auto'; v.play().catch(() => {}); } else v.pause(); }));
+    const mark = (k) => { if (k === cur) return; cur = k; dots.forEach((d, i) => { d.classList.toggle('is-on', i === k); d.setAttribute('aria-current', i === k ? 'true' : 'false'); }); slides.forEach((s, i) => s.classList.toggle('is-on', i === k)); play(); arm(); };
+    const go = (k) => { k = (k + slides.length) % slides.length; g.scrollTo({ left: slides[k].offsetLeft - slides[0].offsetLeft, behavior: calm ? 'auto' : 'smooth' }); mark(k); };
+    const arm = () => { clearTimeout(timer); const paused = calm || !seen || Date.now() < hold || document.hidden; nav.classList.toggle('is-paused', paused);
+      // restart the dot fill
+      const d = dots[cur]; if (d) { d.classList.remove('is-on'); void d.offsetWidth; d.classList.add('is-on'); }
+      if (!paused) timer = setTimeout(() => go(cur + 1), T); };
+    const user = () => { hold = Date.now() + 10000; arm(); setTimeout(arm, 10050); };
+    let raf = 0; g.addEventListener('scroll', () => { if (raf) return; raf = requestAnimationFrame(() => { raf = 0; const x = g.scrollLeft; let k = 0, best = 1e9; slides.forEach((s, i) => { const dd = Math.abs(s.offsetLeft - slides[0].offsetLeft - x); if (dd < best) { best = dd; k = i; } }); mark(k); }); }, { passive: true });
+    ['pointerdown', 'touchstart', 'keydown', 'wheel'].forEach((ev) => g.addEventListener(ev, user, { passive: true }));
+    dots.forEach((d, i) => d.addEventListener('click', () => { user(); go(i); }));
+    prev.addEventListener('click', () => { user(); go(cur - 1); }); next.addEventListener('click', () => { user(); go(cur + 1); });
+    g.addEventListener('keydown', (e) => { if (e.key === 'ArrowRight') { e.preventDefault(); go(cur + 1); } if (e.key === 'ArrowLeft') { e.preventDefault(); go(cur - 1); } });
+    const io = new IntersectionObserver(([e]) => { seen = e.isIntersecting; play(); arm(); }, { threshold: .4 }); io.observe(g);
+    const vis = () => arm(); document.addEventListener('visibilitychange', vis);
+    mark(0);
+    made.push(() => { clearTimeout(timer); io.disconnect(); document.removeEventListener('visibilitychange', vis); nav.remove(); g.classList.remove('xcar'); g.removeAttribute('aria-roledescription'); g.removeAttribute('tabindex'); slides.forEach((s) => { s.classList.remove('xcar__s', 'is-on'); s.removeAttribute('aria-roledescription'); s.removeAttribute('aria-label'); }); });
+  }));
+  const down = () => { while (made.length) made.pop()(); };
+  const apply = () => { if (mq.matches) setup(); else down(); };
+  apply(); mq.addEventListener('change', apply);
+  // tab rows: keep the active tab in view
+  const ROWS = '.mg__tabs, .hrm__tabs, .diff__tabs, .cx__tabs, .vs__mode, .vs__qs, .security__tabs, .fq__chips'   /* security's .stb__tabs stays a phone accordion */;
+  document.querySelectorAll(ROWS).forEach((row) => {
+    const show = () => { if (!mq.matches) return; const a = row.querySelector('.is-on, [aria-selected="true"], [aria-pressed="true"], .is-active'); if (!a) return;
+      const l = a.offsetLeft - row.offsetLeft, target = l - (row.clientWidth - a.offsetWidth) / 2; row.scrollTo({ left: Math.max(0, target), behavior: calm ? 'auto' : 'smooth' }); };
+    new MutationObserver(show).observe(row, { subtree: true, attributes: true, attributeFilter: ['class', 'aria-selected', 'aria-pressed'] });
+  });
+});
+</script>
 </body>
 </html>
