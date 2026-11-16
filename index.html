@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<script>(function(r){r.classList.add('js');if(matchMedia('(prefers-reduced-motion: reduce)').matches){r.classList.add('reduced-motion');return}r.classList.add('is-loading')})(document.documentElement)</script>
+<script>/* The SILENUS → particles intro plays once per browser session (hero-waves.js sets the flag); later visits open on the hero. */(function(r){r.classList.add('js');if(matchMedia('(prefers-reduced-motion: reduce)').matches){r.classList.add('reduced-motion');return}var seen=false;try{seen=sessionStorage.getItem('silenus:intro')==='1'}catch(e){}if(seen){r.classList.add('intro-seen');return}r.classList.add('is-loading')})(document.documentElement)</script>
 
 <title>Silenus — AI-native business operating system | by Phannes Inc.</title>
 <meta name="description" content="Silenus puts your documents, finance, CRM, HR and projects on one knowledge layer. Ask once, get a cited answer, and the work that follows happens in the same place.">
@@ -67,51 +67,6 @@ html{background:#09111A}body{margin:0;background:#09111A}
       "publisher": {
         "@id": "#org"
       }
-    },
-    {
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "What is Silenus?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "An AI-native business operating system by Phannes Inc. Documents, projects, CRM, email, calendar and HR run on one shared knowledge base, and people approve what the AI prepares."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How is Silenus different from an ERP with AI features?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "ERPs add an assistant beside separate modules, each with its own database. In Silenus everything enters one knowledge base first and every module is a view of it, so nothing is copied and answers draw on the whole company."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Do we have to replace Microsoft 365 or our other tools?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "No. Keep Microsoft 365, SharePoint and your mailboxes: Silenus reads from them, checks every answer against the source, and runs the work that follows. It connects to Microsoft 365 and Gmail (shared mailboxes too), SharePoint, Google Drive, Google and Outlook calendars, Shopify, and external tools through MCP. Bank connections are next on the roadmap."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Do we have to keep files in folders?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "No folders to maintain. Every file carries its own metadata and lands in the right place automatically."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Does the AI act on its own?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "No. Every tool is classed as read, change or external effect, and changes arrive as approval cards with the exact arguments. An e-mail is never sent automatically: a person presses Send. The AI workforce on the roadmap, AI colleagues with a role, schedule and permissions, works under the same rules, managed next to your human team."
-          }
-        }
-      ]
     }
   ]
 }
@@ -119,6 +74,14 @@ html{background:#09111A}body{margin:0;background:#09111A}
 
 <!-- GSAP 3.12.5 + ScrollTrigger + Lenis 1.1.13 and the page scripts, bundled by build.py -->
 <script src="assets/js/site.min.js?v=20261112195122" defer></script>
+<script src="assets/js/hero-waves.js?v=20261117w" defer></script>
+<script src="assets/js/hero-tour.js?v=20261118a" defer></script>
+<script src="assets/js/kl.js?v=20261117y" defer></script>
+<script src="assets/js/sys.js?v=20261118i" defer></script>
+<script src="assets/js/wx.js?v=20261118d" defer></script>
+<script src="assets/js/tru.js?v=20261118c" defer></script>
+<script src="assets/js/sf.js?v=20261118b" defer></script>
+<script src="assets/js/pg.js?v=20261118p" defer></script>
 </head>
 <body>
 <!-- Entry preloader: every load. Painted from the inline styles before the stylesheet arrives; tied to real
@@ -134,6 +97,15 @@ html{background:#09111A}body{margin:0;background:#09111A}
   </svg>
 </div>
 <link rel="stylesheet" href="assets/css/site.min.css?v=20261112195122">
+<link rel="stylesheet" href="assets/css/type.css?v=20261118a">
+<link rel="stylesheet" href="assets/css/refine.css?v=20261118a">
+<link rel="stylesheet" href="assets/css/hero.css?v=20261117h">
+<link rel="stylesheet" href="assets/css/kl.css?v=20261118a">
+<link rel="stylesheet" href="assets/css/sys.css?v=20261118h">
+<link rel="stylesheet" href="assets/css/wx.css?v=20261118g">
+<link rel="stylesheet" href="assets/css/tru.css?v=20261118d">
+<link rel="stylesheet" href="assets/css/sf.css?v=20261118d">
+<link rel="stylesheet" href="assets/css/pg.css?v=20261118j">
 <a class="skip-link" href="#main">Skip to content</a>
 
 <!-- ================= 00 · NAVIGATION ================= -->
@@ -158,7 +130,7 @@ html{background:#09111A}body{margin:0;background:#09111A}
         <span class="nav__menu-icon" aria-hidden="true"><i></i><i></i></span>
       </button>
       <a class="nav__login btn btn--secondary" href="https://silenus.app">Log in</a>
-      <a class="nav__cta" href="#demo"><i class="nav__sweep" aria-hidden="true"></i>Book a live test <span aria-hidden="true">→</span></a>
+      <a class="nav__cta hb hb--primary hb--nav" href="#demo"><span class="hb__t">Book a live test</span><svg class="hb__a" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M3.5 10h12.5"/><path d="M11.5 5.5L16 10l-4.5 4.5"/></svg></a>
     </div>
   </div>
 </header>
@@ -193,592 +165,451 @@ html{background:#09111A}body{margin:0;background:#09111A}
 
 <main id="main">
 <!-- ================= 01 · HERO · message + neural graph ================= -->
-<section class="hero" data-sdots aria-labelledby="hero-title" data-hero>
+<section class="hero hx" aria-labelledby="hero-title" data-hero>
+  <!-- HERO (2026-11-16, dark system). One statement, one living form, the real product.
+       · The wave: one large ribbon of dots across the middle of the first screen (hero-waves.js, one canvas).
+         On the first visit of a session it is born from the preloader: the SILENUS wordmark breaks into its
+         dots, they drift through the screen and gather into the wave (site.min.js hands the finished wordmark
+         over through window.SilenusIntro).
+       · The type: one sentence in three registers, after the editorial direction explored earlier:
+         "Everything your business" (Inter, light, small) · "knows," (Source Serif 4) · "connected." (Source Serif 4,
+         semibold, display size, brand teal): the statement.
+       · The product: the Silenus dashboard, rebuilt from the client's recordings (assets/video/*-poster.jpg) and
+         the dashboard screen of the 'Inside Silenus' window. It rises below and runs past the screen; 01 will
+         build on it.
+       The bundled hero script (site.min.js) runs the entrance: [data-hero-badge], [data-hero-line] (the letter
+       reveal) and [data-hero-rise]. [data-hero-spot] is an empty hook for its pointer code. -->
   <div class="hero__bg" aria-hidden="true">
-    <div class="hero__grid"></div>
-    <div class="hero__grid hero__grid--lit" data-hero-spot></div>
-    <div class="hero__glow hero__glow--top"></div>
-    <div class="bits" aria-hidden="true"></div>
-    <div class="bits bits--lit" aria-hidden="true"></div>
+    <canvas class="hx__waves" data-hx-waves></canvas>
+    <i class="hero__spot" data-hero-spot hidden></i>
   </div>
 
-  <div class="hero__inner wrap">
-    <div class="hero__content">
-      <p class="hero__badge" data-hero-badge><i class="hero__live" aria-hidden="true"></i><span class="hero__badge-brand">Silenus by Phannes Inc.</span><span class="hero__badge-sep" aria-hidden="true"></span><span class="hero__badge-meta">AI-native enterprise operating system</span></p>
-
-      <h1 class="hero__title" id="hero-title">
-        <span class="hero__line"><span class="hero__line-inner" data-hero-line>Everything your business knows,</span></span>
-        <span class="hero__line hero__line--metal"><span class="hero__line-inner" data-hero-line>connected to everything it does.</span></span>
-      </h1>
-
-      <p class="hero__lead" data-hero-rise>One intelligence layer for documents, projects, CRM, email, calendar and HR.</p>
-
-      <div class="hero__actions" data-hero-rise>
-        <a class="btn btn--primary" href="#demo" data-scroll-to>Book a live test <span class="btn__arrow" aria-hidden="true">→</span></a>
-        <a class="btn btn--secondary" href="#workspace" data-scroll-to>Explore the platform <span class="btn__arrow" aria-hidden="true">→</span></a>
-      </div>
-
-      <ul class="hero__proof" data-hero-rise aria-label="Key facts">
-        <li>Every answer shows its source</li>
-        <li>Self-hosted AI</li>
-        <li>Unlimited users</li>
-      </ul>
+  <div class="hx__head wrap">
+    <p class="hero__badge hx__badge" data-hero-badge><span class="hero__badge-meta">The AI-native operating system for business</span></p>
+    <h1 class="hero__title hx__title" id="hero-title">
+      <span class="hx__row hx__row--a"><span class="hero__line hx__l1"><span class="hero__line-inner" data-hero-line>Everything your business</span></span> <span class="hero__line hx__l2"><span class="hero__line-inner" data-hero-line>knows,</span></span></span>
+      <span class="hx__row hx__row--b"><span class="hero__line hx__l3"><span class="hero__line-inner" data-hero-line>connected.</span></span></span>
+    </h1>
+    <p class="hero__lead hx__lead" data-hero-rise>One intelligence layer for your documents, projects, clients and finance.</p>
+    <div class="hx__actions" data-hero-rise>
+      <a class="hb hb--primary" href="#demo" data-scroll-to><span class="hb__t">Book a live test</span><svg class="hb__a" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M3.5 10h12.5"/><path d="M11.5 5.5L16 10l-4.5 4.5"/></svg></a>
+      <a class="hb hb--ghost" href="#workflows" data-scroll-to><span class="hb__t">See the platform</span><svg class="hb__a" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M3.5 10h12.5"/><path d="M11.5 5.5L16 10l-4.5 4.5"/></svg></a>
     </div>
+  </div>
 
-    <!-- Right: raw inputs → knowledge core → actionable intelligence.
-         A hair-thin fibre enters low on the right, passes through the core and fades out toward the text.
-         Decorative motion; the meaning is in the label below for assistive tech. -->
-    <div class="hero__visual" data-hero-visual>
-      <div class="flow" data-flow role="img" aria-label="Raw inputs from documents, CRM, finance, projects, e-mail and HR flow into the Silenus knowledge base and come out as verified answers, flagged invoices, drafted replies and created tasks.">
-        <svg class="flow__fibre" viewBox="0 0 1000 800" preserveAspectRatio="none" aria-hidden="true">
-          <defs>
-            <linearGradient id="fibre-in" gradientUnits="userSpaceOnUse" x1="1070" y1="0" x2="704" y2="0">
-              <stop offset="0" stop-color="#8FD3D5" stop-opacity=".6"/><stop offset="1" stop-color="#8FD3D5" stop-opacity=".6"/>
-            </linearGradient>
-            <linearGradient id="fibre-out" gradientUnits="userSpaceOnUse" x1="704" y1="0" x2="300" y2="0">
-              <stop offset="0" stop-color="#8FD3D5" stop-opacity=".6"/><stop offset="1" stop-color="#8FD3D5" stop-opacity=".6"/>
-            </linearGradient>
-            <filter id="fibre-soft" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="3"/></filter>
-          </defs>
-          <path class="fibre fibre--halo" pathLength="1" d="M1070 190 C930 205, 811 311, 704 439" stroke="url(#fibre-in)" filter="url(#fibre-soft)"/>
-          <path class="fibre fibre--halo" pathLength="1" d="M704 439 C585 582, 395 688, 202 725" stroke="url(#fibre-out)" filter="url(#fibre-soft)"/>
-          <path class="fibre fibre--main" d="M1070 190 C930 205, 811 311, 704 439" stroke="url(#fibre-in)" pathLength="1" data-track-in/>
-          <path class="fibre fibre--main" d="M704 439 C585 582, 395 688, 202 725" stroke="url(#fibre-out)" pathLength="1" data-track-out/>
-        </svg>
+</section>
 
-        <div class="core" data-core aria-hidden="true">
-          <span class="core__halo"></span>
-          <span class="core__orbit core__orbit--a"><i></i><i></i></span>
-          <span class="core__orbit core__orbit--b"><i></i></span>
-          <span class="core__ring core__ring--dash"></span>
-          <span class="core__ring core__ring--sweep"></span>
-          <span class="core__ring core__ring--glass"></span>
-          <span class="core__face">
-            <span class="core__k">Example knowledge base</span>
-            <span class="core__v" data-count>48,210</span>
-            <span class="core__u">documents</span>
-            <span class="core__w">312 added this week</span>
-            <span class="core__now"><i></i><span data-core-now>Listening</span></span>
-          </span>
-        </div>
+<!-- ================= 02 · THE PRODUCT TOUR (2026-11-16) =================
+     One dashboard, the stable anchor. It rests small on this section's lower edge under the first stage's title;
+     as the section reaches the top of the screen it pins, the dashboard grows and rises to its final, centred size,
+     and stays. From then on only its content and the title above it change, through four stages: the client's own
+     demo screens for Workspace · Dashboard, Management · Document intake, Business · CRM and AI tool · AI Chat, each
+     with its point lit and the rest dimmed. Desktop ≥ 1024 (hero-tour.js, ScrollTrigger + CSS sticky). Phones,
+     tablets and reduced motion: no pinning; the four screens follow one another, each with its title. -->
+<section class="tour" id="tour" aria-label="A tour of the Silenus platform">
+  <div class="hx__tour" data-tour>
+    <div class="hx__stage" data-tour-stage>
+      <ol class="hx__caps" data-tour-caps aria-label="A tour of the Silenus platform">
+        <li class="hx__cap" data-cap="dash"><h2 class="hx__capt">Everything that moved, <em>in one place.</em></h2><p class="hx__capp">Each claim linked to its source.</p></li>
+        <li class="hx__cap" data-cap="intake"><h2 class="hx__capt">Every document <em>becomes knowledge.</em></h2><p class="hx__capp">Every fact checked against the page.</p></li>
+        <li class="hx__cap" data-cap="crm"><h2 class="hx__capt">One client, <em>recognised everywhere.</em></h2><p class="hx__capp">Contract, invoice, email: one record.</p></li>
+        <li class="hx__cap" data-cap="chat"><h2 class="hx__capt">Answers <em>you can check.</em></h2><p class="hx__capp">Every answer shows its source.</p></li>
+      </ol>
+      <div class="hx__product" data-tour-product>
+        <div class="hx__zoom" data-tour-zoom>
+          <div class="hx__frame" data-hx-frame role="img" aria-label="The Silenus dashboard: a morning briefing verified against its sources, what needs your decision, today's agenda and the size of the company knowledge base.">
+            <div class="dsh" data-hx-pd aria-hidden="true">
+        <aside class="dsh__side">
+          <div class="dsh__brand"><p><img src="assets/img/logo-mark.svg" width="24" height="28" alt=""><b>SILENUS</b><span>Enterprise AI workplace</span></p><svg viewBox="0 0 24 24"><path d="M14.5 7l-5 5 5 5"/></svg></div>
+          <div class="dsh__nav">
+            <p class="dsh__grp">Workspace<svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></p>
+            <ul>
+              <li class="is-on" data-dsh-nav="dash"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>Dashboard</li>
+              <li><svg viewBox="0 0 24 24"><path d="M4 19V5M4 19h16M8 15l4-4 3 3 5-6"/></svg>Analytics</li>
+              <li><svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>Calendar</li>
+              <li><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Email</li>
+              <li><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9.5L5 19.5V16H4z"/></svg>Team chat</li>
+            </ul>
+            <p class="dsh__grp">Management<svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></p>
+            <ul>
+              <li data-dsh-nav="intake"><svg viewBox="0 0 24 24"><path d="M4 13.5l2.1-6.4A2.2 2.2 0 0 1 8.2 5.5h7.6a2.2 2.2 0 0 1 2.1 1.6l2.1 6.4v4a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 17.5zM4 13.5h4.4l1.4 2h4.4l1.4-2H20"/></svg>Document intake</li>
+              <li><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4M9 13h6M9 17h4"/></svg>Documents</li>
+              <li><svg viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5zM3 13l9 5 9-5"/></svg>Templates</li>
+              <li><svg viewBox="0 0 24 24"><path d="M3.5 7a2 2 0 0 1 2-2h4l2 2h7a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2z"/></svg>Projects</li>
+            </ul>
+            <p class="dsh__grp">Business<svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></p>
+            <ul>
+              <li data-dsh-nav="crm"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3.5 19.5c0-3.2 2.5-5 5.5-5s5.5 1.8 5.5 5M16.5 5.5a3 3 0 0 1 0 5.6M18 14.6c1.8.5 3 1.9 3 4.9"/></svg>CRM</li>
+              <li><i class="dsh__dot dsh__dot--ok"></i>HR</li>
+            </ul>
+            <p class="dsh__grp">AI tool<svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></p>
+            <ul>
+              <li data-dsh-nav="chat"><svg viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg>AI Chat</li>
+              <li><i class="dsh__dot dsh__dot--info"></i>Knowledge</li>
+            </ul>
+          </div>
+          <div class="dsh__foot">
+            <p class="dsh__set"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/></svg>Settings</p>
+            <p class="dsh__bell"><i><svg viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20.5h4"/></svg></i><span>Notifications<small>4 unread</small></span></p>
+            <p class="dsh__user"><i>LL</i><span>Laura Lakatos <em>User</em></span></p>
+          </div>
+        </aside>
 
-        <div class="flow__items" aria-hidden="true">
-          <span class="raw" data-in="docs"><svg viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6z M14 3v4h4M9 12h6M9 16h4"/></svg>Documents</span>
-          <span class="raw" data-in="crm"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3.5 19.5c0-3.2 2.5-5 5.5-5s5.5 1.8 5.5 5"/><circle cx="17" cy="9" r="2.4"/><path d="M16.5 14.6c2.6.1 4.5 1.6 4.5 4.4"/></svg>CRM</span>
-          <span class="raw" data-in="finance"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2.5"/><circle cx="12" cy="12" r="2.5"/></svg>Finance</span>
-          <span class="raw" data-in="mail"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9.5L5 19.5V16H4z"/><path d="M8 9.5h8M8 12.5h5"/></svg>E-mail</span>
-          <span class="insight" data-out="docs"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7"/></svg>Answer verified · 3 sources</span>
-          <span class="insight" data-out="crm"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7"/></svg>Contact created from e-mail</span>
-          <span class="insight" data-out="finance"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7"/></svg>INV-20931 · €1,240 mismatch flagged</span>
-          <span class="insight" data-out="mail"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7"/></svg>Reply drafted in your tone</span>
+              <div class="dsh__main">
+          <div class="dsh__top">
+            <p class="dsh__search"><svg viewBox="0 0 16 16"><circle cx="7" cy="7" r="4.5"/><path d="M10.5 10.5L14 14"/></svg>Search or ask Silenus anything…<kbd>⌘K</kbd></p>
+            <p class="dsh__ai"><i></i>AI ready</p>
+          </div>
+                <div class="dsh__screens">
+                  <section class="dsh__screen is-on" data-screen="dash">
+          <div class="dsh__body">
+            <header class="dsh__head">
+              <div>
+                <h2 class="dsh__h">Good morning, Laura</h2>
+                <p class="dsh__sub">Wednesday · 7 October 2026 · What moved across the company since yesterday.</p>
+              </div>
+            </header>
+            <ul class="dsh__stats">
+              <li><span>Knowledge base</span><b>48,210</b><small>documents · 312 added this week</small></li>
+              <li><span>Open tasks</span><b>23</b><small>3 due this week</small></li>
+              <li><span>Inbox</span><b>7</b><small>need a reply · 2 already drafted</small></li>
+              <li><span>Left of today</span><b>6h 20m</b><small>3 meetings · 1 deadline</small></li>
+            </ul>
+            <div class="dsh__grid">
+              <div class="dsh__card">
+                <p class="dsh__k">Needs you <em>4 open</em></p>
+                <ul class="dsh__needs">
+                  <li><span><b>Kovács Ltd. supply agreement renews 31 Dec</b><small>Found by the Legal agent · notice period ended 2 Oct</small></span><i>Review</i></li>
+                  <li><span><b>Invoice INV-20931 doesn't match the order</b><small>€1,240 difference · Finance agent</small></span><i>Open</i></li>
+                  <li><span><b>2 leave requests waiting</b><small>HR · decide before Friday</small></span><i>Decide</i></li>
+                  <li><span><b>Warehouse move: 3 tasks due this week</b><small>Project · 62% complete</small></span><i>Open</i></li>
+                </ul>
+              </div>
+              <div class="dsh__card dsh__card--ai" data-spot>
+                <p class="dsh__k">Morning briefing <span class="dsh__ok">✓ Verified</span></p>
+                <p class="dsh__brief">Three contracts renew before year end<sup>1</sup>. Kovács Ltd. also appears in an open invoice dispute<sup>2</sup> and in last week's email thread about delivery delays<sup>3</sup>. Q3 revenue is tracking 6% above plan<sup>4</sup>.</p>
+                <p class="dsh__chips"><span>Legal</span><span>Finance</span><span>Email</span><span>CRM</span></p>
+                <p class="dsh__k dsh__k--sep">Today</p>
+                <ul class="dsh__agenda">
+                  <li><b>09:00</b><span>Supplier call</span><em>Outlook</em></li>
+                  <li><b>11:30</b><span>Warehouse stand-up</span><em>Project</em></li>
+                  <li><b>Fri</b><span>Board deck due</span><em>From team chat</em></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+</section>
+
+
+                  <section class="dsh__screen" data-screen="intake">
+                    <div class="dsh__body">
+                      <header class="dsh__head"><div><p class="dsh__kk">Knowledge · Document intake</p><h2 class="dsh__h">Document intake</h2><p class="dsh__sub">Files are read, understood and connected the moment they arrive.</p></div><p class="dsh__chips"><span class="is-ok">SharePoint synced</span><span>+ Upload</span></p></header>
+                      <div class="dsh__grid dsh__grid--even">
+                        <div class="dsh__card">
+                          <p class="dsh__drop"><b>Drag files or whole folders here</b><small>PDF, Word, Excel, scans, photos and charts · folder permissions decide who sees what</small></p>
+                          <p class="dsh__k">6 files processing <em>Upload · OCR · Layout · Vision · Extract · Tag · Publish</em></p>
+                          <ul class="dsh__files">
+                            <li><span><b>Supply_agreement_Kovacs.pdf</b><small>Scanned PDF · OCR</small></span><i data-n="7"></i><em class="is-ok">Published</em></li>
+                            <li><span><b>Annual_report_2014.pdf</b><small>Multi-column financial tables</small></span><i data-n="6"></i><em>Tag…</em></li>
+                            <li><span><b>INV-20931.jpg</b><small>Photographed invoice</small></span><i data-n="4"></i><em>Vision…</em></li>
+                            <li><span><b>Board_minutes_Q3.docx</b><small>Word document</small></span><i data-n="3"></i><em>Layout…</em></li>
+                            <li><span><b>Warehouse_lease_Gyal.pdf</b><small>Contract · 38 pages</small></span><i data-n="2"></i><em>OCR…</em></li>
+                          </ul>
+                        </div>
+                        <div class="dsh__card" data-spot>
+                          <p class="dsh__k">Extracted facts <em>Supply_agreement_Kovacs.pdf</em></p>
+                          <ul class="dsh__facts">
+                            <li><span>Counterparty</span><b>Kovács Ltd. · Reg. 01-09-338412</b><em>✓ p.1</em></li>
+                            <li><span>Renewal date</span><b>31 December 2026</b><em>✓ p.4</em></li>
+                            <li><span>Notice period</span><b>90 days</b><em>✓ p.4</em></li>
+                            <li><span>Contract value</span><b>€184,000 / year</b><em>✓ p.6</em></li>
+                            <li><span>Governing law</span><b>Hungary</b><em>✓ p.11</em></li>
+                          </ul>
+                          <p class="dsh__chips"><span>Contract</span><span>Supplier</span><span>Renewing</span></p>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section class="dsh__screen" data-screen="crm">
+                    <div class="dsh__body">
+                      <header class="dsh__head"><div><p class="dsh__kk">Business · CRM</p><h2 class="dsh__h">Kovács Ltd.</h2><p class="dsh__sub">Supplier · Budapest · Reg. 01-09-338412 · Created automatically from email · 14 Mar 2024</p></div></header>
+                      <div class="dsh__grid dsh__grid--crm">
+                        <div class="dsh__card">
+                          <p class="dsh__k">Contact</p>
+                          <p class="dsh__partner"><i>KP</i><span><b>Péter Kovács</b><small>Managing director</small></span></p>
+                          <ul class="dsh__kv">
+                            <li><span>Lifetime value</span><b>€512,400</b></li>
+                            <li><span>Open items</span><b>1 dispute · 1 renewal</b></li>
+                            <li><span>Last contact</span><b>2 Oct · email</b></li>
+                            <li><span>Owner</span><b>Ádám K.</b></li>
+                          </ul>
+                          <p class="dsh__btns"><span>Generate form</span><span>Email</span></p>
+                        </div>
+                        <div class="dsh__card" data-spot>
+                          <p class="dsh__k">Connected across the company <em>Kovács Ltd. · one record</em></p>
+                          <ul class="dsh__links">
+                            <li><span>Supply agreement</span><b>Legal · renews 31 Dec</b></li>
+                            <li><span>INV-20931</span><b>Finance · €1,240 mismatch</b></li>
+                            <li><span>Email thread</span><b>Delivery delay, week 41</b></li>
+                            <li><span>Warehouse move</span><b>Project · supplier</b></li>
+                            <li><span>Webshop order</span><b>#8812</b></li>
+                            <li><span>Board minutes Q3</span><b>mentioned twice</b></li>
+                            <li><span>Meeting 2 Oct</span><b>AI summary</b></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section class="dsh__screen" data-screen="chat">
+                    <div class="dsh__body">
+                      <header class="dsh__head"><div><p class="dsh__kk">AI tool · Chat</p><h2 class="dsh__h">AI Chat</h2></div><p class="dsh__chips"><span class="is-label">Scope</span><span class="is-ok">Whole company</span><span>This document</span><span>Project: Warehouse move</span></p></header>
+                      <div class="dsh__grid dsh__grid--even">
+                        <div class="dsh__card">
+                          <p class="dsh__q">Which of our contracts renew in the next quarter?</p>
+                          <p class="dsh__a">Four contracts renew between 1 October and 31 December 2026. I checked every contract in the knowledge base, not only the closest matches.</p>
+                          <ul class="dsh__renew">
+                            <li><span>Kovács Ltd. supply agreement</span><b>31 Dec</b><i>1</i></li>
+                            <li><span>Warehouse lease, Gyál</span><b>30 Nov</b><i>2</i></li>
+                            <li><span>Fleet insurance</span><b>15 Nov</b><i>3</i></li>
+                            <li><span>IT support, Nordtech</span><b>1 Oct</b><i>4</i></li>
+                          </ul>
+                          <p class="dsh__ver">✓ Verified against 4 sources</p>
+                        </div>
+                        <div class="dsh__card" data-spot>
+                          <p class="dsh__q">What termination fee does the Kovács agreement set?</p>
+                          <p class="dsh__a"><span class="dsh__warn">Not in the documents</span> The agreement does not set a termination fee. Clause 12.2 allows termination with 90 days' written notice and says nothing about a fee<sup>1</sup>.</p>
+                          <blockquote class="dsh__src"><span>Source 1 · Supply_agreement_Kovacs.pdf · p.4</span>12.1 This Agreement shall renew automatically for successive periods of twelve months unless terminated on <mark>31 December 2026</mark> or any anniversary thereof. 12.2 Either party may terminate this Agreement by giving <mark>ninety (90) days' written notice</mark> to the other party.</blockquote>
+                          <p class="dsh__chips"><span>Legal agent</span><span>Model: self-hosted</span></p>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                </div>
+          <div class="dsh__dock">
+            <span class="dsh__track"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="7"/><path d="M12 13V9.5M10 3h4"/></svg>Track time</span>
+            <span class="dsh__check"><i></i>Check in <b>00:00:00</b></span>
+            <span class="dsh__bot"><svg viewBox="0 0 24 24"><rect x="5" y="8" width="14" height="10" rx="3"/><path d="M12 8V5M9.5 12.5v1M14.5 12.5v1M3 12v3M21 12v3"/></svg></span>
+          </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ================= 02 · THE PROBLEM → ONE LAYER ================= -->
-<section class="problem pb2" id="problem" aria-labelledby="problem-title" data-problem data-pb2>
-  <!-- 01 · Chaos to core (2026-11-09). Left: the headline and one focus card (tab: the twelve places → what
-       comes out; one item at a time, every item stays in the list for readers and search). Right: a quiet stage,
-       twelve points on the rim drawn into one core, six outcomes leaving it (problem-v1.js builds the SVG).
-       All wording is the client site's own. -->
-  <div class="wrap pb2__grid">
-    <div class="pb2__text">
-    <div class="pb__head">
-      <p class="sec-head__idx pb__idx"><b>01</b> The problem</p>
-      <h2 class="pb__title" id="problem-title" data-split>Your business lives in a dozen tools. <span class="pb__title-2">Silenus makes it one.</span></h2>
-      <p class="pb__desc" data-reveal>Files, inboxes, spreadsheets, a CRM. Your people spend hours stitching the context back together. Silenus is not another app in the stack: it is the layer your business runs on.</p>
-      <p class="pb__cta"><a class="pb__more lbtn" href="why-silenus.html#why">See what's different <span aria-hidden="true">→</span></a></p>
-    </div>
-      <div class="pb2__focus" data-pb2-focus data-reveal>
-        <div class="pb2__panel is-on" id="pb2-in" aria-label="Twelve places your company lives today" data-pb2-panel="in">
-          <ol class="pb2__list">
-            <li class="pb2__item" data-pb2-item><svg class="pb2__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 7.5a2 2 0 0 1 2-2h3.8l2 2h7.2a2 2 0 0 1 2 2v7.5a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2z"/><path d="M3.5 10.5h17"/></svg><span class="pb2__txt"><b>Shared drive</b><span>4,200 files</span></span></li>
-            <li class="pb2__item" data-pb2-item><svg class="pb2__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13.5l2.1-6.4A2.2 2.2 0 0 1 8.2 5.5h7.6a2.2 2.2 0 0 1 2.1 1.6l2.1 6.4"/><path d="M4 13.5v4a1.5 1.5 0 0 0 1.5 1.5h13a1.5 1.5 0 0 0 1.5-1.5v-4h-4.4l-1.4 2h-4.6l-1.4-2z"/></svg><span class="pb2__txt"><b>Inboxes</b><span>12 mailboxes</span></span></li>
-            <li class="pb2__item" data-pb2-item><svg class="pb2__ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2"/><path d="M3.5 9h17M3.5 13.5h17M9 9v10.5"/></svg><span class="pb2__txt"><b>Spreadsheets</b><span>budget_v7_final.xlsx</span></span></li>
-            <li class="pb2__item" data-pb2-item><svg class="pb2__ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><circle cx="9" cy="10.5" r="2"/><path d="M6 15.5c.6-1.3 1.7-2 3-2s2.4.7 3 2M14.5 10h3.5M14.5 13.5h3.5"/></svg><span class="pb2__txt"><b>CRM</b><span>client records</span></span></li>
-            <li class="pb2__item" data-pb2-item><svg class="pb2__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4.5h9a2 2 0 0 1 2 2v4.5a2 2 0 0 1-2 2H9.5L6 15.5V13H5a2 2 0 0 1-2-2V6.5a2 2 0 0 1 2-2z"/><path d="M18.5 9H19a2 2 0 0 1 2 2v4.5a2 2 0 0 1-2 2h-1v2.5L14.5 17.5H12a2 2 0 0 1-1.8-1.1"/></svg><span class="pb2__txt"><b>Team chat</b><span>#warehouse</span></span></li>
-            <li class="pb2__item" data-pb2-item><svg class="pb2__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 4v16"/><rect x="7.5" y="5.5" width="8" height="3" rx="1.5"/><rect x="10.5" y="10.5" width="9" height="3" rx="1.5"/><rect x="7.5" y="15.5" width="5.5" height="3" rx="1.5"/></svg><span class="pb2__txt"><b>Project tool</b><span>board + Gantt</span></span></li>
-            <li class="pb2__item" data-pb2-item><svg class="pb2__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3.5h7l4.5 4.5v11a1.5 1.5 0 0 1-1.5 1.5H7A1.5 1.5 0 0 1 5.5 19V5A1.5 1.5 0 0 1 7 3.5z"/><path d="M14 3.5V8h4.5"/><path d="M8.5 16.5c1-1.4 1.8-1.4 2.3-.4.4.9 1 .9 1.7-.1.5-.7 1.2-.6 1.6.2"/></svg><span class="pb2__txt"><b>Contracts folder</b><span>signed PDFs</span></span></li>
-            <li class="pb2__item" data-pb2-item><svg class="pb2__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 3.5h11v17l-2.2-1.4-1.6 1.4-1.7-1.4-1.7 1.4-1.6-1.4-2.2 1.4z"/><path d="M9.5 8h5M9.5 11.5h5M9.5 15h3"/></svg><span class="pb2__txt"><b>Accounting</b><span>invoices</span></span></li>
-            <li class="pb2__item" data-pb2-item><svg class="pb2__ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8.5" r="3.5"/><path d="M5.5 19.5c.9-3.3 3.4-5 6.5-5s5.6 1.7 6.5 5"/></svg><span class="pb2__txt"><b>HR files</b><span>contracts, leave</span></span></li>
-            <li class="pb2__item" data-pb2-item><svg class="pb2__ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4M8 14.5h.01M12 14.5h.01M16 14.5h.01"/></svg><span class="pb2__txt"><b>Calendars</b><span>3 apps</span></span></li>
-            <li class="pb2__item" data-pb2-item><svg class="pb2__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16M8.5 20h7M5 7h14"/><path d="M5 7l-2.5 5.5a2.5 2 0 0 0 5 0z"/><path d="M19 7l-2.5 5.5a2.5 2 0 0 0 5 0z"/></svg><span class="pb2__txt"><b>Legal</b><span>obligations</span></span></li>
-            <li class="pb2__item" data-pb2-item><svg class="pb2__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16"/><path d="M7.5 16.5v-4M12 16.5V8M16.5 16.5v-6.5"/></svg><span class="pb2__txt"><b>Reports</b><span>scattered KPIs</span></span></li>
-          </ol>
-        </div>
-        <div class="pb2__nav">
-          <span class="pb2__count"><b data-pb2-n>01</b> / <span data-pb2-total>12</span></span>
-          <span class="pb2__bar" aria-hidden="true"><i data-pb2-bar></i></span>
-          <button type="button" class="pb2__btn" data-pb2-prev aria-label="Previous"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
-          <button type="button" class="pb2__btn" data-pb2-next aria-label="Next"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+<!-- ================= 03 · THE KNOWLEDGE LAYER — THE MORPHING KNOWLEDGE PATH (2026-11-17) =================
+     (2026-11-17, restructured) The title takes the screen and settles, then goes out of focus as the videos arrive; the
+     videos reveal one by one, in a zigzag. The particle S now forms only in section 04 (the connected system).
+     · the dots (the hero's particle canvas, hero-waves.js) come back as the tour's dashboard leaves and form the
+       Knowledge Core; some settle along the path as it grows; a few carry each chapter's light to its video;
+     · kl.js is the single source of progress (ScrollTrigger): the core, the path (SVG), the Progress Node, the
+       chapter markers and branches, the video reveals (clip-path) and playback;
+     · content and footage live in one place: KL_CHAPTERS in assets/js/kl.js (temporary footage, marked there). -->
+<section class="kl" id="knowledge-layer" aria-labelledby="kl-title">
+  <div class="kl__in wrap" data-kl>
+    <!-- the title: it takes the screen, settles, then goes out of focus as the videos arrive (kl.js) -->
+    <div class="kl__intro" data-kl-intro>
+      <div class="kl__stage" data-kl-stage>
+        <div class="kl__head">
+          <div class="kl__words" data-kl-words>
+            <h2 class="kl__title" id="kl-title" data-kl-h><span class="kl__row kl__row--a"><span class="kl__r1">Your</span> <span class="kl__r2">business,</span></span> <span class="kl__row kl__row--b"><em class="kl__r3">understood.</em></span></h2>
+            <p class="kl__lead" data-kl-h>Everything enters one knowledge base first, and every module is a view of it.</p>
+          </div>
         </div>
       </div>
     </div>
+    <!-- the product journey: one straight line down the centre; each recording and its words on either side of it -->
+    <div class="kl__journey" data-kl-journey>
+      <span class="kl__spine" aria-hidden="true"><i data-kl-spine></i></span>
+      <ol class="kl__chapters" data-kl-chapters aria-label="The knowledge layer, in the product"></ol>
+    </div>
+  </div>
+</section>
 
-    <div class="pb2__stage" data-pb2-stage>
-      <!-- inputs (top, one row on one bus) → the core (orbits + a living particle ring) → "Verified answers" → six outcomes and the question bar -->
-      <svg class="pb2__svg" viewBox="0 0 600 660" aria-hidden="true" data-pb2-svg></svg>
-      <canvas class="pb2__particles" aria-hidden="true" data-pb2-canvas></canvas>
-      <div class="pb2__core" data-pb2-core>
-        <span class="pb2__brand" data-sdots-to><img class="pb2__mark" src="assets/img/logo-mark.svg" alt="" width="100" height="116"><span class="pb2__word">Silenus</span></span>
-        <p class="pb2__label"><b>One intelligence layer</b><span>one source of context</span></p>
+<!-- ================= 04 · THE CONNECTED SYSTEM (2026-11-17) =================
+     The tools Silenus connects to (only those the product supports — see the FAQ, "Which tools does Silenus connect
+     to?") send their information along living, morphing streams into one core: the Silenus mark. sys.js builds the
+     tools from SYS_TOOLS, draws the streams (SVG) and the information travelling them (canvas), and runs the sequence
+     on one scroll-scrubbed timeline; afterwards the system keeps a quiet ambient motion. The copy is the section's
+     approved copy; only the eyebrow was removed. -->
+<section class="sys" id="problem" aria-labelledby="problem-title">
+  <div class="wrap sys__in">
+    <!-- the brand at the centre: the tools around it, their streams running toward it, and the particles from beyond the
+         screen building its wordmark letter by letter (sys.js). The wordmark is the brand's own (the preloader's): the
+         letters' strokes, the S in the logo's gradient. -->
+    <div class="sys__stage" data-sys>
+      <svg class="sys__links" data-sys-svg aria-hidden="true" focusable="false"><defs data-sys-defs></defs></svg>
+      <canvas class="sys__flow" data-sys-canvas aria-hidden="true"></canvas>
+      <ul class="sys__tools" data-sys-tools aria-label="Tools Silenus connects to"></ul>
+      <div class="sys__core" data-sys-core>
+        <p class="sys__eyebrow" data-sys-w>Your business lives in a dozen tools.</p>
+        <h2 class="sys__title" id="problem-title">
+          <svg class="sys__word" viewBox="-10 8 618 100" role="img" aria-label="Silenus" data-sys-word>
+            <defs><!-- the logo's own gradient (assets/img/logo-mark.svg: 20,10 → 80,106), moved with its S (the logo's S sits 20 further right) -->
+            <linearGradient id="sys-word-g" x1="0" y1="10" x2="60" y2="106" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#4FA3E0"/><stop offset="1" stop-color="#6FCF9A"/></linearGradient></defs>
+            <path class="sys__l sys__l--s sys__l--logo" d="M60 18H20a20 20 0 0 0 0 40h20a20 20 0 0 1 0 40H0" transform="translate(0 0)" pathLength="1" data-sys-l data-x="0"/>
+            <path class="sys__l" d="M0 18V98" transform="translate(104 0)" pathLength="1" data-sys-l data-x="104"/>
+            <path class="sys__l" d="M0 18V98H50" transform="translate(148 0)" pathLength="1" data-sys-l data-x="148"/>
+            <path class="sys__l" d="M52 18H0V98H52M0 58H44" transform="translate(242 0)" pathLength="1" data-sys-l data-x="242"/>
+            <path class="sys__l" d="M0 98V18L56 98V18" transform="translate(338 0)" pathLength="1" data-sys-l data-x="338"/>
+            <path class="sys__l" d="M0 18V68a28 28 0 0 0 56 0V18" transform="translate(438 0)" pathLength="1" data-sys-l data-x="438"/>
+            <path class="sys__l sys__l--s" d="M60 18H20a20 20 0 0 0 0 40h20a20 20 0 0 1 0 40H0" transform="translate(538 0)" pathLength="1" data-sys-l data-x="538"/>
+          </svg>
+          <span class="sys__one" data-sys-w>makes it <em>one.</em></span>
+        </h2>
+        <p class="sys__desc" data-sys-w>Not another app in the stack. The layer your business runs on, so your people stop stitching context back together.</p>
+        <span class="sys__cta-w" data-sys-w><a class="sys__cta hb hb--primary" href="why-silenus.html#why"><span class="hb__t">See what's different</span><svg class="hb__a" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M3.5 10h12.5"/><path d="M11.5 5.5L16 10l-4.5 4.5"/></svg></a></span>
       </div>
-      <p class="pb2__engine" data-pb2-engine aria-hidden="true">Verified answers</p>
-      <div class="pb2__ask" data-pb2-ask>
-        <svg class="pb2__ask-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg>
-        <span class="pb2__q" aria-hidden="true"><span data-pb2-q>Search or ask Silenus anything…</span><i class="pb2__caret"></i></span>
-        <span class="pb2__ok" aria-hidden="true" data-pb2-ok>✓ Complete &amp; verified</span>
-        <a class="pb2__go" href="#demo" aria-label="Book a live test"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      </div>
+      <canvas class="sys__s" data-sys-s aria-hidden="true"></canvas>
     </div>
   </div>
 </section>
 
 <!-- ================= 04 · ONE WINDOW (pinned app window, four modules) ================= -->
-<section class="ws ws--clean ws--centre" id="workspace" aria-labelledby="ws-title" data-ws data-thread-top-center>
-  <div class="ws__pin" data-ws-pin>
-    <div class="ws__glow" aria-hidden="true"></div>
-    <div class="wrap ws__stage">
-      <header class="sec-head" data-split-head>
-        <p class="sec-head__idx" data-thread-center><b>02</b> One window</p>
-        <div class="sec-head__body">
-          <h2 class="sec-head__title" id="ws-title">Inside <span class="sec-head__muted">Silenus.</span></h2>
-          <p class="sec-head__lead">AI across your documents, projects, CRM and finance. The right context, right where work happens.</p>
-        </div>
-      </header>
-      <div class="ow" data-ws-window>
-        <!-- Sidebar -->
-        <aside class="ow__side">
-          <p class="ow__brand"><b>SILENUS</b><span>Enterprise AI workplace</span><svg class="ow__fold" viewBox="0 0 24 24"><path d="M14.5 7l-5 5 5 5"/></svg></p>
-          <ul class="ow__nav">
-            <li class="ow__nav-ind" data-ws-ind></li>
-            <li class="ow__sec" aria-hidden="true">Workspace<svg class="ow__chev" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></li>
-            <li tabindex="0" data-ws-nav="0"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>Dashboard</li>
-            <li tabindex="0" data-ws-nav="1"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4M9 13h6M9 17h4"/></svg>Documents</li>
-            <li tabindex="0" data-ws-nav="2"><svg viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg>AI Chat</li>
-            <li tabindex="0" data-ws-nav="4"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Email</li>
-            <li class="ow__sec" aria-hidden="true">Business<svg class="ow__chev" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5"/></svg></li>
-            <li tabindex="0" class="ow__more" data-ws-nav="3 5 6 7 8 9" data-ws-more><svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg><span>More</span><em data-ws-more-label></em></li>
-          </ul>
-          <div class="ow__foot" aria-hidden="true"><p class="ow__bell"><i><svg viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20.5h4"/></svg></i><span>Notifications<small>4 unread</small></span></p><p class="ow__user"><i>LL</i><span>Laura L.<small>Admin</small></span><em>User</em></p></div>
-        </aside>
+<!-- ================= 05 · INTELLIGENCE IN ACTION (2026-11-17) =================
+     Five real workflows, recorded in the live product (the same recordings as the live site's Workflows section).
+     A list on the left, the recording on the right; choosing a workflow changes the recording, its title and its line
+     together. wx.js builds it from WX_FLOWS; nothing is pinned. -->
+<section class="wx" id="workflows" aria-labelledby="wx-title">
+  <div class="wrap wx__in">
 
-        <!-- Main -->
-        <div class="ow__main">
-          <div class="ow__top" aria-hidden="true">
-            <p class="ow__search"><svg viewBox="0 0 16 16"><circle cx="7" cy="7" r="4.5"/><path d="M10.5 10.5L14 14"/></svg>Search or ask Silenus anything…<kbd>⌘K</kbd></p>
-            <p class="ow__ai"><i></i>AI ready</p>
+    <!-- the track: while it scrolls past, the whole section — heading and explorer — stays on screen together and the
+         workflows advance (wx.js) -->
+    <div class="wx__track" data-wx-track>
+      <div class="wx__pin" data-wx-pin>
+        <header class="wx__head" data-wx-head>
+          <p class="wx__eyebrow">Workflows <span aria-hidden="true">/</span> Intelligence</p>
+          <h2 class="wx__title" id="wx-title">Intelligence <em>in Action.</em></h2>
+          <p class="wx__desc">From documents to decisions, Silenus transforms complex operations into intelligent, connected workflows.</p>
+        </header>
+        <div class="wx__body" data-wx>
+          <div class="wx__nav" role="tablist" aria-label="Workflows" aria-orientation="vertical" data-wx-tabs>
+            <span class="wx__ind" aria-hidden="true" data-wx-ind><i data-wx-prog></i></span>
           </div>
-
-          <div class="ow__dock" aria-hidden="true"><span class="ow__track"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="7"/><path d="M12 13V9.5M10 3h4"/></svg>Track time</span><span class="ow__check"><i></i>Check in <b>00:00:00</b></span><span class="ow__bot"><svg viewBox="0 0 24 24"><rect x="5" y="8" width="14" height="10" rx="3"/><path d="M12 8V5M9.5 12.5v1M14.5 12.5v1M3 12v3M21 12v3"/></svg></span></div>
-          <div class="ow__panes">
-            <i class="ow__scan" aria-hidden="true" data-ws-scan></i>
-            <!-- The client's eight platform screens (their site, verbatim), then Documents and Transactions -->
-            <article class="pane" data-ws-pane="0" data-ws-name="Dashboard" aria-labelledby="pane-0-t">
-              <header class="pane__head">
-                <p class="pane__k">Wednesday · 7 October 2026</p>
-                <h3 class="pane__t" id="pane-0-t">Good morning, Laura</h3>
-                <p class="pane__sub">What moved across the company since yesterday.</p>
-              </header>
-              <div class="pane__body pane__body--stack">
-                
-                <div class="pane__grid pane__grid--wide">
-                  
-                  <div class="box box--ai">
-                    <p class="box__k">Morning briefing <span class="chip chip--ok">✓ Verified</span></p>
-                    <p class="box__p" data-ws-reveal>Three contracts renew before year end<sup>1</sup>. Kovács Ltd. also appears in an open invoice dispute<sup>2</sup> and in last week's email thread about delivery delays<sup>3</sup>. Q3 revenue is tracking 6% above plan<sup>4</sup>.</p>
-                    <p class="pane__chips"><span class="chip">Legal</span><span class="chip">Finance</span><span class="chip">Email</span><span class="chip">CRM</span></p>
-                    
-                  </div>
-                </div>
-              </div>
-            </article>
-            <article class="pane" data-ws-pane="1" data-ws-name="Document intake" aria-labelledby="pane-1-t">
-              <header class="pane__head">
-                <p class="pane__k">Knowledge · Document intake</p>
-                <h3 class="pane__t" id="pane-1-t">Document intake</h3>
-                <p class="pane__sub">Files are read, understood and connected the moment they arrive.</p>
-                
-              </header>
-              <div class="pane__body pane__grid">
-                
-                <div class="box">
-                  <p class="box__k">Extracted facts <em>Supply_agreement_Kovacs.pdf</em></p>
-                  <ul class="facts">
-                    <li data-ws-reveal><span>Counterparty</span><b>Kovács Ltd. · Reg. 01-09-338412</b><em>✓ p.1</em></li>
-                    <li data-ws-reveal><span>Renewal date</span><b>31 December 2026</b><em>✓ p.4</em></li>
-                    <li data-ws-reveal><span>Notice period</span><b>90 days</b><em>✓ p.4</em></li>
-                    <li data-ws-reveal><span>Contract value</span><b>€184,000 / year</b><em>✓ p.6</em></li>
-                    <li data-ws-reveal><span>Governing law</span><b>Hungary</b><em>✓ p.11</em></li>
-                  </ul>
-                  
-                </div>
-              </div>
-            </article>
-            <article class="pane" data-ws-pane="2" data-ws-name="AI Chat" aria-labelledby="pane-2-t">
-              <header class="pane__head">
-                <p class="pane__k">AI tool · Chat</p>
-                <h3 class="pane__t" id="pane-2-t">AI Chat</h3>
-                
-              </header>
-              <div class="pane__body pane__grid">
-                
-                <div class="box convo">
-                  <p class="convo__q" data-ws-reveal>What termination fee does the Kovács agreement set?</p>
-                  <p class="convo__a" data-ws-reveal><span class="chip chip--warn">Not in the documents</span> The agreement does not set a termination fee. Clause 12.2 allows termination with 90 days' written notice and says nothing about a fee<sup>1</sup>.</p>
-                  <blockquote class="convo__src" data-ws-reveal><span>Source 1 · Supply_agreement_Kovacs.pdf · p.4</span>12.1 This Agreement shall renew automatically for successive periods of twelve months unless terminated on <mark>31 December 2026</mark> or any anniversary thereof. 12.2 Either party may terminate this Agreement by giving <mark>ninety (90) days' written notice</mark> to the other party.</blockquote>
-                  
-                </div>
-              </div>
-            </article>
-            <article class="pane" data-ws-pane="3" data-ws-name="Projects" aria-labelledby="pane-3-t">
-              <header class="pane__head">
-                <p class="pane__k">Projects · Warehouse move</p>
-                <h3 class="pane__t" id="pane-3-t">Warehouse relocation</h3>
-                <p class="pane__sub">Due 18 Dec · 62% complete · 2 open risks</p>
-              </header>
-              
-              <div class="pane__body pane__grid pane__grid--gantt">
-                
-                <div class="box">
-                  <p class="box__k">Team chat · Warehouse move</p>
-                  <p class="msg" data-ws-reveal><b>Ádám:</b> Can someone prepare the board presentation by Friday?</p>
-                  <p class="box__k box__k--sep">Turned into a task</p>
-                  <p class="task" data-ws-reveal><b>Board presentation</b> · due Fri 9 Oct · added to the Gantt and to Ádám's calendar</p>
-                </div>
-              </div>
-            </article>
-            <article class="pane" data-ws-pane="4" data-ws-name="Email" aria-labelledby="pane-4-t">
-              <header class="pane__head">
-                <p class="pane__k">Workspace · Email</p>
-                <h3 class="pane__t" id="pane-4-t">Email</h3>
-                <p class="pane__chips"><span class="chip chip--ok">Outlook connected</span></p>
-              </header>
-              <div class="pane__body pane__grid pane__grid--mail">
-                
-                <div class="box">
-                  
-                  
-                  <p class="box__k">Your instruction</p>
-                  <p class="box__p" data-ws-reveal>Reply with the event details. Use the price inquiry she sent on 12 September for the ticket prices.</p>
-                  <div class="draft" data-ws-reveal>
-                    <p class="box__k">Draft <span class="chip chip--ok">Tone matched from your last 5 emails</span></p>
-                    <p>Hi Eszter,<br>Lovely to hear you're bringing the team. The partner event is on 23 October from 17:00 at our Budapest office. As we discussed in September, tickets are €45 per person, so three places come to €135. I'll send the agenda next week.<br>Best, Laura</p>
-                    <p class="box__actions" aria-hidden="true"><span class="pill pill--primary">Send</span><span class="pill">Edit</span></p>
-                  </div>
-                </div>
-              </div>
-            </article>
-            <article class="pane" data-ws-pane="5" data-ws-name="Calendar" aria-labelledby="pane-5-t">
-              <header class="pane__head">
-                <p class="pane__k">Workspace · Calendar</p>
-                <h3 class="pane__t" id="pane-5-t">Week 41</h3>
-                <p class="pane__sub">5 – 9 October 2026</p>
-                
-              </header>
-              <div class="pane__body">
-                <div class="box">
-                  <p class="box__k">Wed 7</p>
-                  <ul class="agenda">
-                    <li data-ws-reveal><b>09:00</b><span>Move IT equipment</span><em>Warehouse move · day 1</em></li>
-                    <li data-ws-reveal><b>Deadline</b><span>Notice period ended</span><em>Kovács agreement · p.4</em></li>
-                  </ul>
-                </div>
-              </div>
-            </article>
-            <article class="pane" data-ws-pane="6" data-ws-name="CRM" aria-labelledby="pane-6-t">
-              <header class="pane__head">
-                <p class="pane__k">Business · CRM</p>
-                <h3 class="pane__t" id="pane-6-t">Kovács Ltd.</h3>
-                <p class="pane__sub">Supplier · Budapest · Reg. 01-09-338412 · Created automatically from email · 14 Mar 2024</p>
-              </header>
-              <div class="pane__body pane__grid">
-                
-                <div class="box">
-                  <p class="box__k">Connected across the company <em>Kovács Ltd. · one record</em></p>
-                  <ul class="links">
-                    <li data-ws-reveal><span>Supply agreement</span><b>Legal · renews 31 Dec</b></li>
-                    <li data-ws-reveal><span>INV-20931</span><b>Finance · €1,240 mismatch</b></li>
-                    <li data-ws-reveal><span>Email thread</span><b>Delivery delay, week 41</b></li>
-                    <li data-ws-reveal><span>Warehouse move</span><b>Project · supplier</b></li>
-                    <li data-ws-reveal><span>Webshop order</span><b>#8812</b></li>
-                    <li data-ws-reveal><span>Board minutes Q3</span><b>mentioned twice</b></li>
-                    <li data-ws-reveal><span>Meeting 2 Oct</span><b>AI summary</b></li>
-                  </ul>
-                </div>
-              </div>
-            </article>
-            <article class="pane" data-ws-pane="7" data-ws-name="HR" aria-labelledby="pane-7-t">
-              <header class="pane__head">
-                <p class="pane__k">Wednesday · 7 October 2026</p>
-                <h3 class="pane__t" id="pane-7-t">HR dashboard</h3>
-                <p class="pane__sub">Who is here, who is in the pipeline, and what needs your decision today.</p>
-                
-              </header>
-              <div class="pane__body pane__body--stack">
-                
-                <div class="pane__grid pane__grid--wide">
-                  <div class="box">
-                    <p class="box__k">Needs your attention <em>5 open</em></p>
-                    <ul class="needs">
-                      <li data-ws-reveal><span><b>2 leave requests</b><small>Zsófia Balogh · 12–14 Oct</small></span><i>Review</i></li>
-                      <li data-ws-reveal><span><b>Close September for payroll</b><small>16 of 17 people ready</small></span><i>Open</i></li>
-                      <li data-ws-reveal><span><b>Statutory reference check</b><small>Parameters not yet compared with 2026.2</small></span><i>Run the check</i></li>
-                    </ul>
-                  </div>
-                  
-                </div>
-              </div>
-            </article>
-            <article class="pane" data-ws-pane="8" data-ws-name="Documents" aria-labelledby="pane-8-t">
-              <header class="pane__head">
-                <p class="pane__k">Documents · from the Brand Guide</p>
-                <h3 class="pane__t" id="pane-8-t">Quote Q-2026-0142 · Kovács Ltd.</h3>
-                <p class="pane__chips"><span class="chip chip--warn">Pilot · invoicing</span><span class="chip chip--ok">Brand Guide applied</span><span class="chip">PDF/A-3 · embedded XML</span></p>
-              </header>
-              
-              <div class="pane__body pane__body--docs">
-                <div class="paper" aria-hidden="true">
-                  <p class="paper__top"><i>S</i><span>QUOTE</span><b>Q-2026-0142</b></p>
-                  <p class="paper__to">Kovács Ltd. · Budapest</p>
-                  <ul class="paper__rows">
-                    <li><span>Pallet racking, 12 bays</span><b>€9,600</b></li>
-                    <li><span>Installation</span><b>€4,180</b></li>
-                    <li><span>Delivery and handling</span><b>€950</b></li>
-                  </ul>
-                  <p class="paper__sum"><span>Total incl. 27% VAT</span><b>€18,707</b></p>
-                  <p class="paper__foot"><i class="paper__qr"></i><span>View on the customer portal</span></p>
-                </div>
-                
-              </div>
-            </article>
-            <article class="pane" data-ws-pane="9" data-ws-name="Transactions" aria-labelledby="pane-9-t">
-              <header class="pane__head">
-                <p class="pane__k">Transactions · one graph per business event</p>
-                <h3 class="pane__t" id="pane-9-t">Kovács Ltd. · racking supply</h3>
-                <p class="pane__chips"><span class="chip chip--warn">Pilot · bank steps next</span><span class="chip chip--warn">1 step to do</span><span class="chip">Partner sees the same timeline</span></p>
-              </header>
-              <div class="pane__body">
-                <ol class="tl" aria-label="Transaction timeline">
-                  <li class="is-done"><i></i><b>Quote</b><span>Issued</span></li>
-                  <li class="is-done"><i></i><b>Order</b><span>Matches quote</span></li>
-                  <li class="is-done"><i></i><b>Advance request</b><span>Prepared</span></li>
-                  <li class="is-done"><i></i><b>Payment</b><span>Received</span></li>
-                  <li class="is-done"><i></i><b>Advance invoice</b><span>After payment</span></li>
-                  <li class="is-now"><i></i><b>Delivery</b><span>Next step</span></li>
-                  <li><i></i><b>Final invoice</b><span>Offsets advance</span></li>
-                  <li><i></i><b>Settlement</b><span>Monitored</span></li>
-                  <li class="tl__bar" aria-hidden="true"><span data-ws-bar></span></li>
-                </ol>
-                
-              </div>
-            </article>
+          <div class="wx__show">
+            <div class="wx__stage" data-wx-stage>
+              <div class="wx__frame" data-wx-frame></div>
+            </div>
+            <div class="wx__cap" aria-live="polite" data-wx-cap>
+              <p class="wx__cap-n" data-wx-cap-n></p>
+              <h3 class="wx__cap-t" data-wx-cap-t></h3>
+              <p class="wx__cap-d" data-wx-cap-d></p>
+            </div>
           </div>
         </div>
-
-        <!-- Insights: what you're looking at (the client's own captions) -->
-        <aside class="ow__ins" aria-hidden="true">
-          <p class="ow__ins-t"><svg viewBox="0 0 16 16"><path d="M3 13V8M8 13V3M13 13V6"/></svg>What you're seeing</p>
-          <div class="ins" data-ws-ins="0">
-            <p class="ins__k">Dashboard</p>
-            <p class="ins__t">Everything that moved, in one place.</p>
-            <p class="ins__p">Tasks, mail, meetings and a morning briefing drawn from every department, each claim linked to its source.</p>
-            <ul class="ins__caps"><li>Company-wide visibility: every team works with the full context.</li><li>The briefing pulls from every department and links each claim to its source.</li></ul>
-          </div>
-          <div class="ins" data-ws-ins="1">
-            <p class="ins__k">Document intake</p>
-            <p class="ins__t">Every document becomes knowledge.</p>
-            <p class="ins__p">Drop in files or whole folders. An agentic pipeline reads scans, tables and charts, extracts the facts and connects them to the rest of the business.</p>
-            <ul class="ins__caps"><li>Scans, multi-column tables and charts are read, not skipped.</li><li>Every fact is checked against the document's own words.</li></ul>
-          </div>
-          <div class="ins" data-ws-ins="2">
-            <p class="ins__k">AI Chat</p>
-            <p class="ins__t">Answers you can check.</p>
-            <p class="ins__p">Silenus retrieves from the whole company, verifies each answer against the source, and says so when the documents don't support it.</p>
-            <ul class="ins__caps"><li>Ask for "all" and you get all of them, not the top five.</li><li>Each citation opens the exact passage that supports the claim.</li></ul>
-          </div>
-          <div class="ins" data-ws-ins="3">
-            <p class="ins__k">Projects</p>
-            <p class="ins__t">Work that knows its context.</p>
-            <p class="ins__p">Workstreams, Gantt, risks, notes and time tracking. A message in chat becomes a task with a deadline.</p>
-            <ul class="ins__caps"><li>Dependencies, risks and time tracking sit next to the project's documents.</li><li>A request in team chat becomes a task with an owner and a deadline.</li></ul>
-          </div>
-          <div class="ins" data-ws-ins="4">
-            <p class="ins__k">Email</p>
-            <p class="ins__t">Mail in your own voice.</p>
-            <p class="ins__p">Connect Outlook or Gmail. Drafts match your tone and can pull details from earlier threads you point to.</p>
-            <ul class="ins__caps"><li>Point at an earlier email and Silenus pulls the details from it.</li><li>Drafts read like you, because Silenus learns from your recent emails.</li></ul>
-          </div>
-          <div class="ins" data-ws-ins="5">
-            <p class="ins__k">Calendar</p>
-            <p class="ins__t">Deadlines find their own way in.</p>
-            <p class="ins__p">Synced with your mailbox, plus dates from projects, team chat and the contracts themselves.</p>
-            <ul class="ins__caps"><li>Dates found inside contracts land on the calendar by themselves.</li><li>Synced with Outlook or Gmail, plus deadlines from projects and chat.</li></ul>
-          </div>
-          <div class="ins" data-ws-ins="6">
-            <p class="ins__k">CRM</p>
-            <p class="ins__t">One client, recognised everywhere.</p>
-            <p class="ins__p">Contacts created from webshop orders and email, linked to every contract, invoice and thread they appear in.</p>
-            <ul class="ins__caps"><li>The same client in a contract, an invoice and an email is recognised as one.</li><li>Contacts are created from webshop orders and email.</li></ul>
-          </div>
-          <div class="ins" data-ws-ins="7">
-            <p class="ins__k">HR</p>
-            <p class="ins__t">People operations, rebuilt.</p>
-            <p class="ins__p">The new HR module: org chart, recruitment, time tracking, shifts, payroll prep, HR letters and an HR assistant.</p>
-            <ul class="ins__caps"><li>Org chart, recruitment, time tracking, shifts and payroll in one module.</li><li>Check-in time goes straight into the timesheet.</li></ul>
-          </div>
-          <div class="ins" data-ws-ins="8">
-            <div class="ins__tiles"><p><b>9</b>document types</p><p><b>1</b>brand source</p></div>
-            <p class="ins__note">A brand change updates every document type at once, including e-mail.</p>
-            <p class="ins__meter"><span>Mandatory fields</span><b>3 / 4</b><i style="--p:.75"></i></p>
-          </div>
-          <div class="ins" data-ws-ins="9">
-            <div class="ins__tiles"><p><b>8</b>steps</p><p><b>5</b>done</p></div>
-            <p class="ins__note">The graph only offers the next possible step. What it doesn't allow can't be started anywhere else.</p>
-            <p class="ins__meter"><span>Transaction</span><b>5 / 8</b><i style="--p:.625"></i></p>
-          </div>
-        </aside>
       </div>
-
-      <div class="lap__base" aria-hidden="true" data-ws-base><i></i></div>
-      <!-- Step rail: progress + jump to a screen -->
-      <nav class="ws__rail" data-thread-resume aria-label="Screens in the window">
-        <button type="button" data-ws-step="0"><b>01</b>Dashboard</button>
-        <button type="button" data-ws-step="1"><b>02</b>Documents</button>
-        <button type="button" data-ws-step="2"><b>03</b>AI Chat</button>
-        <button type="button" data-ws-step="4"><b>04</b>Email</button>
-        <span class="ws__rail-bar" aria-hidden="true"><i data-ws-progress></i></span>
-      </nav>
     </div>
   </div>
 </section>
 
-<!-- ================= UNIFIED KNOWLEDGE · sources → one core ================= -->
-<section class="sme-sec cap-sec" id="intake" aria-labelledby="intake-title">
-  <div class="wrap">
-    <header class="sec-head" data-split-head>
-      <p class="sec-head__idx"><b>03</b> Unified knowledge</p>
-      <div class="sec-head__body">
-        <h2 class="sec-head__title" id="intake-title">One company. <span class="sec-head__muted">One mind.</span></h2>
-        <p class="sec-head__lead">Every invoice, contract, email and work order lands in the same central mind.</p>
+<!-- ================= TRUST · BUILT FOR BUSINESS, DESIGNED FOR TRUST (2026-11-18) =================
+     The live site's trust section (silenus.vercel.app: the same five principles, word for word), recomposed: a statement,
+     then the five principles as one system standing on a single foundation line. tru.js reveals it. -->
+<section class="tru" id="security" aria-labelledby="tru-title">
+  <div class="wrap tru__in">
+    <header class="tru__head" data-tru-head>
+      <h2 class="tru__title" id="tru-title"><span class="tru__r1">Built for business.</span> <span class="tru__r2">Designed for <em>trust.</em></span></h2>
+      <div class="tru__aside">
+        <p class="tru__lead">For companies that handle legal, financial and client information.</p>
+        <a class="lbtn tru__more" href="security.html">Read about security <span aria-hidden="true">→</span></a>
       </div>
     </header>
-      <div class="cap" data-gdeck data-stagger-item>
-        <div class="cap__cards"><button type="button" class="cap__card" data-gdeck-card aria-label="Show: Document intelligence"><span class="cap__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 3h8l4 4v7"/><path d="M14 3v4h4"/><path d="M6 3v18h7"/><path d="M9 11h6M9 15h3"/><path class="ac" d="M18 14.5l1 2.2 2.2 1-2.2 1-1 2.3-1-2.3-2.2-1 2.2-1z"/></svg></span><span class="cap__txt"><b>Document intelligence</b><em>Read, checked and indexed.</em><span>Every file is read the moment it arrives: 28 file types, scans included, broken down by 14 specialised agents.</span></span></button><button type="button" class="cap__card" data-gdeck-card aria-label="Show: People approve and decide."><span class="cap__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.6 3.4-5.5 6.5-5.5 1.6 0 3 .4 4.1 1.2"/><path class="ac" d="M15 17.5l2.2 2.2 4.3-4.6"/></svg></span><span class="cap__txt"><b>People approve and decide.</b><em>AI prepares. You decide.</em><span>Some changes need someone’s approval first: the project keeps its current values until the request is approved.</span></span></button><button type="button" class="cap__card" data-gdeck-card aria-label="Show: Permissions travel with the data"><span class="cap__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.3-7.5 9.5-4.3-1.2-7.5-4.9-7.5-9.5V6z"/><circle class="ac" cx="12" cy="10.5" r="2"/><path class="ac" d="M12 12.5v3.5"/></svg></span><span class="cap__txt"><b>Permissions travel with the data</b><em>One permission model.</em><span>People and AI work under the same rights. Nobody sees an answer built from documents they can’t open.</span></span></button></div>
-        <div class="cap__viz" aria-hidden="true">
-          <p class="cap__k"><i></i>Connected sources &amp; tools</p>
-          <div class="cap__flow"><span class="cap__beam"></span><span class="cap__src" style="--x:8%;--y:6%;--xn:8;--yn:6;--k:0"><svg viewBox="0 0 20 20"><rect x="0" y="0" width="9.4" height="9.4" fill="#F25022"/><rect x="10.6" y="0" width="9.4" height="9.4" fill="#7FBA00"/><rect x="0" y="10.6" width="9.4" height="9.4" fill="#00A4EF"/><rect x="10.6" y="10.6" width="9.4" height="9.4" fill="#FFB900"/></svg>Microsoft 365</span><span class="cap__src" style="--x:0%;--y:30%;--xn:0;--yn:30;--k:1"><svg viewBox="0 0 24 24" class="ln"><circle cx="9" cy="8" r="4.5"/><circle cx="15.5" cy="13" r="3.5"/><circle cx="10" cy="17.5" r="2.5"/></svg>SharePoint</span><span class="cap__src" style="--x:14%;--y:54%;--xn:14;--yn:54;--k:2"><svg viewBox="0 0 24 18"><path fill="#4285F4" d="M1.6 18h3.8V8.7L0 4.6v11.8C0 17.3.7 18 1.6 18z"/><path fill="#34A853" d="M18.6 18h3.8c.9 0 1.6-.7 1.6-1.6V4.6l-5.4 4.1z"/><path fill="#FBBC04" d="M18.6 1.6v7.1L24 4.6V2.4c0-2-2.3-3.1-3.9-1.9z"/><path fill="#EA4335" d="M5.4 8.7V1.6L12 6.5l6.6-4.9v7.1L12 13.6z"/><path fill="#C5221F" d="M0 2.4v2.2l5.4 4.1V1.6L3.9.5C2.3-.7 0 .4 0 2.4z"/></svg>Gmail</span><span class="cap__src" style="--x:4%;--y:78%;--xn:4;--yn:78;--k:3"><svg viewBox="0 0 24 24" class="ln"><path d="M8.5 3.5h7l6 10.5-3.5 6h-12L2.5 14z"/><path d="M8.5 3.5l6.5 11h6.5M15.5 3.5L9 14.5H2.5M6 20l3-5.5"/></svg>Google Drive</span><span class="cap__src" style="--x:26%;--y:18%;--xn:26;--yn:18;--k:4"><svg viewBox="0 0 24 24" class="ln"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4M8 14h3M13 14h3M8 17h3"/></svg>Outlook calendar</span><span class="cap__src" style="--x:28%;--y:66%;--xn:28;--yn:66;--k:5"><svg viewBox="0 0 24 24" class="ln"><path d="M5 8h14l-1.2 12H6.2z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg>Shopify</span><span class="cap__hub"><svg viewBox="0 0 100 116"><path d="M80 18H40a20 20 0 0 0 0 40h20a20 20 0 0 1 0 40H20"/></svg></span><span class="cap__link"></span></div>
-          <div class="cap__panels"><div class="cap__panel is-on" data-gdeck-panel="0"><p class="cap__ph"><b><i></i>Document intake</b><span>Auto-read</span></p><p class="cap__tabs"><i class="is-on">All</i><i>Contracts</i><i>Reports</i><i>Scans</i><i>Mail</i></p><p class="cap__count">2,400 documents indexed</p><ul class="cap__rows"><li style="--r:0"><span class="cap__ri"><svg viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M10 12h5M10 16h4"/></svg></span><span class="cap__rt"><b>Supply_agreement_Kovacs.pdf</b><small>Microsoft 365 · facts cited p.1–11</small></span><em class="cap__st is-new">Just now</em></li><li style="--r:1"><span class="cap__ri"><svg viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M10 12h5M10 16h4"/></svg></span><span class="cap__rt"><b>Annual report 2025.pdf</b><small>Drive · 23 facts extracted</small></span><em class="cap__st">Indexed</em></li><li style="--r:2"><span class="cap__ri"><svg viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M10 12h5M10 16h4"/></svg></span><span class="cap__rt"><b>budget_v7_final.xlsx</b><small>Tables read · checked against the ledger</small></span><em class="cap__st">Indexed</em></li><li style="--r:3"><span class="cap__ri"><svg viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M10 12h5M10 16h4"/></svg></span><span class="cap__rt"><b>INV-20931.jpg</b><small>Photographed invoice · scanned</small></span><em class="cap__st">Indexed</em></li><li style="--r:4"><span class="cap__ri"><svg viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M10 12h5M10 16h4"/></svg></span><span class="cap__rt"><b>Meeting minutes.docx</b><small>Linked to Warehouse relocation</small></span><em class="cap__st">Indexed</em></li><li style="--r:5"><span class="cap__ri"><svg viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M10 12h5M10 16h4"/></svg></span><span class="cap__rt"><b>Re: delivery window</b><small>Gmail · linked to Kovács Ltd.</small></span><em class="cap__st">Indexed</em></li></ul></div><div class="cap__panel" data-gdeck-panel="1"><p class="cap__ph"><b><i></i>Approvals</b><span>People decide</span></p><p class="cap__tabs"><i class="is-on">All</i><i>Awaiting you</i><i>Approved</i><i>Declined</i></p><p class="cap__count">4 changes this week</p><ul class="cap__rows"><li style="--r:0"><span class="cap__ri"><svg viewBox="0 0 24 24"><path d="M5 12.5l4 4 10-10"/><path d="M12 21a9 9 0 1 1 0-18 9 9 0 0 1 0 18z" opacity=".45"/></svg></span><span class="cap__rt"><b>Kovács review → Fri 10:00</b><small>calendar.move · prepared by AI</small></span><em class="cap__st is-new is-warn">Awaiting you</em></li><li style="--r:1"><span class="cap__ri"><svg viewBox="0 0 24 24"><path d="M5 12.5l4 4 10-10"/><path d="M12 21a9 9 0 1 1 0-18 9 9 0 0 1 0 18z" opacity=".45"/></svg></span><span class="cap__rt"><b>Reply to Eszter Varga</b><small>E-mail draft · a person presses Send</small></span><em class="cap__st">Approved</em></li><li style="--r:2"><span class="cap__ri"><svg viewBox="0 0 24 24"><path d="M5 12.5l4 4 10-10"/><path d="M12 21a9 9 0 1 1 0-18 9 9 0 0 1 0 18z" opacity=".45"/></svg></span><span class="cap__rt"><b>Board presentation task</b><small>From team chat · added to the Gantt</small></span><em class="cap__st">Approved</em></li><li style="--r:3"><span class="cap__ri"><svg viewBox="0 0 24 24"><path d="M5 12.5l4 4 10-10"/><path d="M12 21a9 9 0 1 1 0-18 9 9 0 0 1 0 18z" opacity=".45"/></svg></span><span class="cap__rt"><b>Supplier contact update</b><small>CRM · proposed from e-mail</small></span><em class="cap__st">Approved</em></li><li style="--r:4"><span class="cap__ri"><svg viewBox="0 0 24 24"><path d="M5 12.5l4 4 10-10"/><path d="M12 21a9 9 0 1 1 0-18 9 9 0 0 1 0 18z" opacity=".45"/></svg></span><span class="cap__rt"><b>Project budget change</b><small>Kept at current value</small></span><em class="cap__st is-warn">Declined</em></li><li style="--r:5"><span class="cap__ri"><svg viewBox="0 0 24 24"><path d="M5 12.5l4 4 10-10"/><path d="M12 21a9 9 0 1 1 0-18 9 9 0 0 1 0 18z" opacity=".45"/></svg></span><span class="cap__rt"><b>Leave request · 12–14 Oct</b><small>HR · manager approval</small></span><em class="cap__st">Approved</em></li></ul></div><div class="cap__panel" data-gdeck-panel="2"><p class="cap__ph"><b><i></i>Access</b><span>Same rules for AI</span></p><p class="cap__tabs"><i class="is-on">All</i><i>Legal</i><i>Sales</i><i>HR</i></p><p class="cap__count">One permission model</p><ul class="cap__rows"><li style="--r:0"><span class="cap__ri"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span><span class="cap__rt"><b>Supply_agreement.pdf</b><small>Legal · can open</small></span><em class="cap__st is-new">Allowed</em></li><li style="--r:1"><span class="cap__ri"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span><span class="cap__rt"><b>Supply_agreement.pdf</b><small>Sales · no access</small></span><em class="cap__st is-warn">Hidden</em></li><li style="--r:2"><span class="cap__ri"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span><span class="cap__rt"><b>Payroll inputs</b><small>HR role only</small></span><em class="cap__st is-warn">Role lock</em></li><li style="--r:3"><span class="cap__ri"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span><span class="cap__rt"><b>Finance site</b><small>Editors: Finance · Owner: Laura L.</small></span><em class="cap__st">Allowed</em></li><li style="--r:4"><span class="cap__ri"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span><span class="cap__rt"><b>AI answer · contract terms</b><small>Built only from documents you can open</small></span><em class="cap__st">Filtered</em></li><li style="--r:5"><span class="cap__ri"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span><span class="cap__rt"><b>Export · whole company</b><small>Blocked by policy</small></span><em class="cap__st is-warn">Blocked</em></li></ul></div></div>
-        </div>
-      </div>
+    <div class="tru__sys" data-tru>
+      <span class="tru__rail" aria-hidden="true"><i data-tru-rail></i></span>
+      <ol class="tru__list" aria-label="Trust principles">
+        <li class="tru__p tru__p--lead" data-tru-p>
+          <span class="tru__node" aria-hidden="true"></span>
+          <p class="tru__n"><span>01</span><svg class="tru__g" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 8V3h5M16 3h5v5M21 16v5h-5M8 21H3v-5"/><path d="M8.5 7h7v10h-7z"/><path d="M10.5 10.5h3M10.5 13.5h3"/></svg></p>
+          <h3 class="tru__t">Data ownership</h3>
+          <p class="tru__d">Your documents and the knowledge built from them stay yours, on infrastructure you choose.</p>
+        </li>
+        <li class="tru__p" data-tru-p>
+          <span class="tru__node" aria-hidden="true"></span>
+          <p class="tru__n"><span>02</span><svg class="tru__g" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M2 5h14v10H2z"/><path d="M2.75 5.75L9 10.5l6.25-4.75"/><path d="M17 16h5v5h-5z"/><path d="M18 16v-1.5a1.5 1.5 0 0 1 3 0V16"/></svg></p>
+          <h3 class="tru__t">Privacy</h3>
+          <p class="tru__d">Mail is read live with each user’s own rights. Silenus keeps no copy.</p>
+        </li>
+        <li class="tru__p" data-tru-p>
+          <span class="tru__node" aria-hidden="true"></span>
+          <p class="tru__n"><span>03</span><svg class="tru__g" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 3h16v5H4zM4 11h16v5H4z"/><path d="M7 5.5h2M7 13.5h2"/><path d="M12 16v4M7 20.5h10"/></svg></p>
+          <h3 class="tru__t">Self-hosted deployment</h3>
+          <p class="tru__d">Run Silenus and its AI models on your own servers or a provider you choose.</p>
+        </li>
+        <li class="tru__p" data-tru-p>
+          <span class="tru__node" aria-hidden="true"></span>
+          <p class="tru__n"><span>04</span><svg class="tru__g" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M3 19c.6-3 2.6-5 5-5s4.4 2 5 5"/><path d="M15 10h6v6h-6zM17 8v2M19 8v2"/></svg></p>
+          <h3 class="tru__t">Permissions</h3>
+          <p class="tru__d">People and AI share one permission model. No one sees what they cannot open.</p>
+        </li>
+        <li class="tru__p" data-tru-p>
+          <span class="tru__node" aria-hidden="true"></span>
+          <p class="tru__n"><span>05</span><svg class="tru__g" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 3v18"/><path d="M4 6h4M4 12h4M4 18h4"/><path d="M11 6h9M11 12h9M11 18h6"/></svg></p>
+          <h3 class="tru__t">Auditability</h3>
+          <p class="tru__d">A permanent log shows who opened what, which model answered and what was approved.</p>
+        </li>
+      </ol>
+    </div>
   </div>
 </section>
-<!-- ================= YOURS, AT SME COST · pricing + data sovereignty ================= -->
-<section class="sme-sec" id="pricing" aria-labelledby="pricing-title">
-  <div class="wrap">
-    <header class="sec-head" data-split-head>
-      <p class="sec-head__idx"><b>04</b> Yours, at SME cost</p>
-      <div class="sec-head__body">
-        <h2 class="sec-head__title" id="pricing-title">Self-hosted AI. <span class="sec-head__muted">Priced by information.</span></h2>
-        <p class="sec-head__lead">Your servers, AI models included.</p>
-      </div>
+
+<!-- ================= 07 · WHERE WE ARE. WHAT'S NEXT. (2026-11-18) =================
+     The live site's traction section (silenus.vercel.app #traction), recomposed: the same three figures, the same eight
+     monthly values (Apr – Nov 2026, marked "sample" there and here), the same roadmap and its wording. pg.js draws the
+     chart, counts the figures once, and moves three filled forms through the section: one behind each figure, then
+     together as a single band rising with the growth curve, then apart again into the three stages of the roadmap,
+     where they settle and fade before the final call to action. -->
+<section class="pg" id="traction" aria-labelledby="pg-title">
+  <div class="wrap pg__in">
+    <header class="pg__head" data-pg-head>
+      <h2 class="pg__title" id="pg-title"><span class="pg__r1">Where we are.</span> <span class="pg__r2">What’s <em>next.</em></span></h2>
     </header>
-    <div class="smx" data-stagger>
-      <div class="smx__strip" data-stagger-item>
-        <figure class="smx__quote"><blockquote>“We were quoted €50,000 and nine months for a custom AI knowledge base. <span>So we built it ourselves, and kept going.”</span></blockquote><figcaption><i>AL</i><i>LL</i>Aron &amp; Laura, co-founders</figcaption></figure>
-        <div class="smx__price">
-          <p class="smx__fig"><b>€872</b><span>a month at 100 people · list price</span></p>
-          <ul class="smx__facts"><li>Under a third of Odoo Standard (€2,777)</li><li>One package per company</li><li>Onboarding import included</li></ul>
-          <p class="smx__cta"><a class="btn btn--primary" href="#demo">Book a live test <span class="btn__arrow" aria-hidden="true">→</span></a><a class="smx__more" href="why-silenus.html#pricing">Full pricing <span aria-hidden="true">→</span></a></p>
-        </div>
+
+    <dl class="pg__figs" data-pg-figs>
+      <div class="pg__fig" data-pg-anchor="0"><dt class="pg__fig-l">Companies</dt><dd class="pg__fig-n" data-pg-count="48" data-pg-fmt="int">48</dd></div>
+      <div class="pg__fig" data-pg-anchor="1"><dt class="pg__fig-l">Active users</dt><dd class="pg__fig-n" data-pg-count="2900" data-pg-fmt="int">2,900</dd></div>
+      <div class="pg__fig" data-pg-anchor="2"><dt class="pg__fig-l">Documents processed</dt><dd class="pg__fig-n" data-pg-count="1.2" data-pg-fmt="M">1.2M</dd></div>
+    </dl>
+
+    <figure class="pg__chart" data-pg-chart>
+      <figcaption class="pg__chart-head">
+        <span class="pg__chart-t">Documents processed per month <span>Apr – Nov 2026 · sample</span></span>
+        <span class="pg__chart-v"><b>34.8k</b> <em>↑ 158% since Aug</em></span>
+      </figcaption>
+      <div class="pg__plot">
+        <svg class="pg__svg" data-pg-svg role="img" aria-label="Documents processed per month, April to November 2026 (sample): 3.1k, 4.6k, 6.8k, 9.2k, 13.5k, 18.9k, 26.4k, 34.8k."></svg>
       </div>
-      <div class="smx__more2" data-stagger-item>
-        <div class="smx__vs">
-          <p class="smx__vsk"><span>Typical business software</span><i aria-hidden="true">→</i><b>Silenus</b></p>
-          <ul class="smx__vsl"><li><b>Users</b><span class="smx__old">Paid per user, per month</span><span class="smx__new">Unlimited users, up to 500</span></li><li><b>AI</b><span class="smx__old">Paid on top, in credits or tokens</span><span class="smx__new">Included in every package</span></li><li><b>Modules</b><span class="smx__old">Bought and priced one by one</span><span class="smx__new">All included. A module is a view</span></li><li><b>Over the limit</b><span class="smx__old">Overage charges</span><span class="smx__new">Upgrade only after two months over, with your approval</span></li></ul>
-        </div>
-        <div class="smx__aiu">
-          <p class="smx__aiuk">What is an AI unit?</p>
-          <p class="smx__aiut">It measures the information Silenus processes for you. That is what you pay for, not seats.</p>
-          <ul class="smx__aiul"><li><b>0.12</b><span>one email</span></li><li><b>1</b><span>one invoice</span></li><li><b>1.5</b><span>one AI question</span></li></ul>
-          <p class="smx__aiuf">10 packages, 300–128,000 AI units a month · 12 months for the price of 10</p>
-        </div>
-      </div>
-    </div>
+    </figure>
+
+    <ol class="pg__road" data-pg-road aria-label="Roadmap">
+      <li class="pg__stage pg__stage--live" data-pg-anchor="3"><p class="pg__st"><span class="pg__dot" aria-hidden="true"></span>Live</p><ul class="pg__items"><li>Documents</li><li>Knowledge base</li><li>AI chat</li><li>Projects</li><li>CRM</li><li>Email</li><li>Calendar</li><li>Team chat</li><li>HR</li></ul></li>
+      <li class="pg__stage pg__stage--pilot" data-pg-anchor="4"><p class="pg__st"><span class="pg__dot" aria-hidden="true"></span>Pilot</p><ul class="pg__items"><li>Quotes</li><li>Invoicing</li><li>Inventory</li></ul></li>
+      <li class="pg__stage pg__stage--next" data-pg-anchor="5"><p class="pg__st"><span class="pg__dot" aria-hidden="true"></span>Next</p><ul class="pg__items"><li>Banking connection</li><li>Payroll</li><li>Accounting</li><li>Cash-flow forecast</li><li class="is-later">AI agent employees <span>later</span></li></ul></li>
+    </ol>
   </div>
 </section>
 
-<!-- ================= 12 · FAQ ================= -->
-<section class="faq" id="faq" aria-labelledby="faq-title" data-faq>
-  <div class="wrap faq__grid">
-    <div class="faq__main">
-      <header class="sec-head" data-split-head>
-        <p class="sec-head__idx"><b>05</b> Questions</p>
-        <div class="sec-head__body">
-          <h2 class="sec-head__title" id="faq-title">Frequently asked.</h2>
-        </div>
-      </header>
 
-      <!-- The list works on its own as an accordion (phones, no JS). On desktop faq.js turns each
-           question into a trigger for the console on the right. -->
-      <div class="faq__list" data-reveal-group data-faq-list>
-        <details class="faq__item">
-          <summary><h3>What is Silenus?</h3></summary>
-          <p>An AI-native business operating system by Phannes Inc. Documents, projects, CRM, email, calendar and HR run on one shared knowledge base, and people approve what the AI prepares.</p>
-        </details>
-        <details class="faq__item">
-          <summary><h3>How is Silenus different from an ERP with AI features?</h3></summary>
-          <p>ERPs add an assistant beside separate modules, each with its own database. In Silenus everything enters one knowledge base first and every module is a view of it, so nothing is copied and answers draw on the whole company.</p>
-        </details>
-        <details class="faq__item">
-          <summary><h3>Do we have to replace Microsoft 365 or our other tools?</h3></summary>
-          <p>No. Keep Microsoft 365, SharePoint and your mailboxes: Silenus reads from them, checks every answer against the source, and runs the work that follows. It connects to Microsoft 365 and Gmail (shared mailboxes too), SharePoint, Google Drive, Google and Outlook calendars, Shopify, and external tools through MCP. Bank connections are next on the roadmap.</p>
-        </details>
-        <details class="faq__item">
-          <summary><h3>Do we have to keep files in folders?</h3></summary>
-          <p>No folders to maintain. Every file carries its own metadata and lands in the right place automatically.</p>
-        </details>
-        <details class="faq__item">
-          <summary><h3>Does the AI act on its own?</h3></summary>
-          <p>No. Every tool is classed as read, change or external effect, and changes arrive as approval cards with the exact arguments. An e-mail is never sent automatically: a person presses Send. The AI workforce on the roadmap, AI colleagues with a role, schedule and permissions, works under the same rules, managed next to your human team.</p>
-        </details>
-        <details class="faq__item">
-          <summary><h3>How do we get started?</h3></summary>
-          <p>Book a live test. Bring 30–50 of your own documents and we run the test with you, live. No consulting project to get started, and a private, self-hosted deployment is available.</p>
-        </details>
-      </div>
-          <p class="faq__more"><a class="lbtn" href="faq.html">See all questions <span aria-hidden="true">→</span></a></p>
-    </div>
 
-    <!-- Answer console (desktop): shows the answer of the active question. Filled by faq.js. -->
-    <aside class="faq__console" id="faq-console" aria-label="Answer" data-faq-console data-reveal>
-      <div class="fc__bar" aria-hidden="true">
-        <span class="fc__lights"><i></i><i></i><i></i></span>
-        <span class="fc__title">silenus · answer</span>
-        <span class="fc__count" data-fc-count></span>
-      </div>
-      <div class="fc__body" aria-live="polite" data-fc-body>
-        <p class="fc__tele" aria-hidden="true"><span data-fc-tele></span><i class="fc__caret"></i></p>
-        <h3 class="fc__q" data-fc-q></h3>
-        <p class="fc__a" data-fc-a></p>
-      </div>
-      <p class="fc__foot">Still have a question? <a class="lbtn lbtn--sm" href="#demo">Ask us in a live test <span aria-hidden="true">→</span></a></p>
-    </aside>
-  </div>
-</section>
+</main>
 
-<!-- ================= 13 · FINAL CTA ================= -->
-<section class="cta" id="demo" aria-labelledby="cta-title">
+<!-- ================= FOOTER ================= -->
+<!-- ================= THE FOOTER (2026-11-18) — the final call to action, the essentials, and the brand =================
+     One composition: the live-test invitation (the former final section, unchanged in content and form) opens it; a
+     single quiet row carries the tagline, the links and the company line; the wordmark closes the page, as wide as the
+     page, drawn in as it arrives (sf.js). -->
+<footer class="sf" id="demo" aria-labelledby="cta-title">
+  <div class="cta sf__cta">
   <div class="bits bits--patch" aria-hidden="true"></div>
   <div class="wrap">
     <header class="sec-head" data-split-head>
       <p class="sec-head__idx" hidden><b>06</b> Live test</p>   <!-- kept for the menu; not shown, so the fibre runs straight on to the footer -->
       <div class="sec-head__body">
-        <p class="sec-head__kicker">The future is connected</p>
         <h2 class="sec-head__title" id="cta-title">The next operating system <span class="sec-head__muted">for business.</span></h2>
-        <p class="sec-head__lead">Discover what becomes possible when your business operates as one connected system. Bring 30–50 of your documents; we run the test with you, live.</p>
+        <p class="sec-head__lead">Bring 30–50 of your own documents. We run Silenus on them with you, live.</p>
       </div>
     </header>
 
@@ -816,30 +647,23 @@ html{background:#09111A}body{margin:0;background:#09111A}
       <p class="portal__login" data-stagger-item>Already using Silenus? <a href="https://silenus.app">Log in</a> · <a href="https://silenus.app">Create an account</a></p>
     </div>
   </div>
-</section>
-
-</main>
-
-<!-- ================= FOOTER ================= -->
-<footer class="footer fh">
-  <!-- Horizon footer: no boxes, no rules. Brand · links · legal on one line; the fibre leaves past the bottom-right. -->
-  <div class="wrap fh__row" data-stagger>
-    <div class="fh__brand" data-stagger-item>
-      <a class="nav__brand" href="/" aria-label="Silenus home"><img src="assets/img/logo-mark.svg" width="16" height="19" alt=""><span class="nav__word">SILENUS</span></a>
-      <p class="fh__tag">Where your company's knowledge comes to work.</p>
-    </div>
-    <nav class="fh__nav" data-stagger-item aria-label="Footer">
+</div>
+  <div class="wrap sf__meta">
+    <p class="sf__tag">Where your company's knowledge comes to work.</p>
+    <nav class="sf__nav" aria-label="Footer">
       <a href="platform.html">Platform</a>
       <a href="why-silenus.html">Why Silenus</a>
       <a href="#security">Security</a>
-      <a href="#pricing">Pricing</a>
+      <a href="why-silenus.html#pricing">Pricing</a>
       <a href="company.html#company">Company</a>
       <a href="https://silenus.app">Log in</a>
     </nav>
-    <div class="fh__legal" data-stagger-item>
-      <p>SILENUS by Phannes Inc. · © 2026</p>
-      <p><a href="/privacy">Privacy</a><a href="/cookies">Cookies</a><a href="/imprint">Imprint</a></p>
-    </div>
+  </div>
+  <!-- the wordmark, as on silenus.vercel.app: SILENUS set in Inter at the full width -->
+  <p class="sf__wm" data-sf-mark aria-hidden="true"><span class="sf__wt"><span class="sf__wl" style="--i:0">S</span><span class="sf__wl" style="--i:1">I</span><span class="sf__wl" style="--i:2">L</span><span class="sf__wl" style="--i:3">E</span><span class="sf__wl" style="--i:4">N</span><span class="sf__wl" style="--i:5">U</span><span class="sf__wl" style="--i:6">S</span></span></p>
+  <div class="wrap sf__legal">
+    <p>SILENUS by Phannes Inc. · © 2026</p>
+    <p><a href="/privacy">Privacy</a><a href="/cookies">Cookies</a><a href="/imprint">Imprint</a></p>
   </div>
 </footer>
 

@@ -1,0 +1,819 @@
+/* =====================================================================================================
+   SILENUS — Hero (2026-11-16, dark system)
+   The dark Silenus tokens (site.min.css :root: --g-950 ground, --g-50 / --g-200 type, --accent, the site's
+   #5FC4A6 second register, Source Serif 4 + Inter). Three roles, one each:
+   · the statement — one sentence in three registers, "connected." the largest by far;
+   · the living form — one ribbon of dots across the middle (canvas, hero-waves.js), born from the preloader;
+   · the product — the Silenus dashboard, rising from below and running past the screen.
+   Rules carry `html body` and #main so they beat the dark site's earlier hero rules (several !important).
+   ===================================================================================================== */
+
+/* ---- type: Source Serif 4 is a variable font (the same file serves every weight); site.min.css declares it at
+   400 and 500 only, so heavier weights were synthesised. Declared here with its real range. ---------------- */
+@font-face { font-family: "Source Serif 4"; font-style: normal; font-weight: 200 900; font-display: swap;
+  src: url(../fonts/vEFI2_tTDB4M7-auWDN0ahZJW1gb8tc.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Source Serif 4"; font-style: normal; font-weight: 200 900; font-display: swap;
+  src: url(../fonts/vEFI2_tTDB4M7-auWDN0ahZJW1gV8tenXg.woff2) format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+
+/* ---- the dark site's page-wide light from the top of the viewport (site.min.css: html body::after, fixed, teal,
+   screen-blended) read as a glow above the nav. It stays off while the hero is on screen; once the hero has
+   left (.hx-out, hero-waves.js) the rest of the page has it as before. The faint top-right wash too. -------- */
+html body::after, html body::before { transition: opacity .6s ease; }
+html:not(.hx-out) body::after, html:not(.hx-out) body::before { opacity: 0 !important; }
+
+/* ---- the section ---------------------------------------------------------------------------------- */
+html body #main > section.hero.hx {
+  display: block !important;
+  min-height: 0 !important;
+  padding: calc(var(--nav-h, 84px) + clamp(32px, 6vh, 80px)) 0 0 !important;
+  overflow: clip !important;
+  background: var(--g-950, #09111A) !important;
+  color: var(--g-50);
+}
+.hx .hero__bg { position: absolute; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
+.hx__waves { position: absolute; left: 0; top: 0; width: 100%; height: min(100%, 110svh); display: block; }
+
+/* ---- the statement -------------------------------------------------------------------------------- */
+.hx__head { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; }
+html body .hx .hero__badge.hx__badge {
+  display: block; height: auto; margin: 0; padding: 0; background: none !important; box-shadow: none !important;
+  font: 600 11.5px/1.4 var(--f-ui) !important; letter-spacing: .2em !important; text-transform: uppercase;
+  color: var(--g-200) !important;
+}
+html body .hx .hero__badge::before { display: none !important; }
+
+html body #main .hx .hero__title.hx__title {
+  display: flex; flex-direction: column; align-items: center;
+  width: auto !important; max-width: none !important; margin: clamp(22px, 2.6vw, 36px) 0 0 !important;
+  font-size: 1rem !important; line-height: 1 !important; letter-spacing: 0 !important;
+  text-align: center !important; color: var(--g-50) !important;
+}
+.hx__row { display: block; }
+/* register 1 — restrained but firm: Inter regular, small; it shares a baseline with register 2 */
+html body #main .hx .hx__l1 .hero__line-inner {
+  font: 400 clamp(1.1rem, 1.85vw, 2.1rem)/1 var(--f-ui) !important; letter-spacing: -.01em !important;
+  color: var(--g-100) !important; -webkit-text-fill-color: var(--g-100); --line-bg: linear-gradient(#E4E7EB, #E4E7EB);
+}
+/* register 2 — the serif, larger */
+html body #main .hx .hx__l2 .hero__line-inner {
+  font: 500 clamp(2.3rem, 4.7vw, 5.4rem)/1 var(--f-serif, "Source Serif 4", Georgia, serif) !important; letter-spacing: -.028em !important;
+  color: var(--g-50) !important; -webkit-text-fill-color: var(--g-50); --line-bg: linear-gradient(#F3F4F6, #F3F4F6);
+  font-optical-sizing: auto;
+}
+html body #main .hx .hx__l2 { margin-left: .14em; }
+/* the statement's colour, shared: the hero's "connected." and section 3's "understood." (kl.css) read this one value */
+:root { --statement: #5FC4A6; }
+/* register 3 — the statement: the serif at display size, bold, in the site's second register. Its typography is section
+   3's "understood." treatment (2026-11-17): Source Serif 4 italic 700, line-height .9, tracking −.045em — at the hero's own
+   sizes. The italic leans past its box: a little inline padding (cancelled by margin) keeps the text-clipped colour and
+   the load shine from cutting it */
+html body #main .hx .hx__row--b { margin-top: -.02em; }
+html body #main .hx .hx__l3 .hero__line-inner {
+  font: italic 700 clamp(4.4rem, 15.2vw, 16.5rem)/.9 var(--f-serif, "Source Serif 4", Georgia, serif) !important; letter-spacing: -.045em !important;
+  color: var(--statement) !important; -webkit-text-fill-color: var(--statement); --line-bg: linear-gradient(var(--statement), var(--statement));
+  font-optical-sizing: auto; padding: 0 .12em .08em .06em; margin: 0 -.12em -.08em -.06em;
+}
+
+html body #main .hx .hero__lead.hx__lead {
+  max-width: 40ch !important; margin: clamp(26px, 3vw, 40px) auto 0 !important;
+  font: 400 clamp(1.02rem, .92rem + .32vw, 1.2rem)/1.55 var(--f-ui) !important;
+  color: var(--g-200) !important;
+}
+
+.hx__actions { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 12px; margin-top: clamp(30px, 3.2vw, 44px); }
+/* Buttons (hero + nav share one system, see "Buttons" below): .sb = Silenus button */
+.hx a:focus-visible { outline: 2px solid #5FC4A6; outline-offset: 3px; }
+
+/* =====================================================================================================
+   02 · THE PRODUCT TOUR (section.tour, straight after the hero) — hero-tour.js
+   ONE dashboard. Section 2 starts directly under the hero's CTAs (the hero has no bottom padding), so the
+   dashboard rests exactly where the hero always showed it: same width, same place, its top in the lower part of
+   the first screen. It never leaves, and nothing replaces it.
+   Desktop ≥ 1024, motion allowed (.is-pinned):
+     · rise  — from the first pixel of scroll until section 2 reaches the top of the screen, the same element
+               moves up and grows (one transform on .hx__zoom: translateY + scale, origin top centre);
+     · pin   — at that moment the stage (CSS sticky) holds it, at exactly the place the rise ended: no jump;
+     · tour  — still: only its content and the title above it change, four stages.
+   Phones, tablets, reduced motion (.is-stacked): no pinning; after the hero's dashboard the other three screens
+   follow, each with its title.
+   ===================================================================================================== */
+/* The dark site styles every `main > section` that is not the hero with !important padding (var(--sec-pad), 56 px),
+   flex layout and min-height — that padding pushed the dashboard down and left an empty band in the hero. And it
+   lifts the hero to z-index 2, which would put the hero's viewport-wide wave canvas over this section's dashboard.
+   Section 2 opts out of both: no padding of its own (it continues the hero) and a layer above the hero (it has no
+   background, so the hero and its dots show through everywhere the dashboard is not). */
+html body #main > section.tour.tour {
+  position: relative; z-index: 3; display: block !important; min-height: 0 !important;
+  padding: 0 !important; margin: 0 !important; background: transparent !important;
+}
+.hx__tour { position: relative; margin-top: clamp(48px, 7vh, 88px); }   /* the hero's original gap above the dashboard */
+.hx__tour.is-pinned { height: calc(100svh + var(--tour-len, 280svh)); margin-bottom: clamp(120px, 18vh, 200px); }
+.hx__tour.is-pinned .hx__stage { position: sticky; top: 0; height: 100svh; }
+.hx__product { position: relative; width: min(1180px, calc(100% - 2 * var(--gutter, 24px))); margin: 0 auto; }
+.hx__zoom { position: relative; transform-origin: 50% 0; }   /* the rise: hero-tour.js writes its transform */
+.hx__frame {
+  position: relative; z-index: 1; overflow: hidden; aspect-ratio: var(--dsh-w) / 800;
+  border-radius: 12px; background: #F1F3F4;
+  box-shadow: 0 28px 56px -34px rgba(0, 0, 0, .38);   /* a soft contact shadow only: the light, not a dark band, is what sits beneath */
+}
+/* the light (restored to the approved character, refined): green ambient light from behind the dashboard — centred
+   on it horizontally, its source behind the upper part, so it rises past the top edge toward the CTAs and reaches
+   out on both sides. One circle with a long, gradual falloff (no ellipses, lobes or strips). Its radius is the
+   smaller of 0.95 × the dashboard's width and 56 % of the screen's width, so the visible light always ends inside
+   the screen — nothing to clip. It sits on .hx__zoom, so it moves and scales with the dashboard. */
+.hx__zoom { container-type: inline-size; }                   /* cqw = the dashboard's width */
+.hx__zoom::before {
+  content: ""; position: absolute; z-index: 0; pointer-events: none;
+  left: 50%; top: 38%; width: min(190cqw, 112vw); aspect-ratio: 1; transform: translate(-50%, -50%);
+  /* (2026-11-17) the same light at roughly half the intensity: the same size, centre and spread, so it stays wide and
+     atmospheric; the core is lowered most (to ~47 %), the outer falloff a little less (to ~60 %), so the reach is kept
+     while the brightness behind the type above it drops */
+  background: radial-gradient(circle closest-side,
+    rgba(46, 184, 132, .15) 0%, rgba(46, 184, 132, .13) 20%, rgba(46, 184, 132, .105) 38%, rgba(46, 184, 132, .08) 54%,
+    rgba(46, 184, 132, .054) 68%, rgba(46, 184, 132, .03) 80%, rgba(46, 184, 132, .012) 90%, rgba(46, 184, 132, 0) 100%);
+}
+
+/* the stage's words: one title and one short sentence, always in the same place above the dashboard */
+.hx__caps { display: none; margin: 0; padding: 0; list-style: none; }
+.hx__tour.is-pinned .hx__caps {
+  display: block; position: absolute; z-index: 2; left: 0; right: 0; top: var(--caps-top, 96px);
+  height: var(--caps-h, 120px); pointer-events: none; text-align: center; opacity: 0;   /* hero-tour.js fades them in as the dashboard arrives */
+}
+.hx__tour.is-pinned .hx__cap {
+  position: absolute; left: 0; right: 0; top: 0; padding: 0 var(--gutter, 24px);
+  opacity: 0; transform: translate3d(0, 14px, 0);
+  transition: opacity .5s ease, transform .7s cubic-bezier(.16, 1, .3, 1);
+}
+.hx__tour.is-pinned .hx__cap.is-on { opacity: 1; transform: none; }
+/* the title: the hero's serif at a section scale, in two registers — the second half in its italic, softer */
+html body #main .tour .hx__capt {
+  margin: 0; font: 600 clamp(2rem, 3.4vw, 3.5rem)/1.04 var(--f-serif, "Source Serif 4", Georgia, serif); letter-spacing: -.028em;
+  color: var(--g-50); text-wrap: balance;
+}
+html body #main .tour .hx__capt em { font-style: italic; font-weight: 500; color: #CFE7E1; }
+.hx__capp { max-width: 46ch; margin: 14px auto 0; font: 400 clamp(1rem, .92rem + .22vw, 1.12rem)/1.5 var(--f-ui); color: var(--g-300); }
+
+/* stacked (phones, tablets, reduced motion): each screen, then its title */
+.hx__stack { display: grid; gap: clamp(48px, 9vw, 72px); width: min(1180px, calc(100% - 2 * var(--gutter, 24px))); margin: 22px auto 0; }
+.hx__stack-cap { margin: 22px 0 0; text-align: left; }
+.hx__stack-cap .hx__capp { margin-left: 0; }
+html body #main .tour .hx__stack-cap .hx__capt { font-size: clamp(1.6rem, 5.8vw, 2.4rem); }
+.hx__stack-step .hx__frame { box-shadow: 0 24px 48px -28px rgba(0, 0, 0, .6), 0 0 0 1px rgba(205, 214, 225, .06); }
+.hx__tour.is-stacked { padding-bottom: clamp(64px, 8vw, 112px); }
+
+.hx__product, .hx__stack { --dsh-w: 1280; }
+@media (max-width: 767.98px) { .hx__product, .hx__stack { --dsh-w: 820; } }   /* phones: a crop (the hero: sidebar and work area; the tour's copies: around their point) */
+
+/* The dashboard, at its real size; scaled as one piece (--k = frame width / --dsh-w, set by hero-waves.js) */
+.dsh {
+  --dsh-x: 0;
+  --dsh-side: #1E2528; --dsh-side-2: #283236; --dsh-side-text: #C6CDD1; --dsh-side-mute: #7D888E;
+  --dsh-bg: #F1F3F4; --dsh-sheet: #FFFFFF; --dsh-line: #D7DCE0; --dsh-line-2: #E7EAED;
+  --dsh-ink: #1B2125; --dsh-text: #4F5962; --dsh-mute: #6B757E;
+  --dsh-teal: #1D6A5E; --dsh-ok: #2F7F4A; --dsh-ok-bg: #E6F2EA; --dsh-red: #C8463B;
+  position: absolute; left: 0; top: 0; width: 1280px; height: 800px;
+  transform: scale(var(--k, .9)) translateX(calc(var(--dsh-x) * -1px)); transform-origin: 0 0;
+  display: grid; grid-template-columns: 240px minmax(0, 1fr);
+  font: 400 14px/1.4 Inter, system-ui, sans-serif; color: var(--dsh-ink); text-align: left; letter-spacing: -.005em;
+  -webkit-font-smoothing: antialiased;
+}
+.dsh svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+:where(.dsh) :where(p, ul, h2) { margin: 0; padding: 0; list-style: none; }   /* zero specificity: components keep their own spacing */
+
+/* sidebar */
+.dsh__side { display: flex; flex-direction: column; padding: 22px 14px 18px; background: var(--dsh-side); color: var(--dsh-side-text); }
+.dsh__brand { display: flex; align-items: flex-start; justify-content: space-between; padding: 0 8px 8px; }
+.dsh__brand p { display: grid; grid-template-columns: auto 1fr; column-gap: 11px; align-items: center; }
+.dsh__brand img { grid-row: 1 / span 2; display: block; width: 24px; height: auto; aspect-ratio: 100 / 116; }
+.dsh__brand b { display: block; font: 600 14px/1 Inter, sans-serif; letter-spacing: .3em; color: #F3F4F6; }
+.dsh__brand span { display: block; margin-top: 6px; font: 600 8.5px/1 Inter, sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--dsh-side-mute); }
+.dsh__brand svg { width: 16px; height: 16px; color: var(--dsh-side-mute); margin-top: 2px; }
+.dsh__grp { display: flex; align-items: center; justify-content: space-between; margin: 20px 10px 6px; font: 700 10.5px/1 Inter, sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--dsh-side-mute); }
+.dsh__grp svg { width: 13px; height: 13px; }
+.dsh__nav li, .dsh__set { display: flex; align-items: center; gap: 12px; height: 34px; padding: 0 10px; border-radius: 8px; font-size: 14px; color: var(--dsh-side-text); }
+.dsh__nav li svg, .dsh__set svg { width: 17px; height: 17px; flex: none; }
+.dsh__nav li.is-on { background: var(--dsh-side-2); color: #FFFFFF; font-weight: 600; box-shadow: inset 2px 0 #3DBE9C; }
+.dsh__dot { width: 17px; height: 17px; flex: none; display: grid; place-items: center; }
+.dsh__dot::before { content: ""; width: 7px; height: 7px; border-radius: 50%; }
+.dsh__dot--ok::before { background: #4CAF6E; }
+.dsh__dot--info::before { background: #4F8FE0; }
+.dsh__foot { margin-top: auto; display: grid; gap: 12px; }
+.dsh__bell, .dsh__user { display: flex; align-items: center; gap: 12px; padding: 0 10px; font-size: 13.5px; }
+.dsh__bell i, .dsh__user i { position: relative; width: 30px; height: 30px; flex: none; display: grid; place-items: center; border-radius: 50%; background: var(--dsh-side-2); font: 600 11px/1 Inter, sans-serif; font-style: normal; color: #E9EEF0; }
+.dsh__bell i svg { width: 15px; height: 15px; }
+.dsh__bell i::after { content: ""; position: absolute; right: 3px; top: 3px; width: 7px; height: 7px; border-radius: 50%; background: #8B6CF0; box-shadow: 0 0 0 2px var(--dsh-side); }
+.dsh__bell small, .dsh__user small { display: block; font-size: 11.5px; color: var(--dsh-side-mute); }
+.dsh__bell span { color: var(--dsh-side-mute); }
+.dsh__user em { margin-left: 4px; padding: 2px 5px; border: 1px solid #44525A; border-radius: 4px; font: 600 8.5px/1 Inter, sans-serif; letter-spacing: .1em; font-style: normal; text-transform: uppercase; color: var(--dsh-side-mute); vertical-align: 2px; }
+
+/* work area */
+.dsh__main { position: relative; display: flex; flex-direction: column; min-width: 0; background: var(--dsh-bg); }
+.dsh__top { display: flex; align-items: center; justify-content: space-between; height: 60px; padding: 0 28px; background: var(--dsh-sheet); border-bottom: 1px solid var(--dsh-line); }
+.dsh__search { display: flex; align-items: center; gap: 10px; width: 440px; height: 38px; padding: 0 12px; border: 1px solid var(--dsh-line); border-radius: 10px; background: #F7F8F9; font-size: 13.5px; color: var(--dsh-mute); }
+.dsh__search svg { width: 15px; height: 15px; }
+.dsh__search kbd { margin-left: auto; padding: 2px 6px; border: 1px solid var(--dsh-line); border-radius: 5px; font: 500 11px/1.2 Inter, sans-serif; color: var(--dsh-mute); background: #fff; }
+.dsh__ai { display: flex; align-items: center; gap: 8px; font: 500 13px/1 Inter, sans-serif; color: var(--dsh-ok); }
+.dsh__ai i { width: 7px; height: 7px; border-radius: 50%; background: #4CAF6E; box-shadow: 0 0 0 3px rgba(76, 175, 110, .18); }
+.dsh__body { padding: 28px 32px; }
+.dsh__h { font: 800 30px/1.12 Inter, sans-serif; letter-spacing: -.022em; color: #12171B; }
+.dsh__sub { margin-top: 6px !important; font-size: 14px; color: var(--dsh-text); }
+.dsh__stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin-top: 24px !important; }
+.dsh__stats li { padding: 16px 18px; border: 1px solid var(--dsh-line); border-radius: 12px; background: var(--dsh-sheet); }
+.dsh__stats span { font-size: 12.5px; font-weight: 500; color: var(--dsh-mute); }
+.dsh__stats b { display: block; margin: 6px 0 3px; font: 800 28px/1.1 Inter, sans-serif; letter-spacing: -.03em; font-variant-numeric: tabular-nums; color: #12171B; }
+.dsh__stats small { font-size: 12px; color: var(--dsh-mute); }
+.dsh__grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 14px; margin-top: 14px; }
+.dsh__card { padding: 18px 20px; border: 1px solid var(--dsh-line); border-radius: 12px; background: var(--dsh-sheet); }
+.dsh__card--ai { border-color: #CFE3DD; background: linear-gradient(180deg, #F3F9F7, #FFFFFF 60%); }
+.dsh__k { display: flex; align-items: center; justify-content: space-between; font: 700 15px/1.2 Inter, sans-serif; letter-spacing: -.01em; color: #12171B; }
+.dsh__k em { font: 400 12.5px/1 Inter, sans-serif; font-style: normal; color: var(--dsh-mute); }
+.dsh__k--sep { margin-top: 16px !important; padding-top: 14px; border-top: 1px solid var(--dsh-line-2); }
+.dsh__ok { padding: 4px 9px; border-radius: 999px; background: var(--dsh-ok-bg); font: 600 11.5px/1 Inter, sans-serif; color: var(--dsh-ok); }
+.dsh__needs { margin-top: 8px !important; }
+.dsh__needs li { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 0; border-top: 1px solid var(--dsh-line-2); }
+.dsh__needs li:first-child { border-top: 0; }
+.dsh__needs b { display: block; font: 600 13.5px/1.3 Inter, sans-serif; }
+.dsh__needs small { display: block; margin-top: 3px; font-size: 12px; color: var(--dsh-mute); }
+.dsh__needs i { flex: none; padding: 7px 12px; border: 1px solid #C7D3D0; border-radius: 8px; font: 600 12.5px/1 Inter, sans-serif; font-style: normal; color: var(--dsh-teal); }
+.dsh__brief { margin-top: 10px !important; font-size: 13.5px; line-height: 1.6; color: #2C353C; }
+.dsh__brief sup { margin-left: 1px; font-size: 9.5px; font-weight: 600; color: var(--dsh-teal); }
+.dsh__chips { display: flex; gap: 6px; margin-top: 12px !important; }
+.dsh__chips span { padding: 4px 10px; border: 1px solid var(--dsh-line); border-radius: 999px; font-size: 11.5px; color: var(--dsh-text); }
+.dsh__agenda { margin-top: 6px !important; }
+.dsh__agenda li { display: grid; grid-template-columns: 54px minmax(0, 1fr) auto; align-items: baseline; padding: 7px 0; font-size: 13px; }
+.dsh__agenda b { font-weight: 600; font-variant-numeric: tabular-nums; }
+.dsh__agenda em { font-size: 11.5px; font-style: normal; color: var(--dsh-mute); }
+
+/* the product's own dock: Track time · Check in · assistant */
+.dsh__dock { position: absolute; right: 24px; bottom: 22px; display: flex; align-items: center; gap: 10px; }
+.dsh__track, .dsh__check { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 16px; border: 1px solid #C9CED3; border-radius: 999px; background: #fff; font: 600 13.5px/1 Inter, sans-serif; color: var(--dsh-ink); box-shadow: 0 6px 16px -8px rgba(27, 33, 37, .25); }
+.dsh__track svg { width: 16px; height: 16px; }
+.dsh__check i { width: 8px; height: 8px; border-radius: 50%; background: var(--dsh-red); }
+.dsh__check b { font: 600 13.5px/1 ui-monospace, "SF Mono", Menlo, monospace; }
+.dsh__bot { width: 48px; height: 48px; display: grid; place-items: center; border-radius: 50%; background: var(--dsh-teal); color: #fff; box-shadow: 0 0 0 3px #fff, 0 0 0 4px #C9CED3, 0 8px 18px -8px rgba(27, 33, 37, .4); }
+.dsh__bot svg { width: 20px; height: 20px; }
+
+/* ---- the preloader's hand-over (hero-waves.js): the drawn wordmark gives way to its own dots ------- */
+.pl4.is-dissolving { background: transparent !important; pointer-events: none; }
+.pl4.is-dissolving :is(.pl4__word, .pl4__wire, .pl4__track, .pl4__head) { opacity: 0; transition: opacity .35s ease; }
+
+/* ---- tablet / phone ------------------------------------------------------------------------------- */
+@media (max-width: 1023.98px) {
+  html body #main .hx .hx__l1 .hero__line-inner { font-size: clamp(1.05rem, 2.6vw, 1.5rem) !important; }
+  html body #main .hx .hx__l2 .hero__line-inner { font-size: clamp(2.1rem, 6.4vw, 3.8rem) !important; }
+}
+@media (max-width: 767.98px) {
+  html body #main > section.hero.hx { padding-top: calc(var(--nav-h, 64px) + 36px) !important; }
+  /* register 1 alone on its line; "knows," steps in below it; "connected." spans the screen */
+  html body #main .hx .hx__l1 { display: block !important; margin-bottom: .45rem; }
+  html body #main .hx .hx__l2 { margin-left: 0; }
+  html body #main .hx .hx__l3 .hero__line-inner { font-size: clamp(3.2rem, 16.4vw, 5rem) !important; }
+  html body .hx .hero__badge.hx__badge { font-size: 10px !important; letter-spacing: .16em !important; }
+  .hx__product, .hx__stack { width: calc(100% - 32px); }
+}
+
+/* =====================================================================================================
+   BUTTONS — one system for the hero and the nav (.sb). Square-shouldered (4 px), never a pill.
+   · primary: the light ground, dark type; its arrow sits in its own cell behind a hairline. Hover: an
+     emerald wash wipes in from the left (transform only) and the arrow steps on.
+   · ghost: a hairline on the dark ground; hover: the hairline turns emerald and a faint wash follows.
+   ===================================================================================================== */
+html body a.sb {
+  position: relative; isolation: isolate; overflow: hidden;
+  display: inline-flex; align-items: center; gap: 0; height: 50px; padding: 0 22px;
+  border-radius: 4px; text-decoration: none; white-space: nowrap;
+  font: 500 15px/1 var(--f-ui); letter-spacing: -.005em;
+  transition: color .35s var(--ease-out, ease), box-shadow .35s var(--ease-out, ease), transform .2s var(--ease-out, ease);
+}
+html body a.sb::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; transform: scaleX(0); transform-origin: 0 50%;
+  transition: transform .5s cubic-bezier(.16, 1, .3, 1);
+}
+html body a.sb:hover::before, html body a.sb:focus-visible::before { transform: scaleX(1); }
+html body a.sb:active { transform: translateY(1px); }
+html body a.sb:focus-visible { outline: 2px solid #5FC4A6; outline-offset: 3px; }
+.sb__a { display: grid; place-items: center; align-self: stretch; width: 48px; margin: 0 -22px 0 20px; border-left: 1px solid currentColor; border-left-color: rgba(9, 17, 26, .14); }
+.sb__a i { font-style: normal; transition: transform .45s cubic-bezier(.16, 1, .3, 1); }
+html body a.sb:hover .sb__a i { transform: translateX(3px); }
+
+/* primary — "Book a live test". The brand's deep teal (--accent-ink #1D6A6E), never the headline's green.
+   Built as two parts: the label on the teal, and its arrow in a deeper teal cell of its own. A dark gap and a
+   fine teal hairline frame it (an inset mount, not a pill or a glow). Semibold type with a touch of tracking.
+   Hover: the deeper teal floods in from the arrow's side, the frame brightens, the arrow leaves to the right
+   and comes back from the left, and the logo's blue → green draws along the bottom edge. */
+html body a.sb--primary {
+  background: #1D6A6E; color: #F6F8F9; font-weight: 600; letter-spacing: .005em;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .16), 0 0 0 1px #09111A, 0 0 0 2px rgba(143, 211, 213, .26), 0 16px 34px -18px rgba(0, 0, 0, .85);
+}
+html body a.sb--primary:hover { box-shadow: inset 0 1px 0 rgba(255, 255, 255, .16), 0 0 0 1px #09111A, 0 0 0 2px rgba(143, 211, 213, .5), 0 16px 34px -18px rgba(0, 0, 0, .85); }
+html body a.sb--primary::before { background: #15585C; transform-origin: 100% 50%; }
+html body a.sb--primary::after {
+  content: "" !important; position: absolute !important; left: 0 !important; right: 0 !important; bottom: 0 !important; top: auto !important;
+  width: auto !important; height: 1px !important; z-index: 1 !important; opacity: 1 !important;
+  background: linear-gradient(90deg, #4FA3E0, #6FCF9A) !important;
+  transform: scaleX(0) !important; transform-origin: 0 50%; transition: transform .6s cubic-bezier(.16, 1, .3, 1) .05s !important;
+}
+html body a.sb--primary:is(:hover, :focus-visible)::after { transform: scaleX(1) !important; }
+html body a.sb--primary .sb__a { overflow: hidden; background: #15585C; border-left: 0; }
+html body a.sb--primary:hover .sb__a i { animation: sbArrow .55s cubic-bezier(.65, 0, .35, 1); transform: none; }
+@keyframes sbArrow { 0% { transform: none; } 45% { transform: translateX(160%); } 46% { transform: translateX(-160%); } 100% { transform: none; } }
+html body a.sb .sb__a::before, html body a.sb .sb__a::after { content: none !important; }   /* the dark site's injected arrows */
+
+html body a.sb--ghost { background: transparent; color: var(--g-100, #E4E7EB); box-shadow: inset 0 0 0 1px rgba(228, 231, 235, .22); }
+html body a.sb--ghost::before { background: rgba(95, 196, 166, .1); }
+html body a.sb--ghost:hover { color: #FFFFFF; box-shadow: inset 0 0 0 1px rgba(95, 196, 166, .7); }
+
+html body a.sb--lg { height: 56px; padding: 0 28px; font-size: 15.5px; }
+html body a.sb--lg .sb__a { width: 56px; margin-right: -28px; margin-left: 24px; }
+html body a.sb--sm { height: 40px; padding: 0 16px; font-size: 14px; }
+html body a.sb--sm .sb__a { width: 38px; margin-right: -16px; margin-left: 14px; }
+
+/* =====================================================================================================
+   NAV — no surface at all: brand, plain text links and actions sit straight on the hero's ground, at every
+   width and scroll position. The current page is marked by an emerald hairline; hover draws a soft one.
+   (The dark site's tray, pill links, glow and capsule are overridden here; the bar's layout and its
+   responsive switches — links from 1100 px, the menu below — are the site's own.)
+   ===================================================================================================== */
+/* Performance (2026-11-16). The lag had four sources: the bundled hero entrance hid the nav and only faded it
+   in (from an 8 px blur) when its timeline ran, which the wordmark intro releases late; 0.3–0.45 s colour and
+   underline transitions on hover; the capsule's padding / width transitions toggling at 8 px of scroll (layout);
+   and main-thread load from the hero (the wave's pixel density, CSS-blurred glow layers — both reduced).
+   The nav is now simply there, never transitions layout, and answers hover in 0.15 s. */
+html body header.nav {
+  padding-top: 0 !important; transition: none !important;
+  opacity: 1 !important; filter: none !important; transform: none !important;
+}
+html.js:not(.reduced-motion):not(.hero-ready) header.nav { opacity: 1 !important; animation: none !important; }
+
+/* THE INTRO SEQUENCE (hero-waves.js): while the wordmark becomes the wave nothing else is on screen — the nav and
+   the hero copy wait until stage 5 (html.hx-content), the dashboard until stage 4 (html.hx-dash). The bundled 6 s
+   failsafe that would show the hero copy anyway is pushed back while this runs (hero-waves.js has its own guard). */
+html.hx-intro:not(.hx-content) body header.nav { opacity: 0 !important; pointer-events: none; }
+html.hx-intro body header.nav { transition: opacity .6s ease !important; }
+html.is-loading:not(.hx-dash) .hx__product, html.hx-intro:not(.hx-dash) .hx__product { opacity: 0; }
+html.hx-intro:not(.hero-ready) :is([data-hero-badge], [data-hero-rise], [data-hero-line], .hero__title [data-hero-line]) { animation-delay: 30s !important; }
+html body header.nav .nav__dock,
+html body header.nav.is-scrolled .nav__dock {
+  width: 100% !important; max-width: none !important; height: 72px !important; margin: 0 !important;
+  padding: 0 max(var(--gutter, 24px), calc((100% - 1440px) / 2)) !important;
+  border: 0 !important; border-radius: 0 !important; box-shadow: none !important;
+  background: none !important;
+  -webkit-backdrop-filter: none !important; backdrop-filter: none !important;
+}
+html body header.nav .nav__dock::before { display: none !important; }
+html body header.nav .nav__word { font: 600 13px/1 var(--f-ui); letter-spacing: .34em; color: #F3F4F6; }
+
+/* links: plain text */
+html body header.nav .nav__pagelinks,
+html body header.nav.is-scrolled .nav__pagelinks {
+  gap: clamp(22px, 2.4vw, 36px) !important; padding: 0 !important; border: 0 !important; border-radius: 0 !important;
+  background: none !important; -webkit-backdrop-filter: none !important; backdrop-filter: none !important;
+}
+html body header.nav .nav__pagelinks::after { display: none !important; }
+html body header.nav .nav__dock .nav__pl {
+  height: 32px !important; padding: 0 !important; border-radius: 0 !important; background: none !important;
+  font: 500 14px/1 var(--f-ui) !important; letter-spacing: -.003em;
+  color: rgba(228, 231, 235, .62) !important; transition: color .15s ease !important;
+}
+html body header.nav .nav__dock .nav__pl:hover,
+html body header.nav .nav__dock .nav__pl:focus-visible,
+html body header.nav .nav__dock .nav__pl.is-here { color: #F3F4F6 !important; background: none !important; }
+html body header.nav .nav__dock .nav__pl > .nav__rw::after {
+  left: 0 !important; right: 0 !important; bottom: -9px !important; height: 1px !important; border-radius: 0 !important;
+  background: rgba(243, 244, 246, .45) !important; opacity: 1 !important;
+  transform: scaleX(0); transform-origin: 0 50%; transition: transform .25s cubic-bezier(.16, 1, .3, 1) !important;
+}
+html body header.nav .nav__dock .nav__pl:is(:hover, :focus-visible) > .nav__rw::after { transform: scaleX(1); }
+html body header.nav .nav__dock .nav__pl.is-here > .nav__rw::after { transform: scaleX(1); background: #5FC4A6 !important; }
+
+/* actions: Log in as a quiet text link; the CTA is the .sb primary at its small size */
+html body header.nav .nav__actions { gap: 18px !important; }
+html body header.nav .nav__actions a.nav__login.btn {
+  height: 40px !important; padding: 0 2px !important; border: 0 !important; border-radius: 0 !important;
+  background: none !important; box-shadow: none !important;
+  font: 500 14px/1 var(--f-ui) !important; color: rgba(228, 231, 235, .72) !important; transition: color .15s ease !important;
+}
+html body header.nav .nav__actions a.nav__login.btn:hover { color: #FFFFFF !important; background: none !important; }
+html body header.nav a.nav__cta.sb {
+  height: 40px !important; padding: 0 16px !important; border-radius: 4px !important;
+  background: #1D6A6E !important; color: #F6F8F9 !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .16), 0 0 0 1px #09111A, 0 0 0 2px rgba(143, 211, 213, .26) !important;
+  font: 600 14px/1 var(--f-ui) !important;
+}
+html body header.nav a.nav__cta.sb:hover { box-shadow: inset 0 1px 0 rgba(255, 255, 255, .16), 0 0 0 1px #09111A, 0 0 0 2px rgba(143, 211, 213, .5) !important; }
+html body header.nav a.nav__cta.sb::before {
+  content: "" !important; display: block !important; position: absolute !important; inset: 0 !important; z-index: -1 !important;
+  width: auto !important; height: auto !important; margin: 0 !important; border-radius: 0 !important;
+  background: #15585C !important;
+  transform: scaleX(0) !important; transform-origin: 100% 50% !important; transition: transform .5s cubic-bezier(.16, 1, .3, 1) !important;
+}
+html body header.nav a.nav__cta.sb:is(:hover, :focus-visible)::before { transform: scaleX(1) !important; }
+html body header.nav a.nav__cta.sb .sb__a { display: grid !important; }
+/* the menu button (below 1100 px): a hairline square, no fill */
+html body header.nav .nav__menu {
+  height: 40px !important; border-radius: 4px !important; background: transparent !important;
+  box-shadow: inset 0 0 0 1px rgba(228, 231, 235, .18) !important; color: #F3F4F6;
+  transition: box-shadow .3s ease !important;
+}
+html body header.nav .nav__menu:hover { box-shadow: inset 0 0 0 1px rgba(95, 196, 166, .7) !important; }
+
+@media (max-width: 767.98px) {
+  html body header.nav .nav__dock, html body header.nav.is-scrolled .nav__dock { height: 60px !important; }
+  html body a.sb--lg { height: 50px; padding: 0 20px; font-size: 15px; }
+  html body a.sb--lg .sb__a { width: 50px; margin-right: -20px; margin-left: 18px; }
+}
+
+/* =====================================================================================================
+   THE FOUR SCREENS (product tour) — the client's own demo screens, in the product's style (same tokens as
+   the dashboard above). One shows at a time; the tour lights the part that carries the point.
+   ===================================================================================================== */
+.dsh__screens { position: relative; flex: 1; min-height: 0; }
+.dsh__screen { position: absolute; inset: 0; opacity: 0; transform: translate3d(0, 10px, 0); pointer-events: none;
+  transition: opacity .45s ease, transform .6s cubic-bezier(.16, 1, .3, 1); }
+.dsh__screen.is-on { opacity: 1; transform: none; }
+.dsh__nav li { transition: background-color .3s ease, color .3s ease; }
+.dsh__head { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; }
+.dsh__kk { margin: 0 0 6px !important; font: 600 11.5px/1 Inter, sans-serif; letter-spacing: .08em; text-transform: uppercase; color: var(--dsh-mute); }
+.dsh__head .dsh__chips { margin-top: 18px !important; flex: none; }
+.dsh__chips span.is-ok { border-color: #CFE3DD; background: var(--dsh-ok-bg); color: var(--dsh-ok); font-weight: 600; }
+.dsh__chips span.is-label { border-color: transparent; padding-inline: 2px; color: var(--dsh-mute); }
+.dsh__grid--even { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); margin-top: 22px; }
+.dsh__grid--crm { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); margin-top: 22px; }
+/* document intake */
+.dsh__drop { display: grid; gap: 4px; margin-bottom: 16px !important; padding: 16px; border: 1.5px dashed #C9D0D6; border-radius: 10px; text-align: center; background: #FAFBFB; }
+.dsh__drop b { font: 600 13.5px/1.3 Inter, sans-serif; }
+.dsh__drop small { font-size: 11.5px; color: var(--dsh-mute); }
+.dsh__k em { margin-left: 12px; text-align: right; }
+.dsh__files { margin-top: 6px !important; }
+.dsh__files li { display: grid; grid-template-columns: minmax(0, 1fr) auto 76px; align-items: center; gap: 14px; padding: 9px 0; border-top: 1px solid var(--dsh-line-2); }
+.dsh__files li:first-child { border-top: 0; }
+.dsh__files b { display: block; font: 600 13px/1.3 Inter, sans-serif; }
+.dsh__files small { font-size: 11.5px; color: var(--dsh-mute); }
+.dsh__files i { width: 70px; height: 6px; border-radius: 3px; background: linear-gradient(90deg, #2F9E7A calc(var(--n) * 1%), #E3E7EA 0); }
+.dsh__files i[data-n="7"] { --n: 100; } .dsh__files i[data-n="6"] { --n: 86; } .dsh__files i[data-n="4"] { --n: 57; } .dsh__files i[data-n="3"] { --n: 43; } .dsh__files i[data-n="2"] { --n: 29; }
+.dsh__files em { justify-self: end; padding: 4px 9px; border: 1px solid var(--dsh-line); border-radius: 999px; font: 500 11.5px/1 Inter, sans-serif; font-style: normal; color: var(--dsh-text); }
+.dsh__files em.is-ok { border-color: #CFE3DD; background: var(--dsh-ok-bg); color: var(--dsh-ok); font-weight: 600; }
+.dsh__facts { margin: 8px 0 14px !important; }
+.dsh__facts li { display: grid; grid-template-columns: 118px minmax(0, 1fr) auto; align-items: baseline; gap: 12px; padding: 11px 0; border-top: 1px solid var(--dsh-line-2); font-size: 13.5px; }
+.dsh__facts li:first-child { border-top: 0; }
+.dsh__facts span { color: var(--dsh-mute); font-size: 12.5px; }
+.dsh__facts b { font-weight: 600; }
+.dsh__facts em { font: 600 12px/1 Inter, sans-serif; font-style: normal; color: var(--dsh-ok); }
+/* CRM */
+.dsh__partner { display: flex; align-items: center; gap: 12px; margin: 14px 0 6px !important; }
+.dsh__partner i { width: 40px; height: 40px; display: grid; place-items: center; border-radius: 50%; background: #E3EEEB; font: 700 13px/1 Inter, sans-serif; font-style: normal; color: var(--dsh-teal); }
+.dsh__partner b { display: block; font: 700 14.5px/1.3 Inter, sans-serif; }
+.dsh__partner small { font-size: 12px; color: var(--dsh-mute); }
+.dsh__kv li, .dsh__links li { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 11px 0; border-top: 1px solid var(--dsh-line-2); font-size: 13.5px; }
+.dsh__kv span, .dsh__links b { color: var(--dsh-text); font-weight: 500; }
+.dsh__kv b, .dsh__links span { font-weight: 650; color: #12171B; }
+.dsh__links { margin-top: 8px !important; }
+.dsh__links li:first-child { border-top: 0; }
+.dsh__links li span::before { content: ""; display: inline-block; width: 6px; height: 6px; margin-right: 10px; border-radius: 50%; background: #2F9E7A; vertical-align: 2px; }
+.dsh__btns { display: flex; gap: 8px; margin-top: 14px !important; }
+.dsh__btns span { padding: 7px 12px; border: 1px solid #C7D3D0; border-radius: 8px; font: 600 12.5px/1 Inter, sans-serif; color: var(--dsh-teal); }
+/* AI chat */
+.dsh__q { margin-left: auto !important; max-width: 86%; width: fit-content; padding: 10px 14px; border-radius: 12px 12px 4px 12px; background: #1E2528; color: #F2F5F6; font: 500 13.5px/1.45 Inter, sans-serif; }
+.dsh__a { margin-top: 12px !important; font-size: 13.5px; line-height: 1.6; color: #2C353C; }
+.dsh__a sup { font-size: 9.5px; font-weight: 600; color: var(--dsh-teal); }
+.dsh__warn { display: inline-block; margin-right: 4px; padding: 3px 8px; border-radius: 999px; background: #FBEFD9; color: #8A6A1E; font: 600 11.5px/1.2 Inter, sans-serif; }
+.dsh__renew { margin-top: 10px !important; }
+.dsh__renew li { display: grid; grid-template-columns: minmax(0, 1fr) auto 20px; gap: 12px; align-items: center; padding: 8px 0; border-top: 1px solid var(--dsh-line-2); font-size: 13px; }
+.dsh__renew b { font-weight: 600; font-variant-numeric: tabular-nums; }
+.dsh__renew i { width: 18px; height: 18px; display: grid; place-items: center; border-radius: 50%; background: #E3EEEB; font: 600 10px/1 Inter, sans-serif; font-style: normal; color: var(--dsh-teal); }
+.dsh__ver { margin-top: 12px !important; font: 600 12.5px/1 Inter, sans-serif; color: var(--dsh-ok); }
+.dsh__src { margin: 14px 0 12px; padding: 12px 14px; border-left: 2px solid #2F9E7A; border-radius: 0 8px 8px 0; background: #F4F7F6; font: 400 12.5px/1.6 Georgia, "Source Serif 4", serif; color: #3A444B; }
+.dsh__src span { display: block; margin-bottom: 6px; font: 600 11px/1.2 Inter, sans-serif; letter-spacing: .02em; color: var(--dsh-mute); }
+.dsh__src mark { padding: 0 2px; background: #DDF1E8; color: inherit; }
+
+/* the spotlight: the part that carries the stage's point stays lit and gains an emerald edge; the rest recedes */
+.dsh__card, .dsh__stats { transition: opacity .5s ease, box-shadow .5s ease; }
+.dsh.has-spot .dsh__screen.is-on :is(.dsh__card:not([data-spot]), .dsh__stats) { opacity: .55; }
+.dsh.has-spot .dsh__screen.is-on [data-spot] { box-shadow: 0 0 0 2px rgba(46, 184, 132, .9), 0 22px 44px -22px rgba(30, 140, 100, .55); }
+
+@media (prefers-reduced-motion: reduce) {
+  .dsh__screen, .dsh__card, .dsh__stats, .hx__cap { transition: none !important; }
+  html body a.sb--primary:hover .sb__a i { animation: none; }
+}
+
+/* the wave's canvas covers the viewport while motion is allowed (hero-waves.js adds .is-fixed), so the dots can
+   disperse anywhere on screen; it stays in the hero's own layer, behind the hero's content and the dashboard */
+.hx__waves.is-fixed { position: fixed; left: 0; top: 0; width: 100%; height: 100%; }
+/* (a canvas is a replaced element: with width/height auto it shows its backing store at its intrinsic size, which
+   is the viewport × device pixel ratio — the drawing came out ~1.5× too large and anchored top-left, so the dots
+   looked bigger and the wordmark's dots landed below and right of the letters. Explicit 100% fixes both.) */
+
+/* =====================================================================================================
+   NAV CTA — fix (2026-11-16). The dark site's "flood circle" button rules target any .nav__cta holding an
+   aria-hidden span, with !important: they turned the arrow cell into a 0 px circle (width / height
+   var(--fl-d) = 0, font-size 0, margin 0), added a 12 px gap, and an older glowing-pill rule added a 1 px teal
+   border. Here the arrow cell, gap and border are set explicitly (same specificity family, later, !important),
+   and the bundle's own breakpoint is kept: no CTA in the bar at 479 px and below.
+   ===================================================================================================== */
+html body header.nav a.nav__cta.sb {
+  display: inline-flex !important; align-items: center !important; justify-content: flex-start !important;
+  gap: 0 !important; border: 0 !important; line-height: 1 !important; flex: none !important; scale: none !important;
+}
+html body header.nav a.nav__cta.sb > span.sb__a {
+  display: grid !important; place-items: center; align-self: stretch !important;
+  width: 38px !important; height: auto !important; margin: 0 -16px 0 14px !important;
+  border-radius: 0 !important; overflow: hidden !important; font-size: 14px !important; line-height: 1 !important;
+  background: #15585C !important; color: #F6F8F9 !important; transform: none !important;
+}
+html body header.nav a.nav__cta.sb > span.sb__a i { font-style: normal; }
+@media (max-width: 479.98px) { html body header.nav a.nav__cta.sb { display: none !important; } }
+
+/* =====================================================================================================
+   SECTION 2 BACKGROUND = THE HERO'S (2026-11-16). The hero paints #09111A (--g-950). Section 2 is transparent and
+   showed the page's own colour, which a later dark-site rule sets to #090b0e (body { background: #090b0e }): a
+   blacker band and a visible line under the hero. Section 2 cannot paint an opaque background itself (it sits a
+   layer above the hero so the dashboard covers the wave's dots; an opaque section would cut the dots off at the
+   boundary), so the hero's colour is laid on the layer beneath both: <main>, from the top down to the end of
+   section 2 (--hx-end, hero-tour.js), easing back to the page colour over the last 240 px of section 2's own
+   empty space, so section 01 starts with no line either.
+   ===================================================================================================== */
+html body main#main {
+  background: linear-gradient(180deg, #09111A 0, #09111A calc(var(--hx-end, 0px) - 240px), rgba(9, 17, 26, 0) var(--hx-end, 0px)) no-repeat;
+}
+
+/* CRM: the connected record's header — title firm, its context legible (not a faint grey) */
+.dsh__screen[data-screen="crm"] .dsh__k { font-size: 15.5px; }
+.dsh__screen[data-screen="crm"] .dsh__k em { font-size: 13px; font-weight: 500; color: var(--dsh-text); }
+.dsh__screen[data-screen="crm"] .dsh__sub { color: var(--dsh-text); }
+
+/* =====================================================================================================
+   THE DEVICE FRAME (2026-11-16): a slim bezel in deep green, its corners catching a richer emerald — a physical object,
+   not a browser window. Built from the dashboard's own wrapper (::after behind the screen; the screen covers
+   all but an 8 px band), so it adds no layout and moves and scales with the dashboard. The green light
+   (::before) sits behind it.
+   ===================================================================================================== */
+.hx__zoom::after {
+  content: ""; position: absolute; z-index: 0; inset: -8px; border-radius: 19px; pointer-events: none;
+  background:
+    linear-gradient(160deg, rgba(92, 196, 150, .78) 0%, rgba(38, 128, 96, .5) 11%, rgba(18, 51, 44, 0) 27%),
+    linear-gradient(340deg, rgba(76, 178, 136, .62) 0%, rgba(32, 112, 84, .38) 10%, rgba(18, 51, 44, 0) 25%),
+    linear-gradient(180deg, #16392F, #0E2721 55%, #0B201B);
+  box-shadow:
+    inset 0 0 0 1px rgba(126, 214, 170, .3),    /* a fine green edge, inside */
+    inset 0 1px 0 rgba(206, 246, 224, .2),      /* light catching the top */
+    0 0 0 1px rgba(4, 10, 9, .7),               /* a dark outer line, to seat it on the ground */
+    0 30px 60px -34px rgba(0, 0, 0, .55);
+}
+.hx__frame { box-shadow: 0 0 0 1px rgba(5, 14, 12, .55); }   /* the screen's edge within the bezel */
+/* the tour's copies on phones / tablets: the same bezel, as rings */
+.hx__stack-step .hx__frame { box-shadow: 0 0 0 1px rgba(5, 14, 12, .6), 0 0 0 6px #12332C, 0 0 0 7px rgba(76, 178, 136, .5), 0 24px 48px -28px rgba(0, 0, 0, .6); }
+
+/* the dark site's page-long thread (site.min.js: an SVG at the top of <main>) showed through section 2 as a line
+   between it and the hero. Masked out over the hero and section 2 (down to --hx-end); it fades in below, so the
+   later sections keep theirs. */
+html body main#main > svg.thread {
+  -webkit-mask-image: linear-gradient(180deg, transparent 0, transparent var(--hx-end, 0px), #000 calc(var(--hx-end, 0px) + 160px));
+  mask-image: linear-gradient(180deg, transparent 0, transparent var(--hx-end, 0px), #000 calc(var(--hx-end, 0px) + 160px));
+}
+
+/* =====================================================================================================
+   DASHBOARD — component polish (2026-11-16). Same components, same style; spacing and alignment made to hold at
+   the size the dashboard is shown (it is laid out at 1280 px and scaled to ~0.8, so a 10 px gap reads as ~8 px).
+   · Icons never shrink: the site's global `svg { max-width: 100% }` let a flex row squeeze an icon toward its
+     text; every icon in the dashboard is now fixed (flex: none) and centred on its line.
+   · Fields, chips, pills and action buttons: consistent inner padding, no wrapping, gaps that survive scaling.
+   ===================================================================================================== */
+.dsh svg { flex: none; max-width: none; display: block; }
+/* top bar: search field and status */
+.dsh__top { gap: 24px; }
+.dsh__search { gap: 12px; height: 40px; padding: 0 10px 0 14px; border-color: #D2D8DD; }
+.dsh__search svg { width: 16px; height: 16px; color: #7A848C; }
+.dsh__search kbd { flex: none; margin-left: auto; padding: 3px 7px; border-radius: 6px; font: 600 11px/1 Inter, sans-serif; letter-spacing: .02em; }
+.dsh__ai { flex: none; gap: 9px; white-space: nowrap; }
+.dsh__ai i { flex: none; }
+/* sidebar */
+.dsh__brand { align-items: center; padding-bottom: 12px; }
+.dsh__brand svg { margin-top: 0; }
+.dsh__nav li, .dsh__set { gap: 13px; padding: 0 12px; }
+.dsh__grp { margin: 22px 12px 8px; }
+.dsh__bell, .dsh__user { gap: 12px; padding: 0 12px; }
+.dsh__bell span, .dsh__user span { min-width: 0; line-height: 1.25; }
+.dsh__user em { display: inline-block; margin-left: 6px; vertical-align: 1px; }
+/* headers and their chips */
+.dsh__head { gap: 28px; }
+.dsh__head > div { min-width: 0; }
+.dsh__chips { flex-wrap: wrap; gap: 8px; }
+.dsh__chips span { display: inline-flex; align-items: center; padding: 5px 11px; line-height: 1.1; white-space: nowrap; }
+.dsh__k { gap: 16px; line-height: 1.25; }
+.dsh__k em { margin-left: 0; flex: none; white-space: nowrap; }
+.dsh__ok, .dsh__warn { display: inline-flex; align-items: center; white-space: nowrap; line-height: 1.1; }
+.dsh__ok { padding: 5px 10px; }
+/* lists and actions */
+.dsh__needs li { gap: 20px; padding: 13px 0; }
+.dsh__needs span { min-width: 0; }
+.dsh__needs i { display: inline-flex; align-items: center; padding: 8px 13px; white-space: nowrap; }
+.dsh__files li { gap: 16px; padding: 10px 0; }
+.dsh__files span { min-width: 0; }
+.dsh__files em { padding: 5px 10px; white-space: nowrap; }
+.dsh__facts li { gap: 14px; }
+.dsh__facts em { white-space: nowrap; }
+.dsh__partner { gap: 14px; }
+.dsh__partner i { flex: none; }
+.dsh__links li span { display: inline-flex; align-items: center; gap: 10px; }
+.dsh__links li span::before { margin-right: 0; vertical-align: 0; flex: none; }
+.dsh__links li b, .dsh__kv li b { text-align: right; }
+.dsh__btns { gap: 10px; }
+.dsh__btns span { display: inline-flex; align-items: center; padding: 8px 13px; white-space: nowrap; }
+.dsh__q { padding: 11px 15px; }
+.dsh__renew li { gap: 14px; }
+.dsh__renew i { flex: none; }
+.dsh__src { padding: 13px 16px; }
+.dsh__agenda li { column-gap: 12px; }
+/* the product's dock */
+.dsh__dock { gap: 12px; }
+.dsh__track, .dsh__check { gap: 9px; padding: 0 17px; white-space: nowrap; }
+.dsh__check i { flex: none; }
+.dsh__check b { margin-left: 2px; }
+.dsh__bot svg { width: 21px; height: 21px; }
+
+
+/* fit (2026-11-16, checked in the rendered page): with the components' own margins restored the sidebar outgrew
+   the 800 px dashboard (Settings crowded under Knowledge, the user row cut off, the dock pushed down). A tighter
+   vertical rhythm makes it fit with room to spare, and the dashboard keeps its real height. */
+.dsh { grid-template-rows: 800px; overflow: hidden; }
+.dsh__side { min-height: 0; overflow: hidden; padding: 20px 14px 16px; }
+.dsh__brand { padding: 0 6px 6px 8px; }
+.dsh__brand span { white-space: nowrap; letter-spacing: .12em; }
+.dsh__grp { margin: 15px 12px 5px; }
+.dsh__nav li, .dsh__set { height: 32px; }
+.dsh__foot { gap: 10px; padding-top: 10px; }
+/* card headers: the title never wraps; long context text gives way (ellipsis) instead */
+.dsh__k { white-space: nowrap; }
+.dsh__k em { min-width: 0; flex: 0 1 auto; overflow: hidden; text-overflow: ellipsis; }
+
+/* =====================================================================================================
+   HERO BUTTONS (2026-11-16) — after the "Premium Button Design" reference (Dribbble 27165395): a pill of deep
+   green glass with a fine luminous rim, brightest along its lower edge, a soft light inside at the bottom, clean
+   white type. Adapted to Silenus: the brand's greens, no left icon, a slim arrow drawn in the type's own line
+   and colour on the right. Motion only on interaction: on hover a highlight travels round the rim (as the
+   reference's light does), the arrow steps on, the glow lifts a little.
+   · .hb--primary — the green glass; · .hb--ghost — the same pill and rim in a quiet neutral glass.
+   ===================================================================================================== */
+@property --hb-a { syntax: "<angle>"; inherits: false; initial-value: 146deg; }   /* at rest: the light on the lower edge and the top right, as in the reference */
+html body .hx a.hb {
+  position: relative; isolation: isolate; display: inline-flex; align-items: center; justify-content: center; gap: 14px;
+  height: 58px; padding: 0 26px 0 30px; border-radius: 999px; text-decoration: none; white-space: nowrap;
+  font: 500 16px/1 var(--f-ui); letter-spacing: -.005em;
+  transition: box-shadow .45s cubic-bezier(.16, 1, .3, 1), transform .25s cubic-bezier(.16, 1, .3, 1), color .3s ease;
+}
+.hb__t { position: relative; }
+.hb__a { width: 18px; height: 18px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
+  transition: transform .45s cubic-bezier(.16, 1, .3, 1); }
+/* the rim: a fine ring of light (conic, so a highlight can travel round it) */
+html body .hx a.hb::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; padding: 1.5px; pointer-events: none;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+}
+/* the lower edge: where the light gathers */
+html body .hx a.hb::after {
+  content: ""; position: absolute; left: 16%; right: 16%; bottom: -1px; height: 2px; border-radius: 2px; pointer-events: none;
+  transition: opacity .45s ease, left .6s cubic-bezier(.16, 1, .3, 1), right .6s cubic-bezier(.16, 1, .3, 1);
+}
+html body .hx a.hb:hover::before, html body .hx a.hb:focus-visible::before { animation: hbRim 2.8s linear infinite; }
+html body .hx a.hb:hover .hb__a, html body .hx a.hb:focus-visible .hb__a { transform: translateX(4px); }
+html body .hx a.hb:active { transform: scale(.985); }
+html body .hx a.hb:focus-visible { outline: 2px solid #9BE8C4; outline-offset: 4px; }
+@keyframes hbRim { from { --hb-a: 146deg; } to { --hb-a: 506deg; } }
+
+/* primary: green glass */
+html body .hx a.hb--primary {
+  color: #F2FBF6;
+  background:
+    radial-gradient(70% 120% at 50% 125%, rgba(72, 214, 150, .34), rgba(72, 214, 150, 0) 62%),
+    linear-gradient(180deg, #0F3127 0%, #0A251D 55%, #08201A 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(205, 255, 228, .14),
+    inset 0 -12px 20px -12px rgba(120, 236, 178, .42),
+    0 0 0 1px rgba(3, 10, 8, .85),
+    0 0 26px -8px rgba(72, 214, 150, .38),
+    0 10px 24px -12px rgba(110, 232, 172, .32),
+    0 14px 30px -14px rgba(0, 0, 0, .85);
+}
+html body .hx a.hb--primary::before {
+  background: conic-gradient(from var(--hb-a),
+    rgba(150, 240, 196, .28) 0deg, rgba(214, 255, 233, .95) 34deg, rgba(120, 228, 176, .55) 80deg,
+    rgba(150, 240, 196, .26) 150deg, rgba(150, 240, 196, .3) 200deg, rgba(190, 252, 220, .8) 250deg,
+    rgba(150, 240, 196, .26) 300deg, rgba(150, 240, 196, .28) 360deg);
+}
+html body .hx a.hb--primary::after {
+  background: linear-gradient(90deg, rgba(200, 255, 226, 0), rgba(214, 255, 233, .95) 50%, rgba(200, 255, 226, 0));
+  box-shadow: 0 0 10px 1px rgba(110, 232, 172, .55);
+}
+html body .hx a.hb--primary .hb__a { color: #C4F5DB; }
+html body .hx a.hb--primary:hover, html body .hx a.hb--primary:focus-visible {
+  box-shadow:
+    inset 0 1px 0 rgba(205, 255, 228, .18),
+    inset 0 -14px 22px -12px rgba(120, 236, 178, .55),
+    0 0 0 1px rgba(3, 10, 8, .85),
+    0 0 34px -6px rgba(72, 214, 150, .5),
+    0 14px 30px -14px rgba(0, 0, 0, .85);
+}
+html body .hx a.hb--primary:hover::after { left: 10%; right: 10%; }
+
+/* secondary: the same pill and rim, neutral glass; its rim warms to green on hover */
+html body .hx a.hb--ghost {
+  color: #CDD4DA;
+  background: linear-gradient(180deg, rgba(255, 255, 255, .055), rgba(255, 255, 255, .018));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .07), 0 0 0 1px rgba(3, 10, 8, .6), 0 14px 30px -16px rgba(0, 0, 0, .8);
+}
+html body .hx a.hb--ghost::before {
+  background: conic-gradient(from var(--hb-a),
+    rgba(228, 234, 240, .14) 0deg, rgba(228, 234, 240, .42) 34deg, rgba(228, 234, 240, .18) 90deg,
+    rgba(228, 234, 240, .12) 180deg, rgba(228, 234, 240, .3) 250deg, rgba(228, 234, 240, .14) 360deg);
+  transition: opacity .4s ease;
+}
+html body .hx a.hb--ghost::after { background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, .35) 50%, rgba(255, 255, 255, 0)); opacity: .6; }
+html body .hx a.hb--ghost .hb__a { color: rgba(230, 234, 238, .7); }
+html body .hx a.hb--ghost:hover, html body .hx a.hb--ghost:focus-visible { color: #FFFFFF; }
+html body .hx a.hb--ghost:hover::before, html body .hx a.hb--ghost:focus-visible::before {
+  background: conic-gradient(from var(--hb-a),
+    rgba(150, 240, 196, .2) 0deg, rgba(196, 248, 222, .7) 34deg, rgba(150, 240, 196, .26) 90deg,
+    rgba(150, 240, 196, .16) 180deg, rgba(170, 244, 208, .5) 250deg, rgba(150, 240, 196, .2) 360deg);
+}
+html body .hx a.hb--ghost:hover .hb__a { color: #C4F5DB; }
+
+@media (max-width: 767.98px) {
+  html body .hx a.hb { height: 54px; padding: 0 22px 0 26px; font-size: 15.5px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html body .hx a.hb::before { animation: none !important; }
+  html body .hx a.hb, .hb__a { transition: none; }
+}
+
+/* =====================================================================================================
+   NAV CTA = the hero's primary pill, at the nav's size (2026-11-16). Section 4's CTA is the same component, styled by
+   these same rules (2026-11-17). The dark site's nav CTA rules are many and
+   !important (pill background, teal border, glow, a shine ::after, and `.nav__cta span { display: none }` below
+   1023 px, which would hide the label), so this variant restates the pill explicitly, scoped to the nav.
+   ===================================================================================================== */
+html body :is(header.nav a.nav__cta, #main .sys a.sys__cta).hb {
+  position: relative !important; isolation: isolate; overflow: visible !important;
+  display: inline-flex !important; align-items: center !important; justify-content: center !important; gap: 10px !important;
+  height: 40px !important; padding: 0 16px 0 19px !important; border: 0 !important; border-radius: 999px !important;
+  font: 500 14px/1 var(--f-ui) !important; letter-spacing: -.003em !important; color: #F2FBF6 !important;
+  background:
+    radial-gradient(70% 120% at 50% 125%, rgba(72, 214, 150, .32), rgba(72, 214, 150, 0) 62%),
+    linear-gradient(180deg, #0F3127 0%, #0A251D 55%, #08201A 100%) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(205, 255, 228, .14),
+    inset 0 -9px 14px -9px rgba(120, 236, 178, .42),
+    0 0 0 1px rgba(3, 10, 8, .85),
+    0 0 18px -6px rgba(72, 214, 150, .36),
+    0 8px 18px -10px rgba(0, 0, 0, .8) !important;
+  transform: none !important; scale: none !important; translate: none !important;
+  transition: box-shadow .45s cubic-bezier(.16, 1, .3, 1) !important;
+}
+html body :is(header.nav a.nav__cta, #main .sys a.sys__cta).hb > .hb__t { display: inline !important; transform: none !important; }
+html body :is(header.nav a.nav__cta, #main .sys a.sys__cta).hb > .hb__a {
+  display: block !important; width: 15px; height: 15px; flex: none; fill: none; stroke: #C4F5DB; stroke-width: 1.6;
+  stroke-linecap: round; stroke-linejoin: round; transition: transform .45s cubic-bezier(.16, 1, .3, 1);
+}
+html body :is(header.nav a.nav__cta, #main .sys a.sys__cta).hb::before {
+  content: "" !important; display: block !important; position: absolute !important; inset: 0 !important; z-index: -1 !important;
+  width: auto !important; height: auto !important; margin: 0 !important; border-radius: inherit !important; padding: 1.25px !important;
+  transform: none !important; opacity: 1 !important; pointer-events: none;
+  background: conic-gradient(from var(--hb-a),
+    rgba(150, 240, 196, .28) 0deg, rgba(214, 255, 233, .95) 34deg, rgba(120, 228, 176, .55) 80deg,
+    rgba(150, 240, 196, .26) 150deg, rgba(150, 240, 196, .3) 200deg, rgba(190, 252, 220, .8) 250deg,
+    rgba(150, 240, 196, .26) 300deg, rgba(150, 240, 196, .28) 360deg) !important;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+}
+html body :is(header.nav a.nav__cta, #main .sys a.sys__cta).hb::after {
+  content: "" !important; position: absolute !important; top: auto !important; left: 18% !important; right: 18% !important; bottom: -1px !important;
+  width: auto !important; height: 1.5px !important; z-index: 1 !important; opacity: 1 !important; transform: none !important; border-radius: 2px;
+  background: linear-gradient(90deg, rgba(200, 255, 226, 0), rgba(214, 255, 233, .9) 50%, rgba(200, 255, 226, 0)) !important;
+  box-shadow: 0 0 8px 1px rgba(110, 232, 172, .5) !important;
+  transition: left .6s cubic-bezier(.16, 1, .3, 1), right .6s cubic-bezier(.16, 1, .3, 1) !important;
+}
+html body :is(header.nav a.nav__cta, #main .sys a.sys__cta).hb:is(:hover, :focus-visible) {
+  background:
+    radial-gradient(70% 120% at 50% 125%, rgba(72, 214, 150, .4), rgba(72, 214, 150, 0) 62%),
+    linear-gradient(180deg, #0F3127 0%, #0A251D 55%, #08201A 100%) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(205, 255, 228, .18),
+    inset 0 -10px 16px -9px rgba(120, 236, 178, .55),
+    0 0 0 1px rgba(3, 10, 8, .85),
+    0 0 24px -5px rgba(72, 214, 150, .48),
+    0 8px 18px -10px rgba(0, 0, 0, .8) !important;
+  color: #FFFFFF !important;
+}
+html body :is(header.nav a.nav__cta, #main .sys a.sys__cta).hb:is(:hover, :focus-visible)::before { animation: hbRim 2.8s linear infinite; }
+html body :is(header.nav a.nav__cta, #main .sys a.sys__cta).hb:is(:hover, :focus-visible)::after { left: 10% !important; right: 10% !important; }
+html body :is(header.nav a.nav__cta, #main .sys a.sys__cta).hb:is(:hover, :focus-visible) > .hb__a { transform: translateX(3px); }
+html body :is(header.nav a.nav__cta, #main .sys a.sys__cta).hb:active { transform: scale(.985) !important; }
+html body :is(header.nav a.nav__cta, #main .sys a.sys__cta).hb:focus-visible { outline: 2px solid #9BE8C4 !important; outline-offset: 3px !important; }
+@media (max-width: 479.98px) { html body header.nav a.nav__cta.hb { display: none !important; } }   /* the bundle's own breakpoint */
+@media (prefers-reduced-motion: reduce) { html body :is(header.nav a.nav__cta, #main .sys a.sys__cta).hb::before { animation: none !important; } }
+/* the dark site hides the nav's brand and actions once the page scrolls (its old floating-capsule nav); on this
+   page the CTA must stay put, so brand and actions remain visible at every scroll position */
+html body header.nav.is-scrolled :is(.nav__brand, .nav__actions) { opacity: 1 !important; visibility: visible !important; pointer-events: auto !important; transform: none !important; }
+
