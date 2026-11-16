@@ -1,0 +1,173 @@
+/* =====================================================================================================
+   SILENUS — 03 · The Knowledge Layer: the Morphing Knowledge Path (2026-11-17)
+   The Core and the dots are drawn by the hero's particle canvas (hero-waves.js); the path, the node, the markers,
+   the branches, the chapters and their reveals by kl.js. State classes on .kl: .is-core (the Core has formed: the
+   heading settles in) · .is-calm (reduced motion: everything shown). On each chapter: .is-in (its words).
+   ===================================================================================================== */
+
+/* the dark site gives every non-hero section !important padding, min-height and flex; this section continues the
+   hero's ground (no background of its own) and sits a layer above the hero's particle canvas */
+html body #main > section.kl.kl {
+  position: relative; z-index: 3; display: block !important; min-height: 0 !important;
+  padding: clamp(110px, 13vh, 170px) 0 clamp(110px, 14vh, 180px) !important; margin: 0 !important; background: transparent !important;
+}
+.kl__in { position: relative; }
+
+/* ---- the path ------------------------------------------------------------------------------------------- */
+
+/* the Progress Node: a bright point, a fine ring, a little light — where the path meets the reading line */
+
+/* chapter markers on the path (and a way to jump to a chapter) */
+
+/* ---- the head: the Core, then the words ----------------------------------------------------------------- */
+.kl__head { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; text-align: center; }
+/* the title (2026-11-17): the hero's typographic language — three registers, one statement. "Your" in the hero's
+   restrained sans, "business," in its serif, sharing a baseline; then "understood." at display size, the serif bold and
+   tightly set, in its italic — the same treatment as the hero's "connected." — and the hero statement's colour */
+html body #main .kl .kl__title {
+  display: flex; flex-direction: column; align-items: center; margin: 0;
+  font-size: 1rem !important; line-height: 1 !important; letter-spacing: 0 !important; color: var(--g-50); text-align: center;
+}
+.kl.is-intro .kl__title { will-change: transform; }
+.kl__row { display: block; }
+html body #main .kl .kl__r1 { font: 400 clamp(1.05rem, 1.6vw, 1.8rem)/1 var(--f-ui); letter-spacing: -.01em; color: var(--g-100); }
+html body #main .kl .kl__r2 {
+  margin-left: .1em; font: 500 clamp(2rem, min(3.7vw, 6.2svh), 4.2rem)/1 var(--f-serif, "Source Serif 4", Georgia, serif);
+  letter-spacing: -.028em; color: var(--g-50); font-optical-sizing: auto;
+}
+html body #main .kl .kl__row--b { margin-top: -.04em; }
+html body #main .kl .kl__r3 {
+  font: italic 700 clamp(3.6rem, min(10.4vw, 17svh), 11.5rem)/.9 var(--f-serif, "Source Serif 4", Georgia, serif);
+  letter-spacing: -.045em; color: var(--statement, #5FC4A6); font-optical-sizing: auto;   /* the hero statement's colour (hero.css) */
+}
+/* the line beneath: exactly 18 px everywhere, small and secondary, never scaled with the title */
+html body #main .kl .kl__lead { max-width: 40ch; margin: clamp(20px, 2.4vh, 28px) 0 0; font: 400 18px/1.55 var(--f-ui) !important; color: var(--g-300); }
+.js:not(.reduced-motion) .kl [data-kl-h] { opacity: 0; transform: translate3d(0, 16px, 0); transition: opacity .8s ease, transform 1s cubic-bezier(.16, 1, .3, 1); }
+.js:not(.reduced-motion) .kl .kl__title[data-kl-h] { transition-delay: .1s; }
+.js:not(.reduced-motion) .kl .kl__lead[data-kl-h] { transition-delay: .22s; }
+.kl.is-core:not(.is-intro) [data-kl-h], .kl.is-calm [data-kl-h] { opacity: 1 !important; transform: none !important; }
+
+/* ---- the transition from section 2 (desktop, motion allowed: .is-intro — kl.js) --------------------------------
+   The section is pulled up over the tour's last screen, so its stage takes the screen at the moment the tour's (by
+   then empty) stage releases; the stage is then held for the master timeline: the words, very large, then settled;
+   then the Core forming through the morph. */
+html body #main > section.kl.kl.is-intro { padding-top: 0 !important; margin-top: calc(-100svh - clamp(120px, 18vh, 200px)) !important; }
+.kl.is-intro .kl__intro { height: calc(100svh + 110svh); }   /* a short hold: the title in, settled, then out of focus */
+/* the first video rises while the title goes out of focus (the hold's last stretch) — no empty screen between them */
+html body #main .kl.is-intro .kl__journey { margin-top: -38svh; }
+.kl.is-intro .kl__stage { position: sticky; top: 0; height: 100svh; display: flex; align-items: center; justify-content: center; padding-top: 64px; }
+.kl.is-intro .kl__head { width: 100%; }
+.js:not(.reduced-motion) .kl.is-intro [data-kl-h] { opacity: 1; transform: none; transition: none !important; }   /* the master timeline sets them */
+.kl__words { display: flex; flex-direction: column; align-items: center; }
+.kl.is-intro /* each word of the title rises through its own mask (room kept for the italic's overhang and the descenders) */
+.kl__w { display: inline-block; vertical-align: baseline; clip-path: inset(-.25em -.3em -.24em -.3em); }   /* a clip, not overflow: words keep their baseline */
+.kl__wi { display: inline-block; }
+
+/* the morph's outlines: hairlines, in the Core's own units (they keep a fine width at any size) */
+                   /* the S: only a reference for the particles, never drawn */
+/* its light: low and wide, green, rising only once the mark is complete */
+
+/* ---- the chapters: an editorial zigzag around the path ------------------------------------------------- */
+.kl__chapters { position: relative; z-index: 1; margin: 0; padding: 0; list-style: none; display: grid; gap: clamp(104px, 14vh, 176px); }
+
+/* THE JOURNEY (2026-11-17): one straight line down the centre — a hairline, and over it a fill in the logo's gradient
+   that grows as the reader moves through (kl.js). Each entry: the recording on one side, its words on the other, a
+   marker on the line level with the recording's centre, and a hairline from the marker to the recording's edge. */
+.kl__journey { --gut: clamp(72px, 8vw, 128px); position: relative; margin-top: clamp(120px, 15vh, 190px); padding: 40px 0; }
+.kl__spine {
+  position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; transform: translateX(-.5px); z-index: 0; pointer-events: none;
+  background: linear-gradient(180deg, rgba(205, 214, 225, 0), rgba(205, 214, 225, .12) 6%, rgba(205, 214, 225, .12) 94%, rgba(205, 214, 225, 0));
+}
+.kl__spine i {
+  position: absolute; inset: 0; transform-origin: 50% 0; transform: scaleY(0);
+  background: linear-gradient(180deg, rgba(79, 163, 224, 0), #4FA3E0 6%, #6FCF9A 94%, rgba(111, 207, 154, 0));
+  box-shadow: 0 0 10px rgba(111, 207, 154, .35);
+}
+.kl.is-calm .kl__spine i { transform: none; }
+.kl__chap { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) var(--gut) minmax(0, 1fr); align-items: center; }
+.kl__chap[data-side="left"] .kl__chap-media { grid-column: 1; grid-row: 1; }
+.kl__chap[data-side="left"] .kl__chap-text { grid-column: 3; grid-row: 1; justify-self: start; }
+.kl__chap[data-side="right"] .kl__chap-text { grid-column: 1; grid-row: 1; justify-self: end; }
+.kl__chap[data-side="right"] .kl__chap-media { grid-column: 3; grid-row: 1; }
+.kl__chap-text { max-width: 400px; padding: 8px 0; }
+/* the recording: a little smaller than its half (its proportions kept), held against the line so the hairline meets it */
+.kl__chap-media { width: min(92%, 560px); }
+.kl__chap[data-side="left"] .kl__chap-media { justify-self: end; }
+.kl__chap[data-side="right"] .kl__chap-media { justify-self: start; }
+/* the marker: a small ring on the line; lit (filled, a little light) once its entry has arrived */
+.kl__node { position: absolute; left: 50%; top: 50%; z-index: 2; width: 15px; height: 15px; margin: -7.5px 0 0 -7.5px; border-radius: 50%;
+  background: #0A1317; box-shadow: 0 0 0 1px rgba(155, 235, 200, .42); transition: box-shadow .5s ease; }
+.kl__node i { position: absolute; inset: 4px; border-radius: 50%; background: #6FCF9A; transform: scale(0); transition: transform .5s cubic-bezier(.16, 1, .3, 1); }
+.kl__node.is-on { box-shadow: 0 0 0 1px rgba(155, 235, 200, .7), 0 0 14px 2px rgba(111, 207, 154, .28); }
+.kl__node.is-on i { transform: scale(1); }
+/* the hairline from the marker to the recording's edge */
+.kl__tick { position: absolute; top: 50%; z-index: 1; height: 1px; width: calc(var(--gut) / 2 - 7.5px); background: linear-gradient(90deg, rgba(155, 235, 200, .55), rgba(155, 235, 200, .18)); }
+.kl__chap[data-side="left"] .kl__tick { right: calc(50% + 7.5px); transform-origin: 100% 50%; background: linear-gradient(270deg, rgba(155, 235, 200, .55), rgba(155, 235, 200, .18)); }
+.kl__chap[data-side="right"] .kl__tick { left: calc(50% + 7.5px); transform-origin: 0 50%; }
+.kl__chap-idx { margin: 0; font: 600 11px/1 var(--f-ui); letter-spacing: .18em; text-transform: uppercase; color: var(--g-400); }
+.kl__chap-idx span { margin-right: 10px; color: #8FE3BE; font-variant-numeric: tabular-nums; }
+html body #main .kl .kl__chap-t { margin: 16px 0 0; font: 600 clamp(1.9rem, 2.6vw, 2.8rem)/1.04 var(--f-serif, "Source Serif 4", Georgia, serif) !important; letter-spacing: -.025em !important; color: var(--g-50); text-wrap: balance; }
+.kl__chap-d { margin: 14px 0 0; font: 400 clamp(.98rem, .93rem + .15vw, 1.06rem)/1.55 var(--f-ui); color: var(--g-300); }
+
+/* the footage: no card, no glass — the recording itself, with a quiet edge; it opens from the side facing the path */
+.kl__chap-media { margin: 0; }
+.kl__frame {
+  position: relative; overflow: hidden; border-radius: 8px; background: #0E171C;
+  box-shadow: 0 0 0 1px rgba(205, 214, 225, .09), 0 44px 90px -44px rgba(0, 0, 0, .75);
+}
+.kl__frame video { position: absolute; inset: 0; width: 100%; height: 100%; display: block; background: #EEF1F3; }
+
+/* loading: a few points gathering, and a fine line for what has arrived */
+.kl__load { position: absolute; inset: 0; z-index: 1; display: none; place-items: center; align-content: center; gap: 18px; background: #0E171C; }
+.kl__frame.is-loading .kl__load { display: grid; }
+.kl__load-dots { position: relative; width: 34px; height: 34px; animation: klSpin 4s linear infinite; }
+.kl__load-dots i { position: absolute; left: 50%; top: 50%; width: 3px; height: 3px; margin: -1.5px; border-radius: 50%; background: #9BEBC8;
+  transform: rotate(calc(var(--k) * 60deg)) translateY(-13px); animation: klGather 1.6s ease-in-out infinite; animation-delay: calc(var(--k) * -.27s); }
+.kl__load-dots i:nth-child(1) { --k: 0; } .kl__load-dots i:nth-child(2) { --k: 1; } .kl__load-dots i:nth-child(3) { --k: 2; }
+.kl__load-dots i:nth-child(4) { --k: 3; } .kl__load-dots i:nth-child(5) { --k: 4; } .kl__load-dots i:nth-child(6) { --k: 5; }
+.kl__load-bar { width: 72px; height: 1px; background: rgba(155, 235, 200, .16); overflow: hidden; }
+.kl__load-bar i { display: block; height: 100%; background: #9BEBC8; transform: scaleX(0); transform-origin: 0 50%; transition: transform .3s ease; }
+@keyframes klSpin { to { transform: rotate(360deg); } }
+@keyframes klGather { 0%, 100% { opacity: .35; translate: 0 0; } 50% { opacity: 1; translate: 0 4px; } }
+.kl__missing { position: absolute; inset: 0; z-index: 2; display: grid; place-items: center; margin: 0; font: 500 14px/1.4 var(--f-ui); color: #9AA2AD; background: #0E171C; }
+.kl__missing[hidden] { display: none; }
+.kl__pp {
+  position: absolute; right: 14px; bottom: 14px; z-index: 3; width: 34px; height: 34px; display: grid; place-items: center;
+  border: 0; border-radius: 50%; background: rgba(18, 23, 27, .62); color: #F3F4F6; cursor: pointer; opacity: 0; transition: opacity .3s ease, background-color .3s ease;
+}
+.kl__frame:hover .kl__pp, .kl__pp:focus-visible, .kl__frame.is-ready .kl__pp.is-paused { opacity: 1; }
+.kl__pp:hover { background: rgba(18, 23, 27, .84); }
+.kl__pp:focus-visible { outline: 2px solid #9BE8C4; outline-offset: 2px; }
+.kl__pp svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.kl__pp .kl__pp-play { display: none; fill: currentColor; stroke: none; }
+.kl__pp.is-paused .kl__pp-play { display: block; }
+.kl__pp.is-paused .kl__pp-pause { display: none; }
+
+/* ---- tablets: the zigzag, tighter ------------------------------------------------------------------- */
+@media (max-width: 1023.98px) {
+  .kl__journey { --gut: 56px; }
+  .kl__chap-media { width: min(94%, 400px); }
+  .kl__chap-text { max-width: 340px; }
+    html body #main .kl .kl__chap-t { font-size: clamp(1.6rem, 3.4vw, 2.2rem) !important; }
+  .kl__chap-d { font-size: .95rem; }
+}
+/* ---- phones: the path becomes a rail on the left; each chapter stacks to its right -------------------- */
+@media (max-width: 767.98px) {
+  html body #main > section.kl.kl { padding: 90px 0 100px !important; }
+    html body #main .kl .kl__r3 { font-size: clamp(3.2rem, 17vw, 4.6rem); }
+  /* phones: the line runs down the left; each entry beside it — its words, then its recording; the marker level with
+     the entry's index */
+  .kl__journey { margin-top: 96px; padding: 8px 0 24px; }
+  .kl__spine { left: 7px; }
+  .kl__chapters { gap: 72px; padding-left: 34px; }
+  .kl__chap[data-side] { grid-template-columns: minmax(0, 1fr); row-gap: 20px; }
+  .kl__chap[data-side] .kl__chap-text { grid-column: 1; grid-row: 1; justify-self: start; max-width: none; }
+  .kl__chap[data-side] .kl__chap-media { grid-column: 1; grid-row: 2; width: 100%; justify-self: stretch; }
+  .kl__node { left: -27px; top: 5px; margin: -7.5px 0 0 -7.5px; }
+  .kl__tick { display: none; }
+  .kl__frame { border-radius: 7px; }
+  .kl__pp { opacity: 1; width: 30px; height: 30px; right: 10px; bottom: 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .kl__load-dots, .kl__load-dots i { animation: none; }
+}

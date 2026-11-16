@@ -1,0 +1,95 @@
+/* =====================================================================================================
+   SILENUS — 07 · Where we are. What's next. (2026-11-18, simplified)
+   Three things on one grid — the title with the three figures, the growth chart, the roadmap — separated by hairlines
+   and space, nothing else. Serif for the title and the figures only; everything else in the site's sans.
+   ===================================================================================================== */
+
+/* the dark site gives every non-hero section !important padding, min-height and flex */
+html body #main > section.pg.pg {
+  position: relative; z-index: 3; display: block !important; min-height: 0 !important; margin: 0 !important;
+  padding: clamp(110px, 13vh, 170px) 0 clamp(120px, 14vh, 180px) !important; background: transparent !important;
+}
+.pg__in { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: clamp(32px, 4vw, 80px); }
+
+/* ---- the title -------------------------------------------------------------------------------------- */
+.pg__head { grid-column: 1; align-self: end; }
+html body #main .pg .pg__title { display: flex; flex-direction: column; margin: 0; font-size: 1rem !important; line-height: 1 !important; letter-spacing: 0 !important; }
+html body #main .pg .pg__r1 { font: 300 var(--t-section)/1.02 var(--f-serif, "Source Serif 4", Georgia, serif); letter-spacing: -.03em; color: var(--g-300); }
+html body #main .pg .pg__r2 { font: 600 var(--t-section)/1.02 var(--f-serif, "Source Serif 4", Georgia, serif); letter-spacing: -.034em; color: var(--g-50); }
+html body #main .pg .pg__r2 em { font-style: italic; font-weight: 600; color: var(--statement, #5FC4A6); }
+
+/* ---- the figures: the numbers, and a small label under each ---------------------------------------------- */
+.pg__figs { grid-column: 2; align-self: end; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 0; }
+.pg__fig { display: flex; flex-direction: column-reverse; gap: 12px; margin: 0; padding: 0 0 0 clamp(16px, 1.8vw, 28px); border-left: 1px solid rgba(205, 214, 225, .1); }
+.pg__fig-n {
+  margin: 0; font: 600 clamp(3rem, 5.4vw, 5.8rem)/.88 var(--f-serif, "Source Serif 4", Georgia, serif); letter-spacing: -.045em;
+  font-variant-numeric: lining-nums tabular-nums; color: var(--g-50); font-optical-sizing: auto;
+}
+.pg__fig-l { font: 500 13px/1.3 var(--f-ui); color: var(--g-400); }
+
+/* ---- the chart ------------------------------------------------------------------------------------- */
+.pg__chart { grid-column: 1 / -1; margin: clamp(56px, 8vh, 96px) 0 0; display: flex; flex-direction: column; }
+.pg__chart-head { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; flex-wrap: wrap; padding-top: 18px; border-top: 1px solid rgba(205, 214, 225, .1); }
+.pg__chart-t { font: 500 13px/1.3 var(--f-ui); color: var(--g-200); }
+.pg__chart-t span { margin-left: 10px; color: var(--g-400); }
+.pg__chart-v { display: inline-flex; align-items: baseline; gap: 12px; }
+.pg__chart-v b { font: 600 clamp(1.4rem, 1.8vw, 1.9rem)/1 var(--f-ui); letter-spacing: -.025em; font-variant-numeric: tabular-nums; color: var(--g-50); }
+.pg__chart-v em { font: 500 13px/1 var(--f-ui); font-style: normal; color: #8FE3BE; }
+.pg__plot { position: relative; margin-top: 16px; min-height: 0; }
+.pg__svg { display: block; width: 100%; height: clamp(200px, 26vh, 300px); overflow: visible; }
+.pg__base { stroke: rgba(205, 214, 225, .12); stroke-width: 1; }
+.pg__x text { font: 500 11px var(--f-ui); fill: var(--g-400); }
+.pg__area { fill: url(#pg-area); }
+.pg__line { fill: none; stroke: url(#pg-line); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.pg__pt.is-end { fill: #6FCF9A; stroke: #0A1317; stroke-width: 2; }
+
+/* ---- the roadmap: three columns, each under its own rule — solid for what is live, lighter for the pilot,
+   dashed for what is next ------------------------------------------------------------------------------- */
+.pg__road { grid-column: 1 / -1; display: grid; grid-template-columns: 1.3fr 1fr 1fr; column-gap: clamp(24px, 3vw, 56px); margin: clamp(56px, 8vh, 96px) 0 0; padding: 0; list-style: none; }
+.pg__stage { padding-top: 18px; border-top: 1px solid rgba(111, 207, 154, .7); }
+.pg__stage--pilot { border-top-color: rgba(111, 207, 154, .4); }
+.pg__stage--next { border-top: 1px dashed rgba(205, 214, 225, .22); }
+.pg__st { display: flex; align-items: center; gap: 10px; margin: 0; font: 600 12px/1 var(--f-ui); letter-spacing: .14em; text-transform: uppercase; color: var(--g-50); }
+.pg__dot { width: 8px; height: 8px; border-radius: 50%; flex: none; }
+.pg__stage--live .pg__dot { background: #6FCF9A; }
+.pg__stage--pilot .pg__dot { background: linear-gradient(90deg, #6FCF9A 50%, transparent 50%); box-shadow: inset 0 0 0 1px #6FCF9A; }
+.pg__stage--next .pg__dot { box-shadow: inset 0 0 0 1px rgba(205, 214, 225, .5); }
+.pg__stage--next .pg__st { color: var(--g-300); }
+.pg__items { display: flex; flex-wrap: wrap; gap: 8px 22px; margin: 18px 0 0; padding: 0; list-style: none; }
+.pg__items li { font: 400 15px/1.35 var(--f-ui); color: var(--g-100); }
+.pg__stage--next .pg__items li { color: var(--g-400); }
+.pg__items li.is-later span { margin-left: 6px; font: 500 11px/1 var(--f-ui); letter-spacing: .06em; color: var(--g-400); }
+
+/* =====================================================================================================
+   THE HORIZONTAL JOURNEY (desktop — pg.js puts Trust and this section side by side in .pgx while it lasts): this
+   section is exactly one screen.
+   ===================================================================================================== */
+.pgx { position: relative; z-index: 3; overflow: hidden; width: 100%; height: 100vh; }
+.pgx__row { position: relative; display: flex; width: 200%; height: 100%; will-change: transform; }
+html body #main .pgx section.pg.pg, html body #main .pgx section.tru.tru { flex: 0 0 50%; width: 50%; height: 100%; min-height: 0 !important; margin: 0 !important; }
+html body #main .pgx section.pg.pg { display: flex !important; flex-direction: column; overflow: hidden; padding: calc(var(--nav-h, 72px) + 4vh) 0 5vh !important; }
+html body #main .pgx section.pg .pg__in { flex: 1; min-height: 0; grid-template-rows: auto minmax(0, 1fr) auto; }
+html body #main .pgx .pg .pg__r1, html body #main .pgx .pg .pg__r2 { font-size: min(var(--t-section), 6.4vh); }
+html body #main .pgx .pg__fig-n { font-size: min(clamp(3rem, 5.4vw, 5.8rem), 10vh); }
+html body #main .pgx .pg__chart { margin-top: clamp(28px, 5vh, 64px); min-height: 0; }
+html body #main .pgx .pg__plot { flex: 1; }
+html body #main .pgx .pg__svg { height: 100%; min-height: 120px; }
+html body #main .pgx .pg__road { margin-top: clamp(24px, 4.5vh, 56px); }
+/* Trust's screen: its content (unchanged) centred in it */
+html body #main .pgx section.tru.tru { position: relative; display: flex !important; flex-direction: column; justify-content: center; padding: calc(var(--nav-h, 72px) + 2vh) 0 4vh !important; }
+
+/* ---- tablets: the figures under the title; the roadmap stays three columns ------------------------------ */
+@media (max-width: 1023.98px) {
+  .pg__in { grid-template-columns: minmax(0, 1fr); }
+  .pg__figs { grid-column: 1; margin-top: 48px; }
+  .pg__fig:first-child { padding-left: 0; border-left: 0; }
+}
+/* ---- phones: one column ---------------------------------------------------------------------------- */
+@media (max-width: 767.98px) {
+  html body #main > section.pg.pg { padding: 96px 0 110px !important; }
+  .pg__figs { grid-template-columns: 1fr; gap: 28px; margin-top: 40px; }
+  .pg__fig { padding: 0; border: 0; }
+  .pg__chart-t span { display: block; margin: 4px 0 0; }
+  .pg__svg { height: 200px; }
+  .pg__road { grid-template-columns: 1fr; row-gap: 36px; }
+}

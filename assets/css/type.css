@@ -1,0 +1,47 @@
+/* =====================================================================================================
+   SILENUS — Headline type (2026-11-16), every page.
+   Primary section titles and headlines are set in Source Serif 4, the brand's serif (--f-serif, below).
+   · Why this file: site.min.css sets every primary title (.hero__title, .sec-head__title, .pb__title,
+     .cta__title) to var(--f-head) with !important, and --f-head named "FFF AcidGrotesk" — a face whose files are
+     not in the project — so titles fell back to Inter Display 800. --f-head is used by that one rule only.
+   · Source Serif 4 ships as variable files (one file per subset serves every weight), but site.min.css declares
+     it at 400 and 500 only; the real range is declared here so weights render true, not synthesised.
+   · The one adjustment: the titles' weight and tracking were tuned for a tight grotesk at 800; in the serif
+     that reads clotted, so they are set at 600 with slightly looser tracking. Sizes, line heights, spacing and
+     layout are untouched. Body text, navigation, UI labels and card titles keep their faces.
+   ===================================================================================================== */
+@font-face { font-family: "Source Serif 4"; font-style: normal; font-weight: 200 900; font-display: swap;
+  src: url(../fonts/vEFI2_tTDB4M7-auWDN0ahZJW1gb8tc.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Source Serif 4"; font-style: normal; font-weight: 200 900; font-display: swap;
+  src: url(../fonts/vEFI2_tTDB4M7-auWDN0ahZJW1gV8tenXg.woff2) format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "Source Serif 4"; font-style: italic; font-weight: 200 900; font-display: swap;
+  src: url(../fonts/vEFK2_tTDB4M7-auWDN0ahZJW1gewtW_Wg.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Source Serif 4"; font-style: italic; font-weight: 200 900; font-display: swap;
+  src: url(../fonts/vEFK2_tTDB4M7-auWDN0ahZJW1gewtu_Wo7H.woff2) format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+
+/* (correction) site.min.css redefines --f-display late in the file to "Inter Display" — so anything set in
+   var(--f-display) rendered in Inter Display, not the serif. Headlines therefore use this file's own --f-serif,
+   applied explicitly; --f-display is left alone (the bundle also uses it for figures that stay sans). */
+:root { --f-serif: "Source Serif 4", Georgia, "Times New Roman", serif; --f-head: var(--f-serif); }
+/* THE HEADING SCALE (2026-11-18) — one system for every section:
+   --t-display  a single word that is the section's identity moment ("understood.", "trust.")
+   --t-section  a section's main heading (the statement line)
+   --t-sub      a heading inside a section (a chapter, a workflow, a principle)
+   --t-lead     the supporting line beneath a heading
+   --t-eyebrow  the small overline above a heading */
+:root {
+  --t-display: clamp(4.2rem, 10.4vw, 10.5rem);
+  --t-section: clamp(2.4rem, 4.4vw, 4.4rem);
+  --t-sub: clamp(1.5rem, 1.9vw, 2.1rem);
+  --t-lead: 18px;
+  --t-eyebrow: 11.5px;
+}
+@media (max-width: 767.98px) { :root { --t-section: clamp(2rem, 9vw, 2.6rem); --t-display: clamp(3.4rem, 17vw, 4.6rem); } }
+html body :is(.hero__title, .sec-head__title, .pb__title, .cta__title) {
+  font-family: var(--f-serif) !important;
+  font-weight: 600; letter-spacing: -.02em; font-optical-sizing: auto;
+}
